@@ -62,6 +62,7 @@
 +   [UCB Linux 系统管理笔记](docs/ucb-linux-sysadm/README.md)
 +   [UCD ECS032a Python 数据分析笔记](docs/ucd-ecs032a-pyda-intro/README.md)
 +   [UCD ECS036a C 底层编程笔记](docs/ucd-ecs036a-c-udrl-prog/README.md)
++   [UCD ECS150 计算机科学笔记](docs/ucd-ecs150-cs/README.md)
 +   [UCD ECS150 操作系统与系统编程笔记](docs/ucd-ecs150-os-sysprog/README.md)
 +   [UCD ECS36c 数据结构与算法笔记](docs/ucd-ecs36c-dsal/README.md)
 +   [UCD ECS50 C 与汇编笔记](docs/ucd-ecs50-c-asm/README.md)
