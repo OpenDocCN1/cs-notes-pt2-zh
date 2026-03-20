@@ -1,104 +1,148 @@
 - en: Automation
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: Automation
 - en: 原文：[https://missing.csail.mit.edu/2019/automation/](https://missing.csail.mit.edu/2019/automation/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/automation/](https://missing.csail.mit.edu/2019/automation/)
 - en: Sometimes you write a script that does something but you want for it to run
     periodically, say a backup task. You can always write an *ad hoc* solution that
     runs in the background and comes online periodically. However, most UNIX systems
     come with the cron daemon which can run task with a frequency up to a minute based
     on simple rules.
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 有时您编写了一个执行某些操作的脚本，但您希望它定期运行，比如备份任务。您始终可以编写一个在后台运行并定期在线的*临时*解决方案。然而，大多数UNIX系统都带有cron守护进程，它可以基于简单的规则以每分钟一次的频率运行任务。
 - en: On most UNIX systems the cron daemon, `crond` will be running by default but
     you can always check using `ps aux | grep crond`.
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 在大多数UNIX系统中，cron守护进程`crond`默认会运行，但您始终可以使用`ps aux | grep crond`来检查。
 - en: The crontab
+  id: totrans-4
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: crontab
 - en: The configuration file for cron can be displayed running `crontab -l` edited
     running `crontab -e` The time format that cron uses are five space separated fields
     along with the user and command
+  id: totrans-5
   prefs: []
   type: TYPE_NORMAL
+  zh: cron的配置文件可以通过运行`crontab -l`来显示，通过运行`crontab -e`来编辑。cron使用的时间格式是五个由空格分隔的字段，以及用户和命令
 - en: '**minute** - What minute of the hour the command will run on, and is between
     ‘0’ and ‘59’'
+  id: totrans-6
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**minute** - 命令将在小时中的哪一分钟运行，范围是‘0’到‘59’'
 - en: '**hour** - This controls what hour the command will run on, and is specified
     in the 24 hour clock, values must be between 0 and 23 (0 is midnight)'
+  id: totrans-7
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**hour** - 这控制命令将在哪个小时运行，并使用24小时制指定，值必须在0到23之间（0是午夜）'
 - en: '**dom** - This is the Day of Month, that you want the command run on, e.g.
     to run a command on the 19th of each month, the dom would be 19.'
+  id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**dom** - 这是您想要命令运行的月份中的日期，例如，要在每个月的19日运行命令，dom将是19。'
 - en: '**month** - This is the month a specified command will run on, it may be specified
     numerically (0-12), or as the name of the month (e.g. May)'
+  id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**month** - 这是指定命令将在哪个月份运行，可以是数字（0-12），也可以是月份的名称（例如五月）'
 - en: '**dow** - This is the Day of Week that you want a command to be run on, it
     can also be numeric (0-7) or as the name of the day (e.g. sun).'
+  id: totrans-10
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**dow** - 这是您想要命令运行的星期几，它也可以是数字（0-7）或天名的名称（例如sun）。'
 - en: '**user** - This is the user who runs the command.'
+  id: totrans-11
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**user** - 这是运行命令的用户。'
 - en: '**command** - This is the command that you want run. This field may contain
     multiple words or spaces.'
+  id: totrans-12
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**command** - 这是您想要运行的命令。该字段可以包含多个单词或空格。'
 - en: Note that using an asterisk `*` means all and using an asterisk followed by
     a slash and number means every nth value. So `*/5` means every five. Some examples
     are
+  id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意，使用星号`*`表示所有，使用星号后跟斜杠和数字表示每第n个值。所以`*/5`表示每五次。一些例子是
 - en: '[PRE0]'
+  id: totrans-14
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: You can find many more examples of common crontab schedules in [crontab.guru](https://crontab.guru/examples.html)
+  id: totrans-15
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以在[crontab.guru](https://crontab.guru/examples.html)中找到更多常见的crontab计划的示例。
 - en: Shell environment and logging
+  id: totrans-16
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: Shell环境与日志记录
 - en: A common pitfall when using cron is that it does not load the same environment
     scripts that common shells do such as `.bashrc`, `.zshrc`, &c and it does not
     log the output anywhere by default. Combined with the maximum frequency being
     one minute, it can become quite painful to debug cronscripts initially.
+  id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 使用cron时常见的陷阱是它不会加载与常见shell相同的相同环境脚本，例如`.bashrc`、`.zshrc`等，并且默认情况下不会在任何地方记录输出。结合最大频率为每分钟一次，这可能会在最初调试cron脚本时变得相当痛苦。
 - en: To deal with the environment, make sure that you use absolute paths in all your
     scripts and modify your environment variables such as `PATH` so the script can
     run successfully. To simplify logging, a good recommendation is to write your
     crontab in a format like this
+  id: totrans-18
   prefs: []
   type: TYPE_NORMAL
+  zh: 为了处理环境，确保在所有脚本中使用绝对路径，并修改环境变量，如`PATH`，以便脚本可以成功运行。为了简化日志记录，一个好的建议是将您的crontab写成如下格式
 - en: '[PRE1]'
+  id: totrans-19
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE1]'
 - en: And write the script in a separate file. Remember that `>>` appends to the file
     and that `2>&1` redirects `stderr` to `stdout` (you might to want keep them separate
     though).
+  id: totrans-20
   prefs: []
   type: TYPE_NORMAL
+  zh: 并且将脚本写入单独的文件。记住，`>>`将内容追加到文件中，而`2>&1`将`stderr`重定向到`stdout`（尽管您可能希望将它们分开）。
 - en: Anacron
+  id: totrans-21
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: Anacron
 - en: One caveat of using cron is that if the computer is powered off or asleep when
     the cron script should run then it is not executed. For frequent tasks this might
     be fine, but if a task runs less often, you may want to ensure that it is executed.
@@ -107,30 +151,44 @@
     the machine is running continuously. Hence, it can be used on machines that aren’t
     running 24 hours a day, to control regular jobs as daily, weekly, and monthly
     jobs.
+  id: totrans-22
   prefs: []
   type: TYPE_NORMAL
+  zh: 使用cron的一个注意事项是，如果cron脚本应该运行时计算机处于关机或休眠状态，则它不会执行。对于频繁的任务，这可能没问题，但如果任务运行频率较低，您可能希望确保它被执行。[anacron](https://linux.die.net/man/8/anacron)的工作方式与`cron`类似，但频率是以天为单位的。与cron不同，它不假设机器持续运行。因此，它可以用在不是每天24小时运行的机器上，以控制定期任务，如每日、每周和每月任务。
 - en: Exercises
+  id: totrans-23
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 练习
 - en: Make a script that looks every minute in your downloads folder for any file
     that is a picture (you can look into [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)
     or use a regular expression to match common extensions) and moves them into your
     Pictures folder.
+  id: totrans-24
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 编写一个脚本，每分钟检查您的下载文件夹中是否有任何图片文件（您可以查看[MIME类型](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)或使用正则表达式匹配常见扩展）并将它们移动到您的图片文件夹中。
 - en: Write a cron script to weekly check for outdated packages in your system and
     prompts you to update them or updates them automatically.
+  id: totrans-25
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 编写一个cron脚本，用于每周检查系统中过时的软件包，并提示您更新它们或自动更新。
 - en: '* * *'
+  id: totrans-26
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/automation.md).'
+  id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/automation.md)。'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: 本文档遵循[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可协议。

@@ -1,102 +1,149 @@
 - en: Security and Privacy
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 安全和隐私
 - en: 原文：[https://missing.csail.mit.edu/2019/security/](https://missing.csail.mit.edu/2019/security/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/security/](https://missing.csail.mit.edu/2019/security/)
 - en: The world is a scary place, and everyone’s out to get you.
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 世界是一个可怕的地方，每个人都想抓住你。
 - en: Okay, maybe not, but that doesn’t mean you want to flaunt all your secrets.
     Security (and privacy) is generally all about raising the bar for attackers. Find
     out what your threat model is, and then design your security mechanisms around
     that! If the threat model is the NSA or Mossad, you’re *probably* going to have
     a bad time.
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 好吧，可能不是，但这并不意味着你想炫耀所有的秘密。安全和隐私通常都是关于提高攻击者的门槛。找出你的威胁模型，然后围绕那个模型设计你的安全机制！如果威胁模型是国家安全局或摩萨德，你可能会遇到麻烦。
 - en: 'There are *many* ways to make your technical persona more secure. We’ll touch
     on a lot of high-level things here, but this is a process, and educating yourself
     is one of the best things you can do. So:'
+  id: totrans-4
   prefs: []
   type: TYPE_NORMAL
+  zh: 有*很多*种方法可以使你的技术形象更加安全。我们在这里会涉及很多高级话题，但这是一个过程，自我教育是你能做的最好的事情之一。所以：
 - en: Follow the Right People
+  id: totrans-5
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 跟随正确的人
 - en: 'One of the best ways to improve your security know-how is to follow other people
     who are vocal about security. Some suggestions:'
+  id: totrans-6
   prefs: []
   type: TYPE_NORMAL
+  zh: 提高你的安全知识的最好方法之一是跟随那些在安全方面有声音的人。以下是一些建议：
 - en: '[@TroyHunt](https://twitter.com/TroyHunt)'
+  id: totrans-7
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@TroyHunt](https://twitter.com/TroyHunt)'
 - en: '[@SwiftOnSecurity](https://twitter.com/SwiftOnSecurity)'
+  id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@SwiftOnSecurity](https://twitter.com/SwiftOnSecurity)'
 - en: '[@taviso](https://twitter.com/taviso)'
+  id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@taviso](https://twitter.com/taviso)'
 - en: '[@thegrugq](https://twitter.com/thegrugq)'
+  id: totrans-10
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@thegrugq](https://twitter.com/thegrugq)'
 - en: '[@tqbf](https://twitter.com/tqbf)'
+  id: totrans-11
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@tqbf](https://twitter.com/tqbf)'
 - en: '[@mattblaze](https://twitter.com/mattblaze)'
+  id: totrans-12
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@mattblaze](https://twitter.com/mattblaze)'
 - en: '[@moxie](https://twitter.com/moxie)'
+  id: totrans-13
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[@moxie](https://twitter.com/moxie)'
 - en: See also [this list](https://heimdalsecurity.com/blog/best-twitter-cybersec-accounts/)
     for more suggestions.
+  id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: 参考以下列表获取更多建议：[这个列表](https://heimdalsecurity.com/blog/best-twitter-cybersec-accounts/)
 - en: General Security Advice
+  id: totrans-15
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 一般安全建议
 - en: Tech Solidarity has a pretty great list of [do’s and don’ts for journalists](https://web.archive.org/web/20221123204419/https://techsolidarity.org/resources/basic_security.htm)
     that has a lot of sane advice, and is decently up-to-date. [@thegrugq](https://medium.com/@thegrugq)
     also has a good blog post on [travel security advice](https://medium.com/@thegrugq/stop-fabricating-travel-security-advice-35259bf0e869)
     that’s worth reading. We’ll repeat much of the advice from those sources here,
     plus some more. Also, get a [USB data blocker](https://www.amazon.com/dp/B00QRRZ2QM/),
     because [USB is scary](https://www.bleepingcomputer.com/news/security/heres-a-list-of-29-different-types-of-usb-attacks/).
+  id: totrans-16
   prefs: []
   type: TYPE_NORMAL
+  zh: Tech Solidarity 有一个相当不错的关于记者的[应该做和不应该做的事情列表](https://web.archive.org/web/20221123204419/https://techsolidarity.org/resources/basic_security.htm)，其中包含很多合理的建议，并且相当更新。[@thegrugq](https://medium.com/@thegrugq)
+    还有一篇关于[旅行安全建议](https://medium.com/@thegrugq/stop-fabricating-travel-security-advice-35259bf0e869)的好博客文章，值得一读。我们将在这里重复很多来自这些来源的建议，以及一些额外的建议。此外，购买一个[USB数据阻断器](https://www.amazon.com/dp/B00QRRZ2QM/)，因为[USB很可怕](https://www.bleepingcomputer.com/news/security/heres-a-list-of-29-different-types-of-usb-attacks/)。
 - en: Authentication
+  id: totrans-17
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 认证
 - en: 'The very first thing you should do, if you haven’t already, is download a password
     manager. Some good ones are:'
+  id: totrans-18
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你还没有做的话，第一件事应该是下载一个密码管理器。一些不错的选择有：
 - en: '[1password](https://1password.com/)'
+  id: totrans-19
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[1password](https://1password.com/)'
 - en: '[KeePass](https://keepass.info/)'
+  id: totrans-20
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[KeePass](https://keepass.info/)'
 - en: '[BitWarden](https://bitwarden.com/)'
+  id: totrans-21
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[BitWarden](https://bitwarden.com/)'
 - en: '[`pass`](https://git.zx2c4.com/password-store/about/)'
+  id: totrans-22
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[`pass`](https://git.zx2c4.com/password-store/about/)'
 - en: If you’re particularly paranoid, use one that encrypts the passwords locally
     on your computer, as opposed to storing them in plain-text at the server. Use
     it to generate passwords for all the web sites you care about right now. Then,
@@ -107,8 +154,13 @@
     phishing](https://twitter.com/taviso/status/1082015009348104192). SMS is pretty
     much useless unless your threat model only includes random strangers picking up
     your password in transit.
+  id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你特别偏执，请使用一种在本地计算机上加密密码的方法，而不是在服务器上以纯文本形式存储。用它为所有你关心的网站生成密码。然后，开启双因素认证，理想情况下使用
+    [FIDO/U2F](https://fidoalliance.org/) 撬棍（例如 [YubiKey](https://www.yubico.com/quiz/)，它为学生提供
+    [20% 的折扣](https://www.yubico.com/why-yubico/for-education/))。在紧急情况下，TOTP（如 Google
+    Authenticator 或 Duo）也可以使用，但它[不能防止钓鱼](https://twitter.com/taviso/status/1082015009348104192)。除非你的威胁模型只包括随机陌生人捡起你传输中的密码，否则短信几乎毫无用处。
 - en: Also, a note about paper keys. Often, services will give you a “backup key”
     that you can use as a second factor if you lose your real second factor (btw,
     always keep a backup dongle somewhere safe!). While you *can* stick those in your
@@ -116,50 +168,74 @@
     manager, you’re totally hosed (but maybe you’re okay with that thread model).
     If you are truly paranoid, print out these paper keys, never store them digitally,
     and place them in a safe in the real world.
+  id: totrans-24
   prefs: []
   type: TYPE_NORMAL
+  zh: 此外，关于纸质密钥的注意事项。通常，服务会提供一个“备份密钥”，你可以在丢失真正的第二因素时作为备用因素使用（顺便说一句，始终要在一个安全的地方保留备份）。虽然你可以将这些密钥存放在密码管理器中，但这意味着如果有人获取了你的密码管理器，你将完全处于不利地位（但也许你对此模型可以接受）。如果你真的非常偏执，请打印出这些纸质密钥，永远不要以数字形式存储，并将它们放在现实世界中的保险箱中。
 - en: Private Communication
+  id: totrans-25
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 私人通信
 - en: Use [Signal](https://www.signal.org/) ([setup instructions](https://medium.com/@mshelton/signal-for-beginners-c6b44f76a1f0).
     [Wire](https://wire.com/en/) is [fine too](https://www.securemessagingapps.com/);
     WhatsApp is okay; [don’t use Telegram](https://twitter.com/bascule/status/897187286554628096)).
     Desktop messengers are pretty broken (partially due to usually relying on Electron,
     which is a huge trust stack).
+  id: totrans-26
   prefs: []
   type: TYPE_NORMAL
+  zh: 使用 [Signal](https://www.signal.org/) ([设置说明](https://medium.com/@mshelton/signal-for-beginners-c6b44f76a1f0).
+    [Wire](https://wire.com/en/) 同样不错([https://www.securemessagingapps.com/](https://www.securemessagingapps.com/));
+    WhatsApp 可以接受；[不要使用 Telegram](https://twitter.com/bascule/status/897187286554628096)).
+    桌面即时通讯工具相当不完善（部分原因是通常依赖于 Electron，这是一个庞大的信任堆栈）。
 - en: E-mail is particularly problematic, even if PGP signed. It’s not generally forward-secure,
     and the key-distribution problem is pretty severe. [keybase.io](https://keybase.io/)
     helps, and is useful for a number of other reasons. Also, PGP keys are generally
     handled on desktop computers, which is one of the least secure computing environments.
     Relatedly, consider getting a Chromebook, or just work on a tablet with a keyboard.
+  id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: 电子邮件尤其有问题，即使经过 PGP 签名。它通常不是前向安全的，密钥分发问题相当严重。[keybase.io](https://keybase.io/)
+    有所帮助，并且出于许多其他原因也很有用。此外，PGP 密钥通常在桌面计算机上处理，这是最不安全的计算环境之一。相关地，考虑购买 Chromebook，或者只需在带键盘的平板电脑上工作。
 - en: File Security
+  id: totrans-28
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 文件安全
 - en: File security is hard, and operates on many level. What is it you’re trying
     to secure against?
+  id: totrans-29
   prefs: []
   type: TYPE_NORMAL
+  zh: 文件安全是一项艰巨的任务，它涉及多个层面。你试图防范的是什么？
 - en: '[![$5 wrench](../Images/ea169b4cc9b45099c7a950957a9f4fd4.png)](https://xkcd.com/538/)'
+  id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: '![5 磨刀石](../Images/ea169b4cc9b45099c7a950957a9f4fd4.png)(https://xkcd.com/538/)'
 - en: 'Offline attacks (someone steals your laptop while it’s off): turn on full disk
     encryption. ([cryptsetup + LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_a_non-root_file_system)
     on Linux, [BitLocker](https://fossbytes.com/enable-full-disk-encryption-windows-10/)
     on Windows, [FileVault](https://support.apple.com/en-us/HT204837) on macOS. Note
     that this won’t help if the attacker *also* has you and really wants your secrets.'
+  id: totrans-31
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 离线攻击（有人在你关闭笔记本电脑时偷走它）：启用全磁盘加密。([Linux上的 cryptsetup + LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_a_non-root_file_system)，[Windows上的
+    BitLocker](https://fossbytes.com/enable-full-disk-encryption-windows-10/)，[macOS上的
+    FileVault](https://support.apple.com/en-us/HT204837)。请注意，如果攻击者也拥有你并且真的想要你的秘密，这不会有所帮助）。
 - en: 'Online attacks (someone has your laptop and it’s on): use file encryption.
     There are two primary mechanisms for doing so'
+  id: totrans-32
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在线攻击（有人拥有你的笔记本电脑并且它处于开启状态）：使用文件加密。为此，有两种主要的机制
 - en: 'Encrypted filesystems: stacked filesystem encryption software encrypts files
     individually rather than having encrypted block devices. You can “mount” these
     filesystems by providing the decryption key, and then browse the files inside
@@ -167,74 +243,100 @@
     include [gocryptfs](https://github.com/rfjakob/gocryptfs) and [eCryptFS](https://www.ecryptfs.org/).
     More detailed comparisons can be found [here](https://nuetzlich.net/gocryptfs/comparison/)
     and [here](https://wiki.archlinux.org/index.php/disk_encryption#Comparison_table)'
+  id: totrans-33
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 加密文件系统：堆叠文件系统加密软件对文件进行单独加密，而不是对加密块设备进行加密。你可以通过提供解密密钥来“挂载”这些文件系统，然后自由浏览其中的文件。当你卸载它时，那些文件就都不可用了。现代解决方案包括[gocryptfs](https://github.com/rfjakob/gocryptfs)和[eCryptFS](https://www.ecryptfs.org/)。更详细的比较可以在[这里](https://nuetzlich.net/gocryptfs/comparison/)和[这里](https://wiki.archlinux.org/index.php/disk_encryption#Comparison_table)找到。
 - en: 'Encrypted files: encrypt individual files with symmetric encryption (see `gpg
     -c`) and a secret key. Or, like `pass`, also encrypt the key with your public
     key so only you can read it back later with your private key. Exact encryption
     settings matter a lot!'
+  id: totrans-34
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 加密文件：使用对称加密（见`gpg -c`）和密钥对单个文件进行加密。或者，像`pass`一样，也可以使用你的公钥来加密密钥，这样只有你才能用私钥在以后读取它。确切的加密设置非常重要！
 - en: '[Plausible deniability](https://en.wikipedia.org/wiki/Plausible_deniability)
     (what seems to be the problem officer?): usually lower performance, and easier
     to lose data. Hard to actually prove that it provides [deniable encryption](https://en.wikipedia.org/wiki/Deniable_encryption)!
     See the [discussion here](https://security.stackexchange.com/questions/135846/is-plausible-deniability-actually-feasible-for-encrypted-volumes-disks),
     and then consider whether you may want to try [VeraCrypt](https://www.veracrypt.fr/en/Home.html)
     (the maintained fork of good ol’ TrueCrypt).'
+  id: totrans-35
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[合理否认](https://en.wikipedia.org/wiki/Plausible_deniability)（看起来有什么问题官员？）：通常性能较低，更容易丢失数据。实际上很难证明它提供了[可否认加密](https://en.wikipedia.org/wiki/Deniable_encryption)！请参阅[这里的讨论](https://security.stackexchange.com/questions/135846/is-plausible-deniability-actually-feasible-for-encrypted-volumes-disks)，然后考虑你是否可能想要尝试[VeraCrypt](https://www.veracrypt.fr/en/Home.html)（老牌TrueCrypt的维护分支）。'
 - en: 'Encrypted backups: use [Tarsnap](https://www.tarsnap.com/) or [Borgbase](https://www.borgbase.com/)'
+  id: totrans-36
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 加密备份：使用[Tarsnap](https://www.tarsnap.com/)或[Borgbase](https://www.borgbase.com/)
 - en: Think about whether an attacker can delete your backups if they get a hold of
     your laptop!
+  id: totrans-37
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 考虑一下，如果攻击者获得了你的笔记本电脑，他们是否可以删除你的备份！
 - en: Internet Security & Privacy
+  id: totrans-38
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 互联网安全与隐私
 - en: The internet is a *very* scary place. Open WiFi networks [are](https://www.troyhunt.com/the-beginners-guide-to-breaking-website/)
     [scary](https://www.troyhunt.com/talking-with-scott-hanselman-on/). Make sure
     you delete them afterwards, otherwise your phone will happily announce and re-connect
     to something with the same name later!
+  id: totrans-39
   prefs: []
   type: TYPE_NORMAL
+  zh: 互联网是一个非常可怕的地方。开放的WiFi网络[很可怕](https://www.troyhunt.com/the-beginners-guide-to-breaking-website/)。[是](https://www.troyhunt.com/talking-with-scott-hanselman-on/)。确保你之后删除它们，否则你的手机会高兴地宣布并重新连接到具有相同名称的东西！
 - en: If you’re ever on a network you don’t trust, a VPN *may* be worthwhile, but
     keep in mind that you’re trusting the VPN provider *a lot*. Do you really trust
     them more than your ISP? If you truly want a VPN, use a provider you’re sure you
     trust, and you should probably pay for it. Or set up [WireGuard](https://www.wireguard.com/)
     for yourself – it’s [excellent](https://web.archive.org/web/20210526211307/https://latacora.micro.blog/there-will-be/)!
+  id: totrans-40
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你曾经连接到一个你不信任的网络，VPN可能是有价值的，但请记住，你是在很大程度上信任VPN提供商。你真的比你的ISP更信任他们吗？如果你真的想要VPN，请使用你确信可以信任的提供商，并且你可能需要为此付费。或者为自己设置[WireGuard](https://www.wireguard.com/)
+    – 它是[出色的](https://web.archive.org/web/20210526211307/https://latacora.micro.blog/there-will-be/)！
 - en: There are also secure configuration settings for a lot of internet-enabled applications
     at [cipherlist.eu](https://cipherlist.eu/). If you’re particularly privacy-oriented,
     [privacytools.io](https://privacytools.io) is also a good resource.
+  id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 在[cipherlist.eu](https://cipherlist.eu/)上也有许多互联网应用程序的安全配置设置。如果你特别注重隐私，[privacytools.io](https://privacytools.io)也是一个很好的资源。
 - en: Some of you may wonder about [Tor](https://www.torproject.org/). Keep in mind
     that Tor is *not* particularly resistant to powerful global attackers, and is
     weak against traffic analysis attacks. It may be useful for hiding traffic on
     a small scale, but won’t really buy you all that much in terms of privacy. You’re
     better off using more secure services in the first place (Signal, TLS + certificate
     pinning, etc.).
+  id: totrans-42
   prefs: []
   type: TYPE_NORMAL
+  zh: 一些朋友可能会对 [Tor](https://www.torproject.org/) 感到好奇。请记住，Tor 并非特别抵抗强大的全球攻击者，且在流量分析攻击中较为脆弱。它可能在小型范围内隐藏流量有用，但在隐私方面并不会给你带来太多好处。你最好一开始就使用更安全的服务（Signal、TLS
+    + 证书固定等）。
 - en: Web Security
+  id: totrans-43
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 网络安全
 - en: So, you want to go on the Web too? Jeez, you’re really pushing your luck here.
+  id: totrans-44
   prefs: []
   type: TYPE_NORMAL
+  zh: 那么，你也想上网吗？哎呀，你真的在冒险了。
 - en: Install [HTTPS Everywhere](https://www.eff.org/https-everywhere). SSL/TLS is
     [critical](https://www.troyhunt.com/ssl-is-not-about-encryption/), and it’s *not*
     just about encryption, but also about being able to verify that you’re talking
@@ -243,8 +345,13 @@
     HTTPS Everywhere will do its very best to never navigate you to HTTP sites when
     there’s an alternative. That doesn’t save you, but it helps. If you’re truly paranoid,
     blacklist any SSL/TLS CAs that you don’t absolutely need.
+  id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: 安装 [HTTPS Everywhere](https://www.eff.org/https-everywhere)。SSL/TLS 是 [至关重要的](https://www.troyhunt.com/ssl-is-not-about-encryption/)，它不仅仅是关于加密，还在于能够验证你最初是在与正确的服务进行交流！如果你运行自己的网站服务器，[对其进行测试](https://www.ssllabs.com/ssltest/index.html)。TLS
+    配置 [可能会变得复杂](https://wiki.mozilla.org/Security/Server_Side_TLS)。HTTPS Everywhere
+    将竭尽全力，在存在替代方案时，永远不会导航你到 HTTP 网站。这并不能完全保护你，但确实有所帮助。如果你真的非常谨慎，可以黑名单任何你绝对不需要的 SSL/TLS
+    CA。
 - en: Install [uBlock Origin](https://github.com/gorhill/uBlock). It is a [wide-spectrum
     blocker](https://github.com/gorhill/uBlock/wiki/Blocking-mode) that doesn’t just
     stop ads, but all sorts of third-party communication a page may try to do. And
@@ -253,39 +360,61 @@
     or even [hard mode](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-hard-mode).
     Those *will* make some sites not work until you’ve fiddled with the settings enough,
     but will also significantly improve your online security.
+  id: totrans-46
   prefs: []
   type: TYPE_NORMAL
+  zh: 安装 [uBlock Origin](https://github.com/gorhill/uBlock)。它是一个 [广谱拦截器](https://github.com/gorhill/uBlock/wiki/Blocking-mode)，不仅阻止广告，还能阻止页面可能尝试的所有第三方通信。以及内联脚本等。如果你愿意花时间进行配置以使一切工作，请访问
+    [中等模式](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-medium-mode) 或甚至
+    [困难模式](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-hard-mode)。这些模式确实会使一些网站在调整设置之前无法工作，但也会显著提高你的在线安全性。
 - en: If you’re using Firefox, enable [Multi-Account Containers](https://support.mozilla.org/en-US/kb/containers).
     Create separate containers for social networks, banking, shopping, etc. Firefox
     will keep the cookies and other state for each of the containers totally separate,
     so sites you visit in one container can’t snoop on sensitive data from the others.
     In Google Chrome, you can use [Chrome Profiles](https://support.google.com/chrome/answer/2364824)
     to achieve similar results.
+  id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你使用 Firefox，请启用 [多账户容器](https://support.mozilla.org/en-US/kb/containers)。为社交网络、银行、购物等创建单独的容器。Firefox
+    将为每个容器保留完全独立的 cookie 和其他状态，因此在一个容器中访问的网站无法窥探其他容器的敏感数据。在 Google Chrome 中，你可以使用
+    [Chrome 配置文件](https://support.google.com/chrome/answer/2364824)来实现类似的效果。
 - en: Exercises
+  id: totrans-48
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 练习
 - en: Encrypt a file using PGP
+  id: totrans-49
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用 PGP 加密文件
 - en: Use veracrypt to create a simple encrypted volume
+  id: totrans-50
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用 veracrypt 创建一个简单的加密卷
 - en: Enable 2FA for your most data sensitive accounts i.e. GMail, Dropbox, Github,
     &c
+  id: totrans-51
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 为您最敏感数据的账户启用双因素认证，例如 GMail、Dropbox、Github 等。
 - en: '* * *'
+  id: totrans-52
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/security.md).'
+  id: totrans-53
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/security.md)。'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-54
   prefs: []
   type: TYPE_NORMAL
+  zh: 本文档遵循 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可协议。

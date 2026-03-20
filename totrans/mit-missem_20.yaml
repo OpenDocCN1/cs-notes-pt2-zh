@@ -1,15 +1,21 @@
 - en: Course Overview + The Shell
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 课程概述 + Shell
 - en: 原文：[https://missing.csail.mit.edu/2020/course-shell/](https://missing.csail.mit.edu/2020/course-shell/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2020/course-shell/](https://missing.csail.mit.edu/2020/course-shell/)
 - en: Motivation
+  id: totrans-2
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 动机
 - en: As computer scientists, we know that computers are great at aiding in repetitive
     tasks. However, far too often, we forget that this applies just as much to our
     *use* of the computer as it does to the computations we want our programs to perform.
@@ -18,52 +24,70 @@
     problem. Yet many of us utilize only a small fraction of those tools; we only
     know enough magical incantations by rote to get by, and blindly copy-paste commands
     from the internet when we get stuck.
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 作为计算机科学家，我们知道计算机擅长辅助重复性任务。然而，我们往往忘记这一点同样适用于我们使用计算机的方式，就像它适用于我们希望程序执行的计算一样。我们手头上有大量的工具，这些工具使我们能够更高效地工作并解决更复杂的问题。然而，我们中的许多人只利用了其中的一小部分；我们只是通过死记硬背知道足够的咒语来应付，当我们遇到困难时，就盲目地从互联网上复制粘贴命令。
 - en: This class is an attempt to address this.
+  id: totrans-4
   prefs: []
   type: TYPE_NORMAL
+  zh: 本课程试图解决这个问题。
 - en: We want to teach you how to make the most of the tools you know, show you new
     tools to add to your toolbox, and hopefully instill in you some excitement for
     exploring (and perhaps building) more tools on your own. This is what we believe
     to be the missing semester from most Computer Science curricula.
+  id: totrans-5
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们想教你如何充分利用你已知的工具，向你展示可以添加到你的工具箱中的新工具，并希望在你心中培养一些探索（也许还有自己构建）更多工具的热情。这是我们相信的大多数计算机科学课程中缺失的学期。
 - en: Class structure
+  id: totrans-6
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 课程结构
 - en: The class consists of 11 1-hour lectures, each one centering on a [particular
     topic](/2020/). The lectures are largely independent, though as the semester goes
     on we will presume that you are familiar with the content from the earlier lectures.
     We have lecture notes online, but there will be a lot of content covered in class
     (e.g. in the form of demos) that may not be in the notes. We will be recording
     lectures and posting the recordings online.
+  id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 本课程由11个1小时长的讲座组成，每个讲座都围绕一个[特定主题](/2020/)展开。讲座之间大部分是独立的，但随着学期的进行，我们假设你已经熟悉了早期讲座的内容。我们已经在网上提供了讲座笔记，但课堂上会有很多内容（例如以演示的形式）可能不在笔记中。我们将录制讲座并在网上发布。
 - en: We are trying to cover a lot of ground over the course of just 11 1-hour lectures,
     so the lectures are fairly dense. To allow you some time to get familiar with
     the content at your own pace, each lecture includes a set of exercises that guide
     you through the lecture’s key points. After each lecture, we are hosting office
     hours where we will be present to help answer any questions you might have. If
     you are attending the class online, you can send us questions at [missing-semester@mit.edu](mailto:missing-semester@mit.edu).
+  id: totrans-8
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们试图在短短11个1小时讲座中涵盖大量内容，因此讲座内容相当密集。为了让你有时间以自己的节奏熟悉内容，每个讲座都包含一系列练习，引导你了解讲座的关键点。在每个讲座之后，我们将举办办公时间，届时我们将到场帮助回答你可能有的任何问题。如果你在线参加课程，你可以通过[missing-semester@mit.edu](mailto:missing-semester@mit.edu)发送问题。
 - en: Due to the limited time we have, we won’t be able to cover all the tools in
     the same level of detail a full-scale class might. Where possible, we will try
     to point you towards resources for digging further into a tool or topic, but if
     something particularly strikes your fancy, don’t hesitate to reach out to us and
     ask for pointers!
+  id: totrans-9
   prefs: []
   type: TYPE_NORMAL
+  zh: 由于我们有限的时间，我们无法像完整课程那样详细地介绍所有工具。在可能的情况下，我们将尝试引导你了解进一步探索工具或主题的资源，但如果有什么特别吸引你的，请不要犹豫，向我们寻求指导！
 - en: 'Topic 1: The Shell'
+  id: totrans-10
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 主题1：Shell
 - en: What is the shell?
+  id: totrans-11
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 什么是Shell？
 - en: 'Computers these days have a variety of interfaces for giving them commands;
     fanciful graphical user interfaces, voice interfaces, and even AR/VR are everywhere.
     These are great for 80% of use-cases, but they are often fundamentally restricted
@@ -71,52 +95,73 @@
     a voice command that hasn’t been programmed. To take full advantage of the tools
     your computer provides, we have to go old-school and drop down to a textual interface:
     The Shell.'
+  id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 今天的计算机有各种各样的命令接口；幻想般的图形用户界面、语音界面，甚至AR/VR无处不在。这些对于80%的使用场景来说都很棒，但它们在允许你做什么方面通常存在根本性的限制——你不能按一个不存在的按钮，也不能给出一个未编程的语音命令。为了充分利用计算机提供的工具，我们必须回到老式的方法，降低到文本界面：Shell。
 - en: 'Nearly all platforms you can get your hands on have a shell in one form or
     another, and many of them have several shells for you to choose from. While they
     may vary in the details, at their core they are all roughly the same: they allow
     you to run programs, give them input, and inspect their output in a semi-structured
     way.'
+  id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: 几乎所有你可以接触到的平台都至少有一种形式的shell，其中许多平台提供了多个shell供你选择。虽然它们在细节上可能有所不同，但它们的本质大致相同：它们允许你运行程序，向它们提供输入，并以半结构化的方式检查它们的输出。
 - en: In this lecture, we will focus on the Bourne Again SHell, or “bash” for short.
     This is one of the most widely used shells, and its syntax is similar to what
     you will see in many other shells. To open a shell *prompt* (where you can type
     commands), you first need a *terminal*. Your device probably shipped with one
     installed, or you can install one fairly easily.
+  id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这次讲座中，我们将重点关注Bourne Again SHell，简称“bash”。这是最广泛使用的shell之一，其语法与你在许多其他shell中看到的大致相同。要打开一个shell
+    *提示符*（在那里你可以输入命令），你首先需要一个*终端*。你的设备可能已经预装了一个终端，或者你可以相对容易地安装一个。
 - en: Using the shell
+  id: totrans-15
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 使用shell
 - en: 'When you launch your terminal, you will see a *prompt* that often looks a little
     like this:'
+  id: totrans-16
   prefs: []
   type: TYPE_NORMAL
+  zh: 当你启动你的终端时，你会看到一个*提示符*，通常看起来有点像这样：
 - en: '[PRE0]'
+  id: totrans-17
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: 'This is the main textual interface to the shell. It tells you that you are
     on the machine `missing` and that your “current working directory”, or where you
     currently are, is `~` (short for “home”). The `$` tells you that you are not the
     root user (more on that later). At this prompt you can type a *command*, which
     will then be interpreted by the shell. The most basic command is to execute a
     program:'
+  id: totrans-18
   prefs: []
   type: TYPE_NORMAL
+  zh: 这是访问shell的主要文本界面。它告诉你你现在位于名为`missing`的机器上，以及你的“当前工作目录”，或者说你现在所在的位置，是`~`（代表“家”）。`$`符号告诉你你不是root用户（稍后会有更多关于这个话题的讨论）。在这个提示符下，你可以输入一个*命令*，然后shell会解释这个命令。最基本的命令是执行一个程序：
 - en: '[PRE1]'
+  id: totrans-19
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE1]'
 - en: 'Here, we executed the `date` program, which (perhaps unsurprisingly) prints
     the current date and time. The shell then asks us for another command to execute.
     We can also execute a command with *arguments*:'
+  id: totrans-20
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们执行了`date`程序，它（可能不出所料）打印了当前的日期和时间。然后shell会要求我们输入另一个要执行的命令。我们还可以使用*参数*来执行命令：
 - en: '[PRE2]'
+  id: totrans-21
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE2]'
 - en: In this case, we told the shell to execute the program `echo` with the argument
     `hello`. The `echo` program simply prints out its arguments. The shell parses
     the command by splitting it by whitespace, and then runs the program indicated
@@ -125,8 +170,11 @@
     characters (e.g., a directory named “My Photos”), you can either quote the argument
     with `'` or `"` (`"My Photos"`), or escape just the relevant characters with `\`
     (`My\ Photos`).
+  id: totrans-22
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这种情况下，我们告诉shell执行名为`echo`的程序，并带有参数`hello`。`echo`程序简单地打印出其参数。shell通过按空白字符分割命令来解析命令，然后运行由第一个单词指示的程序，并将每个后续单词作为程序可以访问的参数提供。如果你想提供一个包含空格或其他特殊字符的参数（例如，名为“我的照片”的目录），你可以用`'`或`"`将参数引起来（`"我的照片"`），或者用`\`转义相关字符（`My\
+    Photos`）。
 - en: 'But how does the shell know how to find the `date` or `echo` programs? Well,
     the shell is a programming environment, just like Python or Ruby, and so it has
     variables, conditionals, loops, and functions (next lecture!). When you run commands
@@ -134,23 +182,33 @@
     If the shell is asked to execute a command that doesn’t match one of its programming
     keywords, it consults an *environment variable* called `$PATH` that lists which
     directories the shell should search for programs when it is given a command:'
+  id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: 但shell是如何知道如何找到`date`或`echo`程序的？嗯，shell是一个编程环境，就像Python或Ruby一样，因此它有变量、条件语句、循环和函数（下节课将介绍！）。当你你在shell中运行命令时，你实际上是在编写一小段代码，shell会解释这段代码。如果shell被要求执行一个不匹配其编程关键词的命令，它会咨询一个名为`$PATH`的环境变量，该变量列出了shell在接收到命令时应搜索哪些目录以查找程序：
 - en: '[PRE3]'
+  id: totrans-24
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE3]'
 - en: When we run the `echo` command, the shell sees that it should execute the program
     `echo`, and then searches through the `:`-separated list of directories in `$PATH`
     for a file by that name. When it finds it, it runs it (assuming the file is *executable*;
     more on that later). We can find out which file is executed for a given program
     name using the `which` program. We can also bypass `$PATH` entirely by giving
     the *path* to the file we want to execute.
+  id: totrans-25
   prefs: []
   type: TYPE_NORMAL
+  zh: 当我们运行 `echo` 命令时，shell 会看到它应该执行程序 `echo`，然后搜索 `$PATH` 中以 `:` 分隔的目录列表，以找到该名称的文件。当它找到时，它会运行它（假设文件是
+    *可执行* 的；关于这一点稍后会有更多介绍）。我们可以使用 `which` 程序找出给定程序名称所执行的文件。我们也可以通过给出我们想要执行的文件的 *路径*
+    来完全绕过 `$PATH`。
 - en: Navigating in the shell
+  id: totrans-26
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 在 shell 中导航
 - en: 'A path on the shell is a delimited list of directories; separated by `/` on
     Linux and macOS and `\` on Windows. On Linux and macOS, the path `/` is the “root”
     of the file system, under which all directories and files lie, whereas on Windows
@@ -160,40 +218,62 @@
     are relative to the current working directory, which we can see with the `pwd`
     command and change with the `cd` command. In a path, `.` refers to the current
     directory, and `..` to its parent directory:'
+  id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: 在 shell 中，路径是一系列由分隔符分隔的目录；在 Linux 和 macOS 上由 `/` 分隔，在 Windows 上由 `\` 分隔。在 Linux
+    和 macOS 上，路径 `/` 是文件系统的“根”，所有目录和文件都位于其下，而在 Windows 上，每个磁盘分区都有一个根（例如，`C:\`）。我们通常假设你在这个课程中使用的是
+    Linux 文件系统。以 `/` 开头的路径称为 *绝对* 路径。任何其他路径都是 *相对* 路径。相对路径相对于当前工作目录，我们可以使用 `pwd` 命令查看它，并使用
+    `cd` 命令更改它。在路径中，`.` 表示当前目录，而 `..` 表示其父目录：
 - en: '[PRE4]'
+  id: totrans-28
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE4]'
 - en: Notice that our shell prompt kept us informed about what our current working
     directory was. You can configure your prompt to show you all sorts of useful information,
     which we will cover in a later lecture.
+  id: totrans-29
   prefs: []
   type: TYPE_NORMAL
+  zh: 注意，我们的 shell 提示符一直告诉我们当前的工作目录是什么。你可以配置你的提示符以显示各种有用的信息，我们将在以后的讲座中介绍。
 - en: In general, when we run a program, it will operate in the current directory
     unless we tell it otherwise. For example, it will usually search for files there,
     and create new files there if it needs to.
+  id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 通常，当我们运行一个程序时，它将在当前目录中操作，除非我们告诉它否则。例如，它通常会在那里搜索文件，如果需要，会在那里创建新文件。
 - en: 'To see what lives in a given directory, we use the `ls` command:'
+  id: totrans-31
   prefs: []
   type: TYPE_NORMAL
+  zh: 要查看给定目录中有什么，我们使用 `ls` 命令：
 - en: '[PRE5]'
+  id: totrans-32
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE5]'
 - en: 'Unless a directory is given as its first argument, `ls` will print the contents
     of the current directory. Most commands accept flags and options (flags with values)
     that start with `-` to modify their behavior. Usually, running a program with
     the `-h` or `--help` flag will print some help text that tells you what flags
     and options are available. For example, `ls --help` tells us:'
+  id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: 除非将目录作为其第一个参数给出，否则 `ls` 将打印当前目录的内容。大多数命令接受标志和选项（带有值的标志），以 `-` 开头以修改其行为。通常，使用
+    `-h` 或 `--help` 标志运行程序将打印一些帮助文本，告诉你有哪些标志和选项可用。例如，`ls --help` 告诉我们：
 - en: '[PRE6]'
+  id: totrans-34
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE6]'
 - en: '[PRE7]'
+  id: totrans-35
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE7]'
 - en: 'This gives us a bunch more information about each file or directory present.
     First, the `d` at the beginning of the line tells us that `missing` is a directory.
     Then follow three groups of three characters (`rwx`). These indicate what permissions
@@ -206,62 +286,90 @@
     permissions on that directory. For files, the permissions are as you would expect.
     Notice that nearly all the files in `/bin` have the `x` permission set for the
     last group, “everyone else”, so that anyone can execute those programs.'
+  id: totrans-36
   prefs: []
   type: TYPE_NORMAL
+  zh: 这为我们提供了关于每个现有文件或目录的更多信息。首先，行首的 `d` 告诉我们 `missing` 是一个目录。然后是三组三个字符（`rwx`）。这些表示文件所有者（`missing`）、所属组（`users`）和所有人分别对相关项拥有的权限。一个
+    `-` 表示给定的主体没有该权限。在上面，只有所有者被允许修改（`w`）`missing` 目录（即，在其中添加/删除文件）。要进入目录，用户必须在该目录（及其父目录）上拥有“搜索”（表示为“执行”：`x`）权限。要列出其内容，用户必须在该目录上拥有读取（`r`）权限。对于文件，权限正如你所期望的那样。注意，`/bin`
+    中几乎所有文件的最后一个组“所有人”都设置了 `x` 权限，这样任何人都可以执行这些程序。
 - en: Some other handy programs to know about at this point are `mv` (to rename/move
     a file), `cp` (to copy a file), and `mkdir` (to make a new directory).
+  id: totrans-37
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这个阶段，还有一些实用的程序需要了解，比如`mv`（重命名/移动文件）、`cp`（复制文件）和`mkdir`（创建新目录）。
 - en: If you ever want *more* information about a program’s arguments, inputs, outputs,
     or how it works in general, give the `man` program a try. It takes as an argument
     the name of a program, and shows you its *manual page*. Press `q` to exit.
+  id: totrans-38
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你想要关于程序参数、输入、输出或其一般工作方式的更多信息，可以尝试使用`man`程序。它接受一个程序名称作为参数，并显示其*手册页*。按`q`键退出。
 - en: '[PRE8]'
+  id: totrans-39
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE8]'
 - en: Connecting programs
+  id: totrans-40
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 连接程序
 - en: 'In the shell, programs have two primary “streams” associated with them: their
     input stream and their output stream. When the program tries to read input, it
     reads from the input stream, and when it prints something, it prints to its output
     stream. Normally, a program’s input and output are both your terminal. That is,
     your keyboard as input and your screen as output. However, we can also rewire
     those streams!'
+  id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 在shell中，程序与其相关联的两个主要“流”是：它们的输入流和输出流。当程序尝试读取输入时，它从输入流中读取，当它打印某些内容时，它将其打印到输出流。通常，程序输入和输出都是你的终端。也就是说，你的键盘作为输入，你的屏幕作为输出。然而，我们也可以重新连接这些流！
 - en: 'The simplest form of redirection is `< file` and `> file`. These let you rewire
     the input and output streams of a program to a file respectively:'
+  id: totrans-42
   prefs: []
   type: TYPE_NORMAL
+  zh: 重定向的最简单形式是`< file`和`> file`。这些允许你将程序的输入和输出流分别重新连接到文件：
 - en: '[PRE9]'
+  id: totrans-43
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE9]'
 - en: Demonstrated in the example above, `cat` is a program that con`cat`enates files.
     When given file names as arguments, it prints the contents of each of the files
     in sequence to its output stream. But when `cat` is not given any arguments, it
     prints contents from its input stream to its output stream (like in the third
     example above).
+  id: totrans-44
   prefs: []
   type: TYPE_NORMAL
+  zh: 如上例所示，`cat`是一个将文件连接在一起的程序。当提供文件名作为参数时，它按顺序将其输出流中的每个文件的 内容打印出来。但是当`cat`没有提供任何参数时，它将其输入流中的内容打印到输出流（如上例中的第三个例子所示）。
 - en: 'You can also use `>>` to append to a file. Where this kind of input/output
     redirection really shines is in the use of *pipes*. The `|` operator lets you
     “chain” programs such that the output of one is the input of another:'
+  id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: 你也可以使用`>>`来追加到文件。这种输入/输出重定向真正发挥作用的地方在于管道的使用。`|`运算符允许你“链”程序，使得一个程序的输出成为另一个程序的输入：
 - en: '[PRE10]'
+  id: totrans-46
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE10]'
 - en: We will go into a lot more detail about how to take advantage of pipes in the
     lecture on data wrangling.
+  id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们将在数据整理的讲座中详细介绍如何利用管道。
 - en: A versatile and powerful tool
+  id: totrans-48
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 一个多用途且强大的工具
 - en: 'On most Unix-like systems, one user is special: the “root” user. You may have
     seen it in the file listings above. The root user is above (almost) all access
     restrictions, and can create, read, update, and delete any file in the system.
@@ -271,28 +379,41 @@
     user”, or “root”). When you get permission denied errors, it is usually because
     you need to do something as root. Though make sure you first double-check that
     you really wanted to do it that way!'
+  id: totrans-49
   prefs: []
   type: TYPE_NORMAL
+  zh: 在大多数类Unix系统中，有一个用户是特殊的：“root”用户。你可能在上面的文件列表中见过它。root用户高于（几乎）所有访问限制，可以创建、读取、更新和删除系统中的任何文件。尽管如此，你通常不会以root用户登录系统，因为这样很容易不小心破坏某些东西。相反，你会使用`sudo`命令。正如其名称所暗示的，它允许你“作为su”执行某些操作（su是“super
+    user”或“root”的缩写）。当你遇到权限拒绝错误时，通常是因为你需要以root身份执行某些操作。尽管如此，请确保你首先确认你真的想那样做！
 - en: One thing you need to be root in order to do is writing to the `sysfs` file
     system mounted under `/sys`. `sysfs` exposes a number of kernel parameters as
     files, so that you can easily reconfigure the kernel on the fly without specialized
     tools. **Note that sysfs does not exist on Windows or macOS.**
+  id: totrans-50
   prefs: []
   type: TYPE_NORMAL
+  zh: 你需要以root权限执行的一件事是写入位于`/sys`下的`sysfs`文件系统。`sysfs`将许多内核参数作为文件暴露出来，这样你就可以在不使用专用工具的情况下轻松地即时重新配置内核。**请注意，sysfs在Windows或macOS上不存在。**
 - en: For example, the brightness of your laptop’s screen is exposed through a file
     called `brightness` under
+  id: totrans-51
   prefs: []
   type: TYPE_NORMAL
+  zh: 例如，你的笔记本电脑屏幕的亮度通过位于
 - en: '[PRE11]'
+  id: totrans-52
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE11]'
 - en: 'By writing a value into that file, we can change the screen brightness. Your
     first instinct might be to do something like:'
+  id: totrans-53
   prefs: []
   type: TYPE_NORMAL
+  zh: 通过将值写入该文件，我们可以改变屏幕亮度。你的第一反应可能是做些像这样的事情：
 - en: '[PRE12]'
+  id: totrans-54
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE12]'
 - en: 'This error may come as a surprise. After all, we ran the command with `sudo`!
     This is an important thing to know about the shell. Operations like `|`, `>`,
     and `<` are done *by the shell*, not by the individual program. `echo` and friends
@@ -301,45 +422,67 @@
     as your user) tries to open the brightness file for writing, before setting that
     as `sudo echo`’s output, but is prevented from doing so since the shell does not
     run as root. Using this knowledge, we can work around this:'
+  id: totrans-55
   prefs: []
   type: TYPE_NORMAL
+  zh: 这个错误可能让你感到惊讶。毕竟，我们是用 `sudo` 运行命令的！这是关于 shell 的一个重要知识点。像 `|`、`>` 和 `<` 这样的操作是由
+    shell 来完成的，而不是由单个程序完成的。`echo` 和其他命令并不“知道” `|`。它们只是从它们的输入读取并写入输出，无论输出是什么。在上面的例子中，shell（与你的用户一样进行认证）试图在设置
+    `sudo echo` 的输出之前打开亮度文件进行写入，但由于 shell 并不以 root 身份运行，因此被阻止了。利用这个知识，我们可以绕过这个问题：
 - en: '[PRE13]'
+  id: totrans-56
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE13]'
 - en: 'Since the `tee` program is the one to open the `/sys` file for writing, and
     *it* is running as `root`, the permissions all work out. You can control all sorts
     of fun and useful things through `/sys`, such as the state of various system LEDs
     (your path might be different):'
+  id: totrans-57
   prefs: []
   type: TYPE_NORMAL
+  zh: 由于 `tee` 程序是打开 `/sys` 文件进行写入的，并且它以 `root` 身份运行，因此权限设置都是正确的。你可以通过 `/sys` 控制各种有趣和有用的东西，例如各种系统
+    LED 的状态（你的路径可能不同）：
 - en: '[PRE14]'
+  id: totrans-58
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE14]'
 - en: Next steps
+  id: totrans-59
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 下一步
 - en: At this point you know your way around a shell enough to accomplish basic tasks.
     You should be able to navigate around to find files of interest and use the basic
     functionality of most programs. In the next lecture, we will talk about how to
     perform and automate more complex tasks using the shell and the many handy command-line
     programs out there.
+  id: totrans-60
   prefs: []
   type: TYPE_NORMAL
+  zh: 到目前为止，你已经足够熟悉 shell，可以完成基本任务了。你应该能够导航到找到感兴趣的文件，并使用大多数程序的基本功能。在下一讲中，我们将讨论如何使用
+    shell 和许多实用的命令行程序来执行和自动化更复杂的任务。
 - en: Exercises
+  id: totrans-61
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 练习
 - en: All classes in this course are accompanied by a series of exercises. Some give
     you a specific task to do, while others are open-ended, like “try using X and
     Y programs”. We highly encourage you to try them out.
+  id: totrans-62
   prefs: []
   type: TYPE_NORMAL
+  zh: 本课程的所有课程都附有一系列练习。有些给出了特定的任务，而有些则是开放式的，例如“尝试使用 X 和 Y 程序”。我们强烈鼓励你尝试它们。
 - en: We have not written solutions for the exercises. If you are stuck on anything
     in particular, feel free to send us an email describing what you’ve tried so far,
     and we will try to help you out.
+  id: totrans-63
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们没有为练习编写解决方案。如果你在某个特定的问题上遇到了困难，请随时发送电子邮件描述你迄今为止尝试的内容，我们将尽力帮助你。
 - en: For this course, you need to be using a Unix shell like Bash or ZSH. If you
     are on Linux or macOS, you don’t have to do anything special. If you are on Windows,
     you need to make sure you are not running cmd.exe or PowerShell; you can use [Windows
@@ -347,77 +490,116 @@
     virtual machine to use Unix-style command-line tools. To make sure you’re running
     an appropriate shell, you can try the command `echo $SHELL`. If it says something
     like `/bin/bash` or `/usr/bin/zsh`, that means you’re running the right program.
+  id: totrans-64
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 对于这门课程，你需要使用类似 Bash 或 ZSH 的 Unix shell。如果你使用的是 Linux 或 macOS，你不需要做任何特殊操作。如果你使用的是
+    Windows，你需要确保你并没有运行 cmd.exe 或 PowerShell；你可以使用 [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/)
+    或 Linux 虚拟机来使用 Unix 风格的命令行工具。为了确保你正在运行合适的 shell，你可以尝试运行命令 `echo $SHELL`。如果它显示类似
+    `/bin/bash` 或 `/usr/bin/zsh` 的内容，这意味着你正在运行正确的程序。
 - en: Create a new directory called `missing` under `/tmp`.
+  id: totrans-65
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在 `/tmp` 目录下创建一个名为 `missing` 的新目录。
 - en: Look up the `touch` program. The `man` program is your friend.
+  id: totrans-66
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 查找 `touch` 程序。`man` 程序是你的好朋友。
 - en: Use `touch` to create a new file called `semester` in `missing`.
+  id: totrans-67
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用 `touch` 命令在 `missing` 目录下创建一个名为 `semester` 的新文件。
 - en: 'Write the following into that file, one line at a time:'
+  id: totrans-68
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将以下内容逐行写入该文件：
 - en: '[PRE15]'
+  id: totrans-69
   prefs:
   - PREF_IND
   type: TYPE_PRE
+  zh: '[PRE15]'
 - en: 'The first line might be tricky to get working. It’s helpful to know that `#`
     starts a comment in Bash, and `!` has a special meaning even within double-quoted
     (`"`) strings. Bash treats single-quoted strings (`''`) differently: they will
     do the trick in this case. See the Bash [quoting](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)
     manual page for more information.'
+  id: totrans-70
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 第一行可能有点难以正确运行。了解 `#` 在 Bash 中表示注释，`!` 在双引号（`"`) 字符串中具有特殊含义是有帮助的。Bash 对单引号（`'`)
+    字符串的处理方式不同：在这种情况下它们会起作用。有关更多信息，请参阅 Bash 的 [引号](https://www.gnu.org/software/bash/manual/html_node/Quoting.html)
+    手册页面。
 - en: 'Try to execute the file, i.e. type the path to the script (`./semester`) into
     your shell and press enter. Understand why it doesn’t work by consulting the output
     of `ls` (hint: look at the permission bits of the file).'
+  id: totrans-71
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 尝试执行该文件，即在你的 shell 中输入脚本的路径（`./semester`）并按回车键。通过咨询 `ls` 的输出来理解为什么它不起作用（提示：查看文件的权限位）。
 - en: Run the command by explicitly starting the `sh` interpreter, and giving it the
     file `semester` as the first argument, i.e. `sh semester`. Why does this work,
     while `./semester` didn’t?
+  id: totrans-72
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 通过显式启动 `sh` 解释器，并将文件 `semester` 作为第一个参数传递来运行该命令，即 `sh semester`。为什么这样做会成功，而
+    `./semester` 不行呢？
 - en: Look up the `chmod` program (e.g. use `man chmod`).
+  id: totrans-73
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 查找 `chmod` 程序（例如，使用 `man chmod`）。
 - en: Use `chmod` to make it possible to run the command `./semester` rather than
     having to type `sh semester`. How does your shell know that the file is supposed
     to be interpreted using `sh`? See this page on the [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
     line for more information.
+  id: totrans-74
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用 `chmod` 使 `./semester` 命令可执行，而不是必须输入 `sh semester`。你的 shell 如何知道该文件应该使用 `sh`
+    解释器来解释？请参阅关于 [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) 行的此页面以获取更多信息。
 - en: Use `|` and `>` to write the “last modified” date output by `semester` into
     a file called `last-modified.txt` in your home directory.
+  id: totrans-75
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用 `|` 和 `>` 将 `semester` 输出的“最后修改日期”写入你主目录下的名为 `last-modified.txt` 的文件中。
 - en: 'Write a command that reads out your laptop battery’s power level or your desktop
     machine’s CPU temperature from `/sys`. Note: if you’re a macOS user, your OS doesn’t
     have sysfs, so you can skip this exercise.'
+  id: totrans-76
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 编写一个命令，从 `/sys` 中读取笔记本电脑电池的电量或台式机的 CPU 温度。注意：如果你是 macOS 用户，你的操作系统没有 sysfs，因此你可以跳过这个练习。
 - en: '* * *'
+  id: totrans-77
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/course-shell.md).'
+  id: totrans-78
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2020/course-shell.md)。'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-79
   prefs: []
   type: TYPE_NORMAL
+  zh: 本文档受 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

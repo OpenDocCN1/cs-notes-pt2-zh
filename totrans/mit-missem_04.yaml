@@ -1,845 +1,1224 @@
 - en: Shell and Scripting
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: Shell 和脚本
 - en: 原文：[https://missing.csail.mit.edu/2019/shell/](https://missing.csail.mit.edu/2019/shell/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/shell/](https://missing.csail.mit.edu/2019/shell/)
 - en: The shell is an efficient, textual interface to your computer.
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 壳是计算机的一个高效文本界面。
 - en: 'The shell prompt: what greets you when you open a terminal. Lets you run programs
     and commands; common ones are:'
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 壳提示符：当你打开终端时看到的。允许你运行程序和命令；常见的有：
 - en: '`cd` to change directory'
+  id: totrans-4
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 `cd` 来更改目录
 - en: '`ls` to list files and directories'
+  id: totrans-5
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 `ls` 来列出文件和目录
 - en: '`mv` and `cp` to move and copy files'
+  id: totrans-6
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 `mv` 和 `cp` 移动和复制文件
 - en: But the shell lets you do *so* much more; you can invoke any program on your
     computer, and command-line tools exist for doing pretty much anything you may
     want to do. And they’re often more efficient than their graphical counterparts.
     We’ll go through a bunch of those in this class.
+  id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 但壳允许你做更多的事情；你可以调用你电脑上的任何程序，并且存在用于执行几乎所有你想做的事情的命令行工具。而且它们通常比它们的图形界面更高效。我们将在本课程中介绍其中的一些。
 - en: 'The shell provides an interactive programming language (“scripting”). There
     are many shells:'
+  id: totrans-8
   prefs: []
   type: TYPE_NORMAL
+  zh: 壳提供了一种交互式编程语言（“脚本”）。有许多壳：
 - en: You’ve probably used `sh` or `bash`.
+  id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 你可能已经使用过 `sh` 或 `bash`。
 - en: 'Also shells that match languages: `csh`.'
+  id: totrans-10
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 还有一些与语言匹配的壳：`csh`。
 - en: 'Or “better” shells: `fish`, `zsh`, `ksh`.'
+  id: totrans-11
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 或者“更好的”壳：`fish`、`zsh`、`ksh`。
 - en: In this class we’ll focus on the ubiquitous `sh` and `bash`, but feel free to
     play around with others. I like `fish`.
+  id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 在本课程中，我们将重点关注无处不在的 `sh` 和 `bash`，但你可以随意尝试其他壳。我喜欢 `fish`。
 - en: Shell programming is a *very* useful tool in your toolbox. Can either write
     programs directly at the prompt, or into a file. `#!/bin/sh` + `chmod +x` to make
     shell executable.
+  id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: Shell 编程是工具箱中一个非常有用的工具。可以直接在提示符下编写程序，或者写入文件。`#!/bin/sh` + `chmod +x` 使壳可执行。
 - en: Working with the shell
+  id: totrans-14
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 使用壳
 - en: 'Run a command a bunch of times:'
+  id: totrans-15
   prefs: []
   type: TYPE_NORMAL
+  zh: 多次运行命令：
 - en: '[PRE0]'
+  id: totrans-16
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: 'There’s a lot to unpack:'
+  id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 有很多要解释：
 - en: '`for x in list; do BODY; done`'
+  id: totrans-18
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`for x in list; do BODY; done`'
 - en: '`;` terminates a command – equivalent to newline'
+  id: totrans-19
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`;` 终止命令 – 等同于换行符'
 - en: split `list`, assign each to `x`, and run body
+  id: totrans-20
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 分割 `list`，将每个分配给 `x`，并运行主体
 - en: splitting is “whitespace splitting”, which we’ll get back to
+  id: totrans-21
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 分割是“空白分割”，我们稍后会再谈
 - en: no curly braces in shell, so `do` + `done`
+  id: totrans-22
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 壳中没有花括号，所以 `do` + `done`
 - en: '`$(seq 1 5)`'
+  id: totrans-23
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`$(seq 1 5)`'
 - en: run the program `seq` with arguments `1` and `5`
+  id: totrans-24
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用参数 `1` 和 `5` 运行程序 `seq`
 - en: substitute entire `$()` with the output of that program
+  id: totrans-25
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 用该程序的输出替换整个 `$()`
 - en: equivalent to
+  id: totrans-26
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 等价于
 - en: '[PRE1]'
+  id: totrans-27
   prefs:
   - PREF_IND
   - PREF_IND
   type: TYPE_PRE
+  zh: '[PRE1]'
 - en: '`echo hello`'
+  id: totrans-28
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`echo hello`'
 - en: everything in a shell script is a command
+  id: totrans-29
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 壳脚本中的每一件事都是一个命令
 - en: in this case, run the `echo` command, which prints its arguments with the argument
     `hello`.
+  id: totrans-30
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在这种情况下，运行 `echo` 命令，它使用参数 `hello` 打印其参数。
 - en: all commands are searched for in `$PATH` (colon-separated)
+  id: totrans-31
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 所有命令都在 `$PATH` 中搜索（冒号分隔）
 - en: 'We have variables:'
+  id: totrans-32
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们有变量：
 - en: '[PRE2]'
+  id: totrans-33
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE2]'
 - en: 'Will print each file name in the current directory. Can also set variables
     using `=` (no space!):'
+  id: totrans-34
   prefs: []
   type: TYPE_NORMAL
+  zh: 将打印当前目录中的每个文件名。也可以使用 `=` 设置变量（没有空格！）：
 - en: '[PRE3]'
+  id: totrans-35
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE3]'
 - en: 'There are a bunch of “special” variables too:'
+  id: totrans-36
   prefs: []
   type: TYPE_NORMAL
+  zh: 还有许多“特殊”变量：
 - en: '`$1` to `$9`: arguments to the script'
+  id: totrans-37
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`$1` 到 `$9`：脚本的参数'
 - en: '`$0` name of the script itself'
+  id: totrans-38
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`$0` 脚本本身的名称'
 - en: '`$#` number of arguments'
+  id: totrans-39
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`$#` 参数数量'
 - en: '`$$` process ID of current shell'
+  id: totrans-40
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`$$` 当前壳的进程 ID'
 - en: To only print directories
+  id: totrans-41
   prefs: []
   type: TYPE_NORMAL
+  zh: 仅打印目录
 - en: '[PRE4]'
+  id: totrans-42
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE4]'
 - en: 'More to unpack here:'
+  id: totrans-43
   prefs: []
   type: TYPE_NORMAL
+  zh: 更多要解释的内容：
 - en: '`if CONDITION; then BODY; fi`'
+  id: totrans-44
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`if CONDITION; then BODY; fi`'
 - en: '`CONDITION` is a command; if it returns with exit status 0 (success), then
     `BODY` is run.'
+  id: totrans-45
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`CONDITION` 是一个命令；如果它返回退出状态 0（成功），则运行 `BODY`。'
 - en: can also hook in an `else` or `elif`
+  id: totrans-46
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 也可以连接 `else` 或 `elif`
 - en: again, no curly braces, so `then` + `fi`
+  id: totrans-47
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 再次，没有花括号，所以 `then` + `fi`
 - en: '`test` is another program that provides various checks and comparisons, and
     exits with 0 if they’re true (`$?`)'
+  id: totrans-48
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`test` 是另一个提供各种检查和比较的程序，如果它们为真则退出状态为 0 (`$?`)'
 - en: '`man COMMAND` is your friend: `man test`'
+  id: totrans-49
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`man COMMAND` 是你的朋友：`man test`'
 - en: 'can also be invoked with `[` + `]`: `[ -d $f ]`'
+  id: totrans-50
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 也可以用 `[` + `]` 调用：`[ -d $f ]`
 - en: take a look at `man test` and `which "["`
+  id: totrans-51
   prefs:
   - PREF_IND
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 查看 `man test` 和 `which "["`
 - en: But wait! This is wrong! What if a file is called “My Documents”?
+  id: totrans-52
   prefs: []
   type: TYPE_NORMAL
+  zh: 但等等！这是错误的！如果文件名为“我的文档”怎么办？
 - en: '`for f in $(ls)` expands to `for f in My Documents`'
+  id: totrans-53
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`for f in $(ls)` 展开为 `for f in My Documents`'
 - en: first do the test on `My`, then on `Documents`
+  id: totrans-54
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 首先在 `My` 上进行测试，然后在 `Documents` 上
 - en: not what we wanted!
+  id: totrans-55
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 不是我们想要的！
 - en: biggest source of bugs in shell scripts
+  id: totrans-56
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 壳脚本中最大的错误来源
 - en: Argument splitting
+  id: totrans-57
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 参数分割
 - en: Bash splits arguments by whitespace; not always what you want!
+  id: totrans-58
   prefs: []
   type: TYPE_NORMAL
+  zh: Bash 通过空白分割参数；这不一定是你想要的！
 - en: need to use quoting to handle spaces in arguments `for f in "My Documents"`
     would work correctly
+  id: totrans-59
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 需要使用引号来处理参数中的空格，`for f in "My Documents"`将正确工作
 - en: 'same problem somewhere else – do you see where? `test -d $f`: if `$f` contains
     whitespace, `test` will error!'
+  id: totrans-60
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 在其他地方遇到相同的问题——你看到在哪里了吗？`test -d $f`：如果`$f`包含空格，`test`将会出错！
 - en: '`echo` happens to be okay, because split + join by space but what if a filename
     contains a newline?! turns into space!'
+  id: totrans-61
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`echo`碰巧是可以的，因为通过空格分割和连接，但如果文件名包含换行符呢？！它将变成空格！'
 - en: quote all use of variables that you don’t want split
+  id: totrans-62
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 引用所有你不希望分割的变量
 - en: but how do we fix our script above? what does `for f in "$(ls)"` do do you think?
+  id: totrans-63
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 但我们如何修复上面的脚本？你认为`for f in "$(ls)"`做了什么？
 - en: Globbing is the answer!
+  id: totrans-64
   prefs: []
   type: TYPE_NORMAL
+  zh: 通配符匹配是答案！
 - en: 'bash knows how to look for files using patterns:'
+  id: totrans-65
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: bash知道如何使用模式查找文件：
 - en: '`*` any string of characters'
+  id: totrans-66
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`*`代表任意字符串'
 - en: '`?` any single character'
+  id: totrans-67
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`?`代表任意单个字符'
 - en: '`{a,b,c}` any of these characters'
+  id: totrans-68
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`{a,b,c}`代表这些字符中的任意一个'
 - en: '`for f in *`: all files in this directory'
+  id: totrans-69
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`for f in *`：这个目录下的所有文件'
 - en: when globbing, each matching file becomes its own argument
+  id: totrans-70
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 当进行通配符匹配时，每个匹配的文件都成为其自己的参数
 - en: 'still need to make sure to quote when *using*: `test -d "$f"`'
+  id: totrans-71
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 仍然需要在使用时确保引用：`test -d "$f"`
 - en: 'can make advanced patterns:'
+  id: totrans-72
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 可以创建高级模式：
 - en: '`for f in a*`: all files starting with `a` in the current directory'
+  id: totrans-73
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`for f in a*`：当前目录下以`a`开头的所有文件'
 - en: '`for f in foo/*.txt`: all `.txt` files in `foo`'
+  id: totrans-74
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`for f in foo/*.txt`：`foo`目录下所有的`.txt`文件'
 - en: '`for f in foo/*/p??.txt` all three-letter text files starting with p in subdirs
     of `foo`'
+  id: totrans-75
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`for f in foo/*/p??.txt`：`foo`子目录中以`p`开头的前三个字母的文本文件'
 - en: 'Whitespace issues don’t stop there:'
+  id: totrans-76
   prefs: []
   type: TYPE_NORMAL
+  zh: 空格问题并没有到此为止：
 - en: '`if [ $foo = "bar" ]; then` – see the issue?'
+  id: totrans-77
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`if [ $foo = "bar" ]; then`——看到问题了吗？'
 - en: what if `$foo` is empty? arguments to `[` are `=` and `bar`…
+  id: totrans-78
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 如果`$foo`为空怎么办？`[`的参数是`=`和`bar`...
 - en: '*can* work around this with `[ x$foo = "xbar" ]`, but bleh'
+  id: totrans-79
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 可以用`[ x$foo = "xbar" ]`来解决这个问题，但很糟糕
 - en: 'instead, use `[[`: bash built-in comparator that has special parsing'
+  id: totrans-80
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 相反，使用`[[`：bash内置的比较器具有特殊的解析功能
 - en: also allows `&&` instead of `-a`, `||` over `-o`, etc.
+  id: totrans-81
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 还允许使用`&&`代替`-a`，`||`代替`-o`等。
 - en: Composability
+  id: totrans-82
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 可组合性
 - en: Shell is powerful in part because of composability. Can chain multiple programs
     together rather than have one program that does everything.
+  id: totrans-83
   prefs: []
   type: TYPE_NORMAL
+  zh: Shell之所以强大，部分原因在于其可组合性。可以链式连接多个程序，而不是只有一个程序做所有的事情。
 - en: The key character is `|` (pipe).
+  id: totrans-84
   prefs: []
   type: TYPE_NORMAL
+  zh: 关键字符是`|`（管道）。
 - en: '`a | b` means run both `a` and `b` send all output of `a` as input to `b` print
     the output of `b`'
+  id: totrans-85
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`a | b`意味着运行`a`和`b`，将`a`的所有输出作为输入传递给`b`，并打印`b`的输出'
 - en: 'All programs you launch (“processes”) have three “streams”:'
+  id: totrans-86
   prefs: []
   type: TYPE_NORMAL
+  zh: 你启动的所有程序（“进程”）都有三个“流”：
 - en: '`STDIN`: when the program reads input, it comes from here'
+  id: totrans-87
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`STDIN`：当程序读取输入时，它从这里来'
 - en: '`STDOUT`: when the program prints something, it goes here'
+  id: totrans-88
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`STDOUT`：当程序打印某些内容时，它将在这里'
 - en: '`STDERR`: a 2nd output the program can choose to use'
+  id: totrans-89
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`STDERR`：程序可以选择使用的第二个输出'
 - en: by default, `STDIN` is your keyboard, `STDOUT` and `STDERR` are both your terminal.
     but you can change that!
+  id: totrans-90
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 默认情况下，`STDIN`是你的键盘，`STDOUT`和`STDERR`都是你的终端。但你可以更改它们！
 - en: '`a | b` makes `STDOUT` of `a` `STDIN` of `b`.'
+  id: totrans-91
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`a | b`使得`a`的`STDOUT`成为`b`的`STDIN`。'
 - en: 'also have:'
+  id: totrans-92
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 还包括：
 - en: '`a > foo` (`STDOUT` of `a` goes to the file `foo`)'
+  id: totrans-93
   prefs:
   - PREF_IND
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`a > foo`（`a`的`STDOUT`输出到文件`foo`）'
 - en: '`a 2> foo` (`STDERR` of `a` goes to the file `foo`)'
+  id: totrans-94
   prefs:
   - PREF_IND
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`a 2> foo`（`a`的`STDERR`输出到文件`foo`）'
 - en: '`a < foo` (`STDIN` of `a` is read from the file `foo`)'
+  id: totrans-95
   prefs:
   - PREF_IND
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`a < foo`（`a`的`STDIN`从文件`foo`读取）'
 - en: 'hint: `tail -f` will print a file as it’s being written'
+  id: totrans-96
   prefs:
   - PREF_IND
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 提示：`tail -f`会在文件被写入时打印文件
 - en: why is this useful? lets you manipulate output of a program!
+  id: totrans-97
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 这有什么用？让你可以操作程序的输出！
 - en: '`ls | grep foo`: all files that contain the word `foo`'
+  id: totrans-98
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ls | grep foo`：包含单词`foo`的所有文件'
 - en: '`ps | grep foo`: all processes that contain the word `foo`'
+  id: totrans-99
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ps | grep foo`：包含单词`foo`的所有进程'
 - en: '`journalctl | grep -i intel | tail -n5`: last 5 system log messages with the
     word intel (case insensitive)'
+  id: totrans-100
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`journalctl | grep -i intel | tail -n5`：包含单词`intel`（不区分大小写）的最后5条系统日志消息'
 - en: '`who | sendmail -t me@example.com` send the list of logged-in users to `me@example.com`'
+  id: totrans-101
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`who | sendmail -t me@example.com`将登录用户列表发送到`me@example.com`'
 - en: forms the basis for much data-wrangling, as we’ll cover later
+  id: totrans-102
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 这构成了大量数据处理的基础，我们稍后会讨论
 - en: Bash also provides a number of other ways to compose programs.
+  id: totrans-103
   prefs: []
   type: TYPE_NORMAL
+  zh: Bash还提供了其他一些组合程序的方法。
 - en: 'You can group commands with `(a; b) | tac`: run `a`, then `b`, and send all
     their output to `tac`, which prints its input in reverse order.'
+  id: totrans-104
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可以使用`(a; b) | tac`来组合命令：先运行`a`，然后运行`b`，并将所有输出发送到`tac`，它以相反的顺序打印其输入。
 - en: 'A lesser-known, but super useful one is *process substitution*. `b <(a)` will
     run `a`, generate a temporary file-name for its output stream, and pass that file-name
     to `b`. For example:'
+  id: totrans-105
   prefs: []
   type: TYPE_NORMAL
+  zh: 一个不太为人所知但非常实用的功能是 *进程替换*。`b <(a)` 将运行 `a`，为它的输出流生成一个临时文件名，并将该文件名传递给 `b`。例如：
 - en: '[PRE5]'
+  id: totrans-106
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE5]'
 - en: will show you the difference between the first 20 lines of the last boot log
     and the one before that.
+  id: totrans-107
   prefs: []
   type: TYPE_NORMAL
+  zh: 将显示最后启动日志的前20行与之前的差异。
 - en: Job and process control
+  id: totrans-108
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 作业和进程控制
 - en: What if you want to run longer-term things in the background?
+  id: totrans-109
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你想在后台运行长期任务怎么办？
 - en: the `&` suffix runs a program “in the background”
+  id: totrans-110
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`&` 后缀在后台运行程序'
 - en: it will give you back your prompt immediately
+  id: totrans-111
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 它会立即给你返回提示符
 - en: 'handy if you want to run two programs at the same time like a server and client:
     `server & client`'
+  id: totrans-112
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 如果你想同时运行两个程序，例如服务器和客户端，这很方便：`server & client`
 - en: 'note that the running program still has your terminal as `STDOUT`! try: `server
     > server.log & client`'
+  id: totrans-113
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 注意，运行中的程序仍然将你的终端作为 `STDOUT`！尝试：`server > server.log & client`
 - en: see all such processes with `jobs`
+  id: totrans-114
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 `jobs` 查看所有此类进程
 - en: notice that it shows “Running”
+  id: totrans-115
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 注意它显示“正在运行”
 - en: bring it to the foreground with `fg %JOB` (no argument is latest)
+  id: totrans-116
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 使用 `fg %JOB` 将其带到前台（没有参数表示最新）
 - en: 'if you want to background the current program: `^Z` + `bg` (Here `^Z` means
     pressing `Ctrl+Z`)'
+  id: totrans-117
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 如果你想要将当前程序放入后台：`^Z` + `bg`（这里的 `^Z` 表示按 `Ctrl+Z`）
 - en: '`^Z` stops the current process and makes it a “job”'
+  id: totrans-118
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`^Z` 停止当前进程并将其变为“作业”'
 - en: '`bg` runs the last job in the background (as if you did `&`)'
+  id: totrans-119
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`bg` 在后台运行最后一个作业（就像你执行了 `&` 一样）'
 - en: background jobs are still tied to your current session, and exit if you log
     out. `disown` lets you sever that connection. or use `nohup`.
+  id: totrans-120
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 背景作业仍然与你的当前会话相关联，如果你注销，它们会退出。`disown` 允许你切断这种连接。或者使用 `nohup`。
 - en: '`$!` is pid of last background process'
+  id: totrans-121
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`$!` 是最后一个后台进程的进程ID'
 - en: What about other stuff running on your computer?
+  id: totrans-122
   prefs: []
   type: TYPE_NORMAL
+  zh: 关于你电脑上运行的其他东西怎么办？
 - en: '`ps` is your friend: lists running processes'
+  id: totrans-123
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ps` 是你的朋友：列出正在运行的进程'
 - en: '`ps -A`: print processes from all users (also `ps ax`)'
+  id: totrans-124
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ps -A`: 打印所有用户的进程（也 `ps ax`）'
 - en: '`ps` has *many* arguments: see `man ps`'
+  id: totrans-125
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`ps` 有 *很多* 参数：参见 `man ps`'
 - en: '`pgrep`: find processes by searching (like `ps -A | grep`)'
+  id: totrans-126
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`pgrep`: 通过搜索查找进程（类似于 `ps -A | grep`)'
 - en: '`pgrep -af`: search and display with arguments'
+  id: totrans-127
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`pgrep -af`: 搜索并显示带有参数'
 - en: '`kill`: send a *signal* to a process by ID (`pkill` by search + `-f`)'
+  id: totrans-128
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`kill`: 通过ID向进程发送 *信号*（`pkill` 通过搜索 + `-f`）'
 - en: signals tell a process to “do something”
+  id: totrans-129
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 信号告诉进程“做某事”
 - en: 'most common: `SIGKILL` (`-9` or `-KILL`): tell it to exit *now* equivalent
     to `^\`'
+  id: totrans-130
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '最常见：`SIGKILL` (`-9` 或 `-KILL`): 告诉它立即退出，相当于 `^\`'
 - en: 'also `SIGTERM` (`-15` or `-TERM`): tell it to exit gracefully equivalent to
     `^C`'
+  id: totrans-131
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '也 `SIGTERM` (`-15` 或 `-TERM`): 告诉它优雅地退出，相当于 `^C`'
 - en: Flags
+  id: totrans-132
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 标志
 - en: 'Most command line utilities take parameters using **flags**. Flags usually
     come in short form (`-h`) and long form (`--help`). Usually running `CMD -h` or
     `man CMD` will give you a list of the flags the program takes. Short flags can
     usually be combined, running `rm -r -f` is equivalent to running `rm -rf` or `rm
     -fr`. Some common flags are a de facto standard and you will seem them in many
     applications:'
+  id: totrans-133
   prefs: []
   type: TYPE_NORMAL
+  zh: 大多数命令行实用程序使用 **标志** 来接受参数。标志通常有简短形式（`-h`）和长形式（`--help`）。通常运行 `CMD -h` 或 `man
+    CMD` 会给出程序接受的标志列表。简短标志通常可以组合使用，运行 `rm -r -f` 等同于运行 `rm -rf` 或 `rm -fr`。一些常见的标志是事实上的标准，你会在许多应用程序中看到它们：
 - en: '`-a` commonly refers to all files (i.e. also including those that start with
     a period)'
+  id: totrans-134
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`-a` 通常指所有文件（即也包括以点开头的文件）'
 - en: '`-f` usually refers to forcing something, like `rm -f`'
+  id: totrans-135
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`-f` 通常表示强制执行，例如 `rm -f`'
 - en: '`-h` displays the help for most commands'
+  id: totrans-136
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`-h` 显示大多数命令的帮助信息'
 - en: '`-v` usually enables a verbose output'
+  id: totrans-137
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`-v` 通常启用详细输出'
 - en: '`-V` usually prints the version of the command'
+  id: totrans-138
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`-V` 通常打印命令的版本'
 - en: Also, a double dash `--` is used in built-in commands and many other commands
     to signify the end of command options, after which only positional parameters
     are accepted. So if you have a file called `-v` (which you can) and want to grep
     it `grep pattern -- -v` will work whereas `grep pattern -v` won’t. In fact, one
     way to create such file is to do `touch -- -v`.
+  id: totrans-139
   prefs: []
   type: TYPE_NORMAL
+  zh: 此外，双横线 `--` 在内置命令和许多其他命令中用于表示命令选项的结束，之后只接受位置参数。所以如果你有一个名为 `-v` 的文件（你可以这样做）并想要使用
+    `grep` 搜索它，`grep pattern -- -v` 会工作，而 `grep pattern -v` 则不会。实际上，创建此类文件的一种方法是通过
+    `touch -- -v`。
 - en: Exercises
+  id: totrans-140
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 练习
 - en: If you are completely new to the shell you may want to read a more comprehensive
     guide about it such as [BashGuide](https://mywiki.wooledge.org/BashGuide). If
     you want a more in-depth introduction [The Linux Command Line](https://linuxcommand.org/tlcl.php)
     is a good resource.
+  id: totrans-141
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 如果你完全不了解 shell，你可能想阅读更全面的指南，例如 [BashGuide](https://mywiki.wooledge.org/BashGuide)。如果你想更深入地了解，[The
+    Linux Command Line](https://linuxcommand.org/tlcl.php) 是一个很好的资源。
 - en: '**PATH, which, type**'
+  id: totrans-142
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**PATH, which, type**'
 - en: We briefly discussed that the `PATH` environment variable is used to locate
     the programs that you run through the command line. Let’s explore that a little
     further
+  id: totrans-143
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 我们简要讨论了 `PATH` 环境变量用于通过命令行定位你运行的程序。让我们进一步探讨这一点。
 - en: Run `echo $PATH` (or `echo $PATH | tr -s ':' '\n'` for pretty printing) and
     examine its contents, what locations are listed?
+  id: totrans-144
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 运行 `echo $PATH`（或 `echo $PATH | tr -s ':' '\n'` 以进行美观打印）并检查其内容，列出了哪些位置？
 - en: The command `which` locates a program in the user PATH. Try running `which`
     for common commands like `echo`, `ls` or `mv`. Note that `which` is a bit limited
     since it does not understand shell aliases. Try running `type` and `command -v`
     for those same commands. How is the output different?
+  id: totrans-145
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 命令 `which` 在用户 PATH 中定位程序。尝试运行 `which` 常见命令，如 `echo`、`ls` 或 `mv`。请注意，`which`
+    有点局限，因为它不理解 shell 别名。尝试运行 `type` 和 `command -v` 对这些相同的命令。输出有何不同？
 - en: Run `PATH=` and try running the previous commands again, some work and some
     don’t, can you figure out why?
+  id: totrans-146
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 运行 `PATH=` 并再次尝试运行之前的命令，有些命令可以执行，有些则不行，你能找出原因吗？
 - en: '**Special Variables**'
+  id: totrans-147
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**特殊变量**'
 - en: What does the variable `~` expands as? What about `.`? And `..`?
+  id: totrans-148
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 变量 `~` 展开成什么？`.` 和 `..` 又如何？
 - en: What does the variable `$?` do?
+  id: totrans-149
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 变量 `$?` 的作用是什么？
 - en: What does the variable `$_` do?
+  id: totrans-150
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 变量 `$_` 的作用是什么？
 - en: What does the variable `!!` expand to? What about `!!*`? And `!l`?
+  id: totrans-151
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 变量 `!!` 展开成什么？`!!*` 和 `!l` 又如何？
 - en: Look for documentation for these options and familiarize yourself with them
+  id: totrans-152
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 查找这些选项的文档，并熟悉它们。
 - en: '**xargs**'
+  id: totrans-153
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**xargs**'
 - en: Sometimes piping doesn’t quite work because the command being piped into does
     not expect the newline separated format. For example `file` command tells you
     properties of the file.
+  id: totrans-154
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 有时候管道并不完全起作用，因为被管道传输的命令没有期望以换行符分隔的格式。例如，`file` 命令告诉你文件的属性。
 - en: Try running `ls | file` and `ls | xargs file`. What is `xargs` doing?
+  id: totrans-155
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 尝试运行 `ls | file` 和 `ls | xargs file`。`xargs` 在做什么？
 - en: '**Shebang**'
+  id: totrans-156
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**Shebang**'
 - en: When you write a script you can specify to your shell what interpreter should
     be used to interpret the script by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
     line. Write a script called `hello` with the following contentsmake it executable
     with `chmod +x hello`. Then execute it with `./hello`. Then remove the first line
     and execute it again? How is the shell using that first line?
+  id: totrans-157
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 当你编写脚本时，你可以通过使用 [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) 行来指定你的
+    shell 应该使用哪个解释器来解释脚本。创建一个名为 `hello` 的脚本，内容如下，使用 `chmod +x hello` 使其可执行。然后执行它 `./hello`。然后删除第一行并再次执行它？shell
+    是如何使用那第一行的？
 - en: '[PRE6]'
+  id: totrans-158
   prefs:
   - PREF_IND
   type: TYPE_PRE
+  zh: '[PRE6]'
 - en: You will often see programs that have a shebang that looks like `#! usr/bin/env
     bash`. This is a more portable solution with it own set of [advantages and disadvantages](https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my).
     How is `env` different from `which`? What environment variable does `env` use
     to decide what program to run?
+  id: totrans-159
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 你经常会看到一些程序使用看起来像 `#! usr/bin/env bash` 的 shebang。这是一个更便携的解决方案，它有其自身的优点和缺点。[advantages
+    and disadvantages](https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my)。`env`
+    与 `which` 有何不同？`env` 使用哪个环境变量来决定运行哪个程序？
 - en: '**Pipes, process substitution, subshell**'
+  id: totrans-160
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**管道、进程替换、子shell**'
 - en: Create a script called `slow_seq.sh` with the following contents and do `chmod
     +x slow_seq.sh` to make it executable.
+  id: totrans-161
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 创建一个名为 `slow_seq.sh` 的脚本，内容如下，并执行 `chmod +x slow_seq.sh` 以使其可执行。
 - en: '[PRE7]'
+  id: totrans-162
   prefs:
   - PREF_IND
   type: TYPE_PRE
+  zh: '[PRE7]'
 - en: 'There is a way in which pipes (and process substitution) differ from using
     subshell execution, i.e. `$()`. Run the following commands and observe the differences:'
+  id: totrans-163
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 管道（和进程替换）与使用子shell执行（即 `$()`）的方式有所不同。运行以下命令并观察差异：
 - en: '`./slow_seq.sh | grep -P "[3-6]"`'
+  id: totrans-164
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`./slow_seq.sh | grep -P "[3-6]"`'
 - en: '`grep -P "[3-6]" <(./slow_seq.sh)`'
+  id: totrans-165
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`grep -P "[3-6]" <(./slow_seq.sh)`'
 - en: '`echo $(./slow_seq.sh) | grep -P "[3-6]"`'
+  id: totrans-166
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`echo $(./slow_seq.sh) | grep -P "[3-6]"`'
 - en: '**Misc**'
+  id: totrans-167
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**杂项**'
 - en: Try running `touch {a,b}{a,b}` then `ls` what did appear?
+  id: totrans-168
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 尝试运行 `touch {a,b}{a,b}` 然后 `ls`，出现了什么？
 - en: Sometimes you want to keep STDIN and still pipe it to a file. Try running `echo
     HELLO | tee hello.txt`
+  id: totrans-169
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 有时候你想要保留 STDIN 并将其管道传输到文件中。尝试运行 `echo HELLO | tee hello.txt`
 - en: Try running `cat hello.txt > hello.txt` what do you expect to happen? What does
     happen?
+  id: totrans-170
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 尝试运行 `cat hello.txt > hello.txt`，你预期会发生什么？实际发生了什么？
 - en: Run `echo HELLO > hello.txt` and then run `echo WORLD >> hello.txt`. What are
     the contents of `hello.txt`? How is `>` different from `>>`?
+  id: totrans-171
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 运行 `echo HELLO > hello.txt` 然后运行 `echo WORLD >> hello.txt`。`hello.txt` 的内容是什么？`>`
+    和 `>>` 有什么区别？
 - en: Run `printf "\e[38;5;81mfoo\e[0m\n"`. How was the output different? If you want
     to know more, search for ANSI color escape sequences.
+  id: totrans-172
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 运行 `printf "\e[38;5;81mfoo\e[0m\n"`。输出有什么不同？如果你想知道更多，搜索 ANSI 颜色转义序列。
 - en: Run `touch a.txt` then run `^txt^log` what did bash do for you? In the same
     vein, run `fc`. What does it do?
+  id: totrans-173
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 运行 `touch a.txt` 然后运行 `^txt^log`，bash 为你做了什么？同样地，运行 `fc`。它做了什么？
 - en: '**Keyboard shortcuts**'
+  id: totrans-174
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: '**键盘快捷键**'
 - en: As with any application you use frequently is worth familiarising yourself with
     its keyboard shortcuts. Type the following ones and try figuring out what they
     do and in what scenarios it might be convenient knowing about them. For some of
     them it might be easier searching online about what they do. (remember that `^X`
     means pressing `Ctrl+X`)
+  id: totrans-175
   prefs:
   - PREF_IND
   type: TYPE_NORMAL
+  zh: 就像任何你经常使用的应用程序一样，熟悉其键盘快捷键是值得的。输入以下快捷键，并尝试找出它们的功能以及它们可能在什么情况下使用起来很方便。对于其中一些，可能更容易在网上搜索它们的功能。（记住
+    `^X` 表示按 `Ctrl+X`）
 - en: '`^A`, `^E`'
+  id: totrans-176
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`^A`, `^E`'
 - en: '`^R`'
+  id: totrans-177
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`^R`'
 - en: '`^L`'
+  id: totrans-178
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`^L`'
 - en: '`^C`, `^\` and `^D`'
+  id: totrans-179
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`^C`, `^\` 和 `^D`'
 - en: '`^U` and `^Y`'
+  id: totrans-180
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`^U` 和 `^Y`'
 - en: '* * *'
+  id: totrans-181
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/shell.md).'
+  id: totrans-182
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/shell.md)。'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-183
   prefs: []
   type: TYPE_NORMAL
+  zh: 本文档受 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

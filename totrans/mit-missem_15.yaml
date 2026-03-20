@@ -1,136 +1,202 @@
 - en: OS Customization
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 系统定制
 - en: 原文：[https://missing.csail.mit.edu/2019/os-customization/](https://missing.csail.mit.edu/2019/os-customization/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/os-customization/](https://missing.csail.mit.edu/2019/os-customization/)
 - en: There is a lot you can do to customize your operating system beyond what is
     available in the settings menus.
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以对操作系统进行很多定制，而不仅仅是设置菜单中可用的设置。
 - en: Keyboard remapping
+  id: totrans-3
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 键盘映射
 - en: Your keyboard probably has keys that you aren’t using very much. Instead of
     having useless keys, you can remap them to do useful things.
+  id: totrans-4
   prefs: []
   type: TYPE_NORMAL
+  zh: 您的键盘可能有一些您很少使用的键。与其让这些键无用，不如将它们映射到有用的功能。
 - en: Remapping to other keys
+  id: totrans-5
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 映射到其他键
 - en: The simplest thing is to remap keys to other keys. For example, if you don’t
     use the caps lock key very much, then you can remap it to something more useful.
     If you are a Vim user, for example, you might want to remap caps lock to escape.
+  id: totrans-6
   prefs: []
   type: TYPE_NORMAL
+  zh: 最简单的事情是将键映射到其他键。例如，如果您很少使用大写锁定键，那么您可以将其映射到更有用的键。例如，如果您是Vim用户，您可能希望将大写锁定键映射到Esc键。
 - en: On macOS, you can do some remappings through Keyboard settings in System Preferences;
     for more complicated mappings, you need special software.
+  id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 在macOS上，您可以通过系统偏好设置中的键盘设置进行一些映射；对于更复杂的映射，您需要特殊的软件。
 - en: Remapping to arbitrary commands
+  id: totrans-8
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 映射到任意命令
 - en: 'You don’t just have to remap keys to other keys: there are tools that will
     let you remap keys (or combinations of keys) to arbitrary commands. For example,
     you could make command-shift-t open a new terminal window.'
+  id: totrans-9
   prefs: []
   type: TYPE_NORMAL
+  zh: 您不仅可以将键映射到其他键：还有一些工具可以让您将键（或键的组合）映射到任意命令。例如，您可以将command-shift-t映射为打开一个新的终端窗口。
 - en: Customizing hidden OS settings
+  id: totrans-10
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 定制隐藏的OS设置
 - en: macOS
+  id: totrans-11
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: macOS
 - en: 'macOS exposes a lot of useful settings through the `defaults` command. For
     example, you can make Dock icons of hidden applications translucent:'
+  id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: macOS通过`defaults`命令公开了大量有用的设置。例如，您可以使隐藏应用的Dock图标透明：
 - en: '[PRE0]'
+  id: totrans-13
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: There is no single list of all possible settings, but you can find lists of
     specific customizations online, such as Mathias Bynens’ [.macos](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
+  id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: 没有一个包含所有可能设置的单一列表，但您可以在网上找到特定自定义设置的列表，例如Mathias Bynens的 [.macos](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 - en: Window management
+  id: totrans-15
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 窗口管理
 - en: Tiling window management
+  id: totrans-16
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 平铺窗口管理
 - en: '[Tiling window management](https://en.wikipedia.org/wiki/Tiling_window_manager)
     is one approach to window management, where you organize windows into non-overlapping
     frames. If you’re using a Unix-based operating system, you can install a tiling
     window manager; if you’re using something like Windows or macOS, you can install
     applications that let you approximate this behavior.'
+  id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: '[平铺窗口管理器](https://en.wikipedia.org/wiki/Tiling_window_manager)是窗口管理的一种方法，其中您将窗口组织成非重叠的框架。如果您使用的是基于Unix的操作系统，您可以安装平铺窗口管理器；如果您使用的是Windows或macOS等操作系统，您可以安装允许您近似这种行为的应用程序。'
 - en: Screen management
+  id: totrans-18
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 屏幕管理
 - en: You can set up keyboard shortcuts to help you manipulate windows across screens.
+  id: totrans-19
   prefs: []
   type: TYPE_NORMAL
+  zh: 您可以设置键盘快捷键来帮助您在屏幕间操作窗口。
 - en: Layouts
+  id: totrans-20
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 布局
 - en: If there are specific ways you lay out windows on a screen, rather than “executing”
     that layout manually, you can script it, making instantiating a layout trivial.
+  id: totrans-21
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您有特定的屏幕布局方式，而不是手动“执行”该布局，您可以编写脚本，使布局实例化变得简单。
 - en: Resources
+  id: totrans-22
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 资源
 - en: '[Hammerspoon](https://www.hammerspoon.org/) - macOS desktop automation'
+  id: totrans-23
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[Hammerspoon](https://www.hammerspoon.org/) - macOS桌面自动化'
 - en: '[Rectangle](https://rectangleapp.com/) - macOS window manager'
+  id: totrans-24
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[矩形窗口管理器](https://rectangleapp.com/) - macOS窗口管理器'
 - en: '[Karabiner](https://karabiner-elements.pqrs.org/) - sophisticated macOS keyboard
     remapping'
+  id: totrans-25
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[Karabiner](https://karabiner-elements.pqrs.org/) - 复杂的macOS键盘映射'
 - en: '[r/unixporn](https://www.reddit.com/r/unixporn/) - screenshots and documentation
     of people’s fancy configurations'
+  id: totrans-26
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[r/unixporn](https://www.reddit.com/r/unixporn/) - 人们复杂配置的截图和文档'
 - en: Exercises
+  id: totrans-27
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 练习
 - en: Figure out how to remap your Caps Lock key to something you use more often (such
     as Escape or Ctrl or Backspace).
+  id: totrans-28
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 找出如何将您的Caps Lock键映射到您更常用的键（例如Esc或Ctrl或Backspace）。
 - en: Make a custom global keyboard shortcut to open a new terminal window or a new
     browser window.
+  id: totrans-29
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 创建一个自定义的全局键盘快捷键来打开一个新的终端窗口或一个新的浏览器窗口。
 - en: '* * *'
+  id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/os-customization.md).'
+  id: totrans-31
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/os-customization.md).'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-32
   prefs: []
   type: TYPE_NORMAL
+  zh: 根据[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可。

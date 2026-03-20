@@ -1,145 +1,211 @@
 - en: Package Management and Dependency Management
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 软件包管理和依赖关系管理
 - en: 原文：[https://missing.csail.mit.edu/2019/package-management/](https://missing.csail.mit.edu/2019/package-management/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/package-management/](https://missing.csail.mit.edu/2019/package-management/)
 - en: Software usually builds on (a collection of) other software, which necessitates
     dependency management.
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 软件通常建立在（其他）软件之上，这需要依赖关系管理。
 - en: Package/dependency management programs are language-specific, but many share
     common ideas.
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 软件包/依赖关系管理程序是语言特定的，但许多共享共同的理念。
 - en: Package repositories
+  id: totrans-4
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 软件包仓库
 - en: Packages are hosted in *package repositories*. There are different repositories
     for different languages (and sometimes multiple for a particular language), such
     as [PyPI](https://pypi.org/) for Python, [RubyGems](https://rubygems.org/) for
     Ruby, and [crates.io](https://crates.io/) for Rust. They generally store software
     (source code and sometimes pre-compiled binaries for specific platforms) for all
     versions of a package.
+  id: totrans-5
   prefs: []
   type: TYPE_NORMAL
+  zh: 软件包托管在*软件包仓库*中。不同语言有不同的仓库（有时特定语言有多个），例如 [PyPI](https://pypi.org/) 用于 Python，[RubyGems](https://rubygems.org/)
+    用于 Ruby，以及 [crates.io](https://crates.io/) 用于 Rust。它们通常存储软件（源代码和有时为特定平台预编译的二进制文件）的各个版本。
 - en: Semantic versioning
+  id: totrans-6
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 语义版本控制
 - en: 'Software evolves over time, and we need a way to refer to software versions.
     Some simple ways could be to refer to software by a sequence number or a commit
     hash, but we can do better in terms of communicating more information: using version
     numbers.'
+  id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 软件随着时间的推移而发展，我们需要一种方式来引用软件版本。一些简单的方法可以是按照序列号或提交哈希来引用软件，但我们可以做得更好，以便传达更多信息：使用版本号。
 - en: 'There are many approaches; one popular one is [Semantic Versioning](https://semver.org/):'
+  id: totrans-8
   prefs: []
   type: TYPE_NORMAL
+  zh: 有许多方法；其中一种流行的方法是[语义版本控制](https://semver.org/)：
 - en: '[PRE0]'
+  id: totrans-9
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: Increment **major** version when you make incompatible API changes.
+  id: totrans-10
   prefs: []
   type: TYPE_NORMAL
+  zh: 当您进行不兼容的API更改时，增加**主**版本。
 - en: Increment **minor** version when you add functionality in a backward-compatible
     manner.
+  id: totrans-11
   prefs: []
   type: TYPE_NORMAL
+  zh: 当您以向后兼容的方式添加功能时，增加**次级**版本。
 - en: Increment **patch** when you make backward-compatible bug fixes.
+  id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 当您进行向后兼容的错误修复时，增加**补丁**版本。
 - en: For example, if you depend on a feature introduced in `v1.2.0` of some software,
     then you can install `v1.x.y` for any minor version `x >= 2` and any patch version
     `y`. You need to install major version `1` (because `2` can introduce backward-incompatible
     changes), and you need to install a minor version `>= 2` (because you depend on
     a feature introduced in that minor version). You can use any newer minor version
     or patch version because they should not introduce any backward-incompatible changes.
+  id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: 例如，如果您依赖于某些软件 `v1.2.0` 中引入的功能，那么您可以安装 `v1.x.y` 的任何次级版本 `x >= 2` 和任何补丁版本 `y`。您需要安装主版本
+    `1`（因为 `2` 可能会引入不兼容的更改），并且您需要安装次级版本 `>= 2`（因为您依赖于该次级版本中引入的功能）。您可以使用任何更新的次级版本或补丁版本，因为它们不应该引入任何不兼容的更改。
 - en: Lock files
+  id: totrans-14
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 锁文件
 - en: In addition to specifying versions, it can be nice to enforce that the *contents*
     of the dependency have not changed to prevent tampering. Some tools use *lock
     files* to specify cryptographic hashes of dependencies (along with versions) that
     are checked on package install.
+  id: totrans-15
   prefs: []
   type: TYPE_NORMAL
+  zh: 除了指定版本之外，强制执行依赖项的*内容*没有变化，以防止篡改，这也是一件好事。一些工具使用*锁文件*来指定依赖项的加密哈希（以及版本），这些哈希在安装软件包时进行检查。
 - en: Specifying versions
+  id: totrans-16
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 指定版本
 - en: 'Tools often let you specify versions in multiple ways, such as:'
+  id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 工具通常允许您以多种方式指定版本，例如：
 - en: exact version, e.g. `2.3.12`
+  id: totrans-18
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 精确版本，例如 `2.3.12`
 - en: minimum major version, e.g. `>= 2`
+  id: totrans-19
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 最小主版本，例如 `>= 2`
 - en: specific major version and minimum patch version, e.g. `>= 2.3, <3.0`
+  id: totrans-20
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 特定主版本和最小补丁版本，例如 `>= 2.3, <3.0`
 - en: Specifying an exact version can be advantageous to avoid different behaviors
     based on installed dependencies (this shouldn’t happen if all dependencies faithfully
     follow semver, but sometimes people make mistakes). Specifying a minimum requirement
     has the advantage of allowing bug fixes to be installed (e.g. patch upgrades).
+  id: totrans-21
   prefs: []
   type: TYPE_NORMAL
+  zh: 指定一个精确版本可以避免由于安装的依赖项不同而导致的不同行为（如果所有依赖项都忠实遵循semver，则不应发生这种情况，但有时人们会犯错误）。指定最小需求的好处是允许安装错误修复（例如，补丁升级）。
 - en: Dependency resolution
+  id: totrans-22
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 依赖关系解析
 - en: 'Package managers use various dependency resolution algorithms to satisfy dependency
     requirements. This often gets challenging with complex dependencies (e.g. a package
     can be indirectly depended on by multiple top-level dependencies, and different
     versions could be required). Different package managers have different levels
     of sophistication in their dependency resolution, but it’s something to be aware
     of: you may need to understand this if you are debugging dependencies.'
+  id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: 包管理器使用各种依赖项解析算法来满足依赖项需求。这通常在复杂的依赖项（例如，一个包可以由多个顶级依赖项间接依赖，并且可能需要不同的版本）中具有挑战性。不同的包管理器在依赖项解析方面的复杂性不同，但这是需要注意的：如果您正在调试依赖项，您可能需要了解这一点。
 - en: Virtual environments
+  id: totrans-24
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 虚拟环境
 - en: If you’re developing multiple software projects, they may depend on different
     versions of a particular piece of software. Sometimes, your build tool will handle
     this naturally (e.g. by building a static binary).
+  id: totrans-25
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果您正在开发多个软件项目，它们可能依赖于特定软件的不同版本。有时，您的构建工具会自然地处理这个问题（例如，通过构建静态二进制文件）。
 - en: For other build tools and programming languages, one approach is handling this
     with virtual environments (e.g. with the [virtualenv](https://docs.python-guide.org/dev/virtualenvs/)
     tool for Python). Instead of installing dependencies system-wide, you can install
     dependencies per-project in a virtual environment, and *activate* the virtual
     environment that you want to use when you’re working on a specific project.
+  id: totrans-26
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于其他构建工具和编程语言，一种处理依赖项的方法是使用虚拟环境（例如，使用Python的[virtualenv](https://docs.python-guide.org/dev/virtualenvs/)工具）。您不必在系统范围内安装依赖项，而是可以在虚拟环境中为每个项目安装依赖项，并在您在特定项目上工作时*激活*您想要使用的虚拟环境。
 - en: Vendoring
+  id: totrans-27
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 供应商模式
 - en: Another very different approach to dependency management is *vendoring*. Instead
     of using a dependency manager or build tool to fetch software, you copy the entire
     source code for a dependency into your software’s repository. This has the advantage
     that you’re always building against the same version of the dependency and you
     don’t need to rely on a package repository, but it is more effort to upgrade dependencies.
+  id: totrans-28
   prefs: []
   type: TYPE_NORMAL
+  zh: 另一种非常不同的依赖项管理方法是*供应商模式*。您不是使用依赖项管理器或构建工具来获取软件，而是将依赖项的整个源代码复制到您的软件仓库中。这有一个优点，那就是您总是针对依赖项的同一版本进行构建，并且您不需要依赖于包仓库，但升级依赖项需要更多的努力。
 - en: '* * *'
+  id: totrans-29
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/package-management.md).'
+  id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/package-management.md)'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-31
   prefs: []
   type: TYPE_NORMAL
+  zh: 本文档遵循[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可协议。

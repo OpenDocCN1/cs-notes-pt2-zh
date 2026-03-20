@@ -1,57 +1,86 @@
 - en: Dotfiles
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: Dotfiles
 - en: 原文：[https://missing.csail.mit.edu/2019/dotfiles/](https://missing.csail.mit.edu/2019/dotfiles/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/dotfiles/](https://missing.csail.mit.edu/2019/dotfiles/)
 - en: Many programs are configured using plain-text files known as “dotfiles” (because
     the file names begin with a `.`, e.g. `~/.gitconfig`, so that they are hidden
     in the directory listing `ls` by default).
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 许多程序使用名为“dotfiles”的纯文本文件进行配置（因为文件名以`.`开头，例如 `~/.gitconfig`，所以默认情况下它们在目录列表 `ls`
+    中是隐藏的）。
 - en: A lot of the tools you use probably have a lot of settings that can be tuned
     pretty finely. Often times, tools are customized with specialized languages, e.g.
     Vimscript for Vim or the shell’s own language for a shell.
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 你使用的许多工具可能有很多可以微调的设置。通常，工具会使用专门的编程语言进行自定义，例如 Vimscript 用于 Vim 或 shell 自己的语言用于
+    shell。
 - en: Customizing and adapting your tools to your preferred workflow will make you
     more productive. We advise you to invest time in customizing your tool yourself
     rather than cloning someone else’s dotfiles from GitHub.
+  id: totrans-4
   prefs: []
   type: TYPE_NORMAL
+  zh: 自定义和调整你的工具以适应你喜欢的流程会使你更有效率。我们建议你花时间自己定制工具，而不是从 GitHub 克隆别人的 dotfiles。
 - en: 'You probably have some dotfiles set up already. Some places to look:'
+  id: totrans-5
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可能已经设置了一些 dotfiles。以下是一些可以查找的地方：
 - en: '`~/.bashrc`'
+  id: totrans-6
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`~/.bashrc`'
 - en: '`~/.emacs`'
+  id: totrans-7
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`~/.emacs`'
 - en: '`~/.vim`'
+  id: totrans-8
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`~/.vim`'
 - en: '`~/.gitconfig`'
+  id: totrans-9
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '`~/.gitconfig`'
 - en: Some programs don’t put the files under your home folder directly and instead
     they put them in a folder under `~/.config`.
+  id: totrans-10
   prefs: []
   type: TYPE_NORMAL
+  zh: 一些程序并没有直接将文件放在你的主目录下，而是将它们放在 `~/.config` 下的一个文件夹中。
 - en: Dotfiles are not exclusive to command line applications, for instance the [MPV](https://mpv.io/)
     video player can be configured editing files under `~/.config/mpv`
+  id: totrans-11
   prefs: []
   type: TYPE_NORMAL
+  zh: Dotfiles 并不局限于命令行应用程序，例如 [MPV](https://mpv.io/) 视频播放器可以通过编辑 `~/.config/mpv`
+    下的文件进行配置
 - en: Learning to customize tools
+  id: totrans-12
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 学习自定义工具
 - en: 'You can learn about your tool’s settings by reading online documentation or
     [man pages](https://en.wikipedia.org/wiki/Man_page). Another great way is to search
     the internet for blog posts about specific programs, where authors will tell you
@@ -59,154 +88,231 @@
     is to look through other people’s dotfiles: you can find tons of [dotfiles repositories](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
     on GitHub — see the most popular one [here](https://github.com/mathiasbynens/dotfiles)
     (we advise you not to blindly copy configurations though).'
+  id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: 你可以通过阅读在线文档或 [man 页面](https://en.wikipedia.org/wiki/Man_page) 来了解你的工具设置。另一个很好的方法是搜索关于特定程序的博客文章，作者会告诉你他们偏好的自定义设置。还有另一种了解自定义设置的方法是查看其他人的
+    dotfiles：你可以在 GitHub 上找到大量的 [dotfiles 仓库](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
+    — 看看最受欢迎的一个[这里](https://github.com/mathiasbynens/dotfiles)（但我们建议你不要盲目地复制配置）。
 - en: Organization
+  id: totrans-14
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 组织
 - en: 'How should you organize your dotfiles? They should be in their own folder,
     under version control, and **symlinked** into place using a script. This has the
     benefits of:'
+  id: totrans-15
   prefs: []
   type: TYPE_NORMAL
+  zh: 你应该如何组织你的 dotfiles？它们应该在自己的文件夹中，处于版本控制之下，并使用脚本**链接**到适当的位置。这有以下好处：
 - en: '**Easy installation**: if you log in to a new machine, applying your customizations
     will only take a minute'
+  id: totrans-16
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**易于安装**：如果你登录到一台新机器，应用你的自定义设置只需一分钟'
 - en: '**Portability**: your tools will work the same way everywhere'
+  id: totrans-17
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**便携性**：你的工具将在任何地方以相同的方式工作'
 - en: '**Synchronization**: you can update your dotfiles anywhere and keep them all
     in sync'
+  id: totrans-18
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**同步**：你可以在任何地方更新你的 dotfiles 并保持它们同步'
 - en: '**Change tracking**: you’re probably going to be maintaining your dotfiles
     for your entire programming career, and version history is nice to have for long-lived
     projects'
+  id: totrans-19
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**变更跟踪**：你可能会在整个编程生涯中维护你的 dotfiles，对于长期项目来说，版本历史是很有用的'
 - en: '[PRE0]'
+  id: totrans-20
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: Advanced topics
+  id: totrans-21
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 高级主题
 - en: Machine-specific customizations
+  id: totrans-22
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 机器特定的自定义
 - en: 'Most of the time, you’ll want the same configuration across machines, but sometimes,
     you’ll want a small delta on a particular machine. Here are a couple ways you
     can handle this situation:'
+  id: totrans-23
   prefs: []
   type: TYPE_NORMAL
+  zh: 大多数时候，你希望在机器之间保持相同的配置，但有时你可能在特定机器上想要一个小的差异。这里有几种处理这种情况的方法：
 - en: Branch per machine
+  id: totrans-24
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 每台机器一个分支
 - en: Use version control to maintain a branch per machine. This approach is logically
     straightforward but can be pretty heavyweight.
+  id: totrans-25
   prefs: []
   type: TYPE_NORMAL
+  zh: 使用版本控制来维护每台机器的分支。这种方法在逻辑上很简单，但可能相当重量级。
 - en: If statements
+  id: totrans-26
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: If 语句
 - en: 'If the configuration file supports it, use the equivalent of if-statements
     to apply machine specific customizations. For example, your shell could have something
     like:'
+  id: totrans-27
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果配置文件支持，可以使用类似 if 语句的方式来应用机器特定的自定义。例如，你的 shell 可能会有如下内容：
 - en: '[PRE1]'
+  id: totrans-28
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE1]'
 - en: Includes
+  id: totrans-29
   prefs:
   - PREF_H3
   type: TYPE_NORMAL
+  zh: 包含
 - en: 'If the configuration file supports it, make use of includes. For example, a
     `~/.gitconfig` can have a setting:'
+  id: totrans-30
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果配置文件支持，请使用包含功能。例如，`~/.gitconfig` 可以有一个设置：
 - en: '[PRE2]'
+  id: totrans-31
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE2]'
 - en: And then on each machine, `~/.gitconfig_local` can contain machine-specific
     settings. You could even track these in a separate repository for machine-specific
     settings.
+  id: totrans-32
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后在每台机器上，`~/.gitconfig_local` 可以包含特定于机器的设置。你甚至可以将这些设置跟踪在一个单独的仓库中。
 - en: This idea is also useful if you want different programs to share some configurations.
     For instance if you want both `bash` and `zsh` to share the same set of aliases
     you can write them under `.aliases` and have the following block in both.
+  id: totrans-33
   prefs: []
   type: TYPE_NORMAL
+  zh: 如果你希望不同的程序共享一些配置，这个想法也很实用。例如，如果你想让 `bash` 和 `zsh` 共享同一组别名，你可以在 `.aliases` 下编写它们，并在两个地方都有以下块。
 - en: '[PRE3]'
+  id: totrans-34
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE3]'
 - en: Resources
+  id: totrans-35
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 资源
 - en: 'Your instructors’ dotfiles: [Anish](https://github.com/anishathalye/dotfiles),
     [Jon](https://github.com/jonhoo/configs), [Jose](https://github.com/jjgo/dotfiles)'
+  id: totrans-36
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: 您的指导老师的 dotfiles：[Anish](https://github.com/anishathalye/dotfiles), [Jon](https://github.com/jonhoo/configs),
+    [Jose](https://github.com/jjgo/dotfiles)
 - en: '[GitHub does dotfiles](https://dotfiles.github.io/): dotfile frameworks, utilities,
     examples, and tutorials'
+  id: totrans-37
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[GitHub does dotfiles](https://dotfiles.github.io/): dotfile 框架、实用工具、示例和教程'
 - en: '[Shell startup scripts](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html):
     an explanation of the different configuration files used for your shell'
+  id: totrans-38
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '[Shell 启动脚本](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)：解释用于你的
+    shell 的不同配置文件'
 - en: Exercises
+  id: totrans-39
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 练习
 - en: Create a folder for your dotfiles and set up [version control](/2019/version-control/).
+  id: totrans-40
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 为你的 dotfiles 创建一个文件夹并设置 [版本控制](/2019/version-control/)。
 - en: Add a configuration for at least one program, e.g. your shell, with some customization
     (to start off, it can be something as simple as customizing your shell prompt
     by setting `$PS1`).
+  id: totrans-41
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 至少为一种程序添加配置，例如你的 shell，并进行一些定制（为了开始，这可以是通过设置 `$PS1` 来定制你的 shell 提示符这样简单的事情）。
 - en: Set up a method to install your dotfiles quickly (and without manual effort)
     on a new machine. This can be as simple as a shell script that calls `ln -s` for
     each file, or you could use a [specialized utility](https://dotfiles.github.io/utilities/).
+  id: totrans-42
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 设置一种快速（且无需手动操作）安装你的 dotfiles 到新机器上的方法。这可以是一个简单的 shell 脚本，它为每个文件调用 `ln -s`，或者你可以使用
+    [专门的实用工具](https://dotfiles.github.io/utilities/)。
 - en: Test your installation script on a fresh virtual machine.
+  id: totrans-43
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在一个全新的虚拟机上测试你的安装脚本。
 - en: Migrate all of your current tool configurations to your dotfiles repository.
+  id: totrans-44
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 将你当前的所有工具配置迁移到你的 dotfiles 仓库中。
 - en: Publish your dotfiles on GitHub.
+  id: totrans-45
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 在 GitHub 上发布你的 dotfiles。
 - en: '* * *'
+  id: totrans-46
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/dotfiles.md).'
+  id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/dotfiles.md).'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-48
   prefs: []
   type: TYPE_NORMAL
+  zh: 根据 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

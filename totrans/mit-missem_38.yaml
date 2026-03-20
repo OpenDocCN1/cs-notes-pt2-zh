@@ -1,76 +1,108 @@
 - en: Agentic Coding
+  id: totrans-0
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 代理编码
 - en: 原文：[https://missing.csail.mit.edu/2026/agentic-coding/](https://missing.csail.mit.edu/2026/agentic-coding/)
+  id: totrans-1
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: '[https://missing.csail.mit.edu/2026/agentic-coding/](https://missing.csail.mit.edu/2026/agentic-coding/)'
 - en: Coding agents are conversational AI models with access to tools such as reading/writing
     files, web search, and invoking shell commands. They live either in the IDE or
     in standalone command-line or GUI tools. Coding agents are highly autonomous and
     powerful tools, enabling a wide variety of use cases.
+  id: totrans-2
   prefs: []
   type: TYPE_NORMAL
+  zh: 编码代理是具有访问诸如读取/写入文件、网络搜索和调用shell命令等工具的对话式AI模型。它们存在于IDE中或独立的命令行或GUI工具中。编码代理是高度自主且功能强大的工具，能够实现各种用例。
 - en: 'This lecture builds on the AI-powered development material from the [Development
     Environment and Tools](/2026/development-environment/) lecture. As a quick demo,
     let’s continue with the example from the [AI-powered development](/2026/development-environment/#ai-powered-development)
     section:'
+  id: totrans-3
   prefs: []
   type: TYPE_NORMAL
+  zh: 本讲座建立在 [开发环境和工具](/2026/development-environment/) 讲座中的人工智能驱动开发材料之上。作为一个快速演示，让我们继续使用
+    [人工智能驱动开发](/2026/development-environment/#ai-powered-development) 部分中的示例：
 - en: '[PRE0]'
+  id: totrans-4
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE0]'
 - en: 'We can try prompting a coding agent with the following task:'
+  id: totrans-5
   prefs: []
   type: TYPE_NORMAL
+  zh: 我们可以尝试用以下任务提示编码代理：
 - en: '[PRE1]'
+  id: totrans-6
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE1]'
 - en: The agent will read the file to understand it, then make some edits, and finally
     invoke the type checker to make sure the type annotations are correct. If it makes
     a mistake such that it fails type checking, it will likely iterate, though this
     is a simple task so that is unlikely to happen. Because coding agents have access
     to tools that may be harmful, by default, agent harnesses prompt the user to confirm
     tool calls.
+  id: totrans-7
   prefs: []
   type: TYPE_NORMAL
+  zh: 代理将读取文件以理解它，然后进行一些编辑，最后调用类型检查器以确保类型注解正确。如果它犯了导致类型检查失败的错误，它可能会迭代，尽管这是一个简单的任务，所以这种情况不太可能发生。由于编码代理可以访问可能有害的工具，因此默认情况下，代理
+    harness 会提示用户确认工具调用。
 - en: If the coding agent makes a mistake — for example, if you have the `mypy` binary
     available directly on `$PATH` but the agent tries calling `python -m mypy` — you
     can give it text feedback to help it course correct.
+  id: totrans-8
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 如果编码代理犯了错误——例如，如果你在 `$PATH` 上有可用的 `mypy` 二进制文件，但代理尝试调用 `python -m mypy` ——你可以提供文本反馈来帮助它纠正方向。
 - en: 'Coding agents support multi-turn interaction, so you can iterate on work over
     a back-and-forth conversation with the agent. You can even interrupt the agent
     if it’s going down the wrong track. One helpful mental model might be that of
     a manager of an intern: the intern will do the nitty gritty work, but will require
     guidance, and will occasionally do the wrong thing and need to be corrected.'
+  id: totrans-9
   prefs: []
   type: TYPE_NORMAL
+  zh: 编码代理支持多轮交互，因此你可以通过与代理的来回对话迭代工作。你甚至可以打断代理，如果它走错了方向。一个有用的思维模型可能是一个实习生的经理：实习生会做琐碎的工作，但需要指导，偶尔会做错事并需要纠正。
 - en: For a more illustrative demo, try asking the agent as a follow-up to run the
     resulting script. Observe the outputs, and try asking it to make a change (e.g.,
     ask it to include only absolute URLs).
+  id: totrans-10
   prefs:
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 为了更直观的演示，尝试让代理作为后续操作运行生成的脚本。观察输出，并尝试让它做出一些更改（例如，要求它只包含绝对URL）。
 - en: How AI models and agents work
+  id: totrans-11
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: AI模型和代理是如何工作的
 - en: Fully explaining the inner workings of modern [large language models (LLMs)](https://en.wikipedia.org/wiki/Large_language_model)
     and infrastructure such as agent harnesses is beyond the scope of this course.
     However, having a high-level understanding of some of the key ideas is helpful
     for effectively *using* this bleeding edge technology and understanding its limitations.
+  id: totrans-12
   prefs: []
   type: TYPE_NORMAL
+  zh: 完全解释现代[大型语言模型（LLMs）](https://en.wikipedia.org/wiki/Large_language_model)和代理
+    harness 等基础设施的内部工作原理超出了本课程的范畴。然而，对一些关键概念有高层次的理解对于有效地*使用*这项尖端技术并理解其局限性是有帮助的。
 - en: LLMs can be viewed as modeling the probability distribution of completion strings
     (outputs) given prompt strings (inputs). LLM inference (what happens when you,
     e.g., supply a query to a conversational chat app) *samples* from this probability
     distribution. LLMs have a fixed *context window*, the maximum length of the input
     and output strings.
+  id: totrans-13
   prefs: []
   type: TYPE_NORMAL
+  zh: LLMs 可以被视为对给定提示字符串（输入）的完成字符串（输出）的概率分布进行建模。LLM 推理（例如，当你向对话聊天应用提供查询时发生的情况）*采样*从这个概率分布中。LLMs
+    有一个固定的*上下文窗口*，即输入和输出字符串的最大长度。
 - en: AI tools such as conversational chat and coding agents build on top of this
     primitive. For multi-turn interactions, chat apps and agents use turn markers
     and supply the entire conversation history as the prompt string every time there
@@ -79,32 +111,44 @@
     and the harness supplies the results of the tool call back to the model as part
     of the prompt string (so LLM inference runs again every time there is a tool call/response).
     The core concepts in tool-calling agents can be [implemented in 200 lines of code](https://www.mihaileric.com/The-Emperor-Has-No-Clothes/).
+  id: totrans-14
   prefs: []
   type: TYPE_NORMAL
+  zh: 诸如对话聊天和编码代理等AI工具建立在这样的基础之上。对于多轮交互，聊天应用和代理使用轮次标记，并在每次有新用户提示时提供整个对话历史作为提示字符串，每次用户提示都会调用LLM推理一次。对于工具调用代理，工具调用程序将某些LLM输出解释为调用工具的请求，并将工具调用的结果作为提示字符串的一部分返回给模型（因此每次有工具调用/响应时都会再次运行LLM推理）。工具调用代理的核心概念可以用200行代码[实现](https://www.mihaileric.com/The-Emperor-Has-No-Clothes/)。
 - en: Privacy
+  id: totrans-15
   prefs:
   - PREF_H2
   type: TYPE_NORMAL
+  zh: 隐私
 - en: Most AI coding tools in their standard configurations send a lot of your data
     to the cloud. Sometimes the harness runs locally while LLM inference runs in the
     cloud, other times even more of the software is running in the cloud (and, e.g.,
     the service provider might effectively get a copy of your entire repository as
     well as all interactions you have with the AI tool).
+  id: totrans-16
   prefs: []
   type: TYPE_NORMAL
+  zh: 大多数AI编码工具在其标准配置中会将大量数据发送到云端。有时工具调用程序在本地运行，而LLM推理在云端运行，有时甚至更多的软件在云端运行（例如，服务提供商可能会有效地获得你整个存储库的副本以及你与AI工具的所有交互）。
 - en: There are open-source AI coding tools and open-source LLMs that are pretty good
     (though not quite as good as the proprietary models), but at the present, for
     most users, running bleeding-edge open LLMs locally will be infeasible due to
     hardware limitations.
+  id: totrans-17
   prefs: []
   type: TYPE_NORMAL
+  zh: 有开源的AI编码工具和开源的LLM，它们相当不错（尽管不如专有模型），但就目前而言，由于硬件限制，对于大多数用户来说，在本地运行最新的开放LLM是不切实际的。
 - en: Use cases
+  id: totrans-18
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 用例
 - en: 'Coding agents can be helpful for a wide variety of tasks. Some examples:'
+  id: totrans-19
   prefs: []
   type: TYPE_NORMAL
+  zh: 编码代理可以用于各种任务。以下是一些例子：
 - en: '**Implementing new features.** As in the example above, you can ask a coding
     agent to implement a feature. Giving a good specification is more of an art than
     a science at this point; you want the input to the agent to be descriptive enough
@@ -115,98 +159,131 @@
     they capture what you want, and then ask the coding agent to implement the feature.
     Models are continually improving, so you’ll have to keep your intuition up-to-date
     on what the models are capable of.'
+  id: totrans-20
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**实现新功能**。正如上面的例子所示，你可以要求编码代理实现一个功能。在这个阶段，给出一个好的规范更多的是一种艺术而非科学；你希望提供给代理的输入足够描述性，以便代理能够做你希望它做的事情（至少是朝着正确的方向，这样你可以迭代），但不要过于描述，以至于你自己在做太多工作。测试驱动开发可以特别有效：编写测试（或使用编码代理帮助你编写测试），审核它们以确保它们捕捉到你想要的内容，然后要求编码代理实现该功能。模型持续改进，因此你需要保持对模型能力的直觉更新。'
 - en: We used Claude Code to [implement](https://github.com/missing-semester/missing-semester/pull/345)
     these Tufte-style sidenotes.
+  id: totrans-21
   prefs:
   - PREF_IND
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 我们使用Claude Code来实现这些Tufte风格的边注。[实现方式](https://github.com/missing-semester/missing-semester/pull/345)。
 - en: '**Fixing errors.** If you have errors from your compiler, linter, type checker,
     or tests, you can ask your agent to correct them, for example with a prompt like
     “fix the issues with mypy”. Coding models are particularly effective when you
     can get them in a feedback loop, so try to set things up so that the model can
     run the failing check directly, which will let it iterate autonomously. If this
     is impractical, you can give the model feedback manually.'
+  id: totrans-22
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**修复错误**。如果你有来自编译器、代码检查器、类型检查器或测试的错误，你可以要求你的代理进行修正，例如使用提示“修复mypy的问题”。当你可以将它们放入反馈循环时，编码模型特别有效，因此尽量设置好，以便模型可以直接运行失败的检查，这将允许它自主迭代。如果这不可行，你可以手动给模型提供反馈。'
 - en: On commit [f552b55](https://github.com/missing-semester/missing-semester/commit/f552b5523462b22b8893a8404d2110c4e59613dd)
     of the missing-semester repo, we prompted Claude Code with “Review the agentic
     coding lecture for typos and grammatical issues” and subsequently asked it to
     fix the issues it found, which were committed in [f1e1c41](https://github.com/missing-semester/missing-semester/commit/f1e1c417adba6b4149f7eef91ff5624de40dc637).
+  id: totrans-23
   prefs:
   - PREF_IND
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 在missing-semester仓库的提交[f552b55](https://github.com/missing-semester/missing-semester/commit/f552b5523462b22b8893a8404d2110c4e59613dd)中，我们向Claude
+    Code提示“审查代理编码讲座中的错别字和语法问题”，随后要求它修复发现的问题，这些问题已在[f1e1c41](https://github.com/missing-semester/missing-semester/commit/f1e1c417adba6b4149f7eef91ff5624de40dc637)中提交。
 - en: '**Refactoring.** You can use coding agents to refactor code in various ways,
     from simple tasks like renaming a method (this kind of refactoring is also supported
     by [code intelligence](/2026/development-environment/#code-intelligence-and-language-servers))
     to more complex tasks like breaking out functionality into a separate module.'
+  id: totrans-24
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**重构**。您可以使用编码代理以各种方式重构代码，从简单的任务如重命名方法（这种重构也由[代码智能](/2026/development-environment/#code-intelligence-and-language-servers)支持）到更复杂的任务，如将功能拆分到单独的模块中。'
 - en: We used Claude Code to [split](https://github.com/missing-semester/missing-semester/pull/344)
     agentic coding into its own lecture.
+  id: totrans-25
   prefs:
   - PREF_IND
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 我们使用Claude Code将代理编码拆分成了它自己的讲座。
 - en: '**Code review.** You can ask coding agents to review code. You can give them
     basic guidance, like “review my latest changes that are not yet committed”. If
     you want to review a pull request and your coding agent supports web fetch, or
     you have command-line tools like the [GitHub CLI](https://cli.github.com/) installed,
     you might even be able to ask the coding agent “Review the pull request {link}”
     and it’ll handle it from there.'
+  id: totrans-26
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**代码审查**。您可以要求编码代理审查代码。您可以提供基本指导，如“审查我尚未提交的最新更改”。如果您想审查一个pull request，并且您的编码代理支持web
+    fetch，或者您安装了像[GitHub CLI](https://cli.github.com/)这样的命令行工具，您甚至可以要求编码代理“审查pull
+    request {链接}”，然后它会从那里处理。'
 - en: '**Code understanding.** You can ask a coding agent questions about a codebase,
     which can be particularly helpful for onboarding.'
+  id: totrans-27
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**代码理解**。您可以向编码代理询问有关代码库的问题，这对于入职尤其有帮助。'
 - en: '**As a shell.** You can ask the coding agent to use a particular tool to solve
     a task, so you can invoke a shell command using natural language, such as “use
     the find command to find all files older than 30 days” or “use mogrify to resize
     all the jpgs to 50% of their original size”.'
+  id: totrans-28
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**作为Shell**。您可以要求编码代理使用特定工具来解决问题，因此您可以使用自然语言调用shell命令，例如“使用find命令查找所有30天前的文件”或“使用mogrify将所有jpg文件的大小调整为原始大小的50%”。'
 - en: '**Vibe coding.** Agents are powerful enough that you can implement some applications
     without writing a single line of code yourself.'
+  id: totrans-29
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**Vibe编码**。代理足够强大，以至于您可以在不编写任何代码的情况下实现一些应用程序。'
 - en: '[Here is an example](https://github.com/cleanlab/office-presence-dashboard)
     of a real-world project that one of the instructors vibe-coded.'
+  id: totrans-30
   prefs:
   - PREF_IND
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: '[这是一个真实世界的项目示例](https://github.com/cleanlab/office-presence-dashboard)，其中一位讲师使用了vibe编码。'
 - en: Advanced agents
+  id: totrans-31
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 高级代理
 - en: Here, we give a brief overview of some more advanced usage patterns and capabilities
     of coding agents.
+  id: totrans-32
   prefs: []
   type: TYPE_NORMAL
+  zh: 在这里，我们简要概述了一些更高级的使用模式和编码代理的能力。
 - en: '**Reusable prompts.** Create reusable prompts or templates. For example, you
     can write a detailed prompt to do code review in a particular way, and save that
     as a reusable prompt.'
+  id: totrans-33
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**可重用提示**。创建可重用的提示或模板。例如，您可以编写一个详细的提示来以特定方式执行代码审查，并将其保存为可重用提示。'
 - en: Agent tooling evolves quickly. In some tools, reusable prompts as a standalone
     feature are deprecated. For example, in Codex and Claude Code, they are [subsumed](https://developers.openai.com/codex/custom-prompts)
     by [skills](https://code.claude.com/docs/en/skills).
+  id: totrans-34
   prefs:
   - PREF_IND
   - PREF_BQ
   type: TYPE_NORMAL
+  zh: 代理工具迅速发展。在某些工具中，作为独立功能的可重用提示已被弃用。例如，在Codex和Claude Code中，它们被[包含](https://developers.openai.com/codex/custom-prompts)在[技能](https://code.claude.com/docs/en/skills)中。
 - en: '**Parallel agents.** Coding agents can be slow: you can prompt the agent, and
     it can work at a problem for tens of minutes. You can run multiple copies of agents
     at the same time, either working on the same task (LLMs are stochastic, so it
@@ -215,9 +292,12 @@
     To keep the different agents’ changes from interfering with each other, you can
     use [git worktrees](https://git-scm.com/docs/git-worktree), which we cover in
     the lecture on [version control](/2026/version-control/).'
+  id: totrans-35
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**并行代理。** 编码代理可能会很慢：你可以提示代理，然后它可以花费数十分钟来解决问题。你可以同时运行多个代理副本，要么是执行相同的任务（LLMs是随机的，所以多次运行相同的内容并选择最佳解决方案可能很有帮助）或者不同的任务（例如，同时实现两个不重叠的功能）。为了防止不同代理的更改相互干扰，你可以使用[git
+    worktrees](https://git-scm.com/docs/git-worktree)，我们将在关于[版本控制](/2026/version-control/)的讲座中介绍。'
 - en: '**MCPs.** MCP, which stands for *Model Context Protocol*, is an open protocol
     that you can use to connect your coding agents with tools. For example, this [Notion
     MCP server](https://github.com/makenotion/notion-mcp-server) can let your agent
@@ -225,9 +305,11 @@
     doc}, draft an implementation plan as a new page in Notion, and then implement
     a prototype”. For discovering MCPs, you can use directories like [Pulse](https://www.pulsemcp.com/servers)
     and [Glama](https://glama.ai/mcp/servers).'
+  id: totrans-36
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**MCPs。** MCP代表**模型上下文协议**，是一个开放协议，你可以用它来连接你的编码代理和工具。例如，这个[Notion MCP服务器](https://github.com/makenotion/notion-mcp-server)可以让你的代理读取/写入Notion文档，实现“读取{Notion文档}中链接的规范，在Notion中草拟一个新的实施计划页面，然后实现原型”这样的用例。为了发现MCPs，你可以使用如[Pulse](https://www.pulsemcp.com/servers)和[Glama](https://glama.ai/mcp/servers)这样的目录。'
 - en: '**Context management.** As we noted [above](#how-ai-models-and-agents-work),
     the LLMs that underlie coding agents have a limited *context window*. Effective
     use of coding agents necessitates making good use of context. You want to make
@@ -236,33 +318,41 @@
     (which tends to happen as context size grows, even if it doesn’t overflow the
     context window). Agent harnesses automatically supply, and to some degree, manage
     context, but a lot of control is left to the user.'
+  id: totrans-37
   prefs:
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**上下文管理。** 正如我们[上面](#how-ai-models-and-agents-work)提到的，支撑编码代理的LLMs有一个有限的**上下文窗口**。有效使用编码代理需要充分利用上下文。你想要确保代理能够访问到它所需的信息，但避免不必要的上下文，以避免上下文窗口溢出或降低模型的性能（即使上下文窗口没有溢出，随着上下文大小的增加，这种情况也往往会发生）。代理自动提供，并在一定程度上管理上下文，但大部分控制权留给了用户。'
 - en: '**Clearing the context window.** The most basic control, coding agents support
     clearing the context window (starting a new conversation), which you should do
     for unrelated queries.'
+  id: totrans-38
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**清除上下文窗口。** 最基本的控制，编码代理支持清除上下文窗口（开始新的对话），你应该在不相关的查询时这样做。'
 - en: '**Rewinding the conversation.** Some coding agents support undoing steps in
     the conversation history. Rather than give a follow-up message steering the agent
     in a different direction, in situations where an “undo” makes more sense, this
     more effectively manages context.'
+  id: totrans-39
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**回滚对话。** 一些编码代理支持在对话历史中撤销步骤。在“撤销”操作更合理的情况下，而不是给出一个引导代理走向不同方向的后续消息，这更有效地管理了上下文。'
 - en: '**Compaction.** To enable conversations of unbounded length, coding agents
     support context *compaction*: if the conversation history grows too long, they
     will automatically call an LLM to summarize the prefix of the conversation, and
     replace the conversation history with the summary. Some agents give control to
     the user to invoke compaction when desired.'
+  id: totrans-40
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**压缩。** 为了使对话长度不受限制，编码代理支持上下文的**压缩**：如果对话历史过长，它们会自动调用LLM来总结对话的前缀，并用总结替换对话历史。一些代理允许用户在需要时调用压缩。'
 - en: '**llms.txt.** The `/llms.txt` file is a proposed [standard](https://llmstxt.org/)
     location for a document meant for LLMs to use at inference time. Products (e.g.,
     [cursor.com/llms.txt](https://cursor.com/llms.txt)), software libraries (e.g.,
@@ -273,10 +363,14 @@
     fetch and read an HTML page. External documentation is handy when a coding agent
     doesn’t have built-in knowledge about a dependency you are trying to use (e.g.,
     because it was published after the LLM’s knowledge cutoff).'
+  id: totrans-41
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**llms.txt。** `/llms.txt` 文件是一个为 LLMs 在推理时使用的文档的提议[标准](https://llmstxt.org/)位置。产品（例如，[cursor.com/llms.txt](https://cursor.com/llms.txt)）、软件库（例如，[ai.pydantic.dev/llms.txt](https://ai.pydantic.dev/llms.txt)）和
+    API（例如，[apify.com/llms.txt](https://apify.com/llms.txt)）可能包含 `llms.txt` 文件，这些文件对开发很有用。这些文档每令牌的信息密度更高，因此它们比要求编码代理获取和读取
+    HTML 页面更具有上下文效率。当编码代理没有内置关于你试图使用的依赖项的知识时（例如，因为它是在 LLM 的知识截止日期之后发布的），外部文档就很有用。'
 - en: '**AGENTS.md.** Most coding agents support [AGENTS.md](https://agents.md/) or
     similar (e.g., Claude Code looks for `CLAUDE.md`) as a README for coding agents.
     When the agent starts, it pre-fills the context with the entire contents of `AGENTS.md`.
@@ -286,18 +380,24 @@
     browse). Some coding agents can auto-generate this file (e.g., the `/init` command
     in Claude Code). See [here](https://github.com/pydantic/pydantic-ai/blob/main/CLAUDE.md)
     for a real-world example of an `AGENTS.md`.'
+  id: totrans-42
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**AGENTS.md。** 大多数编码代理支持 [AGENTS.md](https://agents.md/) 或类似的（例如，Claude Code
+    会查找 `CLAUDE.md`）作为编码代理的 README。当代理启动时，它会预先填充上下文，包含 `AGENTS.md` 的全部内容。你可以使用它来给出跨会话通用的建议（例如，指示它在进行代码更改后始终运行类型检查器，解释如何运行单元测试，或提供代理可以浏览的第三方文档链接）。一些编码代理可以自动生成此文件（例如，Claude
+    Code 中的 `/init` 命令）。有关 `AGENTS.md` 的实际示例，请参阅[这里](https://github.com/pydantic/pydantic-ai/blob/main/CLAUDE.md)。'
 - en: '**Skills.** Content in the `AGENTS.md` is always loaded, in its entirety, into
     the context window of an agent. *Skills* add one level of indirection to avoid
     context bloat: you can provide the agent with a list of skills along with descriptions,
     and the agent can “open” the skill (load it into its context window) as desired.'
+  id: totrans-43
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**技能。** `AGENTS.md` 中的内容始终完整地加载到代理的上下文窗口中。*技能* 添加了一层间接性以避免上下文膨胀：你可以向代理提供技能列表及其描述，代理可以根据需要“打开”技能（将其加载到其上下文窗口中）。'
 - en: '**Subagents.** Some coding agents let you define subagents, which are agents
     for task-specific workflows. The top-level coding agent can invoke a sub-agent
     to complete a particular task, which enables both the top-level agent and subagent
@@ -310,30 +410,42 @@
     its context bloated by the full content of all retrieved web pages, and the subagent
     doesn’t have in its context the rest of the conversation history of the top-level
     agent.'
+  id: totrans-44
   prefs:
   - PREF_IND
   - PREF_UL
   type: TYPE_NORMAL
+  zh: '**子代理。** 一些编码代理允许你定义子代理，这些子代理是针对特定工作流程的代理。顶级编码代理可以调用子代理来完成特定任务，这使顶级代理和子代理能够更有效地管理上下文。顶级代理的上下文不会被子代理看到的所有内容所膨胀，子代理可以仅获取其任务所需的上下文。例如，一些编码代理将网络研究作为一个子代理实现：顶级代理将查询提交给子代理，子代理将运行网络搜索，检索单个网页，分析它们，并将查询的答案提供给顶级代理。这样，顶级代理的上下文不会被所有检索到的网页的完整内容所膨胀，子代理的上下文中也不会包含顶级代理的其他对话历史。'
 - en: 'For many of the advanced features that require writing prompts (e.g., skills
     or subagents), you can use LLMs to get you started. Some coding agents even have
     built-in support for doing this. For example, Claude Code can generate a subagent
     from a short prompt (invoke `/agents` and create a new agent). Try creating a
     subagent with this prompt:'
+  id: totrans-45
   prefs: []
   type: TYPE_NORMAL
+  zh: 对于许多需要编写提示（例如技能或子代理）的高级功能，你可以使用大型语言模型（LLMs）来开始。一些编码代理甚至内置了对这一功能的支持。例如，Claude
+    Code 可以从简短的提示（调用 `/agents` 并创建新代理）中生成子代理。尝试使用以下提示创建子代理：
 - en: '[PRE2]'
+  id: totrans-46
   prefs: []
   type: TYPE_PRE
+  zh: '[PRE2]'
 - en: Then, you can use the top-level agent to explicitly invoke the subagent with
     a message like “use the code checker subagent”. You might also be able to get
     the top-level agent to automatically invoke the subagent when appropriate, for
     example, after modifying any Python files.
+  id: totrans-47
   prefs: []
   type: TYPE_NORMAL
+  zh: 然后，你可以使用顶级代理通过消息如“使用代码检查子代理”显式调用子代理。你也可能能够让顶级代理在适当的时候自动调用子代理，例如在修改任何 Python
+    文件之后。
 - en: What to watch out for
+  id: totrans-48
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 注意事项
 - en: AI tools can make mistakes. They are built on LLMs, which are just probabilistic
     next-token-prediction models. They are not “intelligent” in the same way as humans.
     Review AI output for correctness and security bugs. Sometimes verifying code can
@@ -342,43 +454,62 @@
     spirals. Don’t use AI as a crutch, and be wary of overreliance or having a shallow
     understanding. There’s still a huge class of programming tasks that AI is still
     incapable of doing. Computational thinking is still valuable.
+  id: totrans-49
   prefs: []
   type: TYPE_NORMAL
+  zh: 人工智能工具可能会出错。它们建立在大型语言模型（LLMs）之上，这些模型只是概率性的下一个标记预测模型。它们在“智能”方面并不像人类。检查人工智能输出的正确性和安全漏洞。有时验证代码可能比亲自编写代码更困难；对于关键代码，考虑手动编写。人工智能可能会陷入死胡同并试图让你感到困惑；注意调试螺旋。不要将人工智能作为拐杖，警惕过度依赖或对人工智能有浅薄的理解。仍然有一类巨大的编程任务，人工智能仍然无法完成。计算思维仍然有价值。
 - en: Recommended software
+  id: totrans-50
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 推荐软件
 - en: Many IDEs / AI coding extensions include coding agents (see recommendations
     from the [development environment lecture](/2026/development-environment/)). Other
     popular coding agents include Anthropic’s [Claude Code](https://www.claude.com/product/claude-code),
     OpenAI’s [Codex](https://openai.com/codex/), and open-source agents like [opencode](https://github.com/anomalyco/opencode).
+  id: totrans-51
   prefs: []
   type: TYPE_NORMAL
+  zh: 许多集成开发环境（IDEs）/人工智能编码扩展包括编码代理（参见 [开发环境讲座](/2026/development-environment/) 的推荐）。其他流行的编码代理包括
+    Anthropic 的 [Claude Code](https://www.claude.com/product/claude-code)、OpenAI 的
+    [Codex](https://openai.com/codex/) 以及开源代理 [opencode](https://github.com/anomalyco/opencode)。
 - en: Exercises
+  id: totrans-52
   prefs:
   - PREF_H1
   type: TYPE_NORMAL
+  zh: 练习
 - en: Compare the experience of coding by hand, using AI autocomplete, inline chat,
     and agents by doing the same programming task four times. The best candidate is
     a small-sized feature from a project you’re already working on. If you’re looking
     for other ideas, you could consider completing “good first issue” style tasks
     in open-source projects on GitHub, or [Advent of Code](https://adventofcode.com/)
     or [LeetCode](https://leetcode.com/) problems.
+  id: totrans-53
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 通过四次执行相同的编程任务来比较手动编码、使用人工智能自动完成、内联聊天和代理的编码体验。最佳候选者是从你正在工作的项目中提取的小型功能。如果你在寻找其他想法，可以考虑在
+    GitHub 上的开源项目中完成“良好入门问题”风格的任务，或者 [Advent of Code](https://adventofcode.com/) 或
+    [LeetCode](https://leetcode.com/) 问题。
 - en: Use an AI coding agent to navigate an unfamiliar codebase. This is best done
     in the context of wanting to debug or add a new feature to a project you actually
     care about. If you don’t have any that come to mind, try using an AI agent to
     understand how security-related features work in the [opencode](https://github.com/anomalyco/opencode)
     agent.
+  id: totrans-54
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用人工智能编码代理来导航一个不熟悉的代码库。这最好是在想要调试或为真正关心的项目添加新功能的情况下进行。如果你想不出任何项目，可以尝试使用人工智能代理来了解在
+    [opencode](https://github.com/anomalyco/opencode) 代理中安全相关功能是如何工作的。
 - en: Vibe code a small app from scratch. Do not write a single line of code by hand.
+  id: totrans-55
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 从头开始编写一个小型应用程序的代码。不要手动编写任何一行代码。
 - en: For your coding agent of choice, create and test an `AGENTS.md` (or analogous
     for your agent of choice, such as `CLAUDE.md`), a skill (e.g., [skill in Claude
     Code](https://code.claude.com/docs/en/skills) or [skill in Codex](https://developers.openai.com/codex/skills/)),
@@ -386,18 +517,25 @@
     Think about when you’d want to use one of these versus another. Note that your
     coding agent of choice might not support some of these functionalities; you can
     either skip them, or try a different coding agent that has support.
+  id: totrans-56
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 为你选择的编码代理，创建并测试一个 `AGENTS.md`（或适用于你选择的代理的类似文件，例如 `CLAUDE.md`），一个技能（例如，[Claude
+    Code 中的技能](https://code.claude.com/docs/en/skills) 或 [Codex 中的技能](https://developers.openai.com/codex/skills/)），以及一个子代理（例如，[Claude
+    Code 中的子代理](https://code.claude.com/docs/en/sub-agents)）。考虑一下在什么情况下你会想要使用其中一个而不是另一个。请注意，你选择的编码代理可能不支持这些功能中的一些；你可以选择跳过它们，或者尝试一个具有这些支持的不同的编码代理。
 - en: 'Use a coding agent to accomplish the same goal as in the Markdown bullet points
     regex exercise from the [Code Quality lecture](/2026/code-quality/). Does it complete
     the tasks via direct file edits? What are the downsides and limitations of an
     agent editing the file directly to complete such a task? Figure out how to prompt
     the agent such that it doesn’t complete the task via direct file edits. Hint:
     ask the agent to use one of the command-line tools mentioned in the [first lecture](/2026/course-shell/).'
+  id: totrans-57
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 使用编码代理来完成与 [Code Quality 讲座](/2026/code-quality/) 中的 Markdown 列表点正则表达式练习相同的目标。它是通过直接文件编辑来完成任务的吗？直接编辑文件以完成此类任务的代理有哪些缺点和限制？找出如何提示代理，使其不通过直接文件编辑来完成任务。提示：要求代理使用
+    [第一讲](/2026/course-shell/) 中提到的命令行工具之一。
 - en: Most coding agents support a form of “yolo mode” (e.g., in Claude Code, `--dangerously-skip-permissions`).
     It is not secure to use this mode directly, but it may be acceptable to run a
     coding agent in an isolated environment like a virtual machine or container and
@@ -405,15 +543,25 @@
     such as [Claude Code devcontainers](https://code.claude.com/docs/en/devcontainer)
     or [Docker Sandboxes / Claude Code](https://docs.docker.com/ai/sandboxes/agents/claude-code/)
     may come in handy. There is more than one way to set this up.
+  id: totrans-58
   prefs:
   - PREF_OL
   type: TYPE_NORMAL
+  zh: 大多数编码代理支持一种“yolo 模式”（例如，在 Claude Code 中，`--dangerously-skip-permissions`）。直接使用此模式是不安全的，但将编码代理在虚拟机或容器等隔离环境中运行并启用自主操作可能是可接受的。在你的机器上运行此设置。例如，[Claude
+    Code devcontainers](https://code.claude.com/docs/en/devcontainer) 或 [Docker Sandboxes
+    / Claude Code](https://docs.docker.com/ai/sandboxes/agents/claude-code/) 的文档可能会有所帮助。设置方法不止一种。
 - en: '* * *'
+  id: totrans-59
   prefs: []
   type: TYPE_NORMAL
+  zh: '* * *'
 - en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2026/agentic-coding.md).'
+  id: totrans-60
   prefs: []
   type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2026/agentic-coding.md)。'
 - en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-61
   prefs: []
   type: TYPE_NORMAL
+  zh: 本文档受 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。
