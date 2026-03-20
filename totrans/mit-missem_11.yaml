@@ -1,0 +1,136 @@
+- en: Automation
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2019/automation/](https://missing.csail.mit.edu/2019/automation/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: Sometimes you write a script that does something but you want for it to run
+    periodically, say a backup task. You can always write an *ad hoc* solution that
+    runs in the background and comes online periodically. However, most UNIX systems
+    come with the cron daemon which can run task with a frequency up to a minute based
+    on simple rules.
+  prefs: []
+  type: TYPE_NORMAL
+- en: On most UNIX systems the cron daemon, `crond` will be running by default but
+    you can always check using `ps aux | grep crond`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The crontab
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: The configuration file for cron can be displayed running `crontab -l` edited
+    running `crontab -e` The time format that cron uses are five space separated fields
+    along with the user and command
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**minute** - What minute of the hour the command will run on, and is between
+    ‘0’ and ‘59’'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**hour** - This controls what hour the command will run on, and is specified
+    in the 24 hour clock, values must be between 0 and 23 (0 is midnight)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**dom** - This is the Day of Month, that you want the command run on, e.g.
+    to run a command on the 19th of each month, the dom would be 19.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**month** - This is the month a specified command will run on, it may be specified
+    numerically (0-12), or as the name of the month (e.g. May)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**dow** - This is the Day of Week that you want a command to be run on, it
+    can also be numeric (0-7) or as the name of the day (e.g. sun).'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**user** - This is the user who runs the command.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**command** - This is the command that you want run. This field may contain
+    multiple words or spaces.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Note that using an asterisk `*` means all and using an asterisk followed by
+    a slash and number means every nth value. So `*/5` means every five. Some examples
+    are
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: You can find many more examples of common crontab schedules in [crontab.guru](https://crontab.guru/examples.html)
+  prefs: []
+  type: TYPE_NORMAL
+- en: Shell environment and logging
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: A common pitfall when using cron is that it does not load the same environment
+    scripts that common shells do such as `.bashrc`, `.zshrc`, &c and it does not
+    log the output anywhere by default. Combined with the maximum frequency being
+    one minute, it can become quite painful to debug cronscripts initially.
+  prefs: []
+  type: TYPE_NORMAL
+- en: To deal with the environment, make sure that you use absolute paths in all your
+    scripts and modify your environment variables such as `PATH` so the script can
+    run successfully. To simplify logging, a good recommendation is to write your
+    crontab in a format like this
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: And write the script in a separate file. Remember that `>>` appends to the file
+    and that `2>&1` redirects `stderr` to `stdout` (you might to want keep them separate
+    though).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Anacron
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: One caveat of using cron is that if the computer is powered off or asleep when
+    the cron script should run then it is not executed. For frequent tasks this might
+    be fine, but if a task runs less often, you may want to ensure that it is executed.
+    [anacron](https://linux.die.net/man/8/anacron) works similar to `cron` except
+    that the frequency is specified in days. Unlike cron, it does not assume that
+    the machine is running continuously. Hence, it can be used on machines that aren’t
+    running 24 hours a day, to control regular jobs as daily, weekly, and monthly
+    jobs.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Make a script that looks every minute in your downloads folder for any file
+    that is a picture (you can look into [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)
+    or use a regular expression to match common extensions) and moves them into your
+    Pictures folder.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Write a cron script to weekly check for outdated packages in your system and
+    prompts you to update them or updates them automatically.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/automation.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL

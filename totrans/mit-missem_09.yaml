@@ -1,0 +1,212 @@
+- en: Dotfiles
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2019/dotfiles/](https://missing.csail.mit.edu/2019/dotfiles/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: Many programs are configured using plain-text files known as “dotfiles” (because
+    the file names begin with a `.`, e.g. `~/.gitconfig`, so that they are hidden
+    in the directory listing `ls` by default).
+  prefs: []
+  type: TYPE_NORMAL
+- en: A lot of the tools you use probably have a lot of settings that can be tuned
+    pretty finely. Often times, tools are customized with specialized languages, e.g.
+    Vimscript for Vim or the shell’s own language for a shell.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Customizing and adapting your tools to your preferred workflow will make you
+    more productive. We advise you to invest time in customizing your tool yourself
+    rather than cloning someone else’s dotfiles from GitHub.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You probably have some dotfiles set up already. Some places to look:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`~/.bashrc`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`~/.emacs`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`~/.vim`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`~/.gitconfig`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Some programs don’t put the files under your home folder directly and instead
+    they put them in a folder under `~/.config`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Dotfiles are not exclusive to command line applications, for instance the [MPV](https://mpv.io/)
+    video player can be configured editing files under `~/.config/mpv`
+  prefs: []
+  type: TYPE_NORMAL
+- en: Learning to customize tools
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'You can learn about your tool’s settings by reading online documentation or
+    [man pages](https://en.wikipedia.org/wiki/Man_page). Another great way is to search
+    the internet for blog posts about specific programs, where authors will tell you
+    about their preferred customizations. Yet another way to learn about customizations
+    is to look through other people’s dotfiles: you can find tons of [dotfiles repositories](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
+    on GitHub — see the most popular one [here](https://github.com/mathiasbynens/dotfiles)
+    (we advise you not to blindly copy configurations though).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Organization
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'How should you organize your dotfiles? They should be in their own folder,
+    under version control, and **symlinked** into place using a script. This has the
+    benefits of:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Easy installation**: if you log in to a new machine, applying your customizations
+    will only take a minute'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Portability**: your tools will work the same way everywhere'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Synchronization**: you can update your dotfiles anywhere and keep them all
+    in sync'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Change tracking**: you’re probably going to be maintaining your dotfiles
+    for your entire programming career, and version history is nice to have for long-lived
+    projects'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: Advanced topics
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Machine-specific customizations
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Most of the time, you’ll want the same configuration across machines, but sometimes,
+    you’ll want a small delta on a particular machine. Here are a couple ways you
+    can handle this situation:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Branch per machine
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Use version control to maintain a branch per machine. This approach is logically
+    straightforward but can be pretty heavyweight.
+  prefs: []
+  type: TYPE_NORMAL
+- en: If statements
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'If the configuration file supports it, use the equivalent of if-statements
+    to apply machine specific customizations. For example, your shell could have something
+    like:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: Includes
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'If the configuration file supports it, make use of includes. For example, a
+    `~/.gitconfig` can have a setting:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: And then on each machine, `~/.gitconfig_local` can contain machine-specific
+    settings. You could even track these in a separate repository for machine-specific
+    settings.
+  prefs: []
+  type: TYPE_NORMAL
+- en: This idea is also useful if you want different programs to share some configurations.
+    For instance if you want both `bash` and `zsh` to share the same set of aliases
+    you can write them under `.aliases` and have the following block in both.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: Resources
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Your instructors’ dotfiles: [Anish](https://github.com/anishathalye/dotfiles),
+    [Jon](https://github.com/jonhoo/configs), [Jose](https://github.com/jjgo/dotfiles)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[GitHub does dotfiles](https://dotfiles.github.io/): dotfile frameworks, utilities,
+    examples, and tutorials'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Shell startup scripts](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html):
+    an explanation of the different configuration files used for your shell'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Create a folder for your dotfiles and set up [version control](/2019/version-control/).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Add a configuration for at least one program, e.g. your shell, with some customization
+    (to start off, it can be something as simple as customizing your shell prompt
+    by setting `$PS1`).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Set up a method to install your dotfiles quickly (and without manual effort)
+    on a new machine. This can be as simple as a shell script that calls `ln -s` for
+    each file, or you could use a [specialized utility](https://dotfiles.github.io/utilities/).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Test your installation script on a fresh virtual machine.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Migrate all of your current tool configurations to your dotfiles repository.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Publish your dotfiles on GitHub.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/dotfiles.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL

@@ -1,0 +1,257 @@
+- en: Virtual Machines and Containers
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2019/virtual-machines/](https://missing.csail.mit.edu/2019/virtual-machines/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: Virtual Machines
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Virtual machines are simulated computers. You can configure a guest virtual
+    machine with some operating system and configuration and use it without affecting
+    your host environment.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'For this class, you can use VMs to experiment with operating systems, software,
+    and configurations without risk: you won’t affect your primary development environment.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: In general, VMs have lots of uses. They are commonly used for running software
+    that only runs on a certain operating system (e.g. using a Windows VM on Linux
+    to run Windows-specific software). They are often used for experimenting with
+    potentially malicious software.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Useful features
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '**Isolation**: hypervisors do a pretty good job of isolating the guest from
+    the host, so you can use VMs to run buggy or untrusted software reasonably safely.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Snapshots**: you can take “snapshots” of your virtual machine, capturing
+    the entire machine state (disk, memory, etc.), make changes to your machine, and
+    then restore to an earlier state. This is useful for testing out potentially destructive
+    actions, among other things.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Disadvantages
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Virtual machines are generally slower than running on bare metal, so they may
+    be unsuitable for certain applications.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Setup
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '**Resources**: shared with host machine; be aware of this when allocating physical
+    resources.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Networking**: many options, default NAT should work fine for most use cases.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Guest addons**: many hypervisors can install software in the guest to enable
+    nicer integration with host system. You should use this if you can.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Resources
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Hypervisors
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[VirtualBox](https://www.virtualbox.org/) (open-source)'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Virt-manager](https://virt-manager.org/) (open-source, manages KVM virtual
+    machines and LXC containers)'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[VMWare](https://www.vmware.com/) (commercial, available from IS&T [for MIT
+    students](https://ist.mit.edu/vmware-fusion))'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: If you are already familiar with popular hypervisors/VMs you may want to learn
+    more about how to do this from a command line friendly way. One option is the
+    [libvirt](https://wiki.libvirt.org/page/UbuntuKVMWalkthrough) toolkit which allows
+    you to manage multiple different virtualization providers/hypervisors.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Download and install a hypervisor.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Create a new virtual machine and install a Linux distribution (e.g. [Debian](https://www.debian.org/)).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Experiment with snapshots. Try things that you’ve always wanted to try, like
+    running `sudo rm -rf --no-preserve-root /`, and see if you can recover easily.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Read what a [fork-bomb](https://en.wikipedia.org/wiki/Fork_bomb) (`:(){ :|:&
+    };:`) is and run it on the VM to see that the resource isolation (CPU, Memory,
+    &c) works.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Install guest addons and experiment with different windowing modes, file sharing,
+    and other features.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Containers
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Virtual Machines are relatively heavy-weight; what if you want to spin up machines
+    in an automated fashion? Enter containers!
+  prefs: []
+  type: TYPE_NORMAL
+- en: Amazon Firecracker
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Docker
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: rkt
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: lxc
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Containers are *mostly* just an assembly of various Linux security features,
+    like virtual file system, virtual network interfaces, chroots, virtual memory
+    tricks, and the like, that together give the appearance of virtualization.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Not quite as secure or isolated as a VM, but pretty close and getting better.
+    Usually higher performance, and much faster to start, but not always.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The performance boost comes from the fact that unlike VMs which run an entire
+    copy of the operating system, containers share the linux kernel with the host.
+    However note that if you are running linux containers on Windows/macOS a Linux
+    VM will need to be active as a middle layer between the two.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '![Docker vs VM](../Images/2cec491981e67ca4a5ff9dd47e92132e.png) *Comparison
+    between Docker containers and Virtual Machines. Credit: blog.docker.com*'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Containers are handy for when you want to run an automated task in a standardized
+    setup:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Build systems
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Development environments
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Pre-packaged servers
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Running untrusted programs
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Grading student submissions
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: (Some) cloud computing
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Continuous integration
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Travis CI
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: GitHub Actions
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Moreover, container software like Docker has also been extensively used as a
+    solution for [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
+    If a machine needs to be running many services with conflicting dependencies they
+    can be isolated using containers.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Usually, you write a file that defines how to construct your container. You
+    start with some minimal *base image* (like Alpine Linux), and then a list of commands
+    to run to set up the environment you want (install packages, copy files, build
+    stuff, write config files, etc.). Normally, there’s also a way to specify any
+    external ports that should be available, and an *entrypoint* that dictates what
+    command should be run when the container is started (like a grading script).
+  prefs: []
+  type: TYPE_NORMAL
+- en: In a similar fashion to code repository websites (like [GitHub](https://github.com/))
+    there are some container repository websites (like [DockerHub](https://hub.docker.com/))where
+    many software services have prebuilt images that one can easily deploy.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Choose a container software (Docker, LXC, …) and install a simple Linux image.
+    Try SSHing into it.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Search and download a prebuilt container image for a popular web server (nginx,
+    apache, …)
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/virtual-machines.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL

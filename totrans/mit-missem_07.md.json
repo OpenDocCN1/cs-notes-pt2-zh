@@ -1,0 +1,1 @@
+["```py\n    nnoremap <Left> :echoe \"Use h\"<CR>\n    nnoremap <Right> :echoe \"Use l\"<CR>\n    nnoremap <Up> :echoe \"Use k\"<CR>\n    nnoremap <Down> :echoe \"Use j\"<CR> \n    ```"]

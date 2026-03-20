@@ -1,0 +1,910 @@
+- en: Editors (Vim)
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2020/editors/](https://missing.csail.mit.edu/2020/editors/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: Writing English words and writing code are very different activities. When programming,
+    you spend more time switching files, reading, navigating, and editing code compared
+    to writing a long stream. It makes sense that there are different types of programs
+    for writing English words versus code (e.g. Microsoft Word versus Visual Studio
+    Code).
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'As programmers, we spend most of our time editing code, so it’s worth investing
+    time mastering an editor that fits your needs. Here’s how you learn a new editor:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Start with a tutorial (i.e. this lecture, plus resources that we point out)
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Stick with using the editor for all your text editing needs (even if it slows
+    you down initially)
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Look things up as you go: if it seems like there should be a better way to
+    do something, there probably is'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'If you follow the above method, fully committing to using the new program for
+    all text editing purposes, the timeline for learning a sophisticated text editor
+    looks like this. In an hour or two, you’ll learn basic editor functions such as
+    opening and editing files, save/quit, and navigating buffers. Once you’re 20 hours
+    in, you should be as fast as you were with your old editor. After that, the benefits
+    start: you will have enough knowledge and muscle memory that using the new editor
+    saves you time. Modern text editors are fancy and powerful tools, so the learning
+    never stops: you’ll get even faster as you learn more.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Which editor to learn?
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Programmers have [strong opinions](https://en.wikipedia.org/wiki/Editor_war)
+    about their text editors.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Which editors are popular today? See this [Stack Overflow survey](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)
+    (there may be some bias because Stack Overflow users may not be representative
+    of programmers as a whole). [Visual Studio Code](https://code.visualstudio.com/)
+    is the most popular editor. [Vim](https://www.vim.org/) is the most popular command-line-based
+    editor.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Vim
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: All the instructors of this class use Vim as their editor. Vim has a rich history;
+    it originated from the Vi editor (1976), and it’s still being developed today.
+    Vim has some really neat ideas behind it, and for this reason, lots of tools support
+    a Vim emulation mode (for example, 1.4 million people have installed [Vim emulation
+    for VS code](https://github.com/VSCodeVim/Vim)). Vim is probably worth learning
+    even if you finally end up switching to some other text editor.
+  prefs: []
+  type: TYPE_NORMAL
+- en: It’s not possible to teach all of Vim’s functionality in 50 minutes, so we’re
+    going to focus on explaining the philosophy of Vim, teaching you the basics, showing
+    you some of the more advanced functionality, and giving you the resources to master
+    the tool.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Philosophy of Vim
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'When programming, you spend most of your time reading/editing, not writing.
+    For this reason, Vim is a *modal* editor: it has different modes for inserting
+    text vs manipulating text. Vim is programmable (with Vimscript and also other
+    languages like Python), and Vim’s interface itself is a programming language:
+    keystrokes (with mnemonic names) are commands, and these commands are composable.
+    Vim avoids the use of the mouse, because it’s too slow; Vim even avoids using
+    the arrow keys because it requires too much movement.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The end result is an editor that can match the speed at which you think.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Modal editing
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Vim’s design is based on the idea that a lot of programmer time is spent reading,
+    navigating, and making small edits, as opposed to writing long streams of text.
+    For this reason, Vim has multiple operating modes.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Normal**: for moving around a file and making edits'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Insert**: for inserting text'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Replace**: for replacing text'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Visual** (plain, line, or block): for selecting blocks of text'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Command-line**: for running a command'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Keystrokes have different meanings in different operating modes. For example,
+    the letter `x` in Insert mode will just insert a literal character ‘x’, but in
+    Normal mode, it will delete the character under the cursor, and in Visual mode,
+    it will delete the selection.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In its default configuration, Vim shows the current mode in the bottom left.
+    The initial/default mode is Normal mode. You’ll generally spend most of your time
+    between Normal mode and Insert mode.
+  prefs: []
+  type: TYPE_NORMAL
+- en: You change modes by pressing `<ESC>` (the escape key) to switch from any mode
+    back to Normal mode. From Normal mode, enter Insert mode with `i`, Replace mode
+    with `R`, Visual mode with `v`, Visual Line mode with `V`, Visual Block mode with
+    `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with `:`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock
+    to Escape ([macOS instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS))
+    or create an [alternative mapping](https://vim.fandom.com/wiki/Avoid_the_escape_key#Mappings)
+    for `<ESC>` with a simple key sequence.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Basics
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Inserting text
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: From Normal mode, press `i` to enter Insert mode. Now, Vim behaves like any
+    other text editor, until you press `<ESC>` to return to Normal mode. This, along
+    with the basics explained above, are all you need to start editing files using
+    Vim (though not particularly efficiently, if you’re spending all your time editing
+    from Insert mode).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Buffers, tabs, and windows
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Vim maintains a set of open files, called “buffers”. A Vim session has a number
+    of tabs, each of which has a number of windows (split panes). Each window shows
+    a single buffer. Unlike other programs you are familiar with, like web browsers,
+    there is not a 1-to-1 correspondence between buffers and windows; windows are
+    merely views. A given buffer may be open in *multiple* windows, even within the
+    same tab. This can be quite handy, for example, to view two different parts of
+    a file at the same time.
+  prefs: []
+  type: TYPE_NORMAL
+- en: By default, Vim opens with a single tab, which contains a single window.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Command-line
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Command mode can be entered by typing `:` in Normal mode. Your cursor will jump
+    to the command line at the bottom of the screen upon pressing `:`. This mode has
+    many functionalities, including opening, saving, and closing files, and [quitting
+    Vim](https://twitter.com/iamdevloper/status/435555976687923200).
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`:q` quit (close window)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:w` save (“write”)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:wq` save and quit'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:e {name of file}` open file for editing'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:ls` show open buffers'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:help {topic}` open help'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:help :w` opens help for the `:w` command'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:help w` opens help for the `w` movement'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Vim’s interface is a programming language
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: The most important idea in Vim is that Vim’s interface itself is a programming
+    language. Keystrokes (with mnemonic names) are commands, and these commands *compose*.
+    This enables efficient movement and edits, especially once the commands become
+    muscle memory.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Movement
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: You should spend most of your time in Normal mode, using movement commands to
+    navigate the buffer. Movements in Vim are also called “nouns”, because they refer
+    to chunks of text.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Basic movement: `hjkl` (left, down, up, right)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Words: `w` (next word), `b` (beginning of word), `e` (end of word)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Lines: `0` (beginning of line), `^` (first non-blank character), `$` (end of
+    line)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Screen: `H` (top of screen), `M` (middle of screen), `L` (bottom of screen)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Scroll: `Ctrl-u` (up), `Ctrl-d` (down)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'File: `gg` (beginning of file), `G` (end of file)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Line numbers: `:{number}<CR>` or `{number}G` (line {number})'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Misc: `%` (corresponding item)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Find: `f{character}`, `t{character}`, `F{character}`, `T{character}`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: find/to forward/backward {character} on the current line
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`,` / `;` for navigating matches'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Search: `/{regex}`, `n` / `N` for navigating matches'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Selection
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Visual modes:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Visual: `v`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Visual Line: `V`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Visual Block: `Ctrl-v`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Can use movement keys to make selection.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Edits
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Everything that you used to do with the mouse, you now do with the keyboard
+    using editing commands that compose with movement commands. Here’s where Vim’s
+    interface starts to look like a programming language. Vim’s editing commands are
+    also called “verbs”, because verbs act on nouns.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`i` enter Insert mode'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: but for manipulating/deleting text, want to use something more than backspace
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`o` / `O` insert line below / above'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`d{motion}` delete {motion}'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: e.g. `dw` is delete word, `d$` is delete to end of line, `d0` is delete to beginning
+    of line
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`c{motion}` change {motion}'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: e.g. `cw` is change word
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: like `d{motion}` followed by `i`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`x` delete character (equal to `dl`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`s` substitute character (equal to `cl`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Visual mode + manipulation
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: select text, `d` to delete it or `c` to change it
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`u` to undo, `<C-r>` to redo'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`y` to copy / “yank” (some other commands like `d` also copy)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`p` to paste'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Lots more to learn: e.g. `~` flips the case of a character'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Counts
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: You can combine nouns and verbs with a count, which will perform a given action
+    a number of times.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`3w` move 3 words forward'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`5j` move 5 lines down'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`7dw` delete 7 words'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Modifiers
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: You can use modifiers to change the meaning of a noun. Some modifiers are `i`,
+    which means “inner” or “inside”, and `a`, which means “around”.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`ci(` change the contents inside the current pair of parentheses'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ci[` change the contents inside the current pair of square brackets'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`da''` delete a single-quoted string, including the surrounding single quotes'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Demo
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Here is a broken [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz) implementation:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We will fix the following issues:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Main is never called
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Starts at 0 instead of 1
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Prints “fizz” and “buzz” on separate lines for multiples of 15
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Prints “fizz” for multiples of 5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Uses a hard-coded argument of 10 instead of taking a command-line argument
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: See the lecture video for the demonstration. Compare how the above changes are
+    made using Vim to how you might make the same edits using another program. Notice
+    how very few keystrokes are required in Vim, allowing you to edit at the speed
+    you think.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Customizing Vim
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Vim is customized through a plain-text configuration file in `~/.vimrc` (containing
+    Vimscript commands). There are probably lots of basic settings that you want to
+    turn on.
+  prefs: []
+  type: TYPE_NORMAL
+- en: We are providing a well-documented basic config that you can use as a starting
+    point. We recommend using this because it fixes some of Vim’s quirky default behavior.
+    **Download our config [here](/2020/files/vimrc) and save it to `~/.vimrc`.**
+  prefs: []
+  type: TYPE_NORMAL
+- en: Vim is heavily customizable, and it’s worth spending time exploring customization
+    options. You can look at people’s dotfiles on GitHub for inspiration, for example,
+    your instructors’ Vim configs ([Anish](https://github.com/anishathalye/dotfiles/blob/master/vimrc),
+    [Jon](https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.lua)
+    (uses [neovim](https://neovim.io/)), [Jose](https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc)).
+    There are lots of good blog posts on this topic too. Try not to copy-and-paste
+    people’s full configuration, but read it, understand it, and take what you need.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Extending Vim
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: There are tons of plugins for extending Vim. Contrary to outdated advice that
+    you might find on the internet, you do *not* need to use a plugin manager for
+    Vim (since Vim 8.0). Instead, you can use the built-in package management system.
+    Simply create the directory `~/.vim/pack/vendor/start/`, and put plugins in there
+    (e.g. via `git clone`).
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Here are some of our favorite plugins:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim): fuzzy file finder'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[ack.vim](https://github.com/mileszs/ack.vim): code search'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[nerdtree](https://github.com/scrooloose/nerdtree): file explorer'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[vim-easymotion](https://github.com/easymotion/vim-easymotion): magic motions'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'We’re trying to avoid giving an overwhelmingly long list of plugins here. You
+    can check out the instructors’ dotfiles ([Anish](https://github.com/anishathalye/dotfiles),
+    [Jon](https://github.com/jonhoo/configs), [Jose](https://github.com/JJGO/dotfiles))
+    to see what other plugins we use. Check out [Vim Awesome](https://vimawesome.com/)
+    for more awesome Vim plugins. There are also tons of blog posts on this topic:
+    just search for “best Vim plugins”.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Vim-mode in other programs
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Many tools support Vim emulation. The quality varies from good to great; depending
+    on the tool, it may not support the fancier Vim features, but most cover the basics
+    pretty well.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Shell
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: If you’re a Bash user, use `set -o vi`. If you use Zsh, `bindkey -v`. For Fish,
+    `fish_vi_key_bindings`. Additionally, no matter what shell you use, you can `export
+    EDITOR=vim`. This is the environment variable used to decide which editor is launched
+    when a program wants to start an editor. For example, `git` will use this editor
+    for commit messages.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Readline
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Many programs use the [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)
+    library for their command-line interface. Readline supports (basic) Vim emulation
+    too, which can be enabled by adding the following line to the `~/.inputrc` file:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: With this setting, for example, the Python REPL will support Vim bindings.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Others
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: There are even vim keybinding extensions for web [browsers](https://vim.fandom.com/wiki/Vim_key_bindings_for_web_browsers)
+    - some popular ones are [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+    for Google Chrome and [Tridactyl](https://github.com/tridactyl/tridactyl) for
+    Firefox. You can even get Vim bindings in [Jupyter notebooks](https://github.com/jupyterlab-contrib/jupyterlab-vim).
+    Here is a [long list](https://reversed.top/2016-08-13/big-list-of-vim-like-software)
+    of software with vim-like keybindings.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Advanced Vim
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Here are a few examples to show you the power of the editor. We can’t teach
+    you all of these kinds of things, but you’ll learn them as you go. A good heuristic:
+    whenever you’re using your editor and you think “there must be a better way of
+    doing this”, there probably is: look it up online.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Search and replace
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '`:s` (substitute) command ([documentation](https://vim.fandom.com/wiki/Search_and_replace)).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`%s/foo/bar/g`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: replace foo with bar globally in file
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`%s/\[.*\](\(.*\))/\1/g`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: replace named Markdown links with plain URLs
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Multiple windows
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '`:sp` / `:vsp` to split windows'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Can have multiple views of the same buffer.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Macros
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '`q{character}` to start recording a macro in register `{character}`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`q` to stop recording'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`@{character}` replays the macro'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Macro execution stops on error
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`{number}@{character}` executes a macro {number} times'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Macros can be recursive
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: first clear the macro with `q{character}q`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: record the macro, with `@{character}` to invoke the macro recursively (will
+    be a no-op until recording is complete)
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Example: convert xml to json ([file](/2020/files/example-data.xml))'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Array of objects with keys “name” / “email”
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Use a Python program?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Use sed / regexes
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`g/people/d`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`%s/<person>/{/g`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`%s/<name>\(.*\)<\/name>/"name": "\1",/g`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: …
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Vim commands / macros
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`Gdd`, `ggdd` delete first and last lines'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Macro to format a single element (register `e`)
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Go to line with `<name>`
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`qe^r"f>s": "<ESC>f<C"<ESC>q`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Macro to format a person
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Go to line with `<person>`
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`qpS{<ESC>j@eA,<ESC>j@ejS},<ESC>q`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Macro to format a person and go to the next person
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Go to line with `<person>`
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`qq@pjq`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Execute macro until end of file
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`999@q`'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Manually remove last `,` and add `[` and `]` delimiters
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Resources
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: '`vimtutor` is a tutorial that comes installed with Vim - if Vim is installed,
+    you should be able to run `vimtutor` from your shell'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Adventures](https://vim-adventures.com/) is a game to learn Vim'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Advent Calendar](https://vimways.org/2019/) has various Vim tips'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Golf](https://www.vimgolf.com/) is [code golf](https://en.wikipedia.org/wiki/Code_golf),
+    but where the programming language is Vim’s UI'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vi/Vim Stack Exchange](https://vi.stackexchange.com/)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Screencasts](http://vimcasts.org/)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Practical Vim](https://pragprog.com/titles/dnvim2/) (book)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Complete `vimtutor`. Note: it looks best in a [80x24](https://en.wikipedia.org/wiki/VT100)
+    (80 columns by 24 lines) terminal window.'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Download our [basic vimrc](/2020/files/vimrc) and save it to `~/.vimrc`. Read
+    through the well-commented file (using Vim!), and observe how Vim looks and behaves
+    slightly differently with the new config.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Install and configure a plugin: [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim).'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Create the plugins directory with `mkdir -p ~/.vim/pack/vendor/start`
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: 'Download the plugin: `cd ~/.vim/pack/vendor/start; git clone https://github.com/ctrlpvim/ctrlp.vim`'
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Read the [documentation](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md)
+    for the plugin. Try using CtrlP to locate a file by navigating to a project directory,
+    opening Vim, and using the Vim command-line to start `:CtrlP`.
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Customize CtrlP by adding [configuration](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options)
+    to your `~/.vimrc` to open CtrlP by pressing Ctrl-P.
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: To practice using Vim, re-do the [Demo](#demo) from lecture on your own machine.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Use Vim for *all* your text editing for the next month. Whenever something seems
+    inefficient, or when you think “there must be a better way”, try Googling it,
+    there probably is. If you get stuck, come to office hours or send us an email.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Configure your other tools to use Vim bindings (see instructions above).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Further customize your `~/.vimrc` and install more plugins.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: (Advanced) Convert XML to JSON ([example file](/2020/files/example-data.xml))
+    using Vim macros. Try to do this on your own, but you can look at the [macros](#macros)
+    section above if you get stuck.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/editors.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL

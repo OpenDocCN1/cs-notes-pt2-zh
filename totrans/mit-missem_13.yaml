@@ -1,0 +1,166 @@
+- en: Program Introspection
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2019/program-introspection/](https://missing.csail.mit.edu/2019/program-introspection/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: Debugging
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'When printf-debugging isn’t good enough: use a debugger.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Debuggers let you interact with the execution of a program, letting you do
+    things like:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: halt execution of the program when it reaches a certain line
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: single-step through the program
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: inspect values of variables
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: many more advanced features
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: GDB/LLDB
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '[GDB](https://www.gnu.org/software/gdb/) and [LLDB](https://lldb.llvm.org/).
+    Supports many C-like languages.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Let’s look at [example.c](/2019/files/example.c). Compile with debug flags:
+    `gcc -g -o example example.c`.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Open GDB:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`gdb example`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Some commands:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`run`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`b {name of function}` - set a breakpoint'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`b {file}:{line}` - set a breakpoint'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`c` - continue'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`step` / `next` / `finish` - step in / step over / step out'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`p {variable}` - print value of variable'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`watch {expression}` - set a watchpoint that triggers when the value of the
+    expression changes'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`rwatch {expression}` - set a watchpoint that triggers when the value is read'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`layout`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: PDB
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: '[PDB](https://docs.python.org/3/library/pdb.html) is the Python debugger.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Insert `import pdb; pdb.set_trace()` where you want to drop into PDB, basically
+    a hybrid of a debugger (like GDB) and a Python shell.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Web browser Developer Tools
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Another example of a debugger, this time with a graphical interface.
+  prefs: []
+  type: TYPE_NORMAL
+- en: strace
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Observe system calls a program makes: `strace {program}`.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Profiling
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Types of profiling: CPU, memory, etc.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Simplest profiler: `time`.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Go
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Run test code with CPU profiler: `go test -cpuprofile=cpu.out`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Analyze profile: `go tool pprof -web cpu.out`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Run test code with Memory profiler: `go test -memprofile=mem.out`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Analyze profile: `go tool pprof -web mem.out`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Perf
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Basic performance stats: `perf stat {command}`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Run a program with the profiler: `perf record {command}`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Analyze profile: `perf report`'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/program-introspection.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL

@@ -1,0 +1,845 @@
+- en: Shell and Scripting
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2019/shell/](https://missing.csail.mit.edu/2019/shell/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: The shell is an efficient, textual interface to your computer.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The shell prompt: what greets you when you open a terminal. Lets you run programs
+    and commands; common ones are:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`cd` to change directory'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ls` to list files and directories'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`mv` and `cp` to move and copy files'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: But the shell lets you do *so* much more; you can invoke any program on your
+    computer, and command-line tools exist for doing pretty much anything you may
+    want to do. And they’re often more efficient than their graphical counterparts.
+    We’ll go through a bunch of those in this class.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'The shell provides an interactive programming language (“scripting”). There
+    are many shells:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: You’ve probably used `sh` or `bash`.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Also shells that match languages: `csh`.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Or “better” shells: `fish`, `zsh`, `ksh`.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: In this class we’ll focus on the ubiquitous `sh` and `bash`, but feel free to
+    play around with others. I like `fish`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Shell programming is a *very* useful tool in your toolbox. Can either write
+    programs directly at the prompt, or into a file. `#!/bin/sh` + `chmod +x` to make
+    shell executable.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Working with the shell
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Run a command a bunch of times:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'There’s a lot to unpack:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`for x in list; do BODY; done`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`;` terminates a command – equivalent to newline'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: split `list`, assign each to `x`, and run body
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: splitting is “whitespace splitting”, which we’ll get back to
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: no curly braces in shell, so `do` + `done`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`$(seq 1 5)`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: run the program `seq` with arguments `1` and `5`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: substitute entire `$()` with the output of that program
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: equivalent to
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  type: TYPE_PRE
+- en: '`echo hello`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: everything in a shell script is a command
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: in this case, run the `echo` command, which prints its arguments with the argument
+    `hello`.
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: all commands are searched for in `$PATH` (colon-separated)
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'We have variables:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Will print each file name in the current directory. Can also set variables
+    using `=` (no space!):'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'There are a bunch of “special” variables too:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`$1` to `$9`: arguments to the script'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`$0` name of the script itself'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`$#` number of arguments'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`$$` process ID of current shell'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: To only print directories
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'More to unpack here:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`if CONDITION; then BODY; fi`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`CONDITION` is a command; if it returns with exit status 0 (success), then
+    `BODY` is run.'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: can also hook in an `else` or `elif`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: again, no curly braces, so `then` + `fi`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`test` is another program that provides various checks and comparisons, and
+    exits with 0 if they’re true (`$?`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`man COMMAND` is your friend: `man test`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'can also be invoked with `[` + `]`: `[ -d $f ]`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: take a look at `man test` and `which "["`
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: But wait! This is wrong! What if a file is called “My Documents”?
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`for f in $(ls)` expands to `for f in My Documents`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: first do the test on `My`, then on `Documents`
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: not what we wanted!
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: biggest source of bugs in shell scripts
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Argument splitting
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Bash splits arguments by whitespace; not always what you want!
+  prefs: []
+  type: TYPE_NORMAL
+- en: need to use quoting to handle spaces in arguments `for f in "My Documents"`
+    would work correctly
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'same problem somewhere else – do you see where? `test -d $f`: if `$f` contains
+    whitespace, `test` will error!'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`echo` happens to be okay, because split + join by space but what if a filename
+    contains a newline?! turns into space!'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: quote all use of variables that you don’t want split
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: but how do we fix our script above? what does `for f in "$(ls)"` do do you think?
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Globbing is the answer!
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'bash knows how to look for files using patterns:'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`*` any string of characters'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`?` any single character'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`{a,b,c}` any of these characters'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`for f in *`: all files in this directory'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: when globbing, each matching file becomes its own argument
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'still need to make sure to quote when *using*: `test -d "$f"`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'can make advanced patterns:'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`for f in a*`: all files starting with `a` in the current directory'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`for f in foo/*.txt`: all `.txt` files in `foo`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`for f in foo/*/p??.txt` all three-letter text files starting with p in subdirs
+    of `foo`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Whitespace issues don’t stop there:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`if [ $foo = "bar" ]; then` – see the issue?'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: what if `$foo` is empty? arguments to `[` are `=` and `bar`…
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '*can* work around this with `[ x$foo = "xbar" ]`, but bleh'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'instead, use `[[`: bash built-in comparator that has special parsing'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: also allows `&&` instead of `-a`, `||` over `-o`, etc.
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Composability
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Shell is powerful in part because of composability. Can chain multiple programs
+    together rather than have one program that does everything.
+  prefs: []
+  type: TYPE_NORMAL
+- en: The key character is `|` (pipe).
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`a | b` means run both `a` and `b` send all output of `a` as input to `b` print
+    the output of `b`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'All programs you launch (“processes”) have three “streams”:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`STDIN`: when the program reads input, it comes from here'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`STDOUT`: when the program prints something, it goes here'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`STDERR`: a 2nd output the program can choose to use'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: by default, `STDIN` is your keyboard, `STDOUT` and `STDERR` are both your terminal.
+    but you can change that!
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`a | b` makes `STDOUT` of `a` `STDIN` of `b`.'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'also have:'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`a > foo` (`STDOUT` of `a` goes to the file `foo`)'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`a 2> foo` (`STDERR` of `a` goes to the file `foo`)'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`a < foo` (`STDIN` of `a` is read from the file `foo`)'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'hint: `tail -f` will print a file as it’s being written'
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: why is this useful? lets you manipulate output of a program!
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ls | grep foo`: all files that contain the word `foo`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ps | grep foo`: all processes that contain the word `foo`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`journalctl | grep -i intel | tail -n5`: last 5 system log messages with the
+    word intel (case insensitive)'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`who | sendmail -t me@example.com` send the list of logged-in users to `me@example.com`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: forms the basis for much data-wrangling, as we’ll cover later
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Bash also provides a number of other ways to compose programs.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You can group commands with `(a; b) | tac`: run `a`, then `b`, and send all
+    their output to `tac`, which prints its input in reverse order.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'A lesser-known, but super useful one is *process substitution*. `b <(a)` will
+    run `a`, generate a temporary file-name for its output stream, and pass that file-name
+    to `b`. For example:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: will show you the difference between the first 20 lines of the last boot log
+    and the one before that.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Job and process control
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: What if you want to run longer-term things in the background?
+  prefs: []
+  type: TYPE_NORMAL
+- en: the `&` suffix runs a program “in the background”
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: it will give you back your prompt immediately
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'handy if you want to run two programs at the same time like a server and client:
+    `server & client`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'note that the running program still has your terminal as `STDOUT`! try: `server
+    > server.log & client`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: see all such processes with `jobs`
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: notice that it shows “Running”
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: bring it to the foreground with `fg %JOB` (no argument is latest)
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'if you want to background the current program: `^Z` + `bg` (Here `^Z` means
+    pressing `Ctrl+Z`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`^Z` stops the current process and makes it a “job”'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`bg` runs the last job in the background (as if you did `&`)'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: background jobs are still tied to your current session, and exit if you log
+    out. `disown` lets you sever that connection. or use `nohup`.
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`$!` is pid of last background process'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What about other stuff running on your computer?
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`ps` is your friend: lists running processes'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ps -A`: print processes from all users (also `ps ax`)'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ps` has *many* arguments: see `man ps`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`pgrep`: find processes by searching (like `ps -A | grep`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`pgrep -af`: search and display with arguments'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`kill`: send a *signal* to a process by ID (`pkill` by search + `-f`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: signals tell a process to “do something”
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'most common: `SIGKILL` (`-9` or `-KILL`): tell it to exit *now* equivalent
+    to `^\`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'also `SIGTERM` (`-15` or `-TERM`): tell it to exit gracefully equivalent to
+    `^C`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Flags
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Most command line utilities take parameters using **flags**. Flags usually
+    come in short form (`-h`) and long form (`--help`). Usually running `CMD -h` or
+    `man CMD` will give you a list of the flags the program takes. Short flags can
+    usually be combined, running `rm -r -f` is equivalent to running `rm -rf` or `rm
+    -fr`. Some common flags are a de facto standard and you will seem them in many
+    applications:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`-a` commonly refers to all files (i.e. also including those that start with
+    a period)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`-f` usually refers to forcing something, like `rm -f`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`-h` displays the help for most commands'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`-v` usually enables a verbose output'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`-V` usually prints the version of the command'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Also, a double dash `--` is used in built-in commands and many other commands
+    to signify the end of command options, after which only positional parameters
+    are accepted. So if you have a file called `-v` (which you can) and want to grep
+    it `grep pattern -- -v` will work whereas `grep pattern -v` won’t. In fact, one
+    way to create such file is to do `touch -- -v`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: If you are completely new to the shell you may want to read a more comprehensive
+    guide about it such as [BashGuide](https://mywiki.wooledge.org/BashGuide). If
+    you want a more in-depth introduction [The Linux Command Line](https://linuxcommand.org/tlcl.php)
+    is a good resource.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '**PATH, which, type**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: We briefly discussed that the `PATH` environment variable is used to locate
+    the programs that you run through the command line. Let’s explore that a little
+    further
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: Run `echo $PATH` (or `echo $PATH | tr -s ':' '\n'` for pretty printing) and
+    examine its contents, what locations are listed?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: The command `which` locates a program in the user PATH. Try running `which`
+    for common commands like `echo`, `ls` or `mv`. Note that `which` is a bit limited
+    since it does not understand shell aliases. Try running `type` and `command -v`
+    for those same commands. How is the output different?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Run `PATH=` and try running the previous commands again, some work and some
+    don’t, can you figure out why?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Special Variables**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: What does the variable `~` expands as? What about `.`? And `..`?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What does the variable `$?` do?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What does the variable `$_` do?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: What does the variable `!!` expand to? What about `!!*`? And `!l`?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Look for documentation for these options and familiarize yourself with them
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**xargs**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Sometimes piping doesn’t quite work because the command being piped into does
+    not expect the newline separated format. For example `file` command tells you
+    properties of the file.
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: Try running `ls | file` and `ls | xargs file`. What is `xargs` doing?
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: '**Shebang**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: When you write a script you can specify to your shell what interpreter should
+    be used to interpret the script by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
+    line. Write a script called `hello` with the following contentsmake it executable
+    with `chmod +x hello`. Then execute it with `./hello`. Then remove the first line
+    and execute it again? How is the shell using that first line?
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs:
+  - PREF_IND
+  type: TYPE_PRE
+- en: You will often see programs that have a shebang that looks like `#! usr/bin/env
+    bash`. This is a more portable solution with it own set of [advantages and disadvantages](https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my).
+    How is `env` different from `which`? What environment variable does `env` use
+    to decide what program to run?
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: '**Pipes, process substitution, subshell**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Create a script called `slow_seq.sh` with the following contents and do `chmod
+    +x slow_seq.sh` to make it executable.
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs:
+  - PREF_IND
+  type: TYPE_PRE
+- en: 'There is a way in which pipes (and process substitution) differ from using
+    subshell execution, i.e. `$()`. Run the following commands and observe the differences:'
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: '`./slow_seq.sh | grep -P "[3-6]"`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`grep -P "[3-6]" <(./slow_seq.sh)`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`echo $(./slow_seq.sh) | grep -P "[3-6]"`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Misc**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Try running `touch {a,b}{a,b}` then `ls` what did appear?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Sometimes you want to keep STDIN and still pipe it to a file. Try running `echo
+    HELLO | tee hello.txt`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Try running `cat hello.txt > hello.txt` what do you expect to happen? What does
+    happen?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Run `echo HELLO > hello.txt` and then run `echo WORLD >> hello.txt`. What are
+    the contents of `hello.txt`? How is `>` different from `>>`?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Run `printf "\e[38;5;81mfoo\e[0m\n"`. How was the output different? If you want
+    to know more, search for ANSI color escape sequences.
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Run `touch a.txt` then run `^txt^log` what did bash do for you? In the same
+    vein, run `fc`. What does it do?
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Keyboard shortcuts**'
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: As with any application you use frequently is worth familiarising yourself with
+    its keyboard shortcuts. Type the following ones and try figuring out what they
+    do and in what scenarios it might be convenient knowing about them. For some of
+    them it might be easier searching online about what they do. (remember that `^X`
+    means pressing `Ctrl+X`)
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+- en: '`^A`, `^E`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`^R`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`^L`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`^C`, `^\` and `^D`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`^U` and `^Y`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/shell.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL

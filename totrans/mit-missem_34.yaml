@@ -1,0 +1,770 @@
+- en: Development Environment and Tools
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 原文：[https://missing.csail.mit.edu/2026/development-environment/](https://missing.csail.mit.edu/2026/development-environment/)
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+- en: A *development environment* is a set of tools for developing software. At the
+    heart of a development environment is text editing functionality, along with accompanying
+    features such as syntax highlighting, type checking, code formatting, and autocomplete.
+    *Integrated development environments* (IDEs) such as [VS Code](https://code.visualstudio.com/)
+    bring together all of this functionality into a single application. Terminal-based
+    development workflows combine tools such as [tmux](https://github.com/tmux/tmux)
+    (a terminal multiplexer), [Vim](https://www.vim.org/) (a text editor), [Zsh](https://www.zsh.org/)
+    (a shell), and language-specific command-line tools, such as [Ruff](https://docs.astral.sh/ruff/)
+    (a Python linter and code formatter) and [Mypy](https://mypy-lang.org/) (a Python
+    type checker).
+  prefs: []
+  type: TYPE_NORMAL
+- en: IDEs and terminal-based workflows each have their strengths and weaknesses.
+    For example, graphical IDEs can be easier to learn, and today’s IDEs generally
+    have better out-of-the-box AI integrations like AI autocomplete; on the other
+    hand, terminal-based workflows are lightweight, and they may be your only option
+    in environments where you don’t have a GUI or can’t install software. We recommend
+    you develop basic familiarity with both and develop mastery of at least one. If
+    you don’t already have a preferred IDE, we recommend starting with [VS Code](https://code.visualstudio.com/).
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'In this lecture, we’ll cover:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Text editing and Vim](#text-editing-and-vim)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Code intelligence and language servers](#code-intelligence-and-language-servers)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[AI-powered development](#ai-powered-development)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Extensions and other IDE functionality](#extensions-and-other-ide-functionality)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Text editing and Vim
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: When programming, you spend most of your time navigating through code, reading
+    snippets of code, and making edits to code, rather than writing long streams or
+    reading files top-to-bottom. [Vim](https://www.vim.org/) is a text editor that
+    is optimized for this distribution of tasks.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**The philosophy of Vim.** Vim has a beautiful idea as its foundation: its
+    interface is itself a programming language, designed for navigating and editing
+    text. Keystrokes (with mnemonic names) are commands, and these commands are composable.
+    Vim avoids the use of the mouse, because it’s too slow; Vim even avoids use of
+    the arrow keys because it requires too much movement. The result: an editor that
+    feels like a brain-computer interface and matches the speed at which you think.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Vim support in other software.** You don’t have to use [Vim](https://www.vim.org/)
+    itself to benefit from the ideas at its core. Many programs that involve any kind
+    of text editing support “Vim mode”, either as built-in functionality or as a plugin.
+    For example, VS Code has the [VSCodeVim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
+    plugin, Zsh has [built-in support](https://zsh.sourceforge.io/Guide/zshguide04.html)
+    for Vim emulation, and even Claude Code has [built-in support](https://code.claude.com/docs/en/interactive-mode#vim-editor-mode)
+    for Vim editor mode. Chances are that any tool you use that involves text editing
+    supports Vim mode in one way or another.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Modal editing
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Vim is a *modal editor*: it has different operating modes for different classes
+    of tasks.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Normal**: for moving around a file and making edits'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Insert**: for inserting text'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Replace**: for replacing text'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Visual** (plain, line, or block): for selecting blocks of text'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Command-line**: for running a command'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Keystrokes have different meanings in different operating modes. For example,
+    the letter `x` in Insert mode will just insert a literal character “x”, but in
+    Normal mode, it will delete the character under the cursor, and in Visual mode,
+    it will delete the selection.
+  prefs: []
+  type: TYPE_NORMAL
+- en: In its default configuration, Vim shows the current mode in the bottom left.
+    The initial/default mode is Normal mode. You’ll generally spend most of your time
+    between Normal mode and Insert mode.
+  prefs: []
+  type: TYPE_NORMAL
+- en: You change modes by pressing `<ESC>` (the escape key) to switch from any mode
+    back to Normal mode. From Normal mode, enter Insert mode with `i`, Replace mode
+    with `R`, Visual mode with `v`, Visual Line mode with `V`, Visual Block mode with
+    `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with `:`.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock
+    to Escape ([macOS instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS))
+    or create an [alternative mapping](https://vim.fandom.com/wiki/Avoid_the_escape_key#Mappings)
+    for `<ESC>` with a simple key sequence.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Basics: inserting text'
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: From Normal mode, press `i` to enter Insert mode. Now, Vim behaves like any
+    other text editor, until you press `<ESC>` to return to Normal mode. This, along
+    with the basics explained above, are all you need to start editing files using
+    Vim (though not particularly efficiently, if you’re spending all your time editing
+    from Insert mode).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Vim’s interface is a programming language
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Vim’s interface is a programming language. Keystrokes (with mnemonic names)
+    are commands, and these commands *compose*. This enables efficient movement and
+    edits, especially once the commands become muscle memory, just like typing becomes
+    super efficient once you’ve learned your keyboard layout.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Movement
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: You should spend most of your time in Normal mode, using movement commands to
+    navigate the file. Movements in Vim are also called “nouns”, because they refer
+    to chunks of text.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Basic movement: `hjkl` (left, down, up, right)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Words: `w` (next word), `b` (beginning of word), `e` (end of word)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Lines: `0` (beginning of line), `^` (first non-blank character), `$` (end of
+    line)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Screen: `H` (top of screen), `M` (middle of screen), `L` (bottom of screen)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Scroll: `Ctrl-u` (up), `Ctrl-d` (down)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'File: `gg` (beginning of file), `G` (end of file)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Line numbers: `:{number}<CR>` or `{number}G` (line {number})'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`<CR>` refers to the carriage return / enter key'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Misc: `%` (matching item, like parenthesis or brace)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Find: `f{character}`, `t{character}`, `F{character}`, `T{character}`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: find/to forward/backward {character} on the current line
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`,` / `;` for navigating matches'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Search: `/{regex}`, `n` / `N` for navigating matches'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Selection
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: 'Visual modes:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Visual: `v`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Visual Line: `V`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Visual Block: `Ctrl-v`'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Can use movement keys to make selection.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Edits
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: Everything that you used to do with the mouse, you now do with the keyboard
+    using editing commands that compose with movement commands. Here’s where Vim’s
+    interface starts to look like a programming language. Vim’s editing commands are
+    also called “verbs”, because verbs act on nouns.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`i` enter Insert mode'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: but for manipulating/deleting text, want to use something more than backspace
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`o` / `O` insert line below / above'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`d{motion}` delete {motion}'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: e.g. `dw` is delete word, `d$` is delete to end of line, `d0` is delete to beginning
+    of line
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`c{motion}` change {motion}'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: e.g. `cw` is change word
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: like `d{motion}` followed by `i`
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`x` delete character (equivalent to `dl`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`s` substitute character (equivalent to `cl`)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Visual mode + manipulation
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: select text, `d` to delete it or `c` to change it
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`u` to undo, `<C-r>` to redo'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`y` to copy / “yank” (some other commands like `d` also copy)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`p` to paste'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Lots more to learn: for example, `~` flips the case of a character, and `J`
+    joins together lines'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Counts
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: You can combine nouns and verbs with a count, which will perform a given action
+    a number of times.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`3w` move 3 words forward'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`5j` move 5 lines down'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`7dw` delete 7 words'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Modifiers
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: You can use modifiers to change the meaning of a noun. Some modifiers are `i`,
+    which means “inner” or “inside”, and `a`, which means “around”.
+  prefs: []
+  type: TYPE_NORMAL
+- en: '`ci(` change the contents inside the current pair of parentheses'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ci[` change the contents inside the current pair of square brackets'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`da''` delete a single-quoted string, including the surrounding single quotes'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Putting it all together
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: 'Here is a broken [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz) implementation:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE0]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We use the following sequence of commands to fix the issues, beginning in Normal
+    mode:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Main is never called
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`G` to jump to the end of the file'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`o` to **o**pen a new line below'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Type in `if __name__ == "__main__": main()`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: If your editor has Python language support, it might do some auto-indentation
+    for you in Insert mode
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`<ESC>` to go back to Normal mode'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Starts at 0 instead of 1
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`/` followed by `range` and `<CR>` to search for “range”'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ww` to move forward two **w**ords (you could also use `2w`, but in practice,
+    for small counts it’s common to repeat the key instead of using the count functionality)'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`i` to switch to **i**nsert mode, and add `1,`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`<ESC>` to go back to Normal mode'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`e` to jump to the **e**nd of the next word'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`a` to start **a**ppending text, and add `+ 1`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`<ESC>` to go back to Normal mode'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Prints “fizz” for multiples of 5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`:6<CR>` to go to line 6'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`ci"` to **c**hange **i**nside the ‘**“**’, change to `"buzz"`'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`<ESC>` to go back to Normal mode'
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Learning Vim
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: The best way to learn Vim is to learn the fundamentals (what we’ve covered so
+    far) and then just enable Vim mode in all your software and start using it in
+    practice. Avoid the temptation to use the mouse or the arrow keys; in some editors,
+    you can unbind the arrow keys to force yourself to build good habits.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Additional resources
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+- en: The [Vim lecture](/2020/editors/) from the previous iteration of this class
+    — we have covered Vim in more depth there
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '`vimtutor` is a tutorial that comes installed with Vim — if Vim is installed,
+    you should be able to run `vimtutor` from your shell'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Adventures](https://vim-adventures.com/) is a game to learn Vim'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Advent Calendar](https://vimways.org/2019/) has various Vim tips'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[VimGolf](https://www.vimgolf.com/) is [code golf](https://en.wikipedia.org/wiki/Code_golf),
+    but where the programming language is Vim’s UI'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vi/Vim Stack Exchange](https://vi.stackexchange.com/)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Vim Screencasts](http://vimcasts.org/)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '[Practical Vim](https://pragprog.com/titles/dnvim2/) (book)'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Code intelligence and language servers
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'IDEs generally offer language-specific support that requires semantic understanding
+    of the code through IDE extensions that connect to *language servers* that implement
+    [Language Server Protocol](https://microsoft.github.io/language-server-protocol/).
+    For example, the [Python extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+    relies on [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance),
+    and the [Go extension for VS Code](https://marketplace.visualstudio.com/items?itemName=golang.go)
+    relies on the first-party [gopls](https://go.dev/gopls/). By installing the extension
+    and language server for the languages you work with, you can enable many language-specific
+    features in your IDE, such as:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '**Code completion.** Better autocomplete and autosuggest, such as being able
+    to see an object’s fields and methods after typing `object.`.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Inline documentation.** Seeing documentation on hover and autosuggest.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Jump-to-definition.** Jumping from a use site to the definition, such as
+    being able to go from a field reference `object.field` to the definition of the
+    field.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Find references.** The inverse of the above, find all sites where a particular
+    item such as a field or type is referenced.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Help with imports.** Organizing imports, removing unused imports, flagging
+    missing imports.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: '**Code quality.** These tools can be used standalone, but this functionality
+    is often provided by language servers as well. Code formatting auto-indents and
+    auto-formats code, and type checkers and linters find errors in your code, as
+    you type. We will cover this class of functionality in greater depth in the [lecture
+    on code quality](/2026/code-quality/).'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Configuring language servers
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: For some languages, all you need to do is install the extension and language
+    server, and you’ll be all set. For others, to get the maximum benefit from the
+    language server, you need to tell the IDE about your environment. For example,
+    pointing VS Code to your [Python environment](https://code.visualstudio.com/docs/python/environments)
+    will enable the language server to see your installed packages. Environments are
+    covered in more depth in our [lecture on packaging and shipping code](/2026/shipping-code/).
+  prefs: []
+  type: TYPE_NORMAL
+- en: Depending on the language, there might be some settings you can configure for
+    your language server. For example, using the Python support in VS Code, you can
+    disable static type checking for projects that don’t make use of Python’s optional
+    type annotations.
+  prefs: []
+  type: TYPE_NORMAL
+- en: AI-powered development
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: 'Since the introduction of [GitHub Copilot](https://github.com/features/copilot/ai-code-editor)
+    using OpenAI’s [Codex model](https://openai.com/index/openai-codex/) in mid 2021,
+    [LLMs](https://en.wikipedia.org/wiki/Large_language_model) have become widely
+    adopted in software engineering. There are three main form factors in use right
+    now: autocomplete, inline chat, and coding agents.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Autocomplete
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: AI-powered autocomplete has the same form factor as traditional autocomplete
+    in your IDE, suggesting completions at your cursor position as you type. Sometimes,
+    it’s used as a passive feature that “just works”. Beyond that, AI autocomplete
+    is generally [prompted](https://en.wikipedia.org/wiki/Prompt_engineering) using
+    code comments.
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'For example, let’s write a script to download the contents of these lecture
+    notes and extract all the links. We can start with:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE1]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The model will autocomplete the body of the function:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE2]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We can further guide completions using comments. For example, if we start writing
+    a function to extract all Markdown links, but it doesn’t have a particularly descriptive
+    name:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE3]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The model will autocomplete something like this:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE4]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'We can guide the completion through code comments:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE5]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'This time, the model gives a better completion:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE6]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'Here, we see one downside of this AI coding tool: it can only provide completions
+    at the cursor. In this case, it would be better practice to put the `import re`
+    at the module level, rather than inside the function.'
+  prefs: []
+  type: TYPE_NORMAL
+- en: The example above used a poorly-named function to demonstrate how code completion
+    can be steered using comments; in practice, you’d want to write code with functions
+    named more descriptively, like `extract_links`, and you’d want to write docstrings
+    (and based on this, the model should generate a completion analogous to the one
+    above).
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'For demonstration purposes, we can complete the script:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE7]'
+  prefs: []
+  type: TYPE_PRE
+- en: Inline chat
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Inline chat lets you select a line or block and then directly prompt the AI
+    model to propose an edit. In this interaction mode, the model can make changes
+    to existing code (which differs from autocomplete, which only completes code beyond
+    the cursor).
+  prefs: []
+  type: TYPE_NORMAL
+- en: 'Continuing the example from above, suppose we decided not to use the third-party
+    `requests` library. We could select the relevant three lines of code, invoke inline
+    chat, and say something like:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE8]'
+  prefs: []
+  type: TYPE_PRE
+- en: 'The model proposes:'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[PRE9]'
+  prefs: []
+  type: TYPE_PRE
+- en: Coding agents
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Coding agents are covered in depth in the [Agentic Coding](/2026/agentic-coding/)
+    lecture.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Recommended software
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+- en: Some popular AI IDEs are [VS Code](https://code.visualstudio.com/) with the
+    [GitHub Copilot](https://github.com/features/copilot/ai-code-editor) extension
+    and [Cursor](https://cursor.com/). GitHub Copilot is currently available [for
+    free for students](https://github.com/education/students), teachers, and maintainers
+    of popular open source projects. This is a rapidly evolving space. Many of the
+    leading products have roughly equivalent functionality.
+  prefs: []
+  type: TYPE_NORMAL
+- en: Extensions and other IDE functionality
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: IDEs are powerful tools, made even more powerful by *extensions*. We can’t cover
+    all of these features in a single lecture, but here we provide some pointers to
+    a couple popular extensions. We encourage you to explore this space on your own;
+    there are many lists of popular IDE extensions available online, such as [Vim
+    Awesome](https://vimawesome.com/) for Vim plugins and [VS Code extensions sorted
+    by popularity](https://marketplace.visualstudio.com/search?target=VSCode&category=All%20categories&sortBy=Installs).
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Development containers](https://containers.dev/): supported by popular IDEs
+    (e.g., [supported by VS Code](https://code.visualstudio.com/docs/devcontainers/containers)),
+    dev containers let you use a container to run development tools. This can be helpful
+    for portability or isolation. The [lecture on packaging and shipping code](/2026/shipping-code/)
+    covers containers in more depth.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Remote development: do development on a remote machine using SSH (e.g., with
+    the [Remote SSH plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)).
+    This can be handy, for example, if you want to develop and run code on a beefy
+    GPU machine in the cloud.'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: 'Collaborative editing: edit the same file, Google Docs style (e.g., with the
+    [Live Share plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)).'
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+- en: Exercises
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+- en: Enable Vim mode in all the software you use that supports it, such as your editor
+    and your shell, and use Vim mode for all your text editing for the next month.
+    Whenever something seems inefficient, or when you think “there must be a better
+    way”, try Googling it, there probably is a better way.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Complete a challenge from [VimGolf](https://www.vimgolf.com/).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Configure an IDE extension and language server for a project that you’re working
+    on. Ensure that all the expected functionality, such as jump-to-definition for
+    library dependencies, works as expected. If you don’t have code that you can use
+    for this exercise, you can use some open-source project from GitHub (such as [this
+    one](https://github.com/spf13/cobra)).
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: Browse a list of IDE extensions and install one that seems useful to you.
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+- en: '* * *'
+  prefs: []
+  type: TYPE_NORMAL
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2026/development-environment.md).'
+  prefs: []
+  type: TYPE_NORMAL
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  prefs: []
+  type: TYPE_NORMAL
