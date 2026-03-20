@@ -27,6 +27,7 @@
 +   [MIT 6.S905 困惑的人的编程笔记](docs/mit-6s095-prog-pzl/README.md)
 +   [MIT 黑客工具笔记](docs/mit-hkrtl/README.md)
 +   [MIT 计算机科学教育中遗失的一学期笔记](docs/mit-miss-sem-cs-edu/README.md)
++   [MIT 缺失的一学期 2026 笔记](docs/mit-missem-2026/README.md)
 +   [斯坦福 AA228V 安全关键系统验证笔记](docs/stf-aa228v-sftctsys/README.md)
 +   [斯坦福代数编程理论笔记](docs/stf-alg-cd-thr/README.md)
 +   [斯坦福算法笔记](docs/stf-algo/README.md)
