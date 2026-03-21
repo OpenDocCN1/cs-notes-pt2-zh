@@ -1,1 +1,0 @@
-["```py\ndef fizz_buzz(limit):\n    for i in range(limit):\n        if i % 3 == 0:\n            print('fizz')\n        if i % 5 == 0:\n            print('fizz')\n        if i % 3 and i % 5:\n            print(i)\n\ndef main():\n    fizz_buzz(10) \n```", "```py\nset editing-mode vi \n```"]

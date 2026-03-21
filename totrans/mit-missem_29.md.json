@@ -1,1 +1,0 @@
-["```py\n# /etc/systemd/system/myapp.service [Unit]\nDescription=My Custom App\nAfter=network.target\n\n[Service]\nUser=foo\nGroup=foo\nWorkingDirectory=/home/foo/projects/mydaemon\nExecStart=/usr/bin/local/python3.7 app.py\nRestart=on-failure\n\n[Install]\nWantedBy=multi-user.target \n```", "```py\n```", "```py \n```"]
