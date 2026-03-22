@@ -1,0 +1,258 @@
+- en: Program Introspection
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 程序内省
+- en: 原文：[https://missing.csail.mit.edu/2019/program-introspection/](https://missing.csail.mit.edu/2019/program-introspection/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/program-introspection/](https://missing.csail.mit.edu/2019/program-introspection/)
+- en: Debugging
+  id: totrans-2
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 调试
+- en: 'When printf-debugging isn’t good enough: use a debugger.'
+  id: totrans-3
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当printf调试不够用时：使用调试器。
+- en: 'Debuggers let you interact with the execution of a program, letting you do
+    things like:'
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 调试器让你与程序的执行进行交互，让你能够做诸如：
+- en: halt execution of the program when it reaches a certain line
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 当程序到达某一行时停止执行
+- en: single-step through the program
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 单步执行程序
+- en: inspect values of variables
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 检查变量的值
+- en: many more advanced features
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 许多更高级的功能
+- en: GDB/LLDB
+  id: totrans-9
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: GDB/LLDB
+- en: '[GDB](https://www.gnu.org/software/gdb/) and [LLDB](https://lldb.llvm.org/).
+    Supports many C-like languages.'
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[GDB](https://www.gnu.org/software/gdb/) 和 [LLDB](https://lldb.llvm.org/)。支持许多类似C的语言。'
+- en: 'Let’s look at [example.c](/2019/files/example.c). Compile with debug flags:
+    `gcc -g -o example example.c`.'
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 让我们看看[example.c](/2019/files/example.c)。使用调试标志编译：`gcc -g -o example example.c`。
+- en: 'Open GDB:'
+  id: totrans-12
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 打开GDB：
+- en: '`gdb example`'
+  id: totrans-13
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`gdb example`'
+- en: 'Some commands:'
+  id: totrans-14
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些命令：
+- en: '`run`'
+  id: totrans-15
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`run`'
+- en: '`b {name of function}` - set a breakpoint'
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`b {函数名}` - 设置断点'
+- en: '`b {file}:{line}` - set a breakpoint'
+  id: totrans-17
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`b {file}:{line}` - 设置断点'
+- en: '`c` - continue'
+  id: totrans-18
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`c` - 继续'
+- en: '`step` / `next` / `finish` - step in / step over / step out'
+  id: totrans-19
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`step` / `next` / `finish` - 进入 / 跳过 / 跳出'
+- en: '`p {variable}` - print value of variable'
+  id: totrans-20
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`p {变量}` - 打印变量的值'
+- en: '`watch {expression}` - set a watchpoint that triggers when the value of the
+    expression changes'
+  id: totrans-21
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`watch {expression}` - 设置一个当表达式值变化时触发的观察点'
+- en: '`rwatch {expression}` - set a watchpoint that triggers when the value is read'
+  id: totrans-22
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`rwatch {expression}` - 设置一个当值被读取时触发的观察点'
+- en: '`layout`'
+  id: totrans-23
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`layout`'
+- en: PDB
+  id: totrans-24
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: PDB
+- en: '[PDB](https://docs.python.org/3/library/pdb.html) is the Python debugger.'
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[PDB](https://docs.python.org/3/library/pdb.html) 是Python调试器。'
+- en: Insert `import pdb; pdb.set_trace()` where you want to drop into PDB, basically
+    a hybrid of a debugger (like GDB) and a Python shell.
+  id: totrans-26
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在你想进入PDB的地方插入`import pdb; pdb.set_trace()`，基本上是一个调试器（如GDB）和Python壳的混合体。
+- en: Web browser Developer Tools
+  id: totrans-27
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 网络浏览器开发者工具
+- en: Another example of a debugger, this time with a graphical interface.
+  id: totrans-28
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 另一个调试器的例子，这次带有图形界面。
+- en: strace
+  id: totrans-29
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: strace
+- en: 'Observe system calls a program makes: `strace {program}`.'
+  id: totrans-30
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 观察程序发出的系统调用：`strace {program}`。
+- en: Profiling
+  id: totrans-31
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 性能分析
+- en: 'Types of profiling: CPU, memory, etc.'
+  id: totrans-32
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 性能分析类型：CPU、内存等。
+- en: 'Simplest profiler: `time`.'
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 最简单的性能分析器：`time`。
+- en: Go
+  id: totrans-34
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Go
+- en: 'Run test code with CPU profiler: `go test -cpuprofile=cpu.out`'
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用CPU性能分析器运行测试代码：`go test -cpuprofile=cpu.out`
+- en: 'Analyze profile: `go tool pprof -web cpu.out`'
+  id: totrans-36
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 分析配置文件：`go tool pprof -web cpu.out`
+- en: 'Run test code with Memory profiler: `go test -memprofile=mem.out`'
+  id: totrans-37
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用内存性能分析器运行测试代码：`go test -memprofile=mem.out`
+- en: 'Analyze profile: `go tool pprof -web mem.out`'
+  id: totrans-38
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 分析配置文件：`go tool pprof -web mem.out`
+- en: Perf
+  id: totrans-39
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Perf
+- en: 'Basic performance stats: `perf stat {command}`'
+  id: totrans-40
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 基本性能统计：`perf stat {command}`
+- en: 'Run a program with the profiler: `perf record {command}`'
+  id: totrans-41
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用性能分析器运行程序：`perf record {command}`
+- en: 'Analyze profile: `perf report`'
+  id: totrans-42
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 分析配置文件：`perf report`
+- en: '* * *'
+  id: totrans-43
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/program-introspection.md).'
+  id: totrans-44
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/program-introspection.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-45
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本文档许可协议为[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)。

@@ -1,0 +1,951 @@
+- en: Version Control and Git
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 版本控制和 Git
+- en: 原文：[https://missing.csail.mit.edu/2026/version-control/](https://missing.csail.mit.edu/2026/version-control/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: '[https://missing.csail.mit.edu/2026/version-control/](https://missing.csail.mit.edu/2026/version-control/)'
+- en: Version control systems (VCSs) are tools used to track changes to source code
+    (or other collections of files and folders). As the name implies, these tools
+    help maintain a history of changes; furthermore, they facilitate collaboration.
+    Logically, VCSs track changes to a folder and its contents in a series of *snapshots*,
+    where each snapshot encapsulates the entire state of files/folders within a top-level
+    directory. VCSs also maintain metadata like who created each snapshot, messages
+    associated with each snapshot, and so on.
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 版本控制系统（VCSs）是用于跟踪源代码（或其他文件和文件夹集合）更改的工具。正如其名称所暗示的，这些工具有助于维护更改的历史；此外，它们还促进了协作。从逻辑上讲，VCSs
+    通过一系列*快照*跟踪文件夹及其内容的更改，其中每个快照封装了顶级目录内文件/文件夹的整个状态。VCSs 还维护诸如谁创建了每个快照、与每个快照相关的消息等元数据。
+- en: Why is version control useful? Even when you’re working by yourself, it can
+    let you look at old snapshots of a project, keep a log of why certain changes
+    were made, work on parallel branches of development, and much more. When working
+    with others, it’s an invaluable tool for seeing what other people have changed,
+    as well as resolving conflicts in concurrent development.
+  id: totrans-3
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 版本控制有什么用？即使你一个人工作，它也能让你查看项目的旧快照，记录为什么做出某些更改，并行开发分支，等等。当与他人合作时，它是一个无价之宝，可以查看其他人所做的更改，以及在并发开发中解决冲突。
+- en: 'Modern VCSs also let you easily (and often automatically) answer questions
+    like:'
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 现代的版本控制系统（VCSs）也让你能够轻松（并且经常自动地）回答如下问题：
+- en: Who wrote this module?
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 谁编写了这个模块？
+- en: When was this particular line of this particular file edited? By whom? Why was
+    it edited?
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 这个特定文件的特定行是什么时候被编辑的？由谁编辑的？为什么编辑？
+- en: Over the last 1000 revisions, when/why did a particular unit test stop working?
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在过去 1000 次修订中，何时/为什么某个特定的单元测试停止工作？
+- en: 'While other VCSs exist, **Git** is the de facto standard for version control.
+    This [XKCD comic](https://xkcd.com/1597/) captures Git’s reputation:'
+  id: totrans-8
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 尽管存在其他 VCSs，但**Git**是版本控制的既定标准。这个[XKCD 漫画](https://xkcd.com/1597/)捕捉了 Git 的声誉：
+- en: '![xkcd 1597](../Images/e8d209f8611cd22b26295369d91b4e21.png)'
+  id: totrans-9
+  prefs: []
+  type: TYPE_IMG
+  zh: '![xkcd 1597](../Images/e8d209f8611cd22b26295369d91b4e21.png)'
+- en: Because Git’s interface is a leaky abstraction, learning Git top-down (starting
+    with its interface / command-line interface) can lead to a lot of confusion. It’s
+    possible to memorize a handful of commands and think of them as magic incantations,
+    and follow the approach in the comic above whenever anything goes wrong.
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 因为 Git 的界面是一个有缺陷的抽象，所以从上到下学习 Git（从其界面/命令行界面开始）可能会导致很多困惑。人们可以记住一些命令，并将它们视为魔法咒语，并在任何问题出现时遵循上面漫画中的方法。
+- en: While Git admittedly has an ugly interface, its underlying design and ideas
+    are beautiful. While an ugly interface has to be *memorized*, a beautiful design
+    can be *understood*. For this reason, we give a bottom-up explanation of Git,
+    starting with its data model and later covering the command-line interface. Once
+    the data model is understood, the commands can be better understood in terms of
+    how they manipulate the underlying data model.
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 虽然 Git 的界面确实很丑陋，但其底层设计和理念是美丽的。丑陋的界面需要*记忆*，而美丽的设计则可以*理解*。因此，我们从 Git 的数据模型开始，自下而上地解释
+    Git，然后涵盖命令行界面。一旦理解了数据模型，就可以更好地理解命令，了解它们是如何操作底层数据模型的。
+- en: Git’s data model
+  id: totrans-12
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Git 的数据模型
+- en: Git’s ingenuity is in its well-thought-out data model that enables all the nice
+    features of version control, like maintaining history, supporting branches, and
+    enabling collaboration.
+  id: totrans-13
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git 的独创性在于其精心设计的数据库模型，它使得版本控制的所有良好功能成为可能，如维护历史、支持分支和促进协作。
+- en: Snapshots
+  id: totrans-14
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 快照
+- en: 'Git models the history of a collection of files and folders within some top-level
+    directory as a series of snapshots. In Git terminology, a file is called a “blob”,
+    and it’s just a bunch of bytes. A directory is called a “tree”, and it maps names
+    to blobs or trees (so directories can contain other directories). A snapshot is
+    the top-level tree that is being tracked. For example, we might have a tree as
+    follows:'
+  id: totrans-15
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git 将顶级目录内的一组文件和文件夹的历史视为一系列快照。在 Git 术语中，文件被称为“blob”，它只是一堆字节。目录被称为“tree”，它将名称映射到
+    blob 或 tree（因此目录可以包含其他目录）。快照是正在跟踪的顶级树。例如，我们可能有一个如下所示的树：
+- en: '[PRE0]'
+  id: totrans-16
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: The top-level tree contains two elements, a tree “foo” (that itself contains
+    one element, a blob “bar.txt”), and a blob “baz.txt”.
+  id: totrans-17
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 顶层树包含两个元素，一个树“foo”（它本身包含一个元素，一个blob“bar.txt”），和一个blob“baz.txt”。
+- en: 'Modeling history: relating snapshots'
+  id: totrans-18
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 历史建模：关联快照
+- en: How should a version control system relate snapshots? One simple model would
+    be to have a linear history. A history would be a list of snapshots in time-order.
+    For many reasons, Git doesn’t use a simple model like this.
+  id: totrans-19
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 版本控制系统应该如何关联快照？一个简单的模型可能是有一个线性历史。历史将是一系列按时间顺序排列的快照。由于许多原因，Git不使用这种简单的模型。
+- en: In Git, a history is a directed acyclic graph (DAG) of snapshots. That may sound
+    like a fancy math word, but don’t be intimidated. All this means is that each
+    snapshot in Git refers to a set of “parents”, the snapshots that preceded it.
+    It’s a set of parents rather than a single parent (as would be the case in a linear
+    history) because a snapshot might descend from multiple parents, for example,
+    due to combining (merging) two parallel branches of development.
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在Git中，历史是一个快照的有向无环图（DAG）。这可能听起来像是一个复杂的数学术语，但不要感到害怕。这仅仅意味着Git中的每个快照都引用了一组“父快照”，即在其之前出现的快照。它是一组父快照而不是单个父快照（如线性历史中那样），因为一个快照可能来自多个父快照，例如，由于合并（合并）两个平行的开发分支。
+- en: 'Git calls these snapshots “commit”s. Visualizing a commit history might look
+    something like this:'
+  id: totrans-21
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git将这些快照称为“提交”。可视化提交历史可能看起来像这样：
+- en: '[PRE1]'
+  id: totrans-22
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: 'In the ASCII art above, the `o`s correspond to individual commits (snapshots).
+    The arrows point to the parent of each commit (it’s a “comes before” relation,
+    not “comes after”). After the third commit, the history branches into two separate
+    branches. This might correspond to, for example, two separate features being developed
+    in parallel, independently from each other. In the future, these branches may
+    be merged to create a new snapshot that incorporates both of the features, producing
+    a new history that looks like this, with the newly created merge commit shown
+    in bold:'
+  id: totrans-23
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在上面的ASCII艺术中，`o`对应于单个提交（快照）。箭头指向每个提交的父提交（这是一个“先于”关系，而不是“后于”关系）。在第三个提交之后，历史分支成两个独立的分支。这可能对应于，例如，两个独立的功能并行开发。在未来，这些分支可能会合并以创建一个新的快照，该快照包含这两个功能，产生一个新的历史，如下所示，新创建的合并提交以粗体显示：
+- en: '[PRE2]'
+  id: totrans-24
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: Commits in Git are immutable. This doesn’t mean that mistakes can’t be corrected,
+    however; it’s just that “edits” to the commit history are actually creating entirely
+    new commits, and references (see below) are updated to point to the new ones.
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git中的提交是不可变的。这并不意味着错误不能被纠正；只是“编辑”提交历史实际上是在创建全新的提交，并且引用（见下文）被更新以指向新的提交。
+- en: Data model, as pseudocode
+  id: totrans-26
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 数据模型，伪代码
+- en: 'It may be instructive to see Git’s data model written down in pseudocode:'
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 看到Git的数据模型以伪代码的形式写下来可能会有所帮助：
+- en: '[PRE3]'
+  id: totrans-28
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE3]'
+- en: It’s a clean, simple model of history.
+  id: totrans-29
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这是一个干净、简单的历史模型。
+- en: Objects and content-addressing
+  id: totrans-30
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 对象和内容寻址
+- en: 'An “object” is a blob, tree, or commit:'
+  id: totrans-31
+  prefs: []
+  type: TYPE_NORMAL
+  zh: “对象”是一个blob、树或提交：
+- en: '[PRE4]'
+  id: totrans-32
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE4]'
+- en: In Git’s data store, all objects are content-addressed by their [SHA-1 hash](https://en.wikipedia.org/wiki/SHA-1).
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在Git的数据存储中，所有对象都通过其[SHA-1哈希值](https://en.wikipedia.org/wiki/SHA-1)进行内容寻址。
+- en: '[PRE5]'
+  id: totrans-34
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE5]'
+- en: 'Blobs, trees, and commits are unified in this way: they are all objects. When
+    they reference other objects, they don’t actually *contain* them in their on-disk
+    representation, but have a reference to them by their hash.'
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Blob、树和提交以这种方式统一：它们都是对象。当它们引用其他对象时，它们实际上并不在磁盘表示中*包含*它们，而是通过哈希值引用它们。
+- en: 'For example, the tree for the example directory structure [above](#snapshots)
+    (visualized using `git cat-file -p 698281bc680d1995c5f4caaf3359721a5a58d48d`),
+    looks like this:'
+  id: totrans-36
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，示例目录结构的树（使用`git cat-file -p 698281bc680d1995c5f4caaf3359721a5a58d48d`可视化）看起来像这样：
+- en: '[PRE6]'
+  id: totrans-37
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE6]'
+- en: 'The tree itself contains pointers to its contents, `baz.txt` (a blob) and `foo`
+    (a tree). If we look at the contents addressed by the hash corresponding to baz.txt
+    with `git cat-file -p 4448adbf7ecd394f42ae135bbeed9676e894af85`, we get the following:'
+  id: totrans-38
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 树本身包含对其内容的指针，`baz.txt`（一个blob）和`foo`（一个树）。如果我们使用`git cat-file -p 4448adbf7ecd394f42ae135bbeed9676e894af85`查看对应于baz.txt的哈希值的内容，我们得到以下结果：
+- en: '[PRE7]'
+  id: totrans-39
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE7]'
+- en: References
+  id: totrans-40
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 引用
+- en: Now, all snapshots can be identified by their SHA-1 hashes. That’s inconvenient,
+    because humans aren’t good at remembering strings of 40 hexadecimal characters.
+  id: totrans-41
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 现在，所有快照都可以通过它们的SHA-1哈希值来识别。这不太方便，因为人类不擅长记住由40个十六进制字符组成的字符串。
+- en: Git’s solution to this problem is human-readable names for SHA-1 hashes, called
+    “references”. References are pointers to commits. Unlike objects, which are immutable,
+    references are mutable (can be updated to point to a new commit). For example,
+    the `master` reference usually points to the latest commit in the main branch
+    of development.
+  id: totrans-42
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git针对这个问题的解决方案是为SHA-1散列提供人类可读的名称，称为“引用”。引用是指向提交的指针。与不可变的对象不同，引用是可变的（可以更新以指向新的提交）。例如，`master`引用通常指向开发主分支中的最新提交。
+- en: '[PRE8]'
+  id: totrans-43
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE8]'
+- en: With this, Git can use human-readable names like “master” to refer to a particular
+    snapshot in the history, instead of a long hexadecimal string.
+  id: totrans-44
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通过这种方式，Git可以使用人类可读的名称，如“master”，来引用历史中的一个特定快照，而不是一个长的十六进制字符串。
+- en: One detail is that we often want a notion of “where we currently are” in the
+    history, so that when we take a new snapshot, we know what it is relative to (how
+    we set the `parents` field of the commit). In Git, that “where we currently are”
+    is a special reference called “HEAD”.
+  id: totrans-45
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一个细节是，我们经常想要一个关于“当前我们在历史中的位置”的概念，这样当我们创建一个新的快照时，我们就知道它是相对于什么的（如何设置提交的`parents`字段）。在Git中，“当前我们在哪里”是一个特殊的引用，称为“HEAD”。
+- en: Repositories
+  id: totrans-46
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 仓库
+- en: 'Finally, we can define what (roughly) is a Git *repository*: it is the data
+    `objects` and `references`.'
+  id: totrans-47
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 最后，我们可以定义（大致上）什么是Git *仓库*：它是数据`objects`和`references`。
+- en: 'On disk, all Git stores are objects and references: that’s all there is to
+    Git’s data model. All `git` commands map to some manipulation of the commit DAG
+    by adding objects and adding/updating references.'
+  id: totrans-48
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在磁盘上，Git存储的所有内容都是对象和引用：这就是Git数据模型的所有内容。所有的`git`命令都映射到通过添加对象和添加/更新引用来对提交DAG进行某种操作。
+- en: Whenever you’re typing in any command, think about what manipulation the command
+    is making to the underlying graph data structure. Conversely, if you’re trying
+    to make a particular kind of change to the commit DAG, e.g. “discard uncommitted
+    changes and make the ‘master’ ref point to commit `5d83f9e`”, there’s probably
+    a command to do it (e.g. in this case, `git checkout master; git reset --hard
+    5d83f9e`).
+  id: totrans-49
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 每次你输入任何命令时，都要考虑该命令对底层图数据结构进行的操作。相反，如果你试图对提交DAG进行某种特定的更改，例如“丢弃未提交的更改并使‘master’引用指向提交`5d83f9e`”，可能有一个命令可以做到这一点（例如，在这种情况下，`git
+    checkout master; git reset --hard 5d83f9e`）。
+- en: Staging area
+  id: totrans-50
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 预处理区域
+- en: This is another concept that’s orthogonal to the data model, but it’s a part
+    of the interface to create commits.
+  id: totrans-51
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这是另一个与数据模型正交的概念，但它构成了创建提交的接口的一部分。
+- en: One way you might imagine implementing snapshotting as described above is to
+    have a “create snapshot” command that creates a new snapshot based on the *current
+    state* of the working directory. Some version control tools work like this, but
+    not Git. We want clean snapshots, and it might not always be ideal to make a snapshot
+    from the current state. For example, imagine a scenario where you’ve implemented
+    two separate features, and you want to create two separate commits, where the
+    first introduces the first feature, and the next introduces the second feature.
+    Or imagine a scenario where you have debugging print statements added all over
+    your code, along with a bugfix; you want to commit the bugfix while discarding
+    all the print statements.
+  id: totrans-52
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可能会想象的一种实现上述快照的方法是有一个“创建快照”命令，该命令基于工作目录的当前状态创建一个新的快照。一些版本控制工具就是这样工作的，但Git不是。我们想要干净的快照，并且从当前状态创建快照可能并不总是理想的。例如，想象一个场景，你已经实现了两个独立的功能，并且想要创建两个独立的提交，第一个提交引入了第一个功能，下一个提交引入了第二个功能。或者想象一个场景，你在代码中添加了调试打印语句，并修复了一个错误；你想要提交错误修复，同时丢弃所有的打印语句。
+- en: Git accommodates such scenarios by allowing you to specify which modifications
+    should be included in the next snapshot through a mechanism called the “staging
+    area”.
+  id: totrans-53
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git通过允许你通过称为“暂存区域”的机制指定应包含在下一个快照中的修改来适应此类场景。
+- en: Git command-line interface
+  id: totrans-54
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Git命令行界面
+- en: To avoid duplicating information, we’re not going to explain the commands below
+    in detail in these lecture notes. See the highly recommended [Pro Git](https://git-scm.com/book/en/v2)
+    for more information, or watch the lecture video.
+  id: totrans-55
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 为了避免信息重复，我们不会在这些讲义中详细解释下面的命令。有关更多信息，请参阅高度推荐的[Pro Git](https://git-scm.com/book/en/v2)，或者观看讲座视频。
+- en: Basics
+  id: totrans-56
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 基础知识
+- en: '`git help <command>`: get help for a git command'
+  id: totrans-57
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git help <command>`: 获取git命令的帮助'
+- en: '`git init`: creates a new git repo, with data stored in the `.git` directory'
+  id: totrans-58
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git init`: 创建一个新的git仓库，数据存储在`.git`目录中'
+- en: '`git status`: tells you what’s going on'
+  id: totrans-59
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git status`: 告诉你发生了什么'
+- en: '`git add <filename>`: adds files to staging area'
+  id: totrans-60
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git add <filename>`：将文件添加到暂存区'
+- en: '`git commit`: creates a new commit'
+  id: totrans-61
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git commit`：创建新的提交'
+- en: Write [good commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)!
+  id: totrans-62
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 写出[好的提交信息](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)!
+- en: Even more reasons to write [good commit messages](https://chris.beams.io/posts/git-commit/)!
+  id: totrans-63
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 写出[好的提交信息](https://chris.beams.io/posts/git-commit/)的理由更多！
+- en: '`git log`: shows a flattened log of history'
+  id: totrans-64
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git log`：显示简化的历史记录'
+- en: '`git log --all --graph --decorate`: visualizes history as a DAG'
+  id: totrans-65
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git log --all --graph --decorate`：将历史可视化为一个DAG'
+- en: '`git diff <filename>`: show changes you made relative to the staging area'
+  id: totrans-66
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git diff <filename>`：显示相对于暂存区的更改'
+- en: '`git diff <revision> <filename>`: shows differences in a file between snapshots'
+  id: totrans-67
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git diff <revision> <filename>`：显示快照之间文件的不同'
+- en: '`git checkout <revision>`: updates HEAD (and current branch if checking out
+    a branch)'
+  id: totrans-68
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git checkout <revision>`：更新HEAD（如果检出分支，则更新当前分支）'
+- en: Branching and merging
+  id: totrans-69
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 分支和合并
+- en: '`git branch`: shows branches'
+  id: totrans-70
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git branch`：显示分支'
+- en: '`git branch <name>`: creates a branch'
+  id: totrans-71
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git branch <name>`：创建分支'
+- en: '`git switch <name>`: switches to a branch'
+  id: totrans-72
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git switch <name>`：切换到分支'
+- en: '`git checkout -b <name>`: creates a branch and switches to it'
+  id: totrans-73
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git checkout -b <name>`：创建分支并切换到它'
+- en: same as `git branch <name>; git switch <name>`
+  id: totrans-74
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 与`git branch <name>; git switch <name>`相同
+- en: '`git merge <revision>`: merges into current branch'
+  id: totrans-75
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git merge <revision>`：合并到当前分支'
+- en: '`git mergetool`: use a fancy tool to help resolve merge conflicts'
+  id: totrans-76
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git mergetool`：使用一个花哨的工具来帮助解决合并冲突'
+- en: '`git rebase`: rebase set of patches onto a new base'
+  id: totrans-77
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git rebase`：将一系列补丁变基到新基础'
+- en: Remotes
+  id: totrans-78
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 远程
+- en: '`git remote`: list remotes'
+  id: totrans-79
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git remote`：列出远程'
+- en: '`git remote add <name> <url>`: add a remote'
+  id: totrans-80
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git remote add <name> <url>`：添加远程'
+- en: '`git push <remote> <local branch>:<remote branch>`: send objects to remote,
+    and update remote reference'
+  id: totrans-81
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git push <remote> <local branch>:<remote branch>`：发送对象到远程，并更新远程引用'
+- en: '`git branch --set-upstream-to=<remote>/<remote branch>`: set up correspondence
+    between local and remote branch'
+  id: totrans-82
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git branch --set-upstream-to=<remote>/<remote branch>`：设置本地分支和远程分支之间的对应关系'
+- en: '`git fetch`: retrieve objects/references from a remote'
+  id: totrans-83
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git fetch`：从远程检索对象/引用'
+- en: '`git pull`: same as `git fetch; git merge`'
+  id: totrans-84
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git pull`：等同于`git fetch; git merge`'
+- en: '`git clone`: download repository from remote'
+  id: totrans-85
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git clone`：从远程下载仓库'
+- en: Undo
+  id: totrans-86
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 撤销
+- en: '`git commit --amend`: edit a commit’s contents/message'
+  id: totrans-87
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git commit --amend`：编辑提交的内容/消息'
+- en: '`git reset <file>`: unstage a file'
+  id: totrans-88
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git reset <file>`：取消暂存文件'
+- en: '`git restore`: discard changes'
+  id: totrans-89
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git restore`：撤销更改'
+- en: Advanced Git
+  id: totrans-90
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 高级Git
+- en: '`git config`: Git is [highly customizable](https://git-scm.com/docs/git-config)'
+  id: totrans-91
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git config`：Git是[高度可定制](https://git-scm.com/docs/git-config)'
+- en: '`git clone --depth=1`: shallow clone, without entire version history'
+  id: totrans-92
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git clone --depth=1`：浅克隆，不包含整个版本历史'
+- en: '`git add -p`: interactive staging'
+  id: totrans-93
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git add -p`：交互式暂存'
+- en: '`git rebase -i`: interactive rebasing'
+  id: totrans-94
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git rebase -i`：交互式变基'
+- en: '`git blame`: show who last edited which line'
+  id: totrans-95
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git blame`：显示谁最后编辑了哪一行'
+- en: '`git stash`: temporarily remove modifications to working directory'
+  id: totrans-96
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git stash`：临时移除工作目录的修改'
+- en: '`git bisect`: binary search history (e.g. for regressions)'
+  id: totrans-97
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git bisect`：二分搜索历史（例如，用于回归）'
+- en: '`git revert`: create a new commit that reverses the effect of an earlier commit'
+  id: totrans-98
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git revert`：创建一个新的提交，以撤销早期提交的效果'
+- en: '`git worktree`: check out multiple branches at the same time'
+  id: totrans-99
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git worktree`：同时检出多个分支'
+- en: '`.gitignore`: [specify](https://git-scm.com/docs/gitignore) intentionally untracked
+    files to ignore'
+  id: totrans-100
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`.gitignore`：[指定](https://git-scm.com/docs/gitignore)要忽略的故意未跟踪文件'
+- en: Miscellaneous
+  id: totrans-101
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 杂项
+- en: '**GUIs**: there are many [GUI clients](https://git-scm.com/downloads/guis)
+    out there for Git. We personally don’t use them and use the command-line interface
+    instead.'
+  id: totrans-102
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**GUIs**：有许多[GUI客户端](https://git-scm.com/downloads/guis)可供Git使用。我们个人不使用它们，而是使用命令行界面。'
+- en: '**Shell integration**: it’s super handy to have a Git status as part of your
+    shell prompt ([zsh](https://github.com/olivierverdier/zsh-git-prompt), [bash](https://github.com/magicmonty/bash-git-prompt)).
+    Often included in frameworks like [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh).'
+  id: totrans-103
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**Shell集成**：将Git状态作为shell提示符的一部分非常方便（[zsh](https://github.com/olivierverdier/zsh-git-prompt),
+    [bash](https://github.com/magicmonty/bash-git-prompt)）。通常包含在像[Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)这样的框架中。'
+- en: '**Editor integration**: similarly to the above, handy integrations with many
+    features. [fugitive.vim](https://github.com/tpope/vim-fugitive) is the standard
+    one for Vim.'
+  id: totrans-104
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**编辑器集成**：类似于上述内容，许多功能的便捷集成。[fugitive.vim](https://github.com/tpope/vim-fugitive)是Vim的标准之一。'
+- en: '**Workflows**: we taught you the data model, plus some basic commands; we didn’t
+    tell you what practices to follow when working on big projects (and there are
+    [many](https://nvie.com/posts/a-successful-git-branching-model/) [different](https://www.endoflineblog.com/gitflow-considered-harmful)
+    [approaches](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)).'
+  id: totrans-105
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**Workflows**: 我们教了你数据模型和一些基本命令；我们没有告诉你在大项目上工作时应该遵循哪些实践（而且有[很多](https://nvie.com/posts/a-successful-git-branching-model/)
+    [不同的](https://www.endoflineblog.com/gitflow-considered-harmful) [方法](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)）。'
+- en: '**GitHub**: Git is not GitHub. GitHub has a specific way of contributing code
+    to other projects, called [pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).'
+  id: totrans-106
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**GitHub**: Git 并非 GitHub。GitHub 有一种特定的方式向其他项目贡献代码，称为 [pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)。'
+- en: '**Other Git providers**: GitHub is not special: there are many Git repository
+    hosts, like [GitLab](https://about.gitlab.com/) and [BitBucket](https://bitbucket.org/).'
+  id: totrans-107
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**其他 Git 提供商**: GitHub 并非特殊：有许多 Git 仓库托管服务，如 [GitLab](https://about.gitlab.com/)
+    和 [BitBucket](https://bitbucket.org/)。'
+- en: Resources
+  id: totrans-108
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 资源
+- en: '[Pro Git](https://git-scm.com/book/en/v2) is **highly recommended reading**.
+    Going through Chapters 1–5 should teach you most of what you need to use Git proficiently,
+    now that you understand the data model. The later chapters have some interesting,
+    advanced material.'
+  id: totrans-109
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Pro Git](https://git-scm.com/book/en/v2) 是**强烈推荐阅读**的书籍。现在你理解了数据模型，通过阅读第 1-5
+    章，你应该可以学会如何熟练使用 Git。后面的章节有一些有趣的高级材料。'
+- en: '[Oh Shit, Git!?!](https://ohshitgit.com/) is a short guide on how to recover
+    from some common Git mistakes.'
+  id: totrans-110
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Oh Shit, Git!?!](https://ohshitgit.com/) 是一个关于如何从一些常见的 Git 错误中恢复的简短指南。'
+- en: '[Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/)
+    is a short explanation of Git’s data model, with less pseudocode and more fancy
+    diagrams than these lecture notes.'
+  id: totrans-111
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/)
+    是对 Git 数据模型的一个简短解释，比这些讲义有更少的伪代码和更多的复杂图表。'
+- en: '[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+    is a detailed explanation of Git’s implementation details beyond just the data
+    model, for the curious.'
+  id: totrans-112
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+    是对 Git 实现细节的详细解释，不仅限于数据模型，适合好奇心强的人。'
+- en: '[How to explain git in simple words](https://smusamashah.github.io/blog/2017/10/14/explain-git-in-simple-words)'
+  id: totrans-113
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[如何用简单的话解释 Git](https://smusamashah.github.io/blog/2017/10/14/explain-git-in-simple-words)'
+- en: '[Learn Git Branching](https://learngitbranching.js.org/) is a browser-based
+    game that teaches you Git.'
+  id: totrans-114
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Learn Git Branching](https://learngitbranching.js.org/) 是一个基于浏览器的游戏，教你 Git。'
+- en: Exercises
+  id: totrans-115
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 练习
+- en: If you don’t have any past experience with Git, either try reading the first
+    couple chapters of [Pro Git](https://git-scm.com/book/en/v2) or go through a tutorial
+    like [Learn Git Branching](https://learngitbranching.js.org/). As you’re working
+    through it, relate Git commands to the data model.
+  id: totrans-116
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 如果你没有任何 Git 经验，要么尝试阅读 [Pro Git](https://git-scm.com/book/en/v2) 的前几章，要么通过 [Learn
+    Git Branching](https://learngitbranching.js.org/) 这样的教程。当你学习时，将 Git 命令与数据模型联系起来。
+- en: Clone the [repository for the class website](https://github.com/missing-semester/missing-semester).
+  id: totrans-117
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 克隆[班级网站仓库](https://github.com/missing-semester/missing-semester)。
+- en: Explore the version history by visualizing it as a graph.
+  id: totrans-118
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 通过将其可视化成图表来探索版本历史。
+- en: 'Who was the last person to modify `README.md`? (Hint: use `git log` with an
+    argument).'
+  id: totrans-119
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 最后修改 `README.md` 的人是谁？（提示：使用带有参数的 `git log`）。
+- en: 'What was the commit message associated with the last modification to the `collections:`
+    line of `_config.yml`? (Hint: use `git blame` and `git show`).'
+  id: totrans-120
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 与 `_config.yml` 中 `collections:` 行的最后修改相关的提交信息是什么？（提示：使用 `git blame` 和 `git
+    show`）。
+- en: One common mistake when learning Git is to commit large files that should not
+    be managed by Git or adding sensitive information. Try adding a file to a repository,
+    making some commits and then deleting that file from *history* (not just the latest
+    commit). You may want to look at [this](https://help.github.com/articles/removing-sensitive-data-from-a-repository/).
+  id: totrans-121
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 学习 Git 时常见的错误之一是提交应该由 Git 管理的大型文件或添加敏感信息。尝试将文件添加到仓库中，进行一些提交，然后从 *历史记录*（而不仅仅是最新提交）中删除该文件。你可能想看看[这个](https://help.github.com/articles/removing-sensitive-data-from-a-repository/)。
+- en: Clone some repository from GitHub, and modify one of its existing files. What
+    happens when you do `git stash`? What do you see when running `git log --all --oneline`?
+    Run `git stash pop` to undo what you did with `git stash`. In what scenario might
+    this be useful?
+  id: totrans-122
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 从 GitHub 克隆一些仓库，并修改其现有文件之一。当你执行 `git stash` 时会发生什么？运行 `git log --all --oneline`
+    时你会看到什么？运行 `git stash pop` 来撤销你使用 `git stash` 所做的操作。在什么情况下这可能是有用的？
+- en: Like many command line tools, Git provides a configuration file (or dotfile)
+    called `~/.gitconfig`. Create an alias in `~/.gitconfig` so that when you run
+    `git graph`, you get the output of `git log --all --graph --decorate --oneline`.
+    You can do this by directly [editing](https://git-scm.com/docs/git-config#Documentation/git-config.txt-alias)
+    the `~/.gitconfig` file, or you can use the `git config` command to add the alias.
+    Information about git aliases can be found [here](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases).
+  id: totrans-123
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 与许多命令行工具一样，Git 提供了一个名为 `~/.gitconfig` 的配置文件（或点文件）。在 `~/.gitconfig` 中创建一个别名，以便当你运行
+    `git graph` 时，你将得到 `git log --all --graph --decorate --oneline` 的输出。你可以直接 [编辑](https://git-scm.com/docs/git-config#Documentation/git-config.txt-alias)
+    `~/.gitconfig` 文件，或者你可以使用 `git config` 命令来添加别名。有关 git 别名的信息可以在 [这里](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)
+    找到。
+- en: You can define global ignore patterns in `~/.gitignore_global` after running
+    `git config --global core.excludesfile ~/.gitignore_global`. This sets the location
+    of the global ignore file that Git will use, but you still need to manually create
+    the file at that path. Set up your global gitignore file to ignore OS-specific
+    or editor-specific temporary files, like `.DS_Store`.
+  id: totrans-124
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在运行 `git config --global core.excludesfile ~/.gitignore_global` 命令后，你可以在 `~/.gitignore_global`
+    文件中定义全局忽略模式。这设置了 Git 将使用的全局忽略文件的位置，但你仍然需要手动在该路径创建文件。设置你的全局 gitignore 文件以忽略特定于操作系统或编辑器的临时文件，例如
+    `.DS_Store`。
+- en: Fork the [repository for the class website](https://github.com/missing-semester/missing-semester),
+    find a typo or some other improvement you can make, and submit a pull request
+    on GitHub (you may want to look at [this](https://github.com/firstcontributions/first-contributions)).
+    Please only submit PRs that are useful (don’t spam us, please!). If you can’t
+    find an improvement to make, you can skip this exercise.
+  id: totrans-125
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 分叉用于课程网站的 [仓库](https://github.com/missing-semester/missing-semester)，找到你可以改进的错误或内容，并在
+    GitHub 上提交一个 pull request（你可能想查看 [这个](https://github.com/firstcontributions/first-contributions)）。请只提交有用的
+    PR（请不要垃圾邮件，谢谢！）如果你找不到可以改进的地方，你可以跳过这个练习。
+- en: 'Practice resolving merge conflicts by simulating a collaborative scenario:'
+  id: totrans-126
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 通过模拟协作场景来练习解决合并冲突：
+- en: Create a new repository with `git init` and create a file called `recipe.txt`
+    with a few lines (e.g., a simple recipe).
+  id: totrans-127
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 使用 `git init` 创建一个新的仓库，并创建一个名为 `recipe.txt` 的文件，包含几行内容（例如，一个简单的食谱）。
+- en: 'Commit it, then create two branches: `git branch salty` and `git branch sweet`.'
+  id: totrans-128
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 提交更改，然后创建两个分支：`git branch salty` 和 `git branch sweet`。
+- en: In the `salty` branch, modify a line (e.g., change “1 cup sugar” to “1 cup salt”)
+    and commit.
+  id: totrans-129
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在 `salty` 分支中，修改一行（例如，将“1杯糖”改为“1杯盐”）并提交。
+- en: In the `sweet` branch, modify the same line differently (e.g., change “1 cup
+    sugar” to “2 cups sugar”) and commit.
+  id: totrans-130
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在 `sweet` 分支中，修改相同的行以不同的方式（例如，将“1杯糖”改为“2杯糖”）并提交。
+- en: Now switch to `master` and try `git merge salty`, then `git merge sweet`. What
+    happens? Look at the contents of `recipe.txt` - what do the `<<<<<<<`, `=======`,
+    and `>>>>>>>` markers mean?
+  id: totrans-131
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 现在，切换到 `master` 分支，尝试 `git merge salty`，然后 `git merge sweet`。会发生什么？查看 `recipe.txt`
+    的内容 - `<<<<<<<`、`=======` 和 `>>>>>>>` 标记代表什么？
+- en: Resolve the conflict by editing the file to keep the content you want, removing
+    the conflict markers, and completing the merge with `git add` and `git commit`
+    (or `git merge --continue`). Alternatively, try using `git mergetool` to resolve
+    the conflict with a graphical or terminal-based merge tool.
+  id: totrans-132
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 通过编辑文件以保留你想要的内容，删除冲突标记，并使用 `git add` 和 `git commit`（或 `git merge --continue`）完成合并来解决冲突。或者，尝试使用
+    `git mergetool` 通过图形化或基于终端的合并工具来解决冲突。
+- en: Use `git log --graph --oneline` to visualize the merge history you just created.
+  id: totrans-133
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 使用 `git log --graph --oneline` 命令来可视化你刚刚创建的合并历史。
+- en: '* * *'
+  id: totrans-134
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2026/version-control.md).'
+  id: totrans-135
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2026/version-control.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-136
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本文档受 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

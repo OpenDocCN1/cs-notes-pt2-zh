@@ -1,0 +1,81 @@
+- en: Course Overview
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 课程概述
+- en: 原文：[https://missing.csail.mit.edu/2019/course-overview/](https://missing.csail.mit.edu/2019/course-overview/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/course-overview/](https://missing.csail.mit.edu/2019/course-overview/)
+- en: Motivation
+  id: totrans-2
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 动机
+- en: This class is about [hacker](https://en.wikipedia.org/wiki/Hacker_culture) tools,
+    not [hacker](https://en.wikipedia.org/wiki/Security_hacker) tools.
+  id: totrans-3
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这门课程是关于[黑客](https://en.wikipedia.org/wiki/Hacker_culture)工具，而不是[黑客](https://en.wikipedia.org/wiki/Security_hacker)工具。
+- en: 'MIT classes do not cover any of this content in detail. It’s hugely beneficial
+    to be proficient with your tools: it’ll save you a lot of time (and the payoff
+    time is very short).'
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 麻省理工学院的课程不会详细讲解这些内容。熟练掌握你的工具非常有好处：这将为你节省大量时间（回报时间非常短）。
+- en: We want to teach you about new tools, how to make the most of your tools, how
+    to customize your tools, and how to extend your tools.
+  id: totrans-5
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们希望教你关于新工具的知识，如何充分利用你的工具，如何定制你的工具，以及如何扩展你的工具。
+- en: Class structure
+  id: totrans-6
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 课程结构
+- en: We have 6 lectures covering a [variety of topics](/2019/). We have lecture notes
+    online, but there will be a lot of content covered in class (e.g. in the form
+    of demos) that may not be in the notes. We will be recording lectures.
+  id: totrans-7
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们有6个讲座，涵盖了[各种主题](/2019/)。我们在线上有讲义，但课堂上将涵盖大量内容（例如以演示的形式），这些内容可能不在讲义中。我们将录制讲座。
+- en: Each class is split into two 50-minute lectures with a 10-minute break in between.
+    Lectures are mostly live demonstrations followed by hands-on exercises. We might
+    have a short amount of time at the end of each class to get started on the exercises
+    in an office-hours-style setting.
+  id: totrans-8
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 每节课分为两个50分钟的讲座，中间有10分钟的休息时间。讲座主要是现场演示，随后是动手练习。我们可能在每节课结束时留出一些时间，以办公时间的方式开始练习。
+- en: To make the most of the class, you should go through all the exercises on your
+    own. We’ll inspire you to learn more about your tools, and we’ll show you what’s
+    possible and cover some of the basics in detail, but we can’t teach you everything
+    in the time we have.
+  id: totrans-9
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 为了充分利用课程，你应该独立完成所有练习。我们将激励你更多地了解你的工具，并展示可能性和详细讲解一些基础知识，但我们无法在有限的时间内教你所有内容。
+- en: '* * *'
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/course-overview.md).'
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页](https://github.com/missing-semester/missing-semester/blob/master/_2019/course-overview.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-12
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 根据[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可。

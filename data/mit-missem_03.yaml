@@ -1,0 +1,372 @@
+- en: Virtual Machines and Containers
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 虚拟机和容器
+- en: 原文：[https://missing.csail.mit.edu/2019/virtual-machines/](https://missing.csail.mit.edu/2019/virtual-machines/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/virtual-machines/](https://missing.csail.mit.edu/2019/virtual-machines/)
+- en: Virtual Machines
+  id: totrans-2
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 虚拟机
+- en: Virtual machines are simulated computers. You can configure a guest virtual
+    machine with some operating system and configuration and use it without affecting
+    your host environment.
+  id: totrans-3
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 虚拟机是模拟计算机。你可以配置一个带有某些操作系统和配置的客户机虚拟机，并使用它而不会影响你的主机环境。
+- en: 'For this class, you can use VMs to experiment with operating systems, software,
+    and configurations without risk: you won’t affect your primary development environment.'
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于这门课程，你可以使用虚拟机来实验操作系统、软件和配置，而无需承担风险：你不会影响你的主要开发环境。
+- en: In general, VMs have lots of uses. They are commonly used for running software
+    that only runs on a certain operating system (e.g. using a Windows VM on Linux
+    to run Windows-specific software). They are often used for experimenting with
+    potentially malicious software.
+  id: totrans-5
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通常情况下，虚拟机有很多用途。它们通常用于运行仅在特定操作系统上运行的软件（例如，在Linux上使用Windows虚拟机来运行Windows特定的软件）。它们经常用于尝试可能有害的软件。
+- en: Useful features
+  id: totrans-6
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 有用的功能
+- en: '**Isolation**: hypervisors do a pretty good job of isolating the guest from
+    the host, so you can use VMs to run buggy or untrusted software reasonably safely.'
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**隔离**：虚拟机管理程序在隔离客户机与主机方面做得相当不错，因此你可以使用虚拟机以相对安全的方式运行有缺陷或不可信的软件。'
+- en: '**Snapshots**: you can take “snapshots” of your virtual machine, capturing
+    the entire machine state (disk, memory, etc.), make changes to your machine, and
+    then restore to an earlier state. This is useful for testing out potentially destructive
+    actions, among other things.'
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**快照**：你可以对你的虚拟机进行“快照”，捕获整个机器状态（磁盘、内存等），对你的机器进行更改，然后恢复到早期状态。这对于测试可能具有破坏性的操作等非常有用。'
+- en: Disadvantages
+  id: totrans-9
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 缺点
+- en: Virtual machines are generally slower than running on bare metal, so they may
+    be unsuitable for certain applications.
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 虚拟机通常比在裸机上运行要慢，因此它们可能不适合某些应用程序。
+- en: Setup
+  id: totrans-11
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 设置
+- en: '**Resources**: shared with host machine; be aware of this when allocating physical
+    resources.'
+  id: totrans-12
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**资源**：与主机机器共享；在分配物理资源时要留意这一点。'
+- en: '**Networking**: many options, default NAT should work fine for most use cases.'
+  id: totrans-13
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**网络**：有很多选项，默认NAT应该适用于大多数用例。'
+- en: '**Guest addons**: many hypervisors can install software in the guest to enable
+    nicer integration with host system. You should use this if you can.'
+  id: totrans-14
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**客户机插件**：许多虚拟机管理程序可以在客户机中安装软件，以实现与主机系统的更好集成。如果可能的话，你应该使用这个功能。'
+- en: Resources
+  id: totrans-15
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 资源
+- en: Hypervisors
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 虚拟机管理程序
+- en: '[VirtualBox](https://www.virtualbox.org/) (open-source)'
+  id: totrans-17
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[VirtualBox](https://www.virtualbox.org/)（开源）'
+- en: '[Virt-manager](https://virt-manager.org/) (open-source, manages KVM virtual
+    machines and LXC containers)'
+  id: totrans-18
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Virt-manager](https://virt-manager.org/)（开源，管理KVM虚拟机和LXC容器）'
+- en: '[VMWare](https://www.vmware.com/) (commercial, available from IS&T [for MIT
+    students](https://ist.mit.edu/vmware-fusion))'
+  id: totrans-19
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[VMWare](https://www.vmware.com/)（商业，IS&T [为MIT学生提供](https://ist.mit.edu/vmware-fusion)）'
+- en: If you are already familiar with popular hypervisors/VMs you may want to learn
+    more about how to do this from a command line friendly way. One option is the
+    [libvirt](https://wiki.libvirt.org/page/UbuntuKVMWalkthrough) toolkit which allows
+    you to manage multiple different virtualization providers/hypervisors.
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你已经熟悉流行的虚拟机管理程序/虚拟机，你可能想了解如何从命令行友好的方式来做这件事。一个选项是[libvirt](https://wiki.libvirt.org/page/UbuntuKVMWalkthrough)工具包，它允许你管理多个不同的虚拟化提供商/虚拟机管理程序。
+- en: Exercises
+  id: totrans-21
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Download and install a hypervisor.
+  id: totrans-22
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 下载并安装虚拟机管理程序。
+- en: Create a new virtual machine and install a Linux distribution (e.g. [Debian](https://www.debian.org/)).
+  id: totrans-23
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 创建一个新的虚拟机并安装一个Linux发行版（例如，[Debian](https://www.debian.org/)）。
+- en: Experiment with snapshots. Try things that you’ve always wanted to try, like
+    running `sudo rm -rf --no-preserve-root /`, and see if you can recover easily.
+  id: totrans-24
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 尝试使用快照进行实验。尝试你一直想尝试的事情，比如运行`sudo rm -rf --no-preserve-root /`，看看你是否能轻松恢复。
+- en: Read what a [fork-bomb](https://en.wikipedia.org/wiki/Fork_bomb) (`:(){ :|:&
+    };:`) is and run it on the VM to see that the resource isolation (CPU, Memory,
+    &c) works.
+  id: totrans-25
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 了解什么是[fork-bomb](https://en.wikipedia.org/wiki/Fork_bomb) (`:(){ :|:& };:`)，并在虚拟机上运行它，以查看资源隔离（CPU、内存等）是否工作。
+- en: Install guest addons and experiment with different windowing modes, file sharing,
+    and other features.
+  id: totrans-26
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 安装客户机插件并尝试不同的窗口模式、文件共享和其他功能。
+- en: Containers
+  id: totrans-27
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 容器
+- en: Virtual Machines are relatively heavy-weight; what if you want to spin up machines
+    in an automated fashion? Enter containers!
+  id: totrans-28
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 虚拟机相对较重；如果您想以自动化的方式启动机器，该怎么办？容器就出现了！
+- en: Amazon Firecracker
+  id: totrans-29
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: Amazon Firecracker
+- en: Docker
+  id: totrans-30
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: Docker
+- en: rkt
+  id: totrans-31
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: rkt
+- en: lxc
+  id: totrans-32
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: lxc
+- en: Containers are *mostly* just an assembly of various Linux security features,
+    like virtual file system, virtual network interfaces, chroots, virtual memory
+    tricks, and the like, that together give the appearance of virtualization.
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 容器主要只是各种 Linux 安全特性的组合，如虚拟文件系统、虚拟网络接口、chroots、虚拟内存技巧等，这些特性共同呈现出虚拟化的外观。
+- en: Not quite as secure or isolated as a VM, but pretty close and getting better.
+    Usually higher performance, and much faster to start, but not always.
+  id: totrans-34
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 容器的安全性或隔离性不如虚拟机，但非常接近，并且正在变得更好。通常性能更高，启动速度更快，但并非总是如此。
+- en: The performance boost comes from the fact that unlike VMs which run an entire
+    copy of the operating system, containers share the linux kernel with the host.
+    However note that if you are running linux containers on Windows/macOS a Linux
+    VM will need to be active as a middle layer between the two.
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 性能提升的原因是，与运行整个操作系统副本的虚拟机不同，容器与主机共享 Linux 内核。然而请注意，如果您在 Windows/macOS 上运行 Linux
+    容器，则需要一个 Linux 虚拟机作为中间层来激活。
+- en: '![Docker vs VM](../Images/2cec491981e67ca4a5ff9dd47e92132e.png) *Comparison
+    between Docker containers and Virtual Machines. Credit: blog.docker.com*'
+  id: totrans-36
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '![Docker 与 VM 对比](../Images/2cec491981e67ca4a5ff9dd47e92132e.png) *Docker 容器和虚拟机的对比。来源：blog.docker.com*'
+- en: 'Containers are handy for when you want to run an automated task in a standardized
+    setup:'
+  id: totrans-37
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当您想在标准化的设置中运行自动化任务时，容器很方便：
+- en: Build systems
+  id: totrans-38
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 构建系统
+- en: Development environments
+  id: totrans-39
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 开发环境
+- en: Pre-packaged servers
+  id: totrans-40
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 预包装服务器
+- en: Running untrusted programs
+  id: totrans-41
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 运行不受信任的程序
+- en: Grading student submissions
+  id: totrans-42
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 评分学生提交
+- en: (Some) cloud computing
+  id: totrans-43
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: （一些）云计算
+- en: Continuous integration
+  id: totrans-44
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 持续集成
+- en: Travis CI
+  id: totrans-45
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: Travis CI
+- en: GitHub Actions
+  id: totrans-46
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: GitHub Actions
+- en: Moreover, container software like Docker has also been extensively used as a
+    solution for [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
+    If a machine needs to be running many services with conflicting dependencies they
+    can be isolated using containers.
+  id: totrans-47
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 此外，像 Docker 这样的容器软件也被广泛用作解决 [依赖地狱](https://en.wikipedia.org/wiki/Dependency_hell)
+    的解决方案。如果一个机器需要运行许多具有冲突依赖的服务，它们可以使用容器进行隔离。
+- en: Usually, you write a file that defines how to construct your container. You
+    start with some minimal *base image* (like Alpine Linux), and then a list of commands
+    to run to set up the environment you want (install packages, copy files, build
+    stuff, write config files, etc.). Normally, there’s also a way to specify any
+    external ports that should be available, and an *entrypoint* that dictates what
+    command should be run when the container is started (like a grading script).
+  id: totrans-48
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通常，您会编写一个文件来定义如何构建您的容器。您从一个最小的 *基础镜像*（如 Alpine Linux）开始，然后运行一系列命令来设置您想要的 环境（安装软件包、复制文件、构建内容、编写配置文件等）。通常，还可以指定任何应可用的外部端口，以及一个
+    *入口点*，它指定容器启动时应运行的命令（如评分脚本）。
+- en: In a similar fashion to code repository websites (like [GitHub](https://github.com/))
+    there are some container repository websites (like [DockerHub](https://hub.docker.com/))where
+    many software services have prebuilt images that one can easily deploy.
+  id: totrans-49
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 类似于代码仓库网站（如 [GitHub](https://github.com/)），还有一些容器仓库网站（如 [DockerHub](https://hub.docker.com/)），在这些网站上，许多软件服务都有预先构建的镜像，可以轻松部署。
+- en: Exercises
+  id: totrans-50
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Choose a container software (Docker, LXC, …) and install a simple Linux image.
+    Try SSHing into it.
+  id: totrans-51
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 选择一种容器软件（Docker、LXC 等）并安装一个简单的 Linux 镜像。尝试通过 SSH 连接到它。
+- en: Search and download a prebuilt container image for a popular web server (nginx,
+    apache, …)
+  id: totrans-52
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 搜索并下载一个流行的 Web 服务器（nginx、apache 等）的预构建容器镜像。
+- en: '* * *'
+  id: totrans-53
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/virtual-machines.md).'
+  id: totrans-54
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/virtual-machines.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-55
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 根据 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

@@ -1,0 +1,1260 @@
+- en: Command-line Environment
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 命令行环境
+- en: 原文：[https://missing.csail.mit.edu/2020/command-line/](https://missing.csail.mit.edu/2020/command-line/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: '[https://missing.csail.mit.edu/2020/command-line/](https://missing.csail.mit.edu/2020/command-line/)'
+- en: In this lecture we will go through several ways in which you can improve your
+    workflow when using the shell. We have been working with the shell for a while
+    now, but we have mainly focused on executing different commands. We will now see
+    how to run several processes at the same time while keeping track of them, how
+    to stop or pause a specific process and how to make a process run in the background.
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在这次讲座中，我们将探讨几种方法，这些方法可以帮助你在使用shell时提高工作效率。我们已经使用shell有一段时间了，但我们主要关注执行不同的命令。现在我们将看到如何同时运行多个进程并跟踪它们，如何停止或暂停特定进程，以及如何使进程在后台运行。
+- en: We will also learn about different ways to improve your shell and other tools,
+    by defining aliases and configuring them using dotfiles. Both of these can help
+    you save time, e.g. by using the same configurations in all your machines without
+    having to type long commands. We will look at how to work with remote machines
+    using SSH.
+  id: totrans-3
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们还将了解不同的方法来改进你的shell和其他工具，通过定义别名和使用dotfiles进行配置。这两者都可以帮助你节省时间，例如，在所有机器上使用相同的配置，而无需输入长命令。我们将探讨如何使用SSH与远程机器协同工作。
+- en: Job Control
+  id: totrans-4
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 作业控制
+- en: In some cases you will need to interrupt a job while it is executing, for instance
+    if a command is taking too long to complete (such as a `find` with a very large
+    directory structure to search through). Most of the time, you can do `Ctrl-C`
+    and the command will stop. But how does this actually work and why does it sometimes
+    fail to stop the process?
+  id: totrans-5
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在某些情况下，你可能需要在进程执行过程中中断它，例如，如果某个命令完成时间过长（例如，搜索非常大的目录结构的`find`命令）。大多数时候，你可以按`Ctrl-C`，命令就会停止。但这是如何实际工作的，为什么有时它无法停止进程？
+- en: Killing a process
+  id: totrans-6
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 终止一个进程
+- en: Your shell is using a UNIX communication mechanism called a *signal* to communicate
+    information to the process. When a process receives a signal it stops its execution,
+    deals with the signal and potentially changes the flow of execution based on the
+    information that the signal delivered. For this reason, signals are *software
+    interrupts*.
+  id: totrans-7
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你的shell正在使用一种称为*信号*的UNIX通信机制来向进程传递信息。当进程收到信号时，它会停止执行，处理信号，并根据信号传递的信息可能改变执行流程。因此，信号是*软件中断*。
+- en: In our case, when typing `Ctrl-C` this prompts the shell to deliver a `SIGINT`
+    signal to the process.
+  id: totrans-8
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在我们的情况下，当按`Ctrl-C`时，这会提示shell向进程发送`SIGINT`信号。
+- en: Here’s a minimal example of a Python program that captures `SIGINT` and ignores
+    it, no longer stopping. To kill this program we can now use the `SIGQUIT` signal
+    instead, by typing `Ctrl-\`.
+  id: totrans-9
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这是一个捕获`SIGINT`并忽略它的Python程序的简单示例，不再停止。现在我们可以使用`SIGQUIT`信号来终止这个程序，通过按`Ctrl-\`。
+- en: '[PRE0]'
+  id: totrans-10
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: Here’s what happens if we send `SIGINT` twice to this program, followed by `SIGQUIT`.
+    Note that `^` is how `Ctrl` is displayed when typed in the terminal.
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果我们向这个程序发送两次`SIGINT`信号，然后是`SIGQUIT`信号，会发生什么情况。请注意，`^`是当在终端中输入时显示`Ctrl`的方式。
+- en: '[PRE1]'
+  id: totrans-12
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: While `SIGINT` and `SIGQUIT` are both usually associated with terminal related
+    requests, a more generic signal for asking a process to exit gracefully is the
+    `SIGTERM` signal. To send this signal we can use the [`kill`](https://www.man7.org/linux/man-pages/man1/kill.1.html)
+    command, with the syntax `kill -TERM <PID>`.
+  id: totrans-13
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 虽然`SIGINT`和`SIGQUIT`通常都与终端相关请求相关联，但一个更通用的信号，用于请求进程优雅地退出，是`SIGTERM`信号。要发送此信号，我们可以使用`kill`命令，语法为`kill
+    -TERM <PID>`。
+- en: Pausing and backgrounding processes
+  id: totrans-14
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 暂停和后台处理进程
+- en: Signals can do other things beyond killing a process. For instance, `SIGSTOP`
+    pauses a process. In the terminal, typing `Ctrl-Z` will prompt the shell to send
+    a `SIGTSTP` signal, short for Terminal Stop (i.e. the terminal’s version of `SIGSTOP`).
+  id: totrans-15
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 信号可以执行除终止进程之外的其他操作。例如，`SIGSTOP`会暂停一个进程。在终端中，按`Ctrl-Z`会提示shell发送一个`SIGTSTP`信号，即终端版本的`SIGSTOP`。
+- en: We can then continue the paused job in the foreground or in the background using
+    [`fg`](https://www.man7.org/linux/man-pages/man1/fg.1p.html) or [`bg`](https://man7.org/linux/man-pages/man1/bg.1p.html),
+    respectively.
+  id: totrans-16
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 然后，我们可以使用`fg`或`bg`命令分别在前台或后台继续暂停的作业。
+- en: The [`jobs`](https://www.man7.org/linux/man-pages/man1/jobs.1p.html) command
+    lists the unfinished jobs associated with the current terminal session. You can
+    refer to those jobs using their pid (you can use [`pgrep`](https://www.man7.org/linux/man-pages/man1/pgrep.1.html)
+    to find that out). More intuitively, you can also refer to a process using the
+    percent symbol followed by its job number (displayed by `jobs`). To refer to the
+    last backgrounded job you can use the `$!` special parameter.
+  id: totrans-17
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`jobs`（[jobs](https://www.man7.org/linux/man-pages/man1/jobs.1p.html)）命令列出了与当前终端会话关联的未完成作业。你可以通过它们的pid（你可以使用`pgrep`（[pgrep](https://www.man7.org/linux/man-pages/man1/pgrep.1.html)）来找出）来引用这些作业。更直观的是，你也可以使用百分号后跟其作业号（由`jobs`显示）来引用一个进程。要引用最后一个后台作业，你可以使用特殊参数`$!`。'
+- en: One more thing to know is that the `&` suffix in a command will run the command
+    in the background, giving you the prompt back, although it will still use the
+    shell’s STDOUT which can be annoying (use shell redirections in that case).
+  id: totrans-18
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 还有一件事需要知道的是，命令中的`&`后缀将在后台运行命令，这样你就可以获得提示符，尽管它仍然会使用shell的STDOUT，这可能会很烦人（在这种情况下使用shell重定向）。
+- en: To background an already running program you can do `Ctrl-Z` followed by `bg`.
+    Note that backgrounded processes are still children processes of your terminal
+    and will die if you close the terminal (this will send yet another signal, `SIGHUP`).
+    To prevent that from happening you can run the program with [`nohup`](https://www.man7.org/linux/man-pages/man1/nohup.1.html)
+    (a wrapper to ignore `SIGHUP`), or use `disown` if the process has already been
+    started. Alternatively, you can use a terminal multiplexer as we will see in the
+    next section.
+  id: totrans-19
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 要将正在运行的程序放入后台，你可以按`Ctrl-Z`然后按`bg`。请注意，后台进程仍然是你的终端的子进程，如果你关闭终端，它们将会死亡（这将发送另一个信号，`SIGHUP`）。为了避免这种情况发生，你可以使用`nohup`（[nohup](https://www.man7.org/linux/man-pages/man1/nohup.1.html)）运行程序（这是一个忽略`SIGHUP`的包装器），或者如果进程已经启动，可以使用`disown`。或者，你可以使用我们在下一节中将要看到的终端复用器。
+- en: Below is a sample session to showcase some of these concepts.
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 下面是一个示例会话，以展示一些这些概念。
+- en: '[PRE2]'
+  id: totrans-21
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: A special signal is `SIGKILL` since it cannot be captured by the process and
+    it will always terminate it immediately. However, it can have bad side effects
+    such as leaving orphaned children processes.
+  id: totrans-22
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一个特殊的信号是`SIGKILL`，因为它不能被进程捕获，并且它将立即终止它。然而，它可能会有不良的副作用，例如留下孤儿子进程。
+- en: You can learn more about these and other signals [here](https://en.wikipedia.org/wiki/Signal_(IPC))
+    or typing [`man signal`](https://www.man7.org/linux/man-pages/man7/signal.7.html)
+    or `kill -l`.
+  id: totrans-23
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以在[这里](https://en.wikipedia.org/wiki/Signal_(IPC))了解更多关于这些和其他信号的信息，或者输入`man
+    signal`或`kill -l`。
+- en: Terminal Multiplexers
+  id: totrans-24
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 终端复用器
+- en: When using the command line interface you will often want to run more than one
+    thing at once. For instance, you might want to run your editor and your program
+    side by side. Although this can be achieved by opening new terminal windows, using
+    a terminal multiplexer is a more versatile solution.
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当使用命令行界面时，你通常会想要同时运行多个任务。例如，你可能想要同时运行你的编辑器和你的程序。虽然这可以通过打开新的终端窗口来实现，但使用终端复用器是一个更灵活的解决方案。
+- en: Terminal multiplexers like [`tmux`](https://www.man7.org/linux/man-pages/man1/tmux.1.html)
+    allow you to multiplex terminal windows using panes and tabs so you can interact
+    with multiple shell sessions. Moreover, terminal multiplexers let you detach a
+    current terminal session and reattach at some point later in time. This can make
+    your workflow much better when working with remote machines since it avoids the
+    need to use `nohup` and similar tricks.
+  id: totrans-26
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 类似于`tmux`（[tmux](https://www.man7.org/linux/man-pages/man1/tmux.1.html)）的终端复用器允许你使用面板和标签来复用终端窗口，这样你可以与多个shell会话进行交互。此外，终端复用器还允许你在某个时间点之后断开当前终端会话并重新连接。当与远程机器一起工作时，这可以使你的工作流程变得更好，因为它避免了使用`nohup`和类似技巧的需求。
+- en: The most popular terminal multiplexer these days is [`tmux`](https://www.man7.org/linux/man-pages/man1/tmux.1.html).
+    `tmux` is highly configurable and by using the associated keybindings you can
+    create multiple tabs and panes and quickly navigate through them.
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 目前最受欢迎的终端复用器是`tmux`（[tmux](https://www.man7.org/linux/man-pages/man1/tmux.1.html)）。`tmux`高度可配置，通过使用相关的快捷键，你可以创建多个标签和面板，并快速在其中导航。
+- en: '`tmux` expects you to know its keybindings, and they all have the form `<C-b>
+    x` where that means (1) press `Ctrl+b`, (2) release `Ctrl+b`, and then (3) press
+    `x`. `tmux` has the following hierarchy of objects:'
+  id: totrans-28
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`tmux`期望你知道它的快捷键，它们的形式都是`<C-b> x`，这意味着（1）按`Ctrl+b`，（2）释放`Ctrl+b`，然后（3）按`x`。`tmux`有以下对象层次结构：'
+- en: '**Sessions** - a session is an independent workspace with one or more windows'
+  id: totrans-29
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**会话** - 会话是一个包含一个或多个窗口的独立工作空间'
+- en: '`tmux` starts a new session.'
+  id: totrans-30
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`tmux` 启动一个新会话。'
+- en: '`tmux new -s NAME` starts it with that name.'
+  id: totrans-31
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`tmux new -s NAME` 以该名称启动它。'
+- en: '`tmux ls` lists the current sessions'
+  id: totrans-32
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`tmux ls` 列出当前会话'
+- en: Within `tmux` typing `<C-b> d` detaches the current session
+  id: totrans-33
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在 `tmux` 中，输入 `<C-b> d` 可以断开当前会话
+- en: '`tmux a` attaches the last session. You can use `-t` flag to specify which'
+  id: totrans-34
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`tmux a` 连接到最后一个会话。您可以使用 `-t` 标志来指定'
+- en: '**Windows** - Equivalent to tabs in editors or browsers, they are visually
+    separate parts of the same session'
+  id: totrans-35
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**窗口** - 与编辑器或浏览器中的标签页相当，它们是同一会话的视觉上分离的部分'
+- en: '`<C-b> c` Creates a new window. To close it you can just terminate the shells
+    doing `<C-d>`'
+  id: totrans-36
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> c` 创建一个新窗口。要关闭它，你可以简单地终止shell，执行 `<C-d>`'
+- en: '`<C-b> N` Go to the *N* th window. Note they are numbered'
+  id: totrans-37
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> N` 跳转到第 *N* 个窗口。注意它们是编号的'
+- en: '`<C-b> p` Goes to the previous window'
+  id: totrans-38
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> p` 跳转到上一个窗口'
+- en: '`<C-b> n` Goes to the next window'
+  id: totrans-39
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> n` 跳转到下一个窗口'
+- en: '`<C-b> ,` Rename the current window'
+  id: totrans-40
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> ,` 重命名当前窗口'
+- en: '`<C-b> w` List current windows'
+  id: totrans-41
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> w` 列出当前窗口'
+- en: '**Panes** - Like vim splits, panes let you have multiple shells in the same
+    visual display.'
+  id: totrans-42
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**面板** - 与vim的分割类似，面板允许您在同一视觉显示中拥有多个shell。'
+- en: '`<C-b> "` Split the current pane horizontally'
+  id: totrans-43
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> "` 水平分割当前面板'
+- en: '`<C-b> %` Split the current pane vertically'
+  id: totrans-44
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> %` 垂直分割当前面板'
+- en: '`<C-b> <direction>` Move to the pane in the specified *direction*. Direction
+    here means arrow keys.'
+  id: totrans-45
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> <direction>` 移动到指定 *方向* 的面板。方向在这里意味着箭头键。'
+- en: '`<C-b> z` Toggle zoom for the current pane'
+  id: totrans-46
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> z` 切换当前面板的缩放'
+- en: '`<C-b> [` Start scrollback. You can then press `<space>` to start a selection
+    and `<enter>` to copy that selection.'
+  id: totrans-47
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> [` 开始滚动。然后您可以按 `<space>` 开始选择，按 `<enter>` 复制该选择。'
+- en: '`<C-b> <space>` Cycle through pane arrangements.'
+  id: totrans-48
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`<C-b> <space>` 在面板布局之间循环。'
+- en: For further reading, [here](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
+    is a quick tutorial on `tmux` and [this](https://linuxcommand.org/lc3_adv_termmux.php)
+    has a more detailed explanation that covers the original `screen` command. You
+    might also want to familiarize yourself with [`screen`](https://www.man7.org/linux/man-pages/man1/screen.1.html),
+    since it comes installed in most UNIX systems.
+  id: totrans-49
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于进一步阅读，[这里](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
+    是关于 `tmux` 的快速教程，[这个](https://linuxcommand.org/lc3_adv_termmux.php) 有更详细的解释，涵盖了原始的
+    `screen` 命令。您可能还想熟悉一下 `[screen](https://www.man7.org/linux/man-pages/man1/screen.1.html)`，因为它安装在大多数UNIX系统中。
+- en: Aliases
+  id: totrans-50
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 别名
+- en: 'It can become tiresome typing long commands that involve many flags or verbose
+    options. For this reason, most shells support *aliasing*. A shell alias is a short
+    form for another command that your shell will replace automatically for you. For
+    instance, an alias in bash has the following structure:'
+  id: totrans-51
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 输入涉及许多标志或详细选项的长命令可能会变得令人厌烦。因此，大多数shell都支持 *别名* 功能。shell别名是另一个命令的简写形式，shell会自动为您替换。例如，bash中的别名具有以下结构：
+- en: '[PRE3]'
+  id: totrans-52
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE3]'
+- en: Note that there is no space around the equal sign `=`, because [`alias`](https://www.man7.org/linux/man-pages/man1/alias.1p.html)
+    is a shell command that takes a single argument.
+  id: totrans-53
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，等号 `=` 周围没有空格，因为 `[alias](https://www.man7.org/linux/man-pages/man1/alias.1p.html)`
+    是一个接受单个参数的shell命令。
+- en: 'Aliases have many convenient features:'
+  id: totrans-54
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 别名具有许多方便的功能：
+- en: '[PRE4]'
+  id: totrans-55
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE4]'
+- en: Note that aliases do not persist shell sessions by default. To make an alias
+    persistent you need to include it in shell startup files, like `.bashrc` or `.zshrc`,
+    which we are going to introduce in the next section.
+  id: totrans-56
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，别名默认不会持久化shell会话。要使别名持久化，您需要将其包含在shell启动文件中，如 `.bashrc` 或 `.zshrc`，我们将在下一节介绍。
+- en: Dotfiles
+  id: totrans-57
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 配置文件
+- en: Many programs are configured using plain-text files known as *dotfiles* (because
+    the file names begin with a `.`, e.g. `~/.vimrc`, so that they are hidden in the
+    directory listing `ls` by default).
+  id: totrans-58
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Many programs are configured using plain-text files known as *dotfiles* (because
+    the file names begin with a `.`, e.g. `~/.vimrc`, so that they are hidden in the
+    directory listing `ls` by default).
+- en: Shells are one example of programs configured with such files. On startup, your
+    shell will read many files to load its configuration. Depending on the shell,
+    whether you are starting a login and/or interactive the entire process can be
+    quite complex. [Here](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)
+    is an excellent resource on the topic.
+  id: totrans-59
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Shells are one example of programs configured with such files. On startup, your
+    shell will read many files to load its configuration. Depending on the shell,
+    whether you are starting a login and/or interactive the entire process can be
+    quite complex. [Here](https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)
+    is an excellent resource on the topic.
+- en: For `bash`, editing your `.bashrc` or `.bash_profile` will work in most systems.
+    Here you can include commands that you want to run on startup, like the alias
+    we just described or modifications to your `PATH` environment variable. In fact,
+    many programs will ask you to include a line like `export PATH="$PATH:/path/to/program/bin"`
+    in your shell configuration file so their binaries can be found.
+  id: totrans-60
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于 `bash`，编辑您的 `.bashrc` 或 `.bash_profile` 在大多数系统中都会起作用。在这里，您可以包括在启动时想要运行的命令，比如我们刚才描述的别名或对您的
+    `PATH` 环境变量的修改。实际上，许多程序会要求您在 shell 配置文件中包含一行类似 `export PATH="$PATH:/path/to/program/bin"`
+    的内容，以便它们的二进制文件可以被找到。
+- en: 'Some other examples of tools that can be configured through dotfiles are:'
+  id: totrans-61
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些可以通过 dotfiles 配置的工具的其他示例包括：
+- en: '`bash` - `~/.bashrc`, `~/.bash_profile`'
+  id: totrans-62
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`bash` - `~/.bashrc`，`~/.bash_profile`'
+- en: '`git` - `~/.gitconfig`'
+  id: totrans-63
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`git` - `~/.gitconfig`'
+- en: '`vim` - `~/.vimrc` and the `~/.vim` folder'
+  id: totrans-64
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`vim` - `~/.vimrc` 和 `~/.vim` 文件夹'
+- en: '`ssh` - `~/.ssh/config`'
+  id: totrans-65
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`ssh` - `~/.ssh/config`'
+- en: '`tmux` - `~/.tmux.conf`'
+  id: totrans-66
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`tmux` - `~/.tmux.conf`'
+- en: 'How should you organize your dotfiles? They should be in their own folder,
+    under version control, and **symlinked** into place using a script. This has the
+    benefits of:'
+  id: totrans-67
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您应该如何组织您的 dotfiles？它们应该放在自己的文件夹中，置于版本控制之下，并使用脚本**链接**到适当的位置。这样做有以下好处：
+- en: '**Easy installation**: if you log in to a new machine, applying your customizations
+    will only take a minute.'
+  id: totrans-68
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**易于安装**：如果您登录到一台新机器，应用您的自定义设置只需一分钟。'
+- en: '**Portability**: your tools will work the same way everywhere.'
+  id: totrans-69
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**便携性**：您的工具将在任何地方以相同的方式工作。'
+- en: '**Synchronization**: you can update your dotfiles anywhere and keep them all
+    in sync.'
+  id: totrans-70
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**同步**：您可以在任何地方更新您的 dotfiles 并保持它们同步。'
+- en: '**Change tracking**: you’re probably going to be maintaining your dotfiles
+    for your entire programming career, and version history is nice to have for long-lived
+    projects.'
+  id: totrans-71
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**变更跟踪**：您可能在整个编程生涯中维护您的 dotfiles，对于长期项目来说，版本历史记录是非常有用的。'
+- en: 'What should you put in your dotfiles? You can learn about your tool’s settings
+    by reading online documentation or [man pages](https://en.wikipedia.org/wiki/Man_page).
+    Another great way is to search the internet for blog posts about specific programs,
+    where authors will tell you about their preferred customizations. Yet another
+    way to learn about customizations is to look through other people’s dotfiles:
+    you can find tons of [dotfiles repositories](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
+    on GitHub — see the most popular one [here](https://github.com/mathiasbynens/dotfiles)
+    (we advise you not to blindly copy configurations though). [Here](https://dotfiles.github.io/)
+    is another good resource on the topic.'
+  id: totrans-72
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您应该在 dotfiles 中放置什么内容？您可以通过阅读在线文档或 [man 页面](https://en.wikipedia.org/wiki/Man_page)
+    了解您的工具设置。另一种很好的方法是搜索有关特定程序的博客文章，作者会告诉您他们偏好的自定义设置。还有另一种了解自定义设置的方法是查看其他人的 dotfiles：您可以在
+    GitHub 上找到大量的 [dotfiles 存储库](https://github.com/search?o=desc&q=dotfiles&s=stars&type=Repositories)
+    — 请参阅最受欢迎的一个 [这里](https://github.com/mathiasbynens/dotfiles)（我们建议您不要盲目复制配置）。[这里](https://dotfiles.github.io/)
+    是关于此主题的另一个很好的资源。
+- en: 'All of the class instructors have their dotfiles publicly accessible on GitHub:
+    [Anish](https://github.com/anishathalye/dotfiles), [Jon](https://github.com/jonhoo/configs),
+    [Jose](https://github.com/jjgo/dotfiles).'
+  id: totrans-73
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 所有课程讲师的 dotfiles 都可以在 GitHub 上公开访问：[Anish](https://github.com/anishathalye/dotfiles)，[Jon](https://github.com/jonhoo/configs)，[Jose](https://github.com/jjgo/dotfiles)。
+- en: Portability
+  id: totrans-74
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: '**便携性**'
+- en: A common pain with dotfiles is that the configurations might not work when working
+    with several machines, e.g. if they have different operating systems or shells.
+    Sometimes you also want some configuration to be applied only in a given machine.
+  id: totrans-75
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用 dotfiles 的一种常见问题是，当与多台机器一起工作时，配置可能无法正常工作，例如，如果它们有不同的操作系统或 shell。有时您也只想在特定机器上应用某些配置。
+- en: 'There are some tricks for making this easier. If the configuration file supports
+    it, use the equivalent of if-statements to apply machine specific customizations.
+    For example, your shell could have something like:'
+  id: totrans-76
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有一些技巧可以使这更容易。如果配置文件支持，请使用类似 if 语句的等效功能来应用特定于机器的自定义设置。例如，您的 shell 可以有如下内容：
+- en: '[PRE5]'
+  id: totrans-77
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE5]'
+- en: 'If the configuration file supports it, make use of includes. For example, a
+    `~/.gitconfig` can have a setting:'
+  id: totrans-78
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果配置文件支持，请使用包含功能。例如，一个 `~/.gitconfig` 可以有一个设置：
+- en: '[PRE6]'
+  id: totrans-79
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE6]'
+- en: And then on each machine, `~/.gitconfig_local` can contain machine-specific
+    settings. You could even track these in a separate repository for machine-specific
+    settings.
+  id: totrans-80
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '然后在每台机器上，`~/.gitconfig_local` 可以包含特定于机器的设置。您甚至可以将这些设置跟踪在单独的存储库中。 '
+- en: 'This idea is also useful if you want different programs to share some configurations.
+    For instance, if you want both `bash` and `zsh` to share the same set of aliases
+    you can write them under `.aliases` and have the following block in both:'
+  id: totrans-81
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你想让不同的程序共享一些配置，这个想法也很有用。例如，如果你想让 `bash` 和 `zsh` 共享同一组别名，你可以在 `.aliases` 下写入它们，并在两个中都有以下块：
+- en: '[PRE7]'
+  id: totrans-82
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE7]'
+- en: Remote Machines
+  id: totrans-83
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 远程机器
+- en: It has become more and more common for programmers to use remote servers in
+    their everyday work. If you need to use remote servers in order to deploy backend
+    software or you need a server with higher computational capabilities, you will
+    end up using a Secure Shell (SSH). As with most tools covered, SSH is highly configurable
+    so it is worth learning about it.
+  id: totrans-84
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于程序员来说，在日常工作中使用远程服务器变得越来越普遍。如果你需要使用远程服务器来部署后端软件或者你需要一个具有更高计算能力的服务器，你最终会使用安全外壳（SSH）。与大多数工具一样，SSH
+    具有高度的可配置性，因此了解它是有价值的。
+- en: To `ssh` into a server you execute a command as follows
+  id: totrans-85
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 要通过 `ssh` 连接到服务器，你执行以下命令
+- en: '[PRE8]'
+  id: totrans-86
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE8]'
+- en: Here we are trying to ssh as user `foo` in server `bar.mit.edu`. The server
+    can be specified with a URL (like `bar.mit.edu`) or an IP (something like `foobar@192.168.1.42`).
+    Later we will see that if we modify ssh config file you can access just using
+    something like `ssh bar`.
+  id: totrans-87
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在这里，我们尝试以用户 `foo` 的身份在服务器 `bar.mit.edu` 上进行 ssh 连接。服务器可以通过 URL（如 `bar.mit.edu`）或
+    IP 地址（例如 `foobar@192.168.1.42`）指定。稍后我们将看到，如果我们修改 ssh 配置文件，你可以仅使用类似 `ssh bar` 的方式访问。
+- en: Executing commands
+  id: totrans-88
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 执行命令
+- en: An often overlooked feature of `ssh` is the ability to run commands directly.
+    `ssh foobar@server ls` will execute `ls` in the home folder of foobar. It works
+    with pipes, so `ssh foobar@server ls | grep PATTERN` will grep locally the remote
+    output of `ls` and `ls | ssh foobar@server grep PATTERN` will grep remotely the
+    local output of `ls`.
+  id: totrans-89
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`ssh` 的一个常被忽视的功能是能够直接运行命令。`ssh foobar@server ls` 将在 foobar 的家目录中执行 `ls` 命令。它与管道一起工作，所以
+    `ssh foobar@server ls | grep PATTERN` 将在本地 grep `ls` 的远程输出，而 `ls | ssh foobar@server
+    grep PATTERN` 将在远程 grep `ls` 的本地输出。'
+- en: SSH Keys
+  id: totrans-90
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: SSH 密钥
+- en: Key-based authentication exploits public-key cryptography to prove to the server
+    that the client owns the secret private key without revealing the key. This way
+    you do not need to reenter your password every time. Nevertheless, the private
+    key (often `~/.ssh/id_rsa` and more recently `~/.ssh/id_ed25519`) is effectively
+    your password, so treat it like so.
+  id: totrans-91
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 基于密钥的认证利用公钥加密技术向服务器证明客户端拥有秘密私钥，而不泄露密钥。这样你就不需要每次都重新输入密码。然而，私钥（通常是 `~/.ssh/id_rsa`，最近更多是
+    `~/.ssh/id_ed25519`）实际上就是你的密码，所以要像对待密码一样对待它。
+- en: Key generation
+  id: totrans-92
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+  zh: 密钥生成
+- en: To generate a pair you can run [`ssh-keygen`](https://www.man7.org/linux/man-pages/man1/ssh-keygen.1.html).
+  id: totrans-93
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 要生成一对密钥，你可以运行 `ssh-keygen`。
+- en: '[PRE9]'
+  id: totrans-94
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE9]'
+- en: You should choose a passphrase, to avoid someone who gets hold of your private
+    key to access authorized servers. Use [`ssh-agent`](https://www.man7.org/linux/man-pages/man1/ssh-agent.1.html)
+    or [`gpg-agent`](https://linux.die.net/man/1/gpg-agent) so you do not have to
+    type your passphrase every time.
+  id: totrans-95
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你应该选择一个密码短语，以防止有人获取你的私钥来访问授权服务器。使用 `ssh-agent` 或 `gpg-agent`，这样你就不必每次都输入密码短语。
+- en: If you have ever configured pushing to GitHub using SSH keys, then you have
+    probably done the steps outlined [here](https://help.github.com/articles/connecting-to-github-with-ssh/)
+    and have a valid key pair already. To check if you have a passphrase and validate
+    it you can run `ssh-keygen -y -f /path/to/key`.
+  id: totrans-96
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你曾经使用 SSH 密钥配置 GitHub 推送，那么你可能已经完成了[这里](https://help.github.com/articles/connecting-to-github-with-ssh/)概述的步骤，并且已经有一个有效的密钥对。要检查你是否有一个密码短语并验证它，你可以运行
+    `ssh-keygen -y -f /path/to/key`。
+- en: Key based authentication
+  id: totrans-97
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+  zh: 基于密钥的认证
+- en: '`ssh` will look into `.ssh/authorized_keys` to determine which clients it should
+    let in. To copy a public key over you can use:'
+  id: totrans-98
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`ssh` 会查看 `.ssh/authorized_keys` 以确定它应该允许哪些客户端进入。要复制一个公钥，你可以使用：'
+- en: '[PRE10]'
+  id: totrans-99
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE10]'
+- en: 'A simpler solution can be achieved with `ssh-copy-id` where available:'
+  id: totrans-100
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果可用，可以使用 `ssh-copy-id` 实现一个更简单的解决方案：
+- en: '[PRE11]'
+  id: totrans-101
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE11]'
+- en: Copying files over SSH
+  id: totrans-102
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 通过 SSH 复制文件
+- en: 'There are many ways to copy files over ssh:'
+  id: totrans-103
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有许多方法可以通过 ssh 复制文件：
+- en: '`ssh+tee`, the simplest is to use `ssh` command execution and STDIN input by
+    doing `cat localfile | ssh remote_server tee serverfile`. Recall that [`tee`](https://www.man7.org/linux/man-pages/man1/tee.1.html)
+    writes the output from STDIN into a file.'
+  id: totrans-104
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`ssh+tee`，最简单的方法是使用 `ssh` 命令执行和 STDIN 输入，执行 `cat localfile | ssh remote_server
+    tee serverfile`。回想一下，`tee` 将 STDIN 的输出写入文件。'
+- en: '[`scp`](https://www.man7.org/linux/man-pages/man1/scp.1.html) when copying
+    large amounts of files/directories, the secure copy `scp` command is more convenient
+    since it can easily recurse over paths. The syntax is `scp path/to/local_file
+    remote_host:path/to/remote_file`'
+  id: totrans-105
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[`scp`](https://www.man7.org/linux/man-pages/man1/scp.1.html) 在复制大量文件/目录时，由于它可以轻松地对路径进行递归，所以安全的复制
+    `scp` 命令更方便。语法是 `scp 本地路径/本地文件 远程主机:远程路径/远程文件`'
+- en: '[`rsync`](https://www.man7.org/linux/man-pages/man1/rsync.1.html) improves
+    upon `scp` by detecting identical files in local and remote, and preventing copying
+    them again. It also provides more fine grained control over symlinks, permissions
+    and has extra features like the `--partial` flag that can resume from a previously
+    interrupted copy. `rsync` has a similar syntax to `scp`.'
+  id: totrans-106
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[`rsync`](https://www.man7.org/linux/man-pages/man1/rsync.1.html) 通过检测本地和远程的相同文件，并防止再次复制它们来改进
+    `scp`。它还提供了对符号链接、权限的更精细控制，并具有像 `--partial` 标志这样的额外功能，可以从之前中断的复制中恢复。`rsync` 的语法与
+    `scp` 类似。'
+- en: Port Forwarding
+  id: totrans-107
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 端口转发
+- en: In many scenarios you will run into software that listens to specific ports
+    in the machine. When this happens in your local machine you can type `localhost:PORT`
+    or `127.0.0.1:PORT`, but what do you do with a remote server that does not have
+    its ports directly available through the network/internet?.
+  id: totrans-108
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在许多场景中，你可能会遇到在机器上监听特定端口的软件。当这种情况发生在你的本地机器上时，你可以输入 `localhost:PORT` 或 `127.0.0.1:PORT`，但对于没有通过网络/互联网直接提供端口的远程服务器，你该怎么办呢？
+- en: 'This is called *port forwarding* and it comes in two flavors: Local Port Forwarding
+    and Remote Port Forwarding (see the pictures for more details, credit of the pictures
+    from [this StackOverflow post](https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot)).'
+  id: totrans-109
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这被称为 *端口转发*，它有两种形式：本地端口转发和远程端口转发（见图片以获取更多详细信息，图片来自 [这篇 StackOverflow 帖子](https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot)）。
+- en: '**Local Port Forwarding** ![Local Port Forwarding](../Images/6807476e9069997cb6e84325ebeac217.png)'
+  id: totrans-110
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '**本地端口转发** ![本地端口转发](../Images/6807476e9069997cb6e84325ebeac217.png)'
+- en: '**Remote Port Forwarding** ![Remote Port Forwarding](../Images/b7ef7033391356876905425894435497.png)'
+  id: totrans-111
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '**远程端口转发** ![远程端口转发](../Images/b7ef7033391356876905425894435497.png)'
+- en: The most common scenario is local port forwarding, where a service in the remote
+    machine listens in a port and you want to link a port in your local machine to
+    forward to the remote port. For example, if we execute `jupyter notebook` in the
+    remote server that listens to the port `8888`. Thus, to forward that to the local
+    port `9999`, we would do `ssh -L 9999:localhost:8888 foobar@remote_server` and
+    then navigate to `localhost:9999` in our local machine.
+  id: totrans-112
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 最常见的场景是本地端口转发，其中远程机器上的服务在一个端口上监听，你想要将你的本地机器上的一个端口链接到远程端口。例如，如果我们在一个监听端口 `8888`
+    的远程服务器上执行 `jupyter notebook`。因此，要将它转发到本地端口 `9999`，我们会这样做 `ssh -L 9999:localhost:8888
+    foobar@remote_server`，然后在我们的本地机器上导航到 `localhost:9999`。
+- en: SSH Configuration
+  id: totrans-113
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: SSH 配置
+- en: We have covered many many arguments that we can pass. A tempting alternative
+    is to create shell aliases that look like
+  id: totrans-114
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们已经介绍了许多我们可以传递的参数。一个诱人的替代方案是创建看起来像
+- en: '[PRE12]'
+  id: totrans-115
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE12]'
+- en: However, there is a better alternative using `~/.ssh/config`.
+  id: totrans-116
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 然而，有一个更好的替代方案使用 `~/.ssh/config`。
+- en: '[PRE13]'
+  id: totrans-117
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE13]'
+- en: An additional advantage of using the `~/.ssh/config` file over aliases is that
+    other programs like `scp`, `rsync`, `mosh`, &c are able to read it as well and
+    convert the settings into the corresponding flags.
+  id: totrans-118
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用 `~/.ssh/config` 文件而不是别名的另一个优点是，其他程序如 `scp`、`rsync`、`mosh` 等也能够读取它并将设置转换为相应的标志。
+- en: 'Note that the `~/.ssh/config` file can be considered a dotfile, and in general
+    it is fine for it to be included with the rest of your dotfiles. However, if you
+    make it public, think about the information that you are potentially providing
+    strangers on the internet: addresses of your servers, users, open ports, &c. This
+    may facilitate some types of attacks so be thoughtful about sharing your SSH configuration.'
+  id: totrans-119
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，`~/.ssh/config` 文件可以被视为点文件，通常情况下将其包含在其他点文件中是没问题的。然而，如果你将其公开，要考虑你可能会提供给互联网上陌生人的信息：你的服务器、用户、开放端口等。这可能会方便某些类型的攻击，因此在分享你的
+    SSH 配置时要三思。
+- en: Server side configuration is usually specified in `/etc/ssh/sshd_config`. Here
+    you can make changes like disabling password authentication, changing ssh ports,
+    enabling X11 forwarding, &c. You can specify config settings on a per user basis.
+  id: totrans-120
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 服务器端配置通常在`/etc/ssh/sshd_config`中指定。在这里，你可以进行更改，如禁用密码认证、更改ssh端口、启用X11转发等。你可以根据每个用户指定配置设置。
+- en: Miscellaneous
+  id: totrans-121
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 杂项
+- en: A common pain when connecting to a remote server are disconnections due to your
+    computer shutting down, going to sleep, or changing networks. Moreover if one
+    has a connection with significant lag using ssh can become quite frustrating.
+    [Mosh](https://mosh.org/), the mobile shell, improves upon ssh, allowing roaming
+    connections, intermittent connectivity and providing intelligent local echo.
+  id: totrans-122
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 连接到远程服务器时常见的痛苦是因你的电脑关闭、进入睡眠状态或更改网络而断开连接。此外，如果有一个有显著延迟的连接，使用ssh可能会变得相当令人沮丧。[Mosh](https://mosh.org/)，移动壳，在ssh的基础上进行了改进，允许漫游连接、间歇性连接并提供智能本地回显。
+- en: Sometimes it is convenient to mount a remote folder. [sshfs](https://github.com/libfuse/sshfs)
+    can mount a folder on a remote server locally, and then you can use a local editor.
+  id: totrans-123
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有时挂载远程文件夹很方便。[sshfs](https://github.com/libfuse/sshfs)可以在本地挂载远程服务器上的文件夹，然后你可以使用本地编辑器。
+- en: Shells & Frameworks
+  id: totrans-124
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Shell与框架
+- en: During shell tool and scripting we covered the `bash` shell because it is by
+    far the most ubiquitous shell and most systems have it as the default option.
+    Nevertheless, it is not the only option.
+  id: totrans-125
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在介绍shell工具和脚本时，我们介绍了`bash` shell，因为它是最普遍的shell，大多数系统都将其作为默认选项。然而，它并不是唯一的选择。
+- en: 'For example, the `zsh` shell is a superset of `bash` and provides many convenient
+    features out of the box such as:'
+  id: totrans-126
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，`zsh` shell是`bash`的超集，并提供了许多开箱即用的便利功能，例如：
+- en: Smarter globbing, `**`
+  id: totrans-127
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 智能通配符，`**`
+- en: Inline globbing/wildcard expansion
+  id: totrans-128
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 内联通配符/通配符展开
+- en: Spelling correction
+  id: totrans-129
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 拼写纠正
+- en: Better tab completion/selection
+  id: totrans-130
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 更好的标签完成/选择
+- en: Path expansion (`cd /u/lo/b` will expand as `/usr/local/bin`)
+  id: totrans-131
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 路径展开（`cd /u/lo/b`将展开为`/usr/local/bin`）
+- en: '**Frameworks** can improve your shell as well. Some popular general frameworks
+    are [prezto](https://github.com/sorin-ionescu/prezto) or [oh-my-zsh](https://ohmyz.sh/),
+    and smaller ones that focus on specific features such as [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+    or [zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search).
+    Shells like [fish](https://fishshell.com/) include many of these user-friendly
+    features by default. Some of these features include:'
+  id: totrans-132
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '**框架**也可以改善你的shell。一些流行的通用框架包括[prezto](https://github.com/sorin-ionescu/prezto)或[oh-my-zsh](https://ohmyz.sh/)，以及专注于特定功能的较小框架，如[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)或[zsh-history-substring-search](https://github.com/zsh-users/zsh-history-substring-search)。像[fish](https://fishshell.com/)这样的shell默认包含了许多用户友好的功能。其中一些功能包括：'
+- en: Right prompt
+  id: totrans-133
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 右侧提示符
+- en: Command syntax highlighting
+  id: totrans-134
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 命令语法高亮
+- en: History substring search
+  id: totrans-135
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 历史子串搜索
+- en: manpage based flag completions
+  id: totrans-136
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 基于手册页的标志完成
+- en: Smarter autocompletion
+  id: totrans-137
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 智能自动完成
+- en: Prompt themes
+  id: totrans-138
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 提示主题
+- en: One thing to note when using these frameworks is that they may slow down your
+    shell, especially if the code they run is not properly optimized or it is too
+    much code. You can always profile it and disable the features that you do not
+    use often or value over speed.
+  id: totrans-139
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用这些框架时要注意的一点是，它们可能会减慢你的shell速度，特别是如果它们运行的代码没有正确优化，或者代码量过多。你总是可以对其进行性能分析，并禁用不常用或不如速度重要的功能。
+- en: Terminal Emulators
+  id: totrans-140
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 终端模拟器
+- en: Along with customizing your shell, it is worth spending some time figuring out
+    your choice of **terminal emulator** and its settings. There are many many terminal
+    emulators out there (here is a [comparison](https://anarc.at/blog/2018-04-12-terminal-emulators-1/)).
+  id: totrans-141
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 除了自定义你的shell，花些时间了解你的**终端模拟器**及其设置也是值得的。市面上有各种各样的终端模拟器（这里有一个[比较](https://anarc.at/blog/2018-04-12-terminal-emulators-1/)）。
+- en: 'Since you might be spending hundreds to thousands of hours in your terminal
+    it pays off to look into its settings. Some of the aspects that you may want to
+    modify in your terminal include:'
+  id: totrans-142
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 由于你可能会在终端上花费数百到数千小时，因此查看其设置是值得的。你可能想在终端中修改的一些方面包括：
+- en: Font choice
+  id: totrans-143
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 字体选择
+- en: Color Scheme
+  id: totrans-144
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 颜色方案
+- en: Keyboard shortcuts
+  id: totrans-145
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 键盘快捷键
+- en: Tab/Pane support
+  id: totrans-146
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 标签/面板支持
+- en: Scrollback configuration
+  id: totrans-147
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 滚动配置
+- en: Performance (some newer terminals like [Alacritty](https://github.com/jwilm/alacritty)
+    or [kitty](https://sw.kovidgoyal.net/kitty/) offer GPU acceleration).
+  id: totrans-148
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 性能（一些较新的终端，如[Alacritty](https://github.com/jwilm/alacritty)或[kitty](https://sw.kovidgoyal.net/kitty/)，提供GPU加速）。
+- en: Exercises
+  id: totrans-149
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Job control
+  id: totrans-150
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 任务控制
+- en: 'From what we have seen, we can use some `ps aux | grep` commands to get our
+    jobs’ pids and then kill them, but there are better ways to do it. Start a `sleep
+    10000` job in a terminal, background it with `Ctrl-Z` and continue its execution
+    with `bg`. Now use [`pgrep`](https://www.man7.org/linux/man-pages/man1/pgrep.1.html)
+    to find its pid and [`pkill`](https://man7.org/linux/man-pages/man1/pgrep.1.html)
+    to kill it without ever typing the pid itself. (Hint: use the `-af` flags).'
+  id: totrans-151
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 从我们所看到的，我们可以使用一些`ps aux | grep`命令来获取我们的作业的进程ID，然后杀死它们，但还有更好的方法。在终端中启动一个`sleep
+    10000`作业，使用`Ctrl-Z`将其置于后台，然后继续执行。现在使用[`pgrep`](https://www.man7.org/linux/man-pages/man1/pgrep.1.html)来找到它的pid，使用[`pkill`](https://man7.org/linux/man-pages/man1/pgrep.1.html)来杀死它，而无需输入pid本身。（提示：使用`-af`标志）。
+- en: Say you don’t want to start a process until another completes. How would you
+    go about it? In this exercise, our limiting process will always be `sleep 60 &`.
+    One way to achieve this is to use the [`wait`](https://www.man7.org/linux/man-pages/man1/wait.1p.html)
+    command. Try launching the sleep command and having an `ls` wait until the background
+    process finishes.
+  id: totrans-152
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 假设你不想在另一个进程完成之前启动一个进程。你将如何操作？在这个练习中，我们的限制进程始终是`sleep 60 &`。实现这一目标的一种方法是用`[`wait](https://www.man7.org/linux/man-pages/man1/wait.1p.html)`命令。尝试启动sleep命令，并让`ls`等待后台进程完成。
+- en: However, this strategy will fail if we start in a different bash session, since
+    `wait` only works for child processes. One feature we did not discuss in the notes
+    is that the `kill` command’s exit status will be zero on success and nonzero otherwise.
+    `kill -0` does not send a signal but will give a nonzero exit status if the process
+    does not exist. Write a bash function called `pidwait` that takes a pid and waits
+    until the given process completes. You should use `sleep` to avoid wasting CPU
+    unnecessarily.
+  id: totrans-153
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+  zh: 然而，如果我们从一个不同的bash会话开始，这个策略就会失败，因为`wait`命令只对子进程有效。笔记中没有讨论的一个特性是，`kill`命令的退出状态在成功时为零，否则为非零。`kill
+    -0`不会发送信号，但如果进程不存在，将给出非零的退出状态。编写一个名为`pidwait`的bash函数，它接受一个进程ID（pid）并等待直到指定的进程完成。你应该使用`sleep`来避免不必要的CPU浪费。
+- en: Terminal multiplexer
+  id: totrans-154
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Terminal multiplexer
+- en: Follow this `tmux` [tutorial](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
+    and then learn how to do some basic customizations following [these steps](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/).
+  id: totrans-155
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 遵循这个`tmux`[教程](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)，然后学习如何按照[这些步骤](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/)进行一些基本的自定义设置。
+- en: Aliases
+  id: totrans-156
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Aliases
+- en: Create an alias `dc` that resolves to `cd` for when you type it wrong.
+  id: totrans-157
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 创建一个别名`dc`，当输入错误时解析为`cd`。
+- en: 'Run `history | awk ''{$1="";print substr($0,2)}'' | sort | uniq -c | sort -n
+    | tail -n 10` to get your top 10 most used commands and consider writing shorter
+    aliases for them. Note: this works for Bash; if you’re using ZSH, use `history
+    1` instead of just `history`.'
+  id: totrans-158
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 运行`history | awk '{$1="";print substr($0,2)}' | sort | uniq -c | sort -n | tail
+    -n 10`来获取你使用最多的前10个命令，并考虑为它们编写更短的别名。注意：这适用于Bash；如果你使用ZSH，请使用`history 1`而不是仅仅`history`。
+- en: Dotfiles
+  id: totrans-159
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Dotfiles
+- en: Let’s get you up to speed with dotfiles.
+  id: totrans-160
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 让我们让你熟悉一下dotfiles。
+- en: Create a folder for your dotfiles and set up version control.
+  id: totrans-161
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 为你的dotfiles创建一个文件夹并设置版本控制。
+- en: Add a configuration for at least one program, e.g. your shell, with some customization
+    (to start off, it can be something as simple as customizing your shell prompt
+    by setting `$PS1`).
+  id: totrans-162
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 至少为其中一个程序添加配置，例如你的shell，并做一些定制（为了开始，这可以是通过设置`$PS1`来自定义你的shell提示符这样简单的事情）。
+- en: Set up a method to install your dotfiles quickly (and without manual effort)
+    on a new machine. This can be as simple as a shell script that calls `ln -s` for
+    each file, or you could use a [specialized utility](https://dotfiles.github.io/utilities/).
+  id: totrans-163
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 设置一种方法，以便快速（且无需手动操作）在新机器上安装你的dotfiles。这可以是一个简单的shell脚本，它为每个文件调用`ln -s`，或者你可以使用一个[专用工具](https://dotfiles.github.io/utilities/)。
+- en: Test your installation script on a fresh virtual machine.
+  id: totrans-164
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在一个全新的虚拟机上测试你的安装脚本。
+- en: Migrate all of your current tool configurations to your dotfiles repository.
+  id: totrans-165
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 将你当前的所有工具配置迁移到你的dotfiles仓库中。
+- en: Publish your dotfiles on GitHub.
+  id: totrans-166
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在GitHub上发布你的dotfiles。
+- en: Remote Machines
+  id: totrans-167
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Remote Machines
+- en: Install a Linux virtual machine (or use an already existing one) for this exercise.
+    If you are not familiar with virtual machines check out [this](https://hibbard.eu/install-ubuntu-virtual-box/)
+    tutorial for installing one.
+  id: totrans-168
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 安装一个Linux虚拟机（或使用已经存在的虚拟机）进行这个练习。如果你不熟悉虚拟机，请查看[这个](https://hibbard.eu/install-ubuntu-virtual-box/)教程来安装一个。
+- en: Go to `~/.ssh/` and check if you have a pair of SSH keys there. If not, generate
+    them with `ssh-keygen -a 100 -t ed25519`. It is recommended that you use a password
+    and use `ssh-agent` , more info [here](https://www.ssh.com/ssh/agent).
+  id: totrans-169
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 前往 `~/.ssh/` 并检查你是否在那里有一对 SSH 密钥。如果没有，使用 `ssh-keygen -a 100 -t ed25519` 生成它们。建议你使用密码，并使用
+    `ssh-agent`，更多信息[这里](https://www.ssh.com/ssh/agent)。
+- en: Edit `.ssh/config` to have an entry as follows
+  id: totrans-170
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 编辑 `.ssh/config` 以添加以下条目
+- en: '[PRE14]'
+  id: totrans-171
+  prefs:
+  - PREF_IND
+  type: TYPE_PRE
+  zh: '[PRE14]'
+- en: Use `ssh-copy-id vm` to copy your ssh key to the server.
+  id: totrans-172
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 使用 `ssh-copy-id vm` 将你的 SSH 密钥复制到服务器。
+- en: Start a webserver in your VM by executing `python -m http.server 8888`. Access
+    the VM webserver by navigating to `http://localhost:9999` in your machine.
+  id: totrans-173
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在你的虚拟机中通过执行 `python -m http.server 8888` 启动一个 web 服务器。通过在你的机器上导航到 `http://localhost:9999`
+    来访问虚拟机 web 服务器。
+- en: Edit your SSH server config by doing `sudo vim /etc/ssh/sshd_config` and disable
+    password authentication by editing the value of `PasswordAuthentication`. Disable
+    root login by editing the value of `PermitRootLogin`. Restart the `ssh` service
+    with `sudo service sshd restart`. Try sshing in again.
+  id: totrans-174
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 通过执行 `sudo vim /etc/ssh/sshd_config` 编辑你的 SSH 服务器配置，并通过编辑 `PasswordAuthentication`
+    的值来禁用密码认证。通过编辑 `PermitRootLogin` 的值来禁用 root 登录。使用 `sudo service sshd restart`
+    重启 `ssh` 服务。再次尝试 SSH 登录。
+- en: (Challenge) Install [`mosh`](https://mosh.org/) in the VM and establish a connection.
+    Then disconnect the network adapter of the server/VM. Can mosh properly recover
+    from it?
+  id: totrans-175
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: (挑战) 在虚拟机中安装 [mosh](https://mosh.org/) 并建立连接。然后断开服务器/虚拟机的网络适配器。mosh 是否能正确恢复？
+- en: (Challenge) Look into what the `-N` and `-f` flags do in `ssh` and figure out
+    a command to achieve background port forwarding.
+  id: totrans-176
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: (挑战) 查看在 `ssh` 中 `-N` 和 `-f` 标志的作用，并找出一个命令来实现后台端口转发。
+- en: '* * *'
+  id: totrans-177
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/command-line.md).'
+  id: totrans-178
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2020/command-line.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-179
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本内容受 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

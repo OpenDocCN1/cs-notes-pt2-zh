@@ -1,0 +1,420 @@
+- en: Web and Browsers
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 网络和浏览器
+- en: 原文：[https://missing.csail.mit.edu/2019/web/](https://missing.csail.mit.edu/2019/web/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2019/web/](https://missing.csail.mit.edu/2019/web/)
+- en: Apart from the terminal, the web browser is a tool you will find yourself spending
+    significant amounts of time into. Thus it is worth learning how to use it efficiently
+    and
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 除了终端之外，网络浏览器是您会发现自己投入大量时间的工具。因此，学习如何高效地使用它是非常有价值的。
+- en: Shortcuts
+  id: totrans-3
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 快捷键
+- en: Clicking around in your browser is often not the fastest option, getting familiar
+    with common shortcuts can really pay off in the long run.
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在浏览器中四处点击通常不是最快的选择，熟悉常见的快捷键在长期来看会非常有帮助。
+- en: '`Middle Button Click` in a link opens it in a new tab'
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在链接上点击鼠标中键将其在新标签页中打开
+- en: '`Ctrl+T` Opens a new tab'
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`Ctrl+T` 打开新标签页'
+- en: '`Ctrl+Shift+T` Reopens a recently closed tab'
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`Ctrl+Shift+T` 重新打开最近关闭的标签页'
+- en: '`Ctrl+L` selects the contents of the search bar'
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`Ctrl+L` 选择搜索栏的内容'
+- en: '`Ctrl+F` to search within a webpage. If you do this often, you may benefit
+    from an extension that supports regular expressions in searches.'
+  id: totrans-9
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`Ctrl+F` 在网页内搜索。如果您经常这样做，您可能从支持搜索正则表达式的扩展程序中受益。'
+- en: Search operators
+  id: totrans-10
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 搜索运算符
+- en: 'Web search engines like Google or DuckDuckGo provide search operators to enable
+    more elaborate web searches:'
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 网络搜索引擎，如 Google 或 DuckDuckGo，提供搜索运算符以实现更复杂的网络搜索：
+- en: '`"bar foo"` enforces an exact match of bar foo'
+  id: totrans-12
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`"bar foo"` 强制 bar foo 的精确匹配'
+- en: '`foo site:bar.com` searches for foo within bar.com'
+  id: totrans-13
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`foo site:bar.com` 在 bar.com 内搜索 foo'
+- en: '`foo -bar` excludes the terms containing bar from the search'
+  id: totrans-14
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`foo -bar` 排除包含 bar 的搜索项'
+- en: '`foobar filetype:pdf` Searches for files of that extension'
+  id: totrans-15
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`foobar filetype:pdf` 搜索该扩展名的文件'
+- en: '`(foo|bar)` searches for matches that have foo OR bar'
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`(foo|bar)` 搜索包含 foo 或 bar 的匹配项'
+- en: More through lists are available for popular engines like [Google](https://ahrefs.com/blog/google-advanced-search-operators/)
+    and [DuckDuckGo](https://duck.co/help/results/syntax)
+  id: totrans-17
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于像 [Google](https://ahrefs.com/blog/google-advanced-search-operators/) 和 [DuckDuckGo](https://duck.co/help/results/syntax)
+    这样的流行搜索引擎，还有更多通过列表可用。
+- en: Searchbar
+  id: totrans-18
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 搜索栏
+- en: The searchbar is a powerful tool too. Most browsers can infer search engines
+    from websites and will store them. By editing the keyword argument
+  id: totrans-19
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 搜索栏也是一个强大的工具。大多数浏览器可以从网站推断出搜索引擎并将它们存储起来。通过编辑关键字参数
+- en: In Google Chrome they are in [chrome://settings/searchEngines](chrome://settings/searchEngines)
+  id: totrans-20
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在 Google Chrome 中，它们位于 [chrome://settings/searchEngines](chrome://settings/searchEngines)
+- en: In Firefox they are in [about:preferences#search](about:preferences#search)
+  id: totrans-21
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在 Firefox 中，它们位于 [about:preferences#search](about:preferences#search)
+- en: For example you can make so that `y SOME SEARCH TERMS` to directly search in
+    youtube.
+  id: totrans-22
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，您可以设置 `y SOME SEARCH TERMS` 以直接在 YouTube 中搜索。
+- en: Moreover, if you own a domain you can setup subdomain forwards using your registrar.
+    For instance I have mapped `https://ht.josejg.com` to this course website. That
+    way I can just type `ht.` and the searchbar will autocomplete. Another good feature
+    of this setup is that unlike bookmarks they will work in every browser.
+  id: totrans-23
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 此外，如果您拥有一个域名，您可以使用您的注册商设置子域名转发。例如，我已经将 `https://ht.josejg.com` 映射到这个课程网站。这样，我只需输入
+    `ht.`，搜索栏就会自动完成。这个设置的另一个优点是，与书签不同，它们在所有浏览器中都能工作。
+- en: Privacy extensions
+  id: totrans-24
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 隐私扩展
+- en: 'Nowadays surfing the web can get quite annoying due to ads and invasive due
+    to trackers. Moreover a good adblocker not only blocks most ad content but it
+    will also block sketchy and malicious websites since they will be included in
+    the common blacklists. They will also reduce page load times sometimes by reducing
+    the amount of requests performed. A couple of recommendations are:'
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 现在，由于广告和追踪器的侵扰，上网可能会变得相当烦恼。此外，一个好的广告拦截器不仅能拦截大部分广告内容，还能拦截那些可疑和恶意网站，因为它们通常会被包含在常见的黑名单中。它们有时还能通过减少请求的数量来减少页面加载时间。以下是一些建议：
+- en: '**uBlock origin** ([Chrome](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm),
+    [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)): block
+    ads and trackers based on predefined rules. You should also consider taking a
+    look at the enabled blacklists in settings since you can enable more based on
+    your region or browsing habits. You can even install filters from [around the
+    web](https://github.com/gorhill/uBlock/wiki/Filter-lists-from-around-the-web)'
+  id: totrans-26
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**uBlock origin** ([Chrome](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm),
+    [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)): 根据预定义的规则拦截广告和追踪器。您还应该考虑查看设置中的启用黑名单，因为您可以根据您的地区或浏览习惯启用更多黑名单。您甚至可以从[网络上的资源](https://github.com/gorhill/uBlock/wiki/Filter-lists-from-around-the-web)安装过滤器。'
+- en: '**[Privacy Badger](https://privacybadger.org/)**: detects and blocks trackers
+    automatically. For example when you go from website to website ad companies track
+    which sites you visit and build a profile of you'
+  id: totrans-27
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**[Privacy Badger](https://privacybadger.org/)**：自动检测并阻止跟踪器。例如，当你从一个网站跳转到另一个网站时，广告公司会跟踪你访问了哪些网站，并为你建立一个档案。'
+- en: '**[HTTPS everywhere](https://www.eff.org/https-everywhere)** is a wonderful
+    extension that redirects to HTTPS version of a website automatically, if available.'
+  id: totrans-28
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**[HTTPS everywhere](https://www.eff.org/https-everywhere)** 是一个很棒的扩展，如果可用，它会自动将网站重定向到
+    HTTPS 版本。'
+- en: You can find about more addons of this kind [here](https://www.privacytools.io/privacy-browser-addons/)
+  id: totrans-29
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以在 [这里](https://www.privacytools.io/privacy-browser-addons/) 找到更多这类插件。
+- en: Style customization
+  id: totrans-30
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 样式定制
+- en: Web browsers are just another piece of software running in *your machine* and
+    thus you usually have the last say about what they should display or how they
+    should behave. An example of this are custom styles. Browsers determine how to
+    render the style of a webpage using Cascading Style Sheets often abbreviated as
+    CSS.
+  id: totrans-31
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 网络浏览器只是运行在你机器上的另一款软件，因此你通常有权决定它们应该显示什么或如何表现。一个例子就是自定义样式。浏览器通过层叠样式表（通常缩写为 CSS）来决定如何渲染网页样式。
+- en: You can access the source code of a website by inspecting it and changing its
+    contents and styles temporarily (this is also a reason why you should never trust
+    webpage screenshots).
+  id: totrans-32
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以通过检查网站并临时更改其内容和样式来访问网站的源代码（这也是为什么你不应该信任网页截图的原因）。
+- en: If you want to permanently tell your browser to override the style settings
+    for a webpage you will need to use an extension. Our recommendation is **[Stylus](https://github.com/openstyles/stylus)**
+    ([Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/), [Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne?hl=en)).
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你想要永久性地告诉你的浏览器覆盖网页的样式设置，你需要使用一个扩展。我们的推荐是 **[Stylus](https://github.com/openstyles/stylus)**
+    ([Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/), [Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne?hl=en))。
+- en: For example, we can write the following style for the class website
+  id: totrans-34
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，我们可以为班级网站编写以下样式
+- en: '[PRE0]'
+  id: totrans-35
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: Moreover, Stylus can find styles written by other users and published in [userstyles.org](https://userstyles.org/).
+    Most common websites have one or several dark theme stylesheets for instance.
+    FYI, you should not use Stylish since it was shown to leak user data, more [here](https://arstechnica.com/information-technology/2018/07/stylish-extension-with-2m-downloads-banished-for-tracking-every-site-visit/)
+  id: totrans-36
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 此外，Stylus 可以找到其他用户编写并发布在 [userstyles.org](https://userstyles.org/) 上的样式。大多数常见网站都有一套或几套暗色主题样式表，例如。顺便说一句，你不应该使用
+    Stylish，因为它已被证明会泄露用户数据，更多[信息](https://arstechnica.com/information-technology/2018/07/stylish-extension-with-2m-downloads-banished-for-tracking-every-site-visit/)
+- en: Functionality Customization
+  id: totrans-37
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 功能定制
+- en: In the same way that you can modify the style, you can also modify the behaviour
+    of a website by writing custom javascript and them sourcing it using a web browser
+    extension such as [Tampermonkey](https://tampermonkey.net/)
+  id: totrans-38
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 就像你可以修改样式一样，你也可以通过编写自定义 JavaScript 并使用像 [Tampermonkey](https://tampermonkey.net/)
+    这样的网络浏览器扩展来修改网站的行为。
+- en: For example the following script enables vim-like navigation using the J and
+    K keys.
+  id: totrans-39
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，以下脚本通过使用 J 和 K 键启用类似 vim 的导航。
+- en: '[PRE1]'
+  id: totrans-40
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: There are also script repositories such as [OpenUserJS](https://openuserjs.org/)
+    and [Greasy Fork](https://greasyfork.org/en). However, be warned, installing user
+    scripts from others can be very dangerous since they can pretty much do anything
+    such as steal your credit card numbers. Never install a script unless you read
+    the whole thing yourself, understand what it does, and are absolutely sure that
+    you know it isn’t doing anything suspicious. Never install a script that contains
+    minified or obfuscated code that you can’t read!
+  id: totrans-41
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 此外，还有像 [OpenUserJS](https://openuserjs.org/) 和 [Greasy Fork](https://greasyfork.org/en)
+    这样的脚本仓库。然而，请注意，从他人那里安装用户脚本可能非常危险，因为它们几乎可以做任何事情，比如窃取你的信用卡号码。除非你自己阅读了整个脚本，理解了它所做的事情，并且绝对确信它没有做任何可疑的事情，否则永远不要安装脚本！永远不要安装包含你无法阅读的压缩或混淆代码的脚本！
+- en: Web APIs
+  id: totrans-42
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 网络API
+- en: 'It has become more and more common for webservices to offer an application
+    interface aka web API so you can interact with the services making web requests.
+    A more in depth introduction to the topic can be found [here](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction).
+    There are [many public APIs](https://github.com/toddmotto/public-apis). Web APIs
+    can be useful for very many reasons:'
+  id: totrans-43
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 随着越来越多的网络服务提供应用程序接口，也就是Web API，以便您可以与这些服务进行交互，进行Web请求，这已经变得越来越普遍。关于这个主题的更深入介绍可以在[这里](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction)找到。有许多[公共API](https://github.com/toddmotto/public-apis)。Web
+    API可以出于许多原因非常有用：
+- en: '**Retrieval**. Web APIs can quite easily provide you information such as maps,
+    weather or what your public ip address. For instance `curl ipinfo.io` will return
+    a JSON object with some details about your public ip, region, location, &c. With
+    proper parsing these tools can be integrated even with command line tools. The
+    following bash functions talks to Googles autocompletion API and returns the first
+    ten matches.'
+  id: totrans-44
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**检索**。Web API可以非常容易地提供信息，如地图、天气或您的公共IP地址。例如，`curl ipinfo.io`将返回一个包含有关您的公共IP、地区、位置等详细信息的JSON对象。通过适当的解析，这些工具甚至可以与命令行工具集成。以下bash函数与Google的自动完成API通信，并返回前十个匹配项。'
+- en: '[PRE2]'
+  id: totrans-45
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: '**Interaction**. Web API endpoints can also be used to trigger actions. These
+    usually require some sort of authentication token that you can obtain through
+    the service. For example performing the following `curl -X POST -H ''Content-type:
+    application/json'' --data ''{"text":"Hello, World!"}'' "https://hooks.slack.com/services/$SLACK_TOKEN"`
+    will send a `Hello, World!` message in a channel.'
+  id: totrans-46
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**交互**。Web API端点也可以用来触发操作。这些通常需要某种认证令牌，您可以通过服务获取。例如，执行以下`curl -X POST -H ''Content-type:
+    application/json'' --data ''{"text":"Hello, World!"}'' "https://hooks.slack.com/services/$SLACK_TOKEN"`将会在某个频道发送一条`Hello,
+    World!`消息。'
+- en: '**Piping**. Since some services with web APIs are rather popular, common web
+    API “gluing” has already been implemented and is provided with server included.
+    This is the case for services like [If This Then That](https://ifttt.com/) and
+    [Zapier](https://zapier.com/)'
+  id: totrans-47
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**管道**。由于一些提供Web API的服务相当受欢迎，常见的Web API“粘合”功能已经实现，并且随服务器提供。例如，[If This Then
+    That](https://ifttt.com/)和[Zapier](https://zapier.com/)等服务就是这种情况。'
+- en: Web Automation
+  id: totrans-48
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Web自动化
+- en: Sometimes web APIs are not enough. If only reading is needed you can use a html
+    parser like `pup` or use a library, for example python has BeautifulSoup. However
+    if interactivity or javascript execution is required those solutions fall short.
+    WebDriver
+  id: totrans-49
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有时候，Web API可能不足以满足需求。如果只需要读取，可以使用像`pup`这样的HTML解析器，或者使用库，例如Python有BeautifulSoup。然而，如果需要交互或JavaScript执行，这些解决方案就不够用了。WebDriver
+- en: For example, the following script will save the specified url using the wayback
+    machine simulating the interaction of typing the website.
+  id: totrans-50
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，以下脚本将使用Wayback Machine模拟输入网站的方式，保存指定的URL。
+- en: '[PRE3]'
+  id: totrans-51
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE3]'
+- en: Exercises
+  id: totrans-52
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Edit a keyword search engine that you use often in your web browser
+  id: totrans-53
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 编辑你在网络浏览器中经常使用的关键词搜索引擎
+- en: Install the mentioned extensions. Look into how uBlock Origin/Privacy Badger
+    can be disabled for a website. What differences do you see? Try doing it in a
+    website with plenty of ads like YouTube.
+  id: totrans-54
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 安装提到的扩展。研究如何禁用uBlock Origin/Privacy Badger以访问网站。您看到了什么不同？尝试在一个广告众多的网站（如YouTube）上这样做。
+- en: Install Stylus and write a custom style for the class website using the CSS
+    provided. Here are some common programming characters `= == === >= => ++ /= ~=`.
+    What happens to them when changing the font to Fira Code? If you want to know
+    more search for programming font ligatures.
+  id: totrans-55
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 安装Stylus并使用提供的CSS为班级网站编写自定义样式。以下是一些常见的编程字符`= == === >= => ++ /= ~=`。当将字体更改为Fira
+    Code时，它们会发生什么？如果您想了解更多，请搜索编程字体连字符。
+- en: Find a web api to get the weather in your city/area.
+  id: totrans-56
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 找到一个Web API来获取你所在城市/地区的天气。
+- en: Use a WebDriver software like [Selenium](https://www.selenium.dev/documentation/)
+    to automate some repetitive manual task that you perform often with your browser.
+  id: totrans-57
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 使用像[Selenium](https://www.selenium.dev/documentation/)这样的WebDriver软件来自动化您在浏览器中经常执行的一些重复性手动任务。
+- en: '* * *'
+  id: totrans-58
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/web.md).'
+  id: totrans-59
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/web.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-60
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本作品受[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可。

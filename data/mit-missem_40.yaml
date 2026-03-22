@@ -1,0 +1,720 @@
+- en: Code Quality
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 代码质量
+- en: 原文：[https://missing.csail.mit.edu/2026/code-quality/](https://missing.csail.mit.edu/2026/code-quality/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2026/code-quality/](https://missing.csail.mit.edu/2026/code-quality/)
+- en: 'There are a variety of tools and techniques that support developers in writing
+    high-quality code. In this lecture, we’ll cover:'
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有各种工具和技术支持开发者编写高质量的代码。在本讲座中，我们将涵盖：
+- en: '[Formatting](#formatting)'
+  id: totrans-3
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[格式化](#formatting)'
+- en: '[Linting](#linting)'
+  id: totrans-4
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[代码检查](#linting)'
+- en: '[Testing](#testing)'
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[测试](#testing)'
+- en: '[Pre-commit hooks](#pre-commit-hooks)'
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[提交前钩子](#pre-commit-hooks)'
+- en: '[Continuous integration](#continuous-integration)'
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[持续集成](#continuous-integration)'
+- en: '[Command runners](#command-runners)'
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[命令运行器](#command-runners)'
+- en: As a bonus topic, we’ll also cover [regular expressions](#regular-expressions),
+    a cross-cutting topic that has applications in code quality (e.g., for running
+    a subset of tests that match a pattern) as well as other domains like IDEs (e.g.,
+    for search and replace).
+  id: totrans-9
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 作为额外的话题，我们还将涵盖[正则表达式](#regular-expressions)，这是一个跨领域的主题，它在代码质量（例如，运行匹配模式的测试子集）以及其他领域（例如IDEs，例如用于搜索和替换）中都有应用。
+- en: Many of these tools will be language-specific (e.g., the [Ruff](https://docs.astral.sh/ruff/)
+    linter/formatter for Python). In some cases, tools will support multiple languages
+    (e.g., the [Prettier](https://prettier.io/) code formatter). The concepts, however,
+    are near universal — you can find code formatters, linters, testing libraries,
+    and so on for any programming language.
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 许多这些工具将是语言特定的（例如，Python的[Ruff](https://docs.astral.sh/ruff/)代码检查器/格式化工具）。在某些情况下，工具将支持多种语言（例如，[Prettier](https://prettier.io/)代码格式化工具）。然而，这些概念几乎是通用的——您可以为任何编程语言找到代码格式化工具、代码检查器、测试库等。
+- en: Formatting
+  id: totrans-11
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 格式化
+- en: Code auto-formatters automatically prettify surface syntax. This way, you can
+    focus on the more deep and challenging problems, while the auto-formatting tool
+    handles mundane details such as consistency of `'` versus `"` syntax for strings,
+    having spaces surrounding binary operators (`x + y` instead of `x+y`), having
+    `import` statements in sorted order, and avoiding over-length lines. One major
+    benefit of code formatters is that they standardize code style across all developers
+    working on a codebase.
+  id: totrans-12
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 代码自动格式化工具会自动美化表面语法。这样，您可以专注于更深入和更具挑战性的问题，而自动格式化工具则处理诸如字符串的`'`与`"`语法的一致性、二元运算符周围的空格（例如`x
+    + y`而不是`x+y`）、导入语句的排序顺序以及避免过长的行等日常细节。代码格式化工具的一个主要好处是它们可以标准化所有在代码库上工作的开发者的代码风格。
+- en: Some tools such as Prettier are [highly configurable](https://prettier.io/docs/configuration);
+    you should check in the configuration file into [version control](/2026/version-control/)
+    for your project. Other tools, such as [Black](https://github.com/psf/black) and
+    [gofmt](https://pkg.go.dev/cmd/gofmt) have limited or no configurability, to reduce
+    [bikeshedding](https://en.wikipedia.org/wiki/Law_of_triviality).
+  id: totrans-13
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些工具，如Prettier，[高度可配置](https://prettier.io/docs/configuration)；您应该将配置文件存入您项目的[版本控制](/2026/version-control/)。其他工具，如[Black](https://github.com/psf/black)和[gofmt](https://pkg.go.dev/cmd/gofmt)，具有有限的或没有可配置性，以减少[无谓的争论](https://en.wikipedia.org/wiki/Law_of_triviality)。
+- en: You can set up [IDE integration](/2026/development-environment/#code-intelligence-and-language-servers)
+    with your code formatter, so that your code will be auto-formatted as you type
+    or when you save a file. You can also add an [EditorConfig](https://editorconfig.org/)
+    file to your project, which communicates to your IDE certain project-level settings
+    like indent size for each file type.
+  id: totrans-14
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您可以使用代码格式化工具设置[IDE集成](/2026/development-environment/#code-intelligence-and-language-servers)，这样您的代码在您输入时或保存文件时将自动格式化。您还可以将[EditorConfig](https://editorconfig.org/)文件添加到您的项目中，该文件会向您的IDE传达某些项目级别的设置，例如每个文件类型的缩进大小。
+- en: Linting
+  id: totrans-15
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 代码检查
+- en: Linters run static analysis (analyze your code without running it) to find antipatterns
+    and potential issues in your code. These tools go deeper than autoformatters,
+    looking beyond surface syntax. The level of depth of analysis varies by tool.
+  id: totrans-16
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 代码检查器执行静态分析（在不运行代码的情况下分析您的代码），以找到代码中的反模式和潜在问题。这些工具比自动格式化工具更深入，它们超越了表面语法。分析深度因工具而异。
+- en: Linters come equipped with lists of *rules*, with presets that can be configured
+    on a project-level basis. Some linter rules produce false positives, so you can
+    disable them on a per-file or per-line basis.
+  id: totrans-17
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 代码检查器配备了规则列表，这些规则可以在项目级别上进行配置。一些代码检查规则会产生误报，因此您可以在每个文件或每行的基础上禁用它们。
+- en: Good linters will have built-in help or documentation that explains each linter
+    rule — what the rule is looking for, why it’s bad, and what’s a better alternative
+    for the code pattern. For example, see the documentation for the [SIM102](https://docs.astral.sh/ruff/rules/collapsible-if/)
+    rule in [Ruff](https://docs.astral.sh/ruff/) which catches unnecessarily nested
+    `if` statements in Python code.
+  id: totrans-18
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 良好的代码检查工具将内置帮助或文档，解释每个代码检查规则——该规则寻找什么，为什么它不好，以及代码模式的更好替代方案。例如，查看[Ruff](https://docs.astral.sh/ruff/)中[SIM102](https://docs.astral.sh/ruff/rules/collapsible-if/)规则的文档，该规则可以捕获Python代码中不必要的嵌套`if`语句。
+- en: Some linters can not only flag issues but also automatically fix certain issues
+    for you.
+  id: totrans-19
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些代码检查工具不仅能标记问题，还能自动修复某些问题。
+- en: 'Aside from language-specific linters, another tool that might come in handy
+    is [semgrep](https://github.com/semgrep/semgrep), a “semantic grep” tool that
+    works at the AST level (rather than character level, like grep) and supports many
+    languages. You can use semgrep to easily write custom linter rules for your projects.
+    For example, if you wanted to prevent the dangerous `subprocess.Popen(..., shell=True)`
+    in Python, you could find that code pattern with:'
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 除了语言特定的代码检查工具外，另一个可能很有用的工具是[semgrep](https://github.com/semgrep/semgrep)，这是一个在抽象语法树（AST）级别（而不是像grep那样的字符级别）工作的“语义grep”工具，支持许多语言。你可以使用semgrep轻松地为你的项目编写自定义的代码检查规则。例如，如果你想防止Python中的危险`subprocess.Popen(...,
+    shell=True)`，你可以用以下方式找到那个代码模式：
+- en: '[PRE0]'
+  id: totrans-21
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: Testing
+  id: totrans-22
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 测试
+- en: Software testing is a standard technique to increase your confidence in the
+    correctness of your code. You write code, and then you write code that exercises
+    the code you wrote and raises an error if the code doesn’t work as expected.
+  id: totrans-23
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 软件测试是提高你对代码正确性的信心的一种标准技术。你编写代码，然后编写测试代码来执行你编写的代码，并在代码不符合预期时引发错误。
+- en: 'You can write tests for chunks of code at different levels of granularity:
+    *unit tests* for individual functions, *integration tests* for interaction between
+    modules or services, and *functional tests* for end-to-end scenarios. You can
+    do *test-driven development*, where you write tests before you write any implementation
+    code. When you find bugs in your code, you can write *regression tests*, so you’ll
+    catch if the functionality ever breaks in the future. You can write *property-based
+    tests*, pioneered in [QuickCheck](https://hackage.haskell.org/package/QuickCheck)
+    in Haskell, and implemented in many libraries, like [Hypothesis](https://hypothesis.readthedocs.io/)
+    for Python. Which approach to testing is right depends on your project; likely,
+    you will adopt some combination.'
+  id: totrans-24
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以为不同粒度的代码块编写测试：*单元测试*用于单个函数，*集成测试*用于模块或服务之间的交互，以及*功能测试*用于端到端场景。你可以进行*测试驱动开发*，在你编写任何实现代码之前先编写测试。当你发现代码中的错误时，你可以编写*回归测试*，这样你就可以捕捉到功能在未来是否出现故障。你可以编写*属性测试*，这是在Haskell中的[QuickCheck](https://hackage.haskell.org/package/QuickCheck)中首创的，并在许多库中实现，如Python中的[Hypothesis](https://hypothesis.readthedocs.io/)。哪种测试方法正确取决于你的项目；很可能会采用一些组合。
+- en: If your program has external dependencies like a database or web API, it may
+    be helpful to *mock* those dependencies in your tests, rather than have your code
+    interact with third-party dependencies at test time.
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你的程序有外部依赖，如数据库或Web API，在测试中模拟这些依赖可能很有帮助，而不是让代码在测试时与第三方依赖交互。
+- en: Code coverage
+  id: totrans-26
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 代码覆盖率
+- en: Code coverage is a metric by which you can measure how good your tests are.
+    Code coverage looks at which lines of your code are executed when your tests are
+    run, so you can ensure you are covering all code paths. Code coverage tools can
+    show you line-by-line coverage to guide you in writing tests. Services such as
+    [Codecov](https://app.codecov.io) provide web interfaces for tracking and viewing
+    code coverage over the history of a project.
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 代码覆盖率是一个衡量测试好坏的指标。代码覆盖率检查在测试运行时你的代码哪些行被执行，以确保你覆盖了所有代码路径。代码覆盖率工具可以逐行显示覆盖率，以指导你编写测试。例如，[Codecov](https://app.codecov.io)这样的服务提供了跟踪和查看项目历史代码覆盖率的网络界面。
+- en: Like any metric, code coverage is not perfect; don’t over-index on coverage,
+    focus on writing high-quality tests.
+  id: totrans-28
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 像任何指标一样，代码覆盖率并不完美；不要过度依赖覆盖率，专注于编写高质量的测试。
+- en: Pre-commit hooks
+  id: totrans-29
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 预提交钩子
+- en: Git pre-commit [hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks),
+    made easier by the [pre-commit](https://pre-commit.com/) framework, automatically
+    run user-specified code prior to every Git commit. Projects commonly use pre-commit
+    hooks to run formatters and linters, and sometimes tests, automatically before
+    every commit, to ensure that committed code matches the project code style and
+    is free of certain issues.
+  id: totrans-30
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Git 预提交 [钩子](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)，通过 [pre-commit](https://pre-commit.com/)
+    框架简化，在每次 Git 提交之前自动运行用户指定的代码。项目通常使用预提交钩子来运行格式化工具和代码检查器，有时还会运行测试，以确保提交的代码符合项目代码风格且无特定问题。
+- en: Continuous integration
+  id: totrans-31
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 持续集成
+- en: Continuous integration (CI) services like [GitHub Actions](https://github.com/features/actions)
+    can run scripts for you every time you push code (or on every pull request, or
+    on a schedule). Developers commonly use CI services to run code quality tools
+    including formatters, linters, and tests. For compiled languages, you can ensure
+    code compiles; for statically typed languages, you can make sure it type checks.
+    Running CI every push of new commits can catch errors introduced into the main
+    version of the code; running on pull requests can catch issues with contributor
+    submissions; running on a schedule can catch issues with external dependencies
+    (e.g., a developer accidentally releases a breaking change as [semver-compatible](/2026/shipping-code/#releases--versioning)).
+  id: totrans-32
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 持续集成（CI）服务，如 [GitHub Actions](https://github.com/features/actions)，可以在您每次推送代码（或每次拉取请求，或按计划）时运行脚本。开发者通常使用
+    CI 服务来运行代码质量工具，包括格式化工具、代码检查器和测试。对于编译型语言，您可以确保代码可以编译；对于静态类型语言，您可以确保它通过类型检查。在每次推送新提交时运行
+    CI 可以捕获引入到主代码版本中的错误；在拉取请求上运行可以捕获贡献者提交的问题；按计划运行可以捕获外部依赖项的问题（例如，开发者意外发布了破坏性更改，但作为
+    [semver 兼容的](/2026/shipping-code/#releases--versioning)）。
+- en: Because CI scripts run separately from developer machines, you can easily run
+    long-running jobs there. This can be leveraged, for example, to run a *matrix*
+    of tests across different operating systems and programming language versions
+    to ensure that the software works properly across all of them.
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 由于 CI 脚本在开发机器之外单独运行，您可以在那里轻松运行长时间运行的任务。这可以用来，例如，在不同的操作系统和编程语言版本上运行 *矩阵* 测试，以确保软件在所有这些环境中都能正常工作。
+- en: 'Generally, the script running in CI will not directly make changes to your
+    code: it will run tools in “check-only” mode rather than “fix” mode, so for example,
+    the auto-formatter will raise an error when the code is not compliant with the
+    format.'
+  id: totrans-34
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通常，在持续集成（CI）中运行的脚本不会直接更改您的代码：它将以“仅检查”模式而不是“修复”模式运行工具，例如，自动格式化器会在代码不符合格式时引发错误。
+- en: Repositories often include [status badges](https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge)
+    in their README, showing CI status and other information such as code coverage.
+    For example, below is Missing Semester’s current build status.
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 存储库通常在 README 中包含 [状态徽章](https://docs.github.com/en/actions/how-tos/monitor-workflows/add-a-status-badge)，显示
+    CI 状态和其他信息，如代码覆盖率。例如，下面是 Missing Semester 的当前构建状态。
+- en: '[![Build Status](../Images/37179d36625c8af57525e4315071e2a9.png)](https://github.com/missing-semester/missing-semester/actions/workflows/build.yml)
+    [![Links Status](../Images/b43e5cbadafcfc976c97f71883ce3b7f.png)](https://github.com/missing-semester/missing-semester/actions/workflows/links.yml)'
+  id: totrans-36
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[![构建状态](../Images/37179d36625c8af57525e4315071e2a9.png)](https://github.com/missing-semester/missing-semester/actions/workflows/build.yml)
+    [![链接状态](../Images/b43e5cbadafcfc976c97f71883ce3b7f.png)](https://github.com/missing-semester/missing-semester/actions/workflows/links.yml)'
+- en: Our [links checker](https://github.com/missing-semester/missing-semester/blob/master/.github/workflows/links.yml),
+    which uses the [proof-html](https://github.com/anishathalye/proof-html) GitHub
+    Action is often failing, usually due to issues with third-party websites. Still,
+    it has helped us catch and fix many broken links (sometimes due to typos, most
+    of the time due to websites moving around content without adding redirects or
+    websites disappearing).
+  id: totrans-37
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 我们的 [链接检查器](https://github.com/missing-semester/missing-semester/blob/master/.github/workflows/links.yml)，它使用
+    [proof-html](https://github.com/anishathalye/proof-html) GitHub Action，经常失败，通常是由于第三方网站的问题。尽管如此，它帮助我们捕获并修复了许多损坏的链接（有时是由于拼写错误，大多数情况下是由于网站移动内容而没有添加重定向或网站消失）。
+- en: A good way to learn the particulars of CI services, formatters, linters, and
+    testing libraries is by example. Find high-quality open-source projects on GitHub—the
+    more similar to your project in programming language, domain, size and scope,
+    and so on, the better—and study their `pyproject.toml`, `.github/workflows/`,
+    `DEVELOPMENT.md`, and other relevant files.
+  id: totrans-38
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通过示例学习 CI 服务、格式化程序、代码检查器和测试库的细节是一个好方法。在 GitHub 上找到高质量的开放源代码项目——它们在编程语言、领域、大小和范围等方面越接近你的项目越好——并研究它们的`pyproject.toml`、`.github/workflows/`、`DEVELOPMENT.md`和其他相关文件。
+- en: Continuous deployment
+  id: totrans-39
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 持续部署
+- en: Continuous deployment makes use of CI infrastructure to actually *deploy* changes.
+    For example, the Missing Semester repository uses continuous deployment to GitHub
+    pages so that whenever we `git push` updated lecture notes, the site is automatically
+    built and deployed. You can build other types of [artifacts](/2026/shipping-code/)
+    in CI, such as binaries for applications or Docker images for services.
+  id: totrans-40
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 持续部署利用 CI 基础设施来实际*部署*更改。例如，Missing Semester 仓库使用持续部署到 GitHub pages，这样每当我们将更新后的讲义`git
+    push`时，网站会自动构建和部署。你可以在 CI 中构建其他类型的[工件](/2026/shipping-code/)，例如应用程序的二进制文件或服务的
+    Docker 镜像。
+- en: Command runners
+  id: totrans-41
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 命令运行器
+- en: Command runners like [just](https://github.com/casey/just) simplify the task
+    of running commands in the context of a project. As you build up code quality
+    infrastructure for your project, you don’t want to make your developers memorize
+    commands like `uv run ruff check --fix`. With a command runner, this can turn
+    into `just lint`, and you can have analogous invocations like `just format`, `just
+    typecheck`, etc., for all the different tools a developer might want to run for
+    your project.
+  id: totrans-42
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 命令运行器如 [just](https://github.com/casey/just) 简化了在项目上下文中运行命令的任务。随着你为项目建立代码质量基础设施，你不想让你的开发者记住像`uv
+    run ruff check --fix`这样的命令。使用命令运行器，这可以变成`just lint`，并且你可以为所有可能为你的项目运行的开发者工具执行类似的调用，如`just
+    format`、`just typecheck`等。
+- en: Some language-specific project or package managers have built-in support for
+    such functionality, which means you don’t need to use a language-agnostic tool
+    like `just`. For example, the `scripts` section of a `package.json` for [npm](https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager)
+    (Node.js) and the `tool.hatch.envs.*.scripts` sections of a `pyproject.toml` for
+    [Hatch](https://hatch.pypa.io/) (Python) support this functionality.
+  id: totrans-43
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些特定语言的项目或包管理器内置了对这种功能的支持，这意味着你不需要使用像`just`这样的语言无关工具。例如，[npm](https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager)（Node.js）的`package.json`中的`scripts`部分和[Hatch](https://hatch.pypa.io/)（Python）的`pyproject.toml`中的`tool.hatch.envs.*.scripts`部分支持此功能。
+- en: Regular expressions
+  id: totrans-44
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 正则表达式
+- en: '*Regular expressions*, commonly abbreviated as “regex”, is a language used
+    to represent sets of strings. Regex patterns are commonly used for pattern matching
+    in various contexts such as command-line tools and IDEs. For example, [ag](https://github.com/ggreer/the_silver_searcher)
+    supports regex patterns for codebase-wide search (e.g., `ag "import .* as .*"`
+    will find all renamed imports in Python), and [go test](https://pkg.go.dev/cmd/go#hdr-Test_packages)
+    supports a `-run [regexp]` option for selecting a subset of tests. Furthermore,
+    programming languages have built-in support or third-party libraries for regular
+    expression matching, so you can use regexes for functionality such as pattern
+    matching, validation, and parsing.'
+  id: totrans-45
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '*正则表达式*，通常缩写为“regex”，是一种用于表示字符串集合的语言。正则表达式模式常用于各种上下文中的模式匹配，例如命令行工具和 IDE。例如，[ag](https://github.com/ggreer/the_silver_searcher)
+    支持代码库范围内的正则表达式模式搜索（例如，`ag "import .* as .*"`将在 Python 中找到所有重命名的导入），而 [go test](https://pkg.go.dev/cmd/go#hdr-Test_packages)
+    支持用于选择测试子集的`-run [regexp]`选项。此外，编程语言内置了对正则表达式匹配的支持或第三方库，因此你可以使用正则表达式进行功能，如模式匹配、验证和解析。'
+- en: To help build intuition, below are some examples of regex patterns. In this
+    lecture, we use [Python regex syntax](https://docs.python.org/3/library/re.html).
+    There are many flavors of regex, with slight variation between them, especially
+    in the more sophisticated functionality. You can use an online regex tester like
+    [regex101](https://regex101.com/) to develop and debug regular expressions.
+  id: totrans-46
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 为了帮助建立直觉，以下是一些正则表达式模式的示例。在本讲座中，我们使用 [Python 正则表达式语法](https://docs.python.org/3/library/re.html)。正则表达式有许多变体，它们之间略有差异，尤其是在更复杂的功能方面。你可以使用在线正则表达式测试器如
+    [regex101](https://regex101.com/) 来开发和调试正则表达式。
+- en: '`abc` — matches the literal “abc”.'
+  id: totrans-47
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`abc` — 匹配字面量“abc”。'
+- en: '`missing|semester` — matches the string “missing” or the string “semester”.'
+  id: totrans-48
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`missing|semester` — 匹配字符串“missing”或字符串“semester”。'
+- en: '`\d{4}-\d{2}-\d{2}` — matches dates in YYYY-MM-DD format, such as “2026-01-14”.
+    Beyond ensuring that the string consists of four digits, a dash, two digits, a
+    dash, and two digits, this does not validate the date, so “2026-01-99” matches
+    this regex pattern too.'
+  id: totrans-49
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`\d{4}-\d{2}-\d{2}` — 匹配YYYY-MM-DD格式的日期，例如“2026-01-14”。除了确保字符串由四个数字、一个连字符、两个数字、一个连字符和两个数字组成外，这并不验证日期，所以“2026-01-99”也匹配这个正则表达式模式。'
+- en: '`.+@.+` — matches email addresses, strings that contain some text, then an
+    “@”, and then some more text. This does only the most basic validation and matches
+    strings like “nonsense@@@email”. A regex that matches email addresses with no
+    false positives or negatives [exists](https://pdw.ex-parrot.com/Mail-RFC822-Address.html)
+    but is impractical.'
+  id: totrans-50
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`.+@.+` — 匹配电子邮件地址，包含一些文本，然后是“@”，然后是更多文本。这仅进行最基本的验证，并匹配像“nonsense@@@email”这样的字符串。存在一个匹配电子邮件地址且没有假阳性或阴性的正则表达式[存在](https://pdw.ex-parrot.com/Mail-RFC822-Address.html)，但不太实用。'
+- en: Regex syntax
+  id: totrans-51
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 正则表达式语法
+- en: 'You can find a comprehensive guide to regex syntax in [this documentation](https://docs.python.org/3/library/re.html#regular-expression-syntax)
+    (or one of many other resources available online). Here are some of the basic
+    building blocks:'
+  id: totrans-52
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以在[这份文档](https://docs.python.org/3/library/re.html#regular-expression-syntax)（或许多其他在线资源）中找到一个关于正则表达式语法的全面指南。以下是一些基本构建块：
+- en: '`abc` matches the literal string, when the characters have no special meaning
+    (in this example, “abc”)'
+  id: totrans-53
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`abc` 匹配字面字符串，当字符没有特殊意义时（例如，在这个例子中，“abc”）'
+- en: '`.` matches any single character'
+  id: totrans-54
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`.` 匹配任何单个字符'
+- en: '`[abc]` matches a single character contained in the brackets (in this example,
+    “a”, “b”, or “c”)'
+  id: totrans-55
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`[abc]` 匹配括号内包含的单个字符（在这个例子中，“a”、“b”或“c”）'
+- en: '`[^abc]` matches a single character except those contained in the brackets
+    (e.g., “d”)'
+  id: totrans-56
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`[^abc]` 匹配括号内不包含的单个字符（例如，“d”）'
+- en: '`[a-f]` matches a single character contained in the range indicated in the
+    brackets (e.g., “c”, but not “q”)'
+  id: totrans-57
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`[a-f]` 匹配括号内指定范围内的单个字符（例如，“c”，但不匹配“q”）'
+- en: '`a|b` matches either pattern (e.g., “a” or “b”)'
+  id: totrans-58
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`a|b` 匹配任一模式（例如，“a”或“b”）'
+- en: '`\d` matches any digit character (e.g., “3”)'
+  id: totrans-59
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`\d` 匹配任何数字字符（例如，“3”）'
+- en: '`\w` matches any word character (e.g., “x”)'
+  id: totrans-60
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`\w` 匹配任何单词字符（例如，“x”）'
+- en: '`\b` matches any word *boundary* (e.g., in the string “missing semester”, matches
+    just before the “m”, just after the “g”, just before the “s”, and just after the
+    “r”)'
+  id: totrans-61
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`\b` 匹配任何单词*边界*（例如，在字符串“missing semester”中，匹配在“m”之前，在“g”之后，在“s”之前和在“r”之后）'
+- en: '`(...)` matches the group of a pattern'
+  id: totrans-62
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`(...)` 匹配模式的组'
+- en: '`...?` matches zero or one of a pattern, such as `words?` to match “word” or
+    “words”'
+  id: totrans-63
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`...?` 匹配零个或一个模式，例如`words?`匹配“word”或“words”'
+- en: '`...*` matches any number of a pattern, such as `.*` to match any number of
+    any character'
+  id: totrans-64
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`...*` 匹配任意数量的模式，例如`.*`匹配任意数量的任意字符'
+- en: '`...+` matches one or more of a pattern, such as `\d+` to match any non-zero
+    number of digits'
+  id: totrans-65
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`...+` 匹配一个或多个模式，例如`\d+`匹配任何非零数字'
+- en: '`...{N}` matches exactly N of a pattern, such as `\d{4}` for 4 digits'
+  id: totrans-66
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`...{N}` 匹配模式中的确切N个，例如`\d{4}`匹配4个数字'
+- en: '`\.` matches a literal “.”'
+  id: totrans-67
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`\.` 匹配字面“。”'
+- en: '`\\` matches a literal “\”'
+  id: totrans-68
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`\\` 匹配字面“\”'
+- en: '`^` matches the start of the line'
+  id: totrans-69
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`^` 匹配行首'
+- en: '`$` matches the end of the line'
+  id: totrans-70
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$` 匹配行尾'
+- en: Capture groups and references
+  id: totrans-71
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 捕获组和引用
+- en: 'If you use regex groups `(...)`, you can refer to sub-parts of the match for
+    extraction or search-and-replace purposes. For example, to extract just the month
+    from a YYYY-MM-DD style date, you can use the following Python code:'
+  id: totrans-72
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你使用正则表达式组`(...)`, 你可以引用匹配的子部分以进行提取或搜索和替换。例如，要从YYYY-MM-DD风格的日期中提取月份，你可以使用以下Python代码：
+- en: '[PRE1]'
+  id: totrans-73
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: In your text editor, you can use reference capture groups in replace patterns.
+    The syntax might vary between IDEs. For example, in VS Code, you can use variables
+    like `$1`, `$2`, etc., and in Vim, you can use `\1`, `\2`, etc., to reference
+    groups.
+  id: totrans-74
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在你的文本编辑器中，你可以使用替换模式中的引用捕获组。语法可能在不同的IDE之间有所不同。例如，在VS Code中，你可以使用变量如`$1`、`$2`等，而在Vim中，你可以使用`\1`、`\2`等来引用组。
+- en: Limitations
+  id: totrans-75
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 局限性
+- en: '[Regular languages](https://en.wikipedia.org/wiki/Regular_language) are powerful
+    but limited; there are classes of strings that cannot be expressed as a standard
+    regex (e.g., it is [not possible](https://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages)
+    to write a regular expression that matches the set of strings {a^n b^n | n ≥ 0},
+    the set of strings of a number of “a”s followed by the same number of “b”s; more
+    practically, languages like HTML are not regular languages). In practice, modern
+    regex engines support features like lookahead and backreferences that extend support
+    beyond regular languages, and they are practically extremely useful, but it is
+    important to know that they are still limited in their expressive power. For more
+    sophisticated languages, you might need to reach for a more capable type of parser
+    (for one example, see [pyparsing](https://github.com/pyparsing/pyparsing), a [PEG](https://en.wikipedia.org/wiki/Parsing_expression_grammar)
+    parser).'
+  id: totrans-76
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[正则语言](https://en.wikipedia.org/wiki/Regular_language)功能强大但有限；有一些字符串类不能表示为标准正则表达式（例如，不可能[写出](https://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages)一个匹配字符串集合
+    {a^n b^n | n ≥ 0} 的正则表达式，该集合包含由相同数量的“a”后跟相同数量的“b”组成的字符串；更实际地说，像HTML这样的语言不是正则语言）。在实践中，现代正则表达式引擎支持诸如前瞻和后引用等特性，它们扩展了对正则语言的支持，并且实际上非常实用，但重要的是要知道它们在表达能力上仍然有限。对于更复杂的语言，你可能需要求助于更强大的解析器类型（例如，参见[pyparsing](https://github.com/pyparsing/pyparsing)，一个[PEG](https://en.wikipedia.org/wiki/Parsing_expression_grammar)解析器）。'
+- en: Learning regex
+  id: totrans-77
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 学习正则表达式
+- en: We recommend learning the fundamentals (what we have covered in this lecture),
+    and then looking at regex references as you need them, rather than memorizing
+    the entirety of the language.
+  id: totrans-78
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们建议学习基础知识（我们在本次讲座中已经涵盖的内容），然后在需要时查看正则表达式引用，而不是记住整个语言的全部内容。
+- en: 'Conversational AI tools can be effective at helping you generating regex patterns.
+    For example, try prompting your favorite LLM with the following query:'
+  id: totrans-79
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对话式人工智能工具可以帮助你生成正则表达式。例如，尝试用以下查询提示你的最喜欢的LLM：
+- en: '[PRE2]'
+  id: totrans-80
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: Exercises
+  id: totrans-81
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 练习
+- en: 'Configure a formatter, linter, and pre-commit hooks for a project you’re working
+    on. If you have lots of errors: autoformatting should take care of the format
+    errors. For the linter errors, try using an [AI agent](/2026/agentic-coding/)
+    to fix all the linter errors. Make sure the AI agent can run the linter and observe
+    the results, so that it can run in an iterative loop to fix all the issues. Check
+    the results carefully to ensure the AI doesn’t break your code!'
+  id: totrans-82
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 为你正在工作的项目配置格式化器、代码检查器和预提交钩子。如果你有很多错误：自动格式化应该会处理格式错误。对于代码检查错误，尝试使用一个[AI代理](/2026/agentic-coding/)来修复所有的代码检查错误。确保AI代理可以运行代码检查并观察结果，以便它可以运行在迭代循环中修复所有问题。仔细检查结果，确保AI不会破坏你的代码！
+- en: Learn a testing library for a language you know and write a unit test for a
+    project you’re working on. Run a code coverage tool, generate an HTML-formatted
+    coverage report, and observe the results. Can you find the lines that are covered?
+    Your code coverage will likely be very low. Try manually writing some tests to
+    improve it. Try using an [AI agent](/2026/agentic-coding/) to improve coverage;
+    make sure the coding agent can run tests with coverage and produce a line-by-line
+    coverage report, so it knows where to focus. Are the AI-generated tests actually
+    good?
+  id: totrans-83
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 学习你熟悉的一种语言的测试库，并为你的项目编写一个单元测试。运行代码覆盖率工具，生成一个HTML格式的覆盖率报告，并观察结果。你能找到被覆盖的行吗？你的代码覆盖率可能非常低。尝试手动编写一些测试来提高它。尝试使用一个[AI代理](/2026/agentic-coding/)来提高覆盖率；确保编码代理可以运行带有覆盖率的测试并生成逐行覆盖率报告，以便它知道应该关注哪里。AI生成的测试实际上好吗？
+- en: Set up continuous integration to run on every push for a project you’re working
+    on. Have CI run formatting, linting, and tests. Break your code on purpose (e.g.,
+    introduce a linter violation), and ensure that CI catches it.
+  id: totrans-84
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 为你正在工作的项目设置持续集成，以便在每次推送时运行。让CI运行格式化、代码检查和测试。故意破坏你的代码（例如，引入一个代码检查违规），并确保CI能够捕获它。
+- en: Try writing a [regex pattern](#regular-expressions) and use the `grep` [command-line
+    tool](/2026/course-shell/) to find occurrences of `subprocess.Popen(..., shell=True)`
+    in your code. Now, try to “break” the regex pattern. Does [semgrep](#linting)
+    still successfully match the dangerous code that trips up your grep invocation?
+  id: totrans-85
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 尝试编写一个[正则表达式模式](#regular-expressions)，并使用`grep` [命令行工具](/2026/course-shell/)
+    在你的代码中查找`subprocess.Popen(..., shell=True)`的出现。现在，尝试“破坏”正则表达式模式。[semgrep](#linting)是否仍然成功匹配到导致你的grep调用失败的危险代码？
+- en: Practice regex search-and-replace in your IDE or text editor by replacing the
+    `-` [Markdown bullet markers](https://spec.commonmark.org/0.31.2/#bullet-list-marker)
+    with `*` bullet markers in [these lecture notes](https://raw.githubusercontent.com/missing-semester/missing-semester/refs/heads/master/_2026/code-quality.md).
+    Note that just replacing all the “-“ characters in the file would be incorrect,
+    as there are many uses of that character that are not bullet markers.
+  id: totrans-86
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在你的IDE或文本编辑器中练习正则表达式的搜索和替换，将[这些讲义](https://raw.githubusercontent.com/missing-semester/missing-semester/refs/heads/master/_2026/code-quality.md)中的Markdown项目符号标记`-`替换为`*`项目符号标记。请注意，仅仅替换文件中的所有“-”字符是不正确的，因为该字符有多个用途，并不都是项目符号标记。
+- en: 'Write a regex to capture from JSON structures of the form `{"name": "Alyssa
+    P. Hacker", "college": "MIT"}` the name (e.g., `Alyssa P. Hacker`, in this example).
+    Hint: in your first attempt, you might end up writing a regex that extracts `Alyssa
+    P. Hacker", "college": "MIT`; read about greedy quantifiers in the [Python regex
+    docs](https://docs.python.org/3/library/re.html) to figure out how to fix it.'
+  id: totrans-87
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: '编写一个正则表达式，从形式为`{"name": "Alyssa P. Hacker", "college": "MIT"}`的JSON结构中捕获名称（例如，在这个例子中是`Alyssa
+    P. Hacker`）。提示：在第一次尝试中，你可能最终会编写一个提取`Alyssa P. Hacker", "college": "MIT"`的正则表达式；阅读关于Python正则表达式的[Python正则表达式文档](https://docs.python.org/3/library/re.html)，以了解如何修复它。'
+- en: Make the regex pattern work even in situations where the name has a `"` character
+    in it (double quotes can be escaped in JSON with `\"`).
+  id: totrans-88
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 让正则表达式即使在名称中包含`"`（双引号）字符的情况下也能正常工作（在JSON中，双引号可以用`\"`来转义）。
+- en: We do **not** recommend using regular expressions for sophisticated parsing
+    problems in practice. Figure out how to use your programming language’s JSON parser
+    for this task. Write a command-line program that takes as input, on stdin, a JSON
+    structure of the form described above, and output, on stdout, the name. You should
+    only need a couple lines of code to do this. In Python, you can do it easily in
+    one line of code beyond `import json`.
+  id: totrans-89
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 我们**不**推荐在实际中用正则表达式来解决复杂的解析问题。找出如何使用你编程语言的JSON解析器来完成这个任务。编写一个命令行程序，它从stdin读取上述形式的JSON结构，并在stdout输出名称。你只需要几行代码就能做到这一点。在Python中，你可以在`import
+    json`之后用一行代码轻松完成。
+- en: '* * *'
+  id: totrans-90
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2026/code-quality.md).'
+  id: totrans-91
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2026/code-quality.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-92
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本作品受[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可。

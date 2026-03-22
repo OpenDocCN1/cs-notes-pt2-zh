@@ -1,0 +1,922 @@
+- en: Potpourri
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 大杂烩
+- en: 原文：[https://missing.csail.mit.edu/2020/potpourri/](https://missing.csail.mit.edu/2020/potpourri/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2020/potpourri/](https://missing.csail.mit.edu/2020/potpourri/)
+- en: Table of Contents
+  id: totrans-2
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 目录
+- en: '[Keyboard remapping](#keyboard-remapping)'
+  id: totrans-3
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[键盘映射](#keyboard-remapping)'
+- en: '[Daemons](#daemons)'
+  id: totrans-4
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[守护进程](#daemons)'
+- en: '[FUSE](#fuse)'
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[FUSE](#fuse)'
+- en: '[Backups](#backups)'
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[备份](#backups)'
+- en: '[APIs](#apis)'
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[APIs](#apis)'
+- en: '[Common command-line flags/patterns](#common-command-line-flagspatterns)'
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[常见的命令行标志/模式](#common-command-line-flagspatterns)'
+- en: '[Window managers](#window-managers)'
+  id: totrans-9
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[窗口管理器](#window-managers)'
+- en: '[VPNs](#vpns)'
+  id: totrans-10
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[VPN](#vpns)'
+- en: '[Markdown](#markdown)'
+  id: totrans-11
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Markdown](#markdown)'
+- en: '[Hammerspoon (desktop automation on macOS)](#hammerspoon-desktop-automation-on-macos)'
+  id: totrans-12
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Hammerspoon（macOS 上的桌面自动化）](#hammerspoon-desktop-automation-on-macos)'
+- en: '[Booting + Live USBs](#booting--live-usbs)'
+  id: totrans-13
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[引导 + Live USBs](#booting--live-usbs)'
+- en: '[Docker, Vagrant, VMs, Cloud, OpenStack](#docker-vagrant-vms-cloud-openstack)'
+  id: totrans-14
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Docker, Vagrant, 虚拟机, 云, OpenStack](#docker-vagrant-vms-cloud-openstack)'
+- en: '[Notebook programming](#notebook-programming)'
+  id: totrans-15
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[笔记本编程](#notebook-programming)'
+- en: '[GitHub](#github)'
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[GitHub](#github)'
+- en: Keyboard remapping
+  id: totrans-17
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 键盘映射
+- en: As a programmer, your keyboard is your main input method. As with pretty much
+    anything in your computer, it is configurable (and worth configuring).
+  id: totrans-18
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 作为程序员，您的键盘是您的主要输入方法。与您的计算机中的几乎所有事物一样，它是可配置的（并且值得配置）。
+- en: 'The most basic change is to remap keys. This usually involves some software
+    that is listening and, whenever a certain key is pressed, it intercepts that event
+    and replaces it with another event corresponding to a different key. Some examples:'
+  id: totrans-19
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 最基本的变化是映射按键。这通常涉及一些监听软件，每当按下某个键时，它会拦截该事件并将其替换为对应不同键的另一个事件。以下是一些示例：
+- en: Remap Caps Lock to Ctrl or Escape. We (the instructors) highly encourage this
+    setting since Caps Lock has a very convenient location but is rarely used.
+  id: totrans-20
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 将 Caps Lock 映射到 Ctrl 或 Escape。我们（讲师）强烈建议此设置，因为 Caps Lock 的位置非常方便，但很少使用。
+- en: Remapping PrtSc to Play/Pause music. Most OSes have a play/pause key.
+  id: totrans-21
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 将 PrtSc 映射到播放/暂停音乐。大多数操作系统都有播放/暂停键。
+- en: Swapping Ctrl and the Meta (Windows or Command) key.
+  id: totrans-22
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 交换 Ctrl 和 Meta（Windows 或 Command）键。
+- en: You can also map keys to arbitrary commands of your choosing. This is useful
+    for common tasks that you perform. Here, some software listens for a specific
+    key combination and executes some script whenever that event is detected.
+  id: totrans-23
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您还可以将按键映射到您选择的任意命令。这对于您经常执行的任务非常有用。在这里，一些软件会监听特定的按键组合，并在检测到该事件时执行一些脚本。
+- en: Open a new terminal or browser window.
+  id: totrans-24
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 打开一个新的终端或浏览器窗口。
+- en: Inserting some specific text, e.g. your long email address or your MIT ID number.
+  id: totrans-25
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 插入一些特定的文本，例如您的长电子邮件地址或您的麻省理工学院 ID 号。
+- en: Sleeping the computer or the displays.
+  id: totrans-26
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 睡眠计算机或显示器。
+- en: 'There are even more complex modifications you can configure:'
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您还可以配置更多复杂的修改：
+- en: Remapping sequences of keys, e.g. pressing shift five times toggles Caps Lock.
+  id: totrans-28
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 映射按键序列，例如，按五次 Shift 切换 Caps Lock。
+- en: Remapping on tap vs on hold, e.g. Caps Lock key is remapped to Esc if you quickly
+    tap it, but is remapped to Ctrl if you hold it and use it as a modifier.
+  id: totrans-29
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 按键映射在按下和保持之间的区别，例如，如果快速按下 Caps Lock 键，则将其映射到 Esc，但如果按住并用作修饰符，则将其映射到 Ctrl。
+- en: Having remaps being keyboard or software specific.
+  id: totrans-30
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 映射是键盘或软件特定的。
+- en: 'Some software resources to get started on the topic:'
+  id: totrans-31
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些入门该主题的软件资源：
+- en: macOS - [karabiner-elements](https://karabiner-elements.pqrs.org/), [skhd](https://github.com/koekeishiya/skhd)
+    or [BetterTouchTool](https://folivora.ai/)
+  id: totrans-32
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: macOS - [karabiner-elements](https://karabiner-elements.pqrs.org/), [skhd](https://github.com/koekeishiya/skhd)
+    或 [BetterTouchTool](https://folivora.ai/)
+- en: Linux - [xmodmap](https://wiki.archlinux.org/index.php/Xmodmap) or [Autokey](https://github.com/autokey/autokey)
+  id: totrans-33
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: Linux - [xmodmap](https://wiki.archlinux.org/index.php/Xmodmap) 或 [Autokey](https://github.com/autokey/autokey)
+- en: Windows - Builtin in Control Panel, [AutoHotkey](https://www.autohotkey.com/)
+    or [SharpKeys](https://www.randyrants.com/category/sharpkeys/)
+  id: totrans-34
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: Windows - 控制面板内建，[AutoHotkey](https://www.autohotkey.com/) 或 [SharpKeys](https://www.randyrants.com/category/sharpkeys/)
+- en: QMK - If your keyboard supports custom firmware you can use [QMK](https://docs.qmk.fm/)
+    to configure the hardware device itself so the remaps works for any machine you
+    use the keyboard with.
+  id: totrans-35
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: QMK - 如果您的键盘支持自定义固件，您可以使用 [QMK](https://docs.qmk.fm/) 来配置硬件设备本身，以便映射适用于您使用键盘的任何机器。
+- en: Daemons
+  id: totrans-36
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 守护进程
+- en: You are probably already familiar with the notion of daemons, even if the word
+    seems new. Most computers have a series of processes that are always running in
+    the background rather than waiting for a user to launch them and interact with
+    them. These processes are called daemons and the programs that run as daemons
+    often end with a `d` to indicate so. For example `sshd`, the SSH daemon, is the
+    program responsible for listening to incoming SSH requests and checking that the
+    remote user has the necessary credentials to log in.
+  id: totrans-37
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可能已经熟悉了守护进程的概念，即使这个词听起来很新。大多数计算机都有一系列始终在后台运行而不是等待用户启动和与之交互的进程。这些进程被称为守护进程，作为守护进程运行的程序通常以
+    `d` 结尾以表示这一点。例如，`sshd`，SSH 守护进程，是负责监听传入 SSH 请求并检查远程用户是否有必要凭证登录的程序。
+- en: In Linux, `systemd` (the system daemon) is the most common solution for running
+    and setting up daemon processes. You can run `systemctl status` to list the current
+    running daemons. Most of them might sound unfamiliar but are responsible for core
+    parts of the system such as managing the network, solving DNS queries or displaying
+    the graphical interface for the system. Systemd can be interacted with the `systemctl`
+    command in order to `enable`, `disable`, `start`, `stop`, `restart` or check the
+    `status` of services (those are the `systemctl` commands).
+  id: totrans-38
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在 Linux 中，`systemd`（系统守护进程）是运行和设置守护进程的最常见解决方案。你可以运行 `systemctl status` 来列出当前正在运行的守护进程。其中大部分可能听起来不熟悉，但它们负责系统的核心部分，如管理网络、解决
+    DNS 查询或显示系统的图形界面。可以通过 `systemctl` 命令与 `systemd` 交互，以 `enable`、`disable`、`start`、`stop`、`restart`
+    或检查服务的 `status`（这些都是 `systemctl` 命令）。
+- en: More interestingly, `systemd` has a fairly accessible interface for configuring
+    and enabling new daemons (or services). Below is an example of a daemon for running
+    a simple Python app. We won’t go in the details but as you can see most of the
+    fields are pretty self explanatory.
+  id: totrans-39
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 更有趣的是，`systemd` 提供了一个相当易于访问的界面来配置和启用新的守护进程（或服务）。下面是一个运行简单 Python 应用的守护进程示例。我们不会深入细节，但正如你所见，大多数字段都是相当自解释的。
+- en: '[PRE0]'
+  id: totrans-40
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: Also, if you just want to run some program with a given frequency there is no
+    need to build a custom daemon, you can use [`cron`](https://www.man7.org/linux/man-pages/man8/cron.8.html),
+    a daemon your system already runs to perform scheduled tasks.
+  id: totrans-41
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 此外，如果你只想以给定的频率运行某个程序，没有必要构建自定义守护进程，你可以使用 `cron`（系统已经运行的守护进程），来执行计划任务。
+- en: FUSE
+  id: totrans-42
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: FUSE
+- en: Modern software systems are usually composed of smaller building blocks that
+    are composed together. Your operating system supports using different filesystem
+    backends because there is a common language of what operations a filesystem supports.
+    For instance, when you run `touch` to create a file, `touch` performs a system
+    call to the kernel to create the file and the kernel performs the appropriate
+    filesystem call to create the given file. A caveat is that UNIX filesystems are
+    traditionally implemented as kernel modules and only the kernel is allowed to
+    perform filesystem calls.
+  id: totrans-43
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 现代软件系统通常由更小的构建块组成，这些构建块组合在一起。你的操作系统支持使用不同的文件系统后端，因为有一个通用的语言来描述文件系统支持的操作。例如，当你运行
+    `touch` 来创建文件时，`touch` 会向内核执行系统调用以创建文件，内核执行适当的文件系统调用以创建指定的文件。需要注意的是，UNIX 文件系统传统上作为内核模块实现，只有内核被允许执行文件系统调用。
+- en: '[FUSE](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) (Filesystem in
+    User Space) allows filesystems to be implemented by a user program. FUSE lets
+    users run user space code for filesystem calls and then bridges the necessary
+    calls to the kernel interfaces. In practice, this means that users can implement
+    arbitrary functionality for filesystem calls.'
+  id: totrans-44
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[FUSE](https://en.wikipedia.org/wiki/Filesystem_in_Userspace)（用户空间文件系统）允许通过用户程序实现文件系统。FUSE
+    允许用户运行用户空间代码以进行文件系统调用，并将必要的调用桥接到内核接口。在实践中，这意味着用户可以为文件系统调用实现任意功能。'
+- en: For example, FUSE can be used so whenever you perform an operation in a virtual
+    filesystem, that operation is forwarded through SSH to a remote machine, performed
+    there, and the output is returned back to you. This way, local programs can see
+    the file as if it was in your computer while in reality it’s in a remote server.
+    This is effectively what `sshfs` does.
+  id: totrans-45
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 例如，FUSE 可以用来确保每次你在虚拟文件系统中执行操作时，该操作都会通过 SSH 转发到远程机器，在那里执行，并将输出返回给你。这样，本地程序可以看到文件就像它在你的计算机中一样，而实际上它位于远程服务器上。这正是
+    `sshfs` 所做的。
+- en: 'Some interesting examples of FUSE filesystems are:'
+  id: totrans-46
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些有趣的 FUSE 文件系统示例包括：
+- en: '[sshfs](https://github.com/libfuse/sshfs) - Open locally remote files/folder
+    through an SSH connection.'
+  id: totrans-47
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[sshfs](https://github.com/libfuse/sshfs) - 通过SSH连接在本地打开远程文件/文件夹。'
+- en: '[rclone](https://rclone.org/commands/rclone_mount/) - Mount cloud storage services
+    like Dropbox, GDrive, Amazon S3 or Google Cloud Storage and open data locally.'
+  id: totrans-48
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[rclone](https://rclone.org/commands/rclone_mount/) - 挂载云存储服务，如Dropbox、GDrive、Amazon
+    S3或Google Cloud Storage，并在本地打开数据。'
+- en: '[gocryptfs](https://nuetzlich.net/gocryptfs/) - Encrypted overlay system. Files
+    are stored encrypted but once the FS is mounted they appear as plaintext in the
+    mountpoint.'
+  id: totrans-49
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[gocryptfs](https://nuetzlich.net/gocryptfs/) - 加密覆盖系统。文件以加密形式存储，但一旦文件系统挂载，它们在挂载点中显示为纯文本。'
+- en: '[kbfs](https://keybase.io/docs/kbfs) - Distributed filesystem with end-to-end
+    encryption. You can have private, shared and public folders.'
+  id: totrans-50
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[kbfs](https://keybase.io/docs/kbfs) - 具有端到端加密的分布式文件系统。您可以拥有私有、共享和公共文件夹。'
+- en: '[borgbackup](https://borgbackup.readthedocs.io/en/stable/usage/mount.html)
+    - Mount your deduplicated, compressed and encrypted backups for ease of browsing.'
+  id: totrans-51
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[borgbackup](https://borgbackup.readthedocs.io/en/stable/usage/mount.html)
+    - 通过挂载，方便地浏览您的去重、压缩和加密的备份。'
+- en: Backups
+  id: totrans-52
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 备份
+- en: Any data that you haven’t backed up is data that could be gone at any moment,
+    forever. It’s easy to copy data around, it’s hard to reliably backup data. Here
+    are some good backup basics and the pitfalls of some approaches.
+  id: totrans-53
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您尚未备份的任何数据都可能在任何时候永远消失。复制数据很容易，但可靠地备份数据却很难。以下是一些良好的备份基础和一些方法的陷阱。
+- en: First, a copy of the data in the same disk is not a backup, because the disk
+    is the single point of failure for all the data. Similarly, an external drive
+    in your home is also a weak backup solution since it could be lost in a fire/robbery/&c.
+    Instead, having an off-site backup is a recommended practice.
+  id: totrans-54
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 首先，同一磁盘上的数据副本不是备份，因为磁盘是所有数据的单一故障点。同样，您家中的外置驱动器也是一个薄弱的备份解决方案，因为它可能会在火灾/抢劫等情况下丢失。相反，拥有异地备份是推荐的做法。
+- en: Synchronization solutions are not backups. For instance, Dropbox/GDrive are
+    convenient solutions, but when data is erased or corrupted they propagate the
+    change. For the same reason, disk mirroring solutions like RAID are not backups.
+    They don’t help if data gets deleted, corrupted or encrypted by ransomware.
+  id: totrans-55
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 同步解决方案不是备份。例如，Dropbox/GDrive是方便的解决方案，但当数据被删除或损坏时，它们会传播这种变化。同样，磁盘镜像解决方案如RAID也不是备份。如果数据被删除、损坏或被勒索软件加密，它们无法提供帮助。
+- en: Some core features of good backups solutions are versioning, deduplication and
+    security. Versioning backups ensure that you can access your history of changes
+    and efficiently recover files. Efficient backup solutions use data deduplication
+    to only store incremental changes and reduce the storage overhead. Regarding security,
+    you should ask yourself what someone would need to know/have in order to read
+    your data and, more importantly, to delete all your data and associated backups.
+    Lastly, blindly trusting backups is a terrible idea and you should verify regularly
+    that you can use them to recover data.
+  id: totrans-56
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 良好的备份解决方案的一些核心功能是版本控制、去重和安全。版本控制备份确保您可以访问更改的历史记录并有效地恢复文件。高效的备份解决方案使用数据去重只存储增量更改并减少存储开销。至于安全，您应该问自己，为了读取您的数据，某人需要知道/拥有什么，更重要的是，为了删除所有您的数据和相关的备份。最后，盲目信任备份是一个糟糕的想法，您应该定期验证您是否可以使用它们来恢复数据。
+- en: Backups go beyond local files in your computer. Given the significant growth
+    of web applications, large amounts of your data are only stored in the cloud.
+    For instance, your webmail, social media photos, music playlists in streaming
+    services or online docs are gone if you lose access to the corresponding accounts.
+    Having an offline copy of this information is the way to go, and you can find
+    online tools that people have built to fetch the data and save it.
+  id: totrans-57
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 备份不仅限于您电脑上的本地文件。鉴于网络应用的显著增长，大量数据仅存储在云端。例如，如果您失去了对应账户的访问权限，您的网络邮件、社交媒体照片、流媒体音乐播放列表或在线文档都将消失。拥有这些信息的离线副本是明智之举，您还可以找到人们构建的在线工具来抓取数据并保存。
+- en: For a more detailed explanation, see 2019’s lecture notes on [Backups](/2019/backups).
+  id: totrans-58
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于更详细的解释，请参阅2019年的[备份](/2019/backups)讲义。
+- en: APIs
+  id: totrans-59
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: API
+- en: We’ve talked a lot in this class about using your computer more efficiently
+    to accomplish *local* tasks, but you will find that many of these lessons also
+    extend to the wider internet. Most services online will have “APIs” that let you
+    programmatically access their data. For example, the US government has an API
+    that lets you get weather forecasts, which you could use to easily get a weather
+    forecast in your shell.
+  id: totrans-60
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们在这个课程中已经讨论了很多关于如何更有效地使用电脑来完成*本地*任务的话题，但你将会发现，这些课程中的许多内容也适用于更广泛的互联网。大多数在线服务都会有“APIs”，允许你以编程方式访问它们的数据。例如，美国政府有一个API，允许你获取天气预报，你可以使用它轻松地在你的shell中获取天气预报。
+- en: Most of these APIs have a similar format. They are structured URLs, often rooted
+    at `api.service.com`, where the path and query parameters indicate what data you
+    want to read or what action you want to perform. For the US weather data for example,
+    to get the forecast for a particular location, you issue GET request (with `curl`
+    for example) to https://api.weather.gov/points/42.3604,-71.094\. The response
+    itself contains a bunch of other URLs that let you get specific forecasts for
+    that region. Usually, the responses are formatted as JSON, which you can then
+    pipe through a tool like [`jq`](https://stedolan.github.io/jq/) to massage into
+    what you care about.
+  id: totrans-61
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 大多数这些API都有类似的格式。它们是结构化的URL，通常以`api.service.com`为根，路径和查询参数指示你想要读取的数据或想要执行的操作。例如，对于美国天气数据，要获取特定位置的预报，你可以向https://api.weather.gov/points/42.3604,-71.094发出GET请求（例如使用`curl`）。响应本身包含了一组其他URL，允许你获取该地区的特定预报。通常，响应格式为JSON，然后你可以通过像[`jq`](https://stedolan.github.io/jq/)这样的工具将其转换为所需的内容。
+- en: Some APIs require authentication, and this usually takes the form of some sort
+    of secret *token* that you need to include with the request. You should read the
+    documentation for the API to see what the particular service you are looking for
+    uses, but “[OAuth](https://www.oauth.com/)” is a protocol you will often see used.
+    At its heart, OAuth is a way to give you tokens that can “act as you” on a given
+    service, and can only be used for particular purposes. Keep in mind that these
+    tokens are *secret*, and anyone who gains access to your token can do whatever
+    the token allows under *your* account!
+  id: totrans-62
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些API需要身份验证，这通常是以某种形式的秘密*令牌*的形式，你需要将其包含在请求中。你应该阅读API的文档，以了解你正在寻找的特定服务使用的是什么，但“[OAuth](https://www.oauth.com/)”是一个你经常会看到的协议。OAuth的核心是一种给你提供可以在特定服务上“代表你”的令牌的方式，并且只能用于特定目的。请记住，这些令牌是*秘密的*，任何获得你的令牌的人都可以在你的*账户*下执行令牌允许的操作！
+- en: '[IFTTT](https://ifttt.com/) is a website and service centered around the idea
+    of APIs — it provides integrations with tons of services, and lets you chain events
+    from them in nearly arbitrary ways. Give it a look!'
+  id: totrans-63
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[IFTTT](https://ifttt.com/)是一个以API为中心的网站和服务——它提供了与众多服务的集成，并允许你以几乎任意的方式链接着些事件。给它一个看看！'
+- en: Common command-line flags/patterns
+  id: totrans-64
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 常见的命令行标志/模式
+- en: 'Command-line tools vary a lot, and you will often want to check out their `man`
+    pages before using them. They often share some common features though that can
+    be good to be aware of:'
+  id: totrans-65
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 命令行工具种类繁多，在使用之前，你通常会想要查看它们的`man`页面。尽管如此，它们通常有一些共同的特征，了解这些特征是有益的：
+- en: Most tools support some kind of `--help` flag to display brief usage instructions
+    for the tool.
+  id: totrans-66
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 大多数工具都支持某种`--help`标志来显示工具的简要使用说明。
+- en: Many tools that can cause irrevocable change support the notion of a “dry run”
+    in which they only print what they *would have done*, but do not actually perform
+    the change. Similarly, they often have an “interactive” flag that will prompt
+    you for each destructive action.
+  id: totrans-67
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 许多可以造成不可逆更改的工具支持“dry run”的概念，在这种情况下，它们只会打印出它们*将要执行的操作*，但实际上不会执行更改。同样，它们通常有一个“interactive”标志，会提示你进行每个破坏性操作。
+- en: You can usually use `--version` or `-V` to have the program print its own version
+    (handy for reporting bugs!).
+  id: totrans-68
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 你通常可以使用`--version`或`-V`来让程序打印其自己的版本（这对于报告错误很有用！）。
+- en: Almost all tools have a `--verbose` or `-v` flag to produce more verbose output.
+    You can usually include the flag multiple times (`-vvv`) to get *more* verbose
+    output, which can be handy for debugging. Similarly, many tools have a `--quiet`
+    flag for making it only print something on error.
+  id: totrans-69
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 几乎所有工具都有一个`--verbose`或`-v`标志来生成更详细的输出。你通常可以多次包含该标志（`-vvv`）以获得*更多*详细的输出，这对于调试很有帮助。同样，许多工具都有一个`--quiet`标志，用于在出错时仅打印信息。
+- en: In many tools, `-` in place of a file name means “standard input” or “standard
+    output”, depending on the argument.
+  id: totrans-70
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在许多工具中，文件名位置上的“-”代表“标准输入”或“标准输出”，具体取决于参数。
+- en: Possibly destructive tools are generally not recursive by default, but support
+    a “recursive” flag (often `-r`) to make them recurse.
+  id: totrans-71
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 可能具有破坏性的工具通常默认不是递归的，但支持“递归”标志（通常为`-r`）以使它们递归。
+- en: 'Sometimes, you want to pass something that *looks* like a flag as a normal
+    argument. For example, imagine you wanted to remove a file called `-r`. Or you
+    want to run one program “through” another, like `ssh machine foo`, and you want
+    to pass a flag to the “inner” program (`foo`). The special argument `--` makes
+    a program *stop* processing flags and options (things starting with `-`) in what
+    follows, letting you pass things that look like flags without them being interpreted
+    as such: `rm -- -r` or `ssh machine --for-ssh -- foo --for-foo`.'
+  id: totrans-72
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 有时候，你可能想将看起来像标志的东西作为正常参数传递。例如，想象一下你想删除名为“-r”的文件。或者你想通过另一个程序“运行”一个程序，比如`ssh machine
+    foo`，并且你想向“内部”程序（`foo`）传递一个标志。特殊的参数`--`使程序停止处理随后的标志和选项（以“-”开头的选项），让你可以传递看起来像标志的东西，而不会将它们解释为标志：`rm
+    -- -r`或`ssh machine --for-ssh -- foo --for-foo`。
+- en: Window managers
+  id: totrans-73
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 窗口管理器
+- en: Most of you are used to using a “drag and drop” window manager, like what comes
+    with Windows, macOS, and Ubuntu by default. There are windows that just sort of
+    hang there on screen, and you can drag them around, resize them, and have them
+    overlap one another. But these are only one *type* of window manager, often referred
+    to as a “floating” window manager. There are many others, especially on Linux.
+    A particularly common alternative is a “tiling” window manager. In a tiling window
+    manager, windows never overlap, and are instead arranged as tiles on your screen,
+    sort of like panes in tmux. With a tiling window manager, the screen is always
+    filled by whatever windows are open, arranged according to some *layout*. If you
+    have just one window, it takes up the full screen. If you then open another, the
+    original window shrinks to make room for it (often something like 2/3 and 1/3).
+    If you open a third, the other windows will again shrink to accommodate the new
+    window. Just like with tmux panes, you can navigate around these tiled windows
+    with your keyboard, and you can resize them and move them around, all without
+    touching the mouse. They are worth looking into!
+  id: totrans-74
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 大多数人都习惯于使用“拖放”窗口管理器，比如Windows、macOS和Ubuntu默认提供的。有些窗口只是悬挂在屏幕上，你可以拖动它们，调整大小，使它们重叠。但这些只是窗口管理器的一种类型，通常被称为“浮动”窗口管理器。还有许多其他类型，尤其是在Linux上。一个特别常见的替代方案是“平铺”窗口管理器。在平铺窗口管理器中，窗口永远不会重叠，而是作为屏幕上的平铺排列，有点像tmux中的窗格。使用平铺窗口管理器时，屏幕总是被打开的窗口填满，按照某种*布局*排列。如果你只有一个窗口，它将占据整个屏幕。如果你再打开另一个，原始窗口会缩小以腾出空间（通常是2/3和1/3）。如果你打开第三个，其他窗口将再次缩小以适应新窗口。就像tmux窗格一样，你可以使用键盘在这些平铺窗口之间导航，你可以调整它们的大小并移动它们，所有这些都不需要触摸鼠标。它们值得一看！
+- en: VPNs
+  id: totrans-75
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: VPN
+- en: VPNs are all the rage these days, but it’s not clear that’s for [any good reason](https://web.archive.org/web/20230710155258/https://gist.github.com/joepie91/5a9909939e6ce7d09e29).
+    You should be aware of what a VPN does and does not get you. A VPN, in the best
+    case, is *really* just a way for you to change your internet service provider
+    as far as the internet is concerned. All your traffic will look like it’s coming
+    from the VPN provider instead of your “real” location, and the network you are
+    connected to will only see encrypted traffic.
+  id: totrans-76
+  prefs: []
+  type: TYPE_NORMAL
+  zh: VPN（虚拟私人网络）如今非常流行，但并不清楚这是否有[任何正当理由](https://web.archive.org/web/20230710155258/https://gist.github.com/joepie91/5a9909939e6ce7d09e29)。你应该了解VPN能做什么和不能做什么。在最佳情况下，VPN实际上只是让你在互联网上改变互联网服务提供商的一种方式。所有流量都将看起来像是从VPN提供商那里发出的，而不是从你的“真实”位置发出的，而你连接到的网络只会看到加密的流量。
+- en: While that may seem attractive, keep in mind that when you use a VPN, all you
+    are really doing is shifting your trust from you current ISP to the VPN hosting
+    company. Whatever your ISP *could* see, the VPN provider now sees *instead*. If
+    you trust them *more* than your ISP, that is a win, but otherwise, it is not clear
+    that you have gained much. If you are sitting on some dodgy unencrypted public
+    Wi-Fi at an airport, then maybe you don’t trust the connection much, but at home,
+    the trade-off is not quite as clear.
+  id: totrans-77
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 虽然这听起来可能很有吸引力，但请记住，当你使用VPN时，你实际上只是将你的信任从当前的互联网服务提供商（ISP）转移到了VPN托管公司。无论你的ISP*可能*看到什么，VPN提供商现在*取而代之*看到。如果你比ISP更信任他们，那是一个胜利，但否则，并不清楚你是否获得了很多。如果你坐在机场的一些可疑的未加密公共Wi-Fi上，那么你可能不太信任这个连接，但在家里，这种权衡并不那么明显。
+- en: You should also know that these days, much of your traffic, at least of a sensitive
+    nature, is *already* encrypted through HTTPS or TLS more generally. In that case,
+    it usually matters little whether you are on a “bad” network or not – the network
+    operator will only learn what servers you talk to, but not anything about the
+    data that is exchanged.
+  id: totrans-78
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你应该还知道，如今，你的大部分流量，至少是敏感的流量，已经通过HTTPS或更普遍的TLS加密了。在这种情况下，你是在“坏”网络中还是不是，通常关系不大——网络运营商只会知道你与哪些服务器交谈，但不会知道交换的数据。
+- en: Notice that I said “in the best case” above. It is not unheard of for VPN providers
+    to accidentally misconfigure their software such that the encryption is either
+    weak or entirely disabled. Some VPN providers are malicious (or at the very least
+    opportunist), and will log all your traffic, and possibly sell information about
+    it to third parties. Choosing a bad VPN provider is often worse than not using
+    one in the first place.
+  id: totrans-79
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，我上面说的是“在最佳情况下”。VPN提供商意外地错误配置其软件，导致加密要么很弱，要么完全禁用，这种情况并不少见。一些VPN提供商是恶意的（或者至少是机会主义的），他们会记录你所有的流量，并可能将其信息出售给第三方。选择一个差的VPN提供商通常比一开始就不使用VPN更糟糕。
+- en: In a pinch, MIT [runs a VPN](https://ist.mit.edu/vpn) for its students, so that
+    may be worth taking a look at. Also, if you’re going to roll your own, give [WireGuard](https://www.wireguard.com/)
+    a look.
+  id: totrans-80
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在紧急情况下，麻省理工学院（MIT）为它的学生[运行VPN](https://ist.mit.edu/vpn)，所以这可能值得一看。此外，如果你打算自己搭建，可以看看[WireGuard](https://www.wireguard.com/)。
+- en: Markdown
+  id: totrans-81
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Markdown
+- en: There is a high chance that you will write some text over the course of your
+    career. And often, you will want to mark up that text in simple ways. You want
+    some text to be bold or italic, or you want to add headers, links, and code fragments.
+    Instead of pulling out a heavy tool like Word or LaTeX, you may want to consider
+    using the lightweight markup language [Markdown](https://commonmark.org/help/).
+  id: totrans-82
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在你的职业生涯中，你很可能要写一些文本。而且，你通常会想以简单的方式标记这些文本。你想要一些文本是粗体或斜体，或者你想要添加标题、链接和代码片段。与其使用像Word或LaTeX这样的重型工具，你可能会考虑使用轻量级标记语言[Markdown](https://commonmark.org/help/)。
+- en: 'You have probably seen Markdown already, or at least some variant of it. Subsets
+    of it are used and supported almost everywhere, even if it’s not under the name
+    Markdown. At its core, Markdown is an attempt to codify the way that people already
+    often mark up text when they are writing plain text documents. Emphasis (*italics*)
+    is added by surrounding a word with `*`. Strong emphasis (**bold**) is added using
+    `**`. Lines starting with `#` are headings (and the number of `#`s is the subheading
+    level). Any line starting with `-` is a bullet list item, and any line starting
+    with a number + `.` is a numbered list item. Backtick is used to show words in
+    `code font`, and a code block can be entered by indenting a line with four spaces
+    or surrounding it with triple-backticks:'
+  id: totrans-83
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可能已经见过Markdown了，或者至少是其某种变体。它的子集几乎在所有地方都被使用和支持，即使它不叫Markdown。在本质上，Markdown是一种尝试规范人们在编写纯文本文档时通常如何标记文本的尝试。通过用`*`包围一个单词来添加强调（*斜体*）。使用`**`添加强强调（**粗体**）。以`#`开头的行是标题（`#`的数量是副标题级别）。任何以`-`开头的行是项目符号列表项，任何以数字加`.`开头的行是编号列表项。反引号用于显示`代码字体`中的单词，可以通过缩进一行四个空格或用三重反引号包围来输入代码块：
+- en: '[PRE1]'
+  id: totrans-84
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: code goes here
+  id: totrans-85
+  prefs: []
+  type: TYPE_NORMAL
+  zh: code goes here
+- en: '[PRE2]'
+  id: totrans-86
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: 'To add a link, place the *text* for the link in square brackets, and the URL
+    immediately following that in parentheses: `[name](url)`. Markdown is easy to
+    get started with, and you can use it nearly everywhere. In fact, the lecture notes
+    for this lecture, and all the others, are written in Markdown, and you can see
+    the raw Markdown [here](https://raw.githubusercontent.com/missing-semester/missing-semester/master/_2020/potpourri.md).'
+  id: totrans-87
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 要添加链接，将链接的 *文本* 放在方括号内，并在其后立即跟一个 URL：`[name](url)`。Markdown 很容易上手，你几乎可以在任何地方使用它。实际上，这次讲座的讲义，以及其他所有讲义，都是用
+    Markdown 编写的，你可以在[这里](https://raw.githubusercontent.com/missing-semester/missing-semester/master/_2020/potpourri.md)看到原始的
+    Markdown。
+- en: Hammerspoon (desktop automation on macOS)
+  id: totrans-88
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Hammerspoon（macOS 上的桌面自动化）
+- en: '[Hammerspoon](https://www.hammerspoon.org/) is a desktop automation framework
+    for macOS. It lets you write Lua scripts that hook into operating system functionality,
+    allowing you to interact with the keyboard/mouse, windows, displays, filesystem,
+    and much more.'
+  id: totrans-89
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[Hammerspoon](https://www.hammerspoon.org/) 是一个针对 macOS 的桌面自动化框架。它允许你编写 Lua
+    脚本来钩入操作系统功能，让你能够与键盘/鼠标、窗口、显示器、文件系统等进行交互。'
+- en: 'Some examples of things you can do with Hammerspoon:'
+  id: totrans-90
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以用 Hammerspoon 做的一些事情示例：
+- en: Bind hotkeys to move windows to specific locations
+  id: totrans-91
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 绑定热键以将窗口移动到特定位置
+- en: Create a menu bar button that automatically lays out windows in a specific layout
+  id: totrans-92
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 创建一个菜单栏按钮，自动将窗口布局成特定布局
+- en: Mute your speaker when you arrive in lab (by detecting the Wi-Fi network)
+  id: totrans-93
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 当你到达实验室时（通过检测 Wi-Fi 网络）关闭扬声器
+- en: Show you a warning if you’ve accidentally taken your friend’s power supply
+  id: totrans-94
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 如果你意外地拿走了朋友的电源，显示一个警告
+- en: At a high level, Hammerspoon lets you run arbitrary Lua code, bound to menu
+    buttons, key presses, or events, and Hammerspoon provides an extensive library
+    for interacting with the system, so there’s basically no limit to what you can
+    do with it. Many people have made their Hammerspoon configurations public, so
+    you can generally find what you need by searching the internet, but you can always
+    write your own code from scratch.
+  id: totrans-95
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在高层次上，Hammerspoon 允许你运行任意 Lua 代码，并将其绑定到菜单按钮、按键或事件上，Hammerspoon 还提供了一套广泛的库来与系统交互，因此基本上没有你无法用它做到的事情。许多人已经将他们的
+    Hammerspoon 配置公开，所以你通常可以通过网络搜索找到你需要的东西，但你也可以从头开始编写自己的代码。
+- en: Resources
+  id: totrans-96
+  prefs:
+  - PREF_H3
+  type: TYPE_NORMAL
+  zh: 资源
+- en: '[Getting Started with Hammerspoon](https://www.hammerspoon.org/go/)'
+  id: totrans-97
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[开始使用 Hammerspoon](https://www.hammerspoon.org/go/)'
+- en: '[Sample configurations](https://github.com/Hammerspoon/hammerspoon/wiki/Sample-Configurations)'
+  id: totrans-98
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[示例配置](https://github.com/Hammerspoon/hammerspoon/wiki/Sample-Configurations)'
+- en: '[Anish’s Hammerspoon config](https://github.com/anishathalye/dotfiles-local/tree/mac/hammerspoon)'
+  id: totrans-99
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Anish 的 Hammerspoon 配置](https://github.com/anishathalye/dotfiles-local/tree/mac/hammerspoon)'
+- en: Booting + Live USBs
+  id: totrans-100
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 启动 + Live USB
+- en: When your machine boots up, before the operating system is loaded, the [BIOS](https://en.wikipedia.org/wiki/BIOS)/[UEFI](https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface)
+    initializes the system. During this process, you can press a specific key combination
+    to configure this layer of software. For example, your computer may say something
+    like “Press F9 to configure BIOS. Press F12 to enter boot menu.” during the boot
+    process. You can configure all sorts of hardware-related settings in the BIOS
+    menu. You can also enter the boot menu to boot from an alternate device instead
+    of your hard drive.
+  id: totrans-101
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当你的机器启动时，在操作系统加载之前，[BIOS](https://en.wikipedia.org/wiki/BIOS)/[UEFI](https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface)
+    会初始化系统。在这个过程中，你可以按下一个特定的键组合来配置这一层软件。例如，在启动过程中，你的电脑可能会说“按 F9 配置 BIOS。按 F12 进入启动菜单。”。你可以在
+    BIOS 菜单中配置各种硬件相关设置。你还可以进入启动菜单，从其他设备启动而不是硬盘。
+- en: '[Live USBs](https://en.wikipedia.org/wiki/Live_USB) are USB flash drives containing
+    an operating system. You can create one of these by downloading an operating system
+    (e.g. a Linux distribution) and burning it to the flash drive. This process is
+    a little bit more complicated than simply copying a `.iso` file to the disk. There
+    are tools like [UNetbootin](https://unetbootin.github.io/) to help you create
+    live USBs.'
+  id: totrans-102
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[Live USB](https://en.wikipedia.org/wiki/Live_USB) 是包含操作系统的 USB 闪存驱动器。你可以通过下载一个操作系统（例如
+    Linux 发行版）并将其烧录到闪存驱动器来创建一个这样的驱动器。这个过程比简单地复制一个 `.iso` 文件到磁盘要复杂一些。有一些工具如 [UNetbootin](https://unetbootin.github.io/)
+    可以帮助你创建 Live USB。'
+- en: Live USBs are useful for all sorts of purposes. Among other things, if you break
+    your existing operating system installation so that it no longer boots, you can
+    use a live USB to recover data or fix the operating system.
+  id: totrans-103
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Live USB在许多用途中都很有用。例如，如果你的现有操作系统安装损坏，无法启动，你可以使用Live USB恢复数据或修复操作系统。
+- en: Docker, Vagrant, VMs, Cloud, OpenStack
+  id: totrans-104
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Docker、Vagrant、VMs、Cloud、OpenStack
+- en: '[Virtual machines](https://en.wikipedia.org/wiki/Virtual_machine) and similar
+    tools like containers let you emulate a whole computer system, including the operating
+    system. This can be useful for creating an isolated environment for testing, development,
+    or exploration (e.g. running potentially malicious code).'
+  id: totrans-105
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[虚拟机](https://en.wikipedia.org/wiki/Virtual_machine)和类似工具如容器允许你模拟整个计算机系统，包括操作系统。这可以用于创建用于测试、开发或探索的隔离环境（例如运行可能有害的代码）。'
+- en: '[Vagrant](https://www.vagrantup.com/) is a tool that lets you describe machine
+    configurations (operating system, services, packages, etc.) in code, and then
+    instantiate VMs with a simple `vagrant up`. [Docker](https://www.docker.com/)
+    is conceptually similar but it uses containers instead.'
+  id: totrans-106
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[Vagrant](https://www.vagrantup.com/)是一个工具，允许你用代码描述机器配置（操作系统、服务、软件包等），然后通过简单的`vagrant
+    up`命令实例化虚拟机。[Docker](https://www.docker.com/)在概念上类似，但它使用容器。'
+- en: 'You can also rent virtual machines on the cloud, and it’s a nice way to get
+    instant access to:'
+  id: totrans-107
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你还可以在云上租用虚拟机，这是一种快速获取以下资源的便捷方式：
+- en: A cheap always-on machine that has a public IP address, used to host services
+  id: totrans-108
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 一台便宜的始终在线的机器，具有公网IP地址，用于托管服务
+- en: A machine with a lot of CPU, disk, RAM, and/or GPU
+  id: totrans-109
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 一台拥有大量CPU、磁盘、RAM和/或GPU的机器
+- en: Many more machines than you physically have access to (billing is often by the
+    second, so if you want a lot of computing for a short amount of time, it’s feasible
+    to rent 1000 computers for a couple of minutes)
+  id: totrans-110
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 拥有的机器数量远超过你物理上能接触到的（通常按秒计费，所以如果你想在短时间内进行大量计算，租用1000台计算机几分钟是可行的）。
+- en: Popular services include [Amazon AWS](https://aws.amazon.com/), [Google Cloud](https://cloud.google.com/),
+    [Microsoft Azure](https://azure.microsoft.com/), [DigitalOcean](https://www.digitalocean.com/).
+  id: totrans-111
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 流行的服务包括[Amazon AWS](https://aws.amazon.com/)、[Google Cloud](https://cloud.google.com/)、[Microsoft
+    Azure](https://azure.microsoft.com/)、[DigitalOcean](https://www.digitalocean.com/)。
+- en: If you’re a member of MIT CSAIL, you can get free VMs for research purposes
+    through the [CSAIL OpenStack instance](https://tig.csail.mit.edu/shared-computing/open-stack/).
+  id: totrans-112
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你属于MIT CSAIL，你可以通过[CSAIL OpenStack实例](https://tig.csail.mit.edu/shared-computing/open-stack/)获得免费的研究用虚拟机。
+- en: Notebook programming
+  id: totrans-113
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 笔记本编程
+- en: '[Notebook programming environments](https://en.wikipedia.org/wiki/Notebook_interface)
+    can be really handy for doing certain types of interactive or exploratory development.
+    Perhaps the most popular notebook programming environment today is [Jupyter](https://jupyter.org/),
+    for Python (and several other languages). [Wolfram Mathematica](https://www.wolfram.com/mathematica/)
+    is another notebook programming environment that’s great for doing math-oriented
+    programming.'
+  id: totrans-114
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[笔记本编程环境](https://en.wikipedia.org/wiki/Notebook_interface)在执行某些类型的交互式或探索性开发时非常方便。目前最受欢迎的笔记本编程环境可能是[Jupyter](https://jupyter.org/)，适用于Python（以及几种其他语言）。[Wolfram
+    Mathematica](https://www.wolfram.com/mathematica/)是另一个非常适合进行数学方向编程的笔记本编程环境。'
+- en: GitHub
+  id: totrans-115
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: GitHub
+- en: '[GitHub](https://github.com/) is one of the most popular platforms for open-source
+    software development. Many of the tools we’ve talked about in this class, from
+    [vim](https://github.com/vim/vim) to [Hammerspoon](https://github.com/Hammerspoon/hammerspoon),
+    are hosted on GitHub. It’s easy to get started contributing to open-source to
+    help improve the tools that you use every day.'
+  id: totrans-116
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[GitHub](https://github.com/)是开源软件开发中最受欢迎的平台之一。我们在这个课程中讨论的许多工具，从[vim](https://github.com/vim/vim)到[Hammerspoon](https://github.com/Hammerspoon/hammerspoon)，都托管在GitHub上。开始为开源项目贡献力量，帮助改进你每天使用的工具非常简单。'
+- en: 'There are two primary ways in which people contribute to projects on GitHub:'
+  id: totrans-117
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 人们向GitHub上的项目做出贡献主要有两种方式：
+- en: Creating an [issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue).
+    This can be used to report bugs or request a new feature. Neither of these involves
+    reading or writing code, so it can be pretty lightweight to do. High-quality bug
+    reports can be extremely valuable to developers. Commenting on existing discussions
+    can be helpful too.
+  id: totrans-118
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 创建一个[问题](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue)。这可以用来报告错误或请求新功能。这些都不涉及阅读或编写代码，所以操作起来可以相当轻松。高质量的错误报告对开发者来说可能非常有价值。对现有讨论进行评论也可能很有帮助。
+- en: Contribute code through a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
+    This is generally more involved than creating an issue. You can [fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
+    a repository on GitHub, clone your fork, create a new branch, make some changes
+    (e.g. fix a bug or implement a feature), push the branch, and then [create a pull
+    request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+    After this, there will generally be some back-and-forth with the project maintainers,
+    who will give you feedback on your patch. Finally, if all goes well, your patch
+    will be merged into the upstream repository. Often times, larger projects will
+    have a contributing guide, tag beginner-friendly issues, and some even have mentorship
+    programs to help first-time contributors become familiar with the project.
+  id: totrans-119
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 通过[拉取请求](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)贡献代码。这通常比创建问题更复杂。你可以在GitHub上[分叉](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)一个仓库，克隆你的分叉，创建一个新的分支，做一些修改（例如修复错误或实现功能），推送分支，然后[创建一个拉取请求](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)。之后，通常会有一些与项目维护者的来回交流，他们会给你关于你的补丁的反馈。最后，如果一切顺利，你的补丁将被合并到上游仓库。通常，较大的项目会有一个贡献指南，标记适合初学者的议题，有些甚至有导师计划来帮助新贡献者熟悉项目。
+- en: '* * *'
+  id: totrans-120
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/potpourri.md).'
+  id: totrans-121
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2020/potpourri.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-122
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本作品受[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可。

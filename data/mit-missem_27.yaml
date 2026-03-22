@@ -1,0 +1,442 @@
+- en: Metaprogramming
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 元编程
+- en: 原文：[https://missing.csail.mit.edu/2020/metaprogramming/](https://missing.csail.mit.edu/2020/metaprogramming/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2020/metaprogramming/](https://missing.csail.mit.edu/2020/metaprogramming/)
+- en: What do we mean by “metaprogramming”? Well, it was the best collective term
+    we could come up with for the set of things that are more about *process* than
+    they are about writing code or working more efficiently. In this lecture, we will
+    look at systems for building and testing your code, and for managing dependencies.
+    These may seem like they are of limited importance in your day-to-day as a student,
+    but the moment you interact with a larger code base through an internship or once
+    you enter the “real world”, you will see this everywhere. We should note that
+    “metaprogramming” can also mean “[programs that operate on programs](https://en.wikipedia.org/wiki/Metaprogramming)”,
+    whereas that is not quite the definition we are using for the purposes of this
+    lecture.
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们所说的“元编程”是什么意思？嗯，这是我们能为那些更关注 *过程* 而不是编写代码或更高效工作的东西所能想到的最好的集体术语。在本讲座中，我们将探讨构建和测试你的代码的系统，以及管理依赖项的系统。这些可能看起来在你作为学生的日常工作中重要性有限，但当你通过实习或进入“现实世界”后与更大的代码库交互时，你会到处看到它们。我们应该注意，“元编程”也可以指“[操作程序的程序](https://en.wikipedia.org/wiki/Metaprogramming)”，而这不是我们在这个讲座中使用的定义。
+- en: Build systems
+  id: totrans-3
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 构建系统
+- en: If you write a paper in LaTeX, what are the commands you need to run to produce
+    your paper? What about the ones used to run your benchmarks, plot them, and then
+    insert that plot into your paper? Or to compile the code provided in the class
+    you’re taking and then running the tests?
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你用 LaTeX 写论文，你需要运行哪些命令来生成你的论文？又或者，那些用于运行你的基准测试、绘制图表并将图表插入论文中的命令？或者编译你在课程中提供的代码，然后运行测试？
+- en: For most projects, whether they contain code or not, there is a “build process”.
+    Some sequence of operations you need to do to go from your inputs to your outputs.
+    Often, that process might have many steps, and many branches. Run this to generate
+    this plot, that to generate those results, and something else to produce the final
+    paper. As with so many of the things we have seen in this class, you are not the
+    first to encounter this annoyance, and luckily there exist many tools to help
+    you!
+  id: totrans-5
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于大多数项目，无论它们是否包含代码，都有一个“构建过程”。这是一系列你需要执行的从输入到输出的操作。通常，这个过程可能包含许多步骤和分支。运行这个来生成这个图表，运行那个来生成那些结果，还有其他操作来生成最终的论文。就像我们在本课程中看到的许多事情一样，你不是第一个遇到这种烦恼的人，幸运的是，存在许多工具可以帮助你！
+- en: These are usually called “build systems”, and there are *many* of them. Which
+    one you use depends on the task at hand, your language of preference, and the
+    size of the project. At their core, they are all very similar though. You define
+    a number of *dependencies*, a number of *targets*, and *rules* for going from
+    one to the other. You tell the build system that you want a particular target,
+    and its job is to find all the transitive dependencies of that target, and then
+    apply the rules to produce intermediate targets all the way until the final target
+    has been produced. Ideally, the build system does this without unnecessarily executing
+    rules for targets whose dependencies haven’t changed and where the result is available
+    from a previous build.
+  id: totrans-6
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这些通常被称为“构建系统”，并且有 *很多* 种。你使用哪一种取决于手头的任务、你偏好的语言和项目的规模。尽管如此，它们的本质是非常相似的。你定义了一组
+    *依赖项*、一组 *目标* 和从一项到另一项的 *规则*。你告诉构建系统你想要一个特定的目标，它的任务就是找到该目标的传递依赖项，然后应用规则来产生中间目标，直到最终目标生成。理想情况下，构建系统会这样做，而不会不必要地执行那些依赖项没有变化且结果可以从之前的构建中获取的目标的规则。
+- en: '`make` is one of the most common build systems out there, and you will usually
+    find it installed on pretty much any UNIX-based computer. It has its warts, but
+    works quite well for simple-to-moderate projects. When you run `make`, it consults
+    a file called `Makefile` in the current directory. All the targets, their dependencies,
+    and the rules are defined in that file. Let’s take a look at one:'
+  id: totrans-7
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`make` 是最常用的构建系统之一，你通常可以在几乎任何基于 UNIX 的计算机上找到它。它有一些瑕疵，但对于简单到中等规模的项目来说工作得相当好。当你运行
+    `make` 时，它会参考当前目录中名为 `Makefile` 的文件。所有目标、它们的依赖关系和规则都定义在这个文件中。让我们看看其中一个：'
+- en: '[PRE0]'
+  id: totrans-8
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: Each directive in this file is a rule for how to produce the left-hand side
+    using the right-hand side. Or, phrased differently, the things named on the right-hand
+    side are dependencies, and the left-hand side is the target. The indented block
+    is a sequence of programs to produce the target from those dependencies. In `make`,
+    the first directive also defines the default goal. If you run `make` with no arguments,
+    this is the target it will build. Alternatively, you can run something like `make
+    plot-data.png`, and it will build that target instead.
+  id: totrans-9
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 该文件中的每个指令都是一个规则，用于如何使用右侧的内容来生成左侧的内容。或者，换一种说法，右侧命名的事物是依赖项，左侧是目标。缩进的块是一系列程序，用于从这些依赖项生成目标。在
+    `make` 中，第一个指令还定义了默认目标。如果你不带参数运行 `make`，这将是要构建的目标。或者，你可以运行类似 `make plot-data.png`
+    的命令，然后它会构建那个目标。
+- en: The `%` in a rule is a “pattern”, and will match the same string on the left
+    and on the right. For example, if the target `plot-foo.png` is requested, `make`
+    will look for the dependencies `foo.dat` and `plot.py`. Now let’s look at what
+    happens if we run `make` with an empty source directory.
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 规则中的 `%` 是一个“模式”，会在左右两侧匹配相同的字符串。例如，如果请求目标 `plot-foo.png`，`make` 将寻找依赖项 `foo.dat`
+    和 `plot.py`。现在让我们看看如果我们在一个空的源目录中运行 `make` 会发生什么。
+- en: '[PRE1]'
+  id: totrans-11
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: '`make` is helpfully telling us that in order to build `paper.pdf`, it needs
+    `paper.tex`, and it has no rule telling it how to make that file. Let’s try making
+    it!'
+  id: totrans-12
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`make` 有帮助地告诉我们，为了构建 `paper.pdf`，它需要 `paper.tex`，并且它没有规则告诉它如何生成那个文件。让我们尝试生成它！'
+- en: '[PRE2]'
+  id: totrans-13
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: 'Hmm, interesting, there *is* a rule to make `plot-data.png`, but it is a pattern
+    rule. Since the source files do not exist (`data.dat`), `make` simply states that
+    it cannot make that file. Let’s try creating all the files:'
+  id: totrans-14
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 嗯，有趣的是，确实有一个规则来生成 `plot-data.png`，但它是一个模式规则。由于源文件不存在（`data.dat`），`make` 简单地声明它无法生成那个文件。让我们尝试创建所有这些文件：
+- en: '[PRE3]'
+  id: totrans-15
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE3]'
+- en: Now what happens if we run `make`?
+  id: totrans-16
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 现在如果我们运行 `make` 会发生什么？
+- en: '[PRE4]'
+  id: totrans-17
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE4]'
+- en: And look, it made a PDF for us! What if we run `make` again?
+  id: totrans-18
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 看看，它为我们生成了一个 PDF！如果我们再次运行 `make` 会怎样？
+- en: '[PRE5]'
+  id: totrans-19
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE5]'
+- en: 'It didn’t do anything! Why not? Well, because it didn’t need to. It checked
+    that all of the previously-built targets were still up to date with respect to
+    their listed dependencies. We can test this by modifying `paper.tex` and then
+    re-running `make`:'
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 它什么都没做！为什么？好吧，因为它不需要这么做。它检查了所有之前构建的目标是否仍然与它们的列出的依赖项保持最新。我们可以通过修改 `paper.tex`
+    然后重新运行 `make` 来测试这一点：
+- en: '[PRE6]'
+  id: totrans-21
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE6]'
+- en: Notice that `make` did *not* re-run `plot.py` because that was not necessary;
+    none of `plot-data.png`’s dependencies changed!
+  id: totrans-22
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意到 `make` 并没有重新运行 `plot.py`，因为那不是必要的；`plot-data.png` 的依赖项没有任何变化！
+- en: Dependency management
+  id: totrans-23
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 依赖项管理
+- en: At a more macro level, your software projects are likely to have dependencies
+    that are themselves projects. You might depend on installed programs (like `python`),
+    system packages (like `openssl`), or libraries within your programming language
+    (like `matplotlib`). These days, most dependencies will be available through a
+    *repository* that hosts a large number of such dependencies in a single place,
+    and provides a convenient mechanism for installing them. Some examples include
+    the Ubuntu package repositories for Ubuntu system packages, which you access through
+    the `apt` tool, RubyGems for Ruby libraries, PyPI for Python libraries, or the
+    Arch User Repository for Arch Linux user-contributed packages.
+  id: totrans-24
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在更宏观的层面上，你的软件项目可能依赖于自身也是项目的依赖项。你可能依赖于已安装的程序（如 `python`），系统包（如 `openssl`），或者你编程语言中的库（如
+    `matplotlib`）。如今，大多数依赖项都可通过一个 *仓库* 获取，该仓库在一个地方集中管理大量此类依赖项，并提供方便的安装机制。一些例子包括 Ubuntu
+    系统包的 Ubuntu 软件包仓库，你可以通过 `apt` 工具访问，RubyGems 用于 Ruby 库，PyPI 用于 Python 库，或者 Arch
+    Linux 用户贡献的包的 Arch 用户仓库。
+- en: Since the exact mechanisms for interacting with these repositories vary a lot
+    from repository to repository and from tool to tool, we won’t go too much into
+    the details of any specific one in this lecture. What we *will* cover is some
+    of the common terminology they all use. The first among these is *versioning*.
+    Most projects that other projects depend on issue a *version number* with every
+    release. Usually something like 8.1.3 or 64.1.20192004\. They are often, but not
+    always, numerical. Version numbers serve many purposes, and one of the most important
+    of them is to ensure that software keeps working. Imagine, for example, that I
+    release a new version of my library where I have renamed a particular function.
+    If someone tried to build some software that depends on my library after I release
+    that update, the build might fail because it calls a function that no longer exists!
+    Versioning attempts to solve this problem by letting a project say that it depends
+    on a particular version, or range of versions, of some other project. That way,
+    even if the underlying library changes, dependent software continues building
+    by using an older version of my library.
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '由于与这些存储库交互的确切机制在每个存储库和工具之间差异很大，我们不会深入探讨任何特定存储库的细节。我们将要讨论的是它们都使用的某些常见术语。其中之一是*版本控制*。大多数其他项目依赖的项目在每次发布时都会提供一个*版本号*，通常类似于8.1.3或64.1.20192004。它们通常是数字的，但并不总是。版本号有很多用途，其中最重要的用途之一是确保软件保持运行。例如，想象一下，如果我发布了一个新版本的库，其中我重命名了一个特定的函数。如果有人在我发布该更新后尝试构建依赖于我的库的软件，构建可能会失败，因为它调用了一个不再存在的函数！版本控制试图通过让项目声明它依赖于某个特定版本或版本范围的其他项目来解决此问题。这样，即使底层库发生变化，依赖软件也可以通过使用我的库的较旧版本继续构建。 '
+- en: 'That also isn’t ideal though! What if I issue a security update which does
+    *not* change the public interface of my library (its “API”), and which any project
+    that depended on the old version should immediately start using? This is where
+    the different groups of numbers in a version come in. The exact meaning of each
+    one varies between projects, but one relatively common standard is [*semantic
+    versioning*](https://semver.org/). With semantic versioning, every version number
+    is of the form: major.minor.patch. The rules are:'
+  id: totrans-26
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 但这也不是理想的！如果我发布了一个安全更新，它**没有**更改我库的公共接口（其“API”），并且任何依赖于旧版本的项都应该立即开始使用？这就是版本号中不同数字组的作用所在。每个数字的确切含义在不同项目之间有所不同，但一个相对常见的标准是[*语义版本控制*](https://semver.org/)。使用语义版本控制，每个版本号的形式为：主要.次要.补丁。规则如下：
+- en: If a new release does not change the API, increase the patch version.
+  id: totrans-27
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 如果新版本没有更改API，则增加补丁版本。
+- en: If you *add* to your API in a backwards-compatible way, increase the minor version.
+  id: totrans-28
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 如果你以向后兼容的方式向API添加内容，则增加次要版本。
+- en: If you change the API in a non-backwards-compatible way, increase the major
+    version.
+  id: totrans-29
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 如果你以非向后兼容的方式更改API，则增加主要版本。
+- en: This already provides some major advantages. Now, if my project depends on your
+    project, it *should* be safe to use the latest release with the same major version
+    as the one I built against when I developed it, as long as its minor version is
+    at least what it was back then. In other words, if I depend on your library at
+    version `1.3.7`, then it *should* be fine to build it with `1.3.8`, `1.6.1`, or
+    even `1.3.0`. Version `2.2.4` would probably not be okay, because the major version
+    was increased. We can see an example of semantic versioning in Python’s version
+    numbers. Many of you are probably aware that Python 2 and Python 3 code do not
+    mix very well, which is why that was a *major* version bump. Similarly, code written
+    for Python 3.5 might run fine on Python 3.7, but possibly not on 3.4.
+  id: totrans-30
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这已经提供了一些主要优势。现在，如果我的项目依赖于你的项目，使用与我开发时构建的相同主要版本的最新版本应该是安全的，只要其次要版本至少与那时相同。换句话说，如果我依赖于你的库版本`1.3.7`，那么使用`1.3.8`、`1.6.1`甚至`1.3.0`来构建它应该是没有问题的。版本`2.2.4`可能就不太合适了，因为主要版本已经增加。我们可以从Python的版本号中看到语义版本控制的例子。你们中许多人可能都知道，Python
+    2和Python 3代码混合得不是很好，这就是为什么那是一个**主要**版本的增加。同样，为Python 3.5编写的代码可能在Python 3.7上运行良好，但在3.4上可能就不行。
+- en: When working with dependency management systems, you may also come across the
+    notion of *lock files*. A lock file is simply a file that lists the exact version
+    you are *currently* depending on of each dependency. Usually, you need to explicitly
+    run an update program to upgrade to newer versions of your dependencies. There
+    are many reasons for this, such as avoiding unnecessary recompiles, having reproducible
+    builds, or not automatically updating to the latest version (which may be broken).
+    An extreme version of this kind of dependency locking is *vendoring*, which is
+    where you copy all the code of your dependencies into your own project. That gives
+    you total control over any changes to it, and lets you introduce your own changes
+    to it, but also means you have to explicitly pull in any updates from the upstream
+    maintainers over time.
+  id: totrans-31
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当与依赖管理系统一起工作时，你也可能会遇到*锁文件*的概念。锁文件简单来说就是一个列出每个依赖项当前所依赖的确切版本的文件。通常，你需要显式地运行一个更新程序来升级到依赖项的新版本。这样做的原因有很多，比如避免不必要的重新编译、确保构建的可重复性，或者不自动更新到最新版本（可能存在错误）。这种依赖锁定的极端形式是*供应商版本控制*，即你将所有依赖项的代码复制到自己的项目中。这让你可以完全控制其任何变化，并允许你对其引入自己的更改，但这也意味着你必须随着时间的推移显式地从上游维护者那里拉取任何更新。
+- en: Continuous integration systems
+  id: totrans-32
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 持续集成系统
+- en: As you work on larger and larger projects, you’ll find that there are often
+    additional tasks you have to do whenever you make a change to it. You might have
+    to upload a new version of the documentation, upload a compiled version somewhere,
+    release the code to pypi, run your test suite, and all sort of other things. Maybe
+    every time someone sends you a pull request on GitHub, you want their code to
+    be style checked and you want some benchmarks to run? When these kinds of needs
+    arise, it’s time to take a look at continuous integration.
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当你处理越来越大的项目时，你会发现，每当你对项目进行更改时，通常都需要执行额外的任务。你可能需要上传文档的新版本、上传编译版本到某处、将代码发布到pypi、运行测试套件，以及所有其他事情。也许每次有人给你发送GitHub上的pull
+    request时，你希望他们的代码经过样式检查，并运行一些基准测试？当这些需求出现时，是时候看看持续集成了。
+- en: 'Continuous integration, or CI, is an umbrella term for “stuff that runs whenever
+    your code changes”, and there are many companies out there that provide various
+    types of CI, often for free for open-source projects. Some of the big ones are
+    Travis CI, Azure Pipelines, and GitHub Actions. They all work in roughly the same
+    way: you add a file to your repository that describes what should happen when
+    various things happen to that repository. By far the most common one is a rule
+    like “when someone pushes code, run the test suite”. When the event triggers,
+    the CI provider spins up a virtual machines (or more), runs the commands in your
+    “recipe”, and then usually notes down the results somewhere. You might set it
+    up so that you are notified if the test suite stops passing, or so that a little
+    badge appears on your repository as long as the tests pass.'
+  id: totrans-34
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 持续集成，或CI，是一个涵盖“每当你的代码发生变化时就会运行的东西”的术语，并且有许多公司提供各种类型的CI，通常对开源项目免费。其中一些大型公司包括Travis
+    CI、Azure Pipelines和GitHub Actions。它们的工作方式大致相同：你向你的仓库添加一个文件，描述当仓库发生各种事件时应该发生什么。最常见的一种规则是“当有人推送代码时，运行测试套件”。当事件触发时，CI提供商启动一个或多个虚拟机，运行你的“配方”中的命令，然后通常会在某处记录结果。你可能设置它，以便在测试套件停止通过时通知你，或者在你仓库的测试通过时，出现一个小徽章。
+- en: As an example of a CI system, the class website is set up using GitHub Pages.
+    Pages is a CI action that runs the Jekyll blog software on every push to `master`
+    and makes the built site available on a particular GitHub domain. This makes it
+    trivial for us to update the website! We just make our changes locally, commit
+    them with git, and then push. CI takes care of the rest.
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 以CI系统为例，班级网站是使用GitHub Pages设置的。Pages是一个CI操作，它会在每次向`master`分支推送时运行Jekyll博客软件，并将构建的网站发布在特定的GitHub域名上。这使得我们更新网站变得非常简单！我们只需在本地进行更改，使用git提交，然后推送。CI会处理其余的工作。
+- en: A brief aside on testing
+  id: totrans-36
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 简单谈谈测试
+- en: 'Most large software projects come with a “test suite”. You may already be familiar
+    with the general concept of testing, but we thought we’d quickly mention some
+    approaches to testing and testing terminology that you may encounter in the wild:'
+  id: totrans-37
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 大多数大型软件项目都附带一个“测试套件”。你可能已经熟悉测试的一般概念，但我们认为快速提及一些你可能会在野外遇到的测试方法和测试术语是有用的：
+- en: 'Test suite: a collective term for all the tests'
+  id: totrans-38
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 测试套件：所有测试的统称
+- en: 'Unit test: a “micro-test” that tests a specific feature in isolation'
+  id: totrans-39
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 单元测试：一个“微观测试”，用于单独测试特定功能。
+- en: 'Integration test: a “macro-test” that runs a larger part of the system to check
+    that different feature or components work *together*.'
+  id: totrans-40
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 集成测试：一个“宏观测试”，运行系统的一部分以检查不同的功能或组件是否 *协同工作*。
+- en: 'Regression test: a test that implements a particular pattern that *previously*
+    caused a bug to ensure that the bug does not resurface.'
+  id: totrans-41
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 回归测试：一个实现特定模式以确保 *之前* 导致错误的测试，以确保错误不会再次出现。
+- en: 'Mocking: to replace a function, module, or type with a fake implementation
+    to avoid testing unrelated functionality. For example, you might “mock the network”
+    or “mock the disk”.'
+  id: totrans-42
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 模拟：用假实现替换函数、模块或类型，以避免测试无关的功能。例如，你可能“模拟网络”或“模拟磁盘”。
+- en: Exercises
+  id: totrans-43
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Most makefiles provide a target called `clean`. This isn’t intended to produce
+    a file called `clean`, but instead to clean up any files that can be re-built
+    by make. Think of it as a way to “undo” all of the build steps. Implement a `clean`
+    target for the `paper.pdf` `Makefile` above. You will have to make the target
+    [phony](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html).
+    You may find the [`git ls-files`](https://git-scm.com/docs/git-ls-files) subcommand
+    useful. A number of other very common make targets are listed [here](https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html#Standard-Targets).
+  id: totrans-44
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 大多数 makefile 都提供了一个名为 `clean` 的目标。这并不是为了生成一个名为 `clean` 的文件，而是为了清理任何可以被 make
+    重建的文件。将其视为一种“撤销”所有构建步骤的方法。为上面的 `paper.pdf` `Makefile` 实现一个 `clean` 目标。你可能需要将该目标
+    [伪化](https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html)。你可能发现
+    `git ls-files` 子命令很有用。其他一些非常常见的 make 目标列在 [这里](https://www.gnu.org/software/make/manual/html_node/Standard-Targets.html#Standard-Targets)。
+- en: Take a look at the various ways to specify version requirements for dependencies
+    in [Rust’s build system](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html).
+    Most package repositories support similar syntax. For each one (caret, tilde,
+    wildcard, comparison, and multiple), try to come up with a use-case in which that
+    particular kind of requirement makes sense.
+  id: totrans-45
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 查看在 [Rust 的构建系统](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)
+    中指定依赖项版本要求的各种方法。大多数包仓库支持类似的语法。对于每一种（ caret，tilde，通配符，比较，和多个），尝试想出一个特定类型的依赖项在某个用例中是有意义的场景。
+- en: Git can act as a simple CI system all by itself. In `.git/hooks` inside any
+    git repository, you will find (currently inactive) files that are run as scripts
+    when a particular action happens. Write a [`pre-commit`](https://git-scm.com/docs/githooks#_pre_commit)
+    hook that runs `make paper.pdf` and refuses the commit if the `make` command fails.
+    This should prevent any commit from having an unbuildable version of the paper.
+  id: totrans-46
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: Git 可以作为一个简单的 CI 系统独立运行。在任何 git 仓库的 `.git/hooks` 目录中，您将找到（当前不活跃）的文件，当发生特定操作时，这些文件作为脚本运行。编写一个
+    `pre-commit` 钩子，该钩子运行 `make paper.pdf` 并在 `make` 命令失败时拒绝提交。这应该可以防止任何提交包含无法构建的论文版本。
+- en: Set up a simple auto-published page using [GitHub Pages](https://pages.github.com/).
+    Add a [GitHub Action](https://github.com/features/actions) to the repository to
+    run `shellcheck` on any shell files in that repository (here is [one way to do
+    it](https://github.com/marketplace/actions/shellcheck)). Check that it works!
+  id: totrans-47
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 使用 [GitHub Pages](https://pages.github.com/) 设置一个简单的自动发布页面。将一个 [GitHub Action](https://github.com/features/actions)
+    添加到仓库中，以在该仓库的任何 shell 文件上运行 `shellcheck`（这里有一种 [实现方式](https://github.com/marketplace/actions/shellcheck)）。检查它是否工作！
+- en: '[Build your own](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/building-actions)
+    GitHub action to run [`proselint`](https://github.com/amperser/proselint) or [`write-good`](https://github.com/btford/write-good)
+    on all the `.md` files in the repository. Enable it in your repository, and check
+    that it works by filing a pull request with a typo in it.'
+  id: totrans-48
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: '[构建自己的](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/building-actions)
+    GitHub action 来在仓库中的所有 `.md` 文件上运行 `proselint` 或 `write-good`。在您的仓库中启用它，并通过提交包含错别字的
+    pull request 来检查它是否工作。'
+- en: '* * *'
+  id: totrans-49
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/metaprogramming.md).'
+  id: totrans-50
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2020/metaprogramming.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-51
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 根据 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

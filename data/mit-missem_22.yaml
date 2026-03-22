@@ -1,0 +1,1322 @@
+- en: Editors (Vim)
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 编辑器（Vim）
+- en: 原文：[https://missing.csail.mit.edu/2020/editors/](https://missing.csail.mit.edu/2020/editors/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2020/editors/](https://missing.csail.mit.edu/2020/editors/)
+- en: Writing English words and writing code are very different activities. When programming,
+    you spend more time switching files, reading, navigating, and editing code compared
+    to writing a long stream. It makes sense that there are different types of programs
+    for writing English words versus code (e.g. Microsoft Word versus Visual Studio
+    Code).
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 写英语单词和编写代码是非常不同的活动。在编程时，你花费更多的时间在切换文件、阅读、导航和编辑代码上，与写作长篇流相比。因此，对于写英语单词和编写代码来说，有不同的程序类型（例如，Microsoft
+    Word与Visual Studio Code）是有道理的。
+- en: 'As programmers, we spend most of our time editing code, so it’s worth investing
+    time mastering an editor that fits your needs. Here’s how you learn a new editor:'
+  id: totrans-3
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 作为程序员，我们大部分时间都在编辑代码，因此花时间掌握一个适合你需求的编辑器是值得的。以下是如何学习新编辑器的方法：
+- en: Start with a tutorial (i.e. this lecture, plus resources that we point out)
+  id: totrans-4
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 从教程开始（即这次讲座，以及我们指出的资源）
+- en: Stick with using the editor for all your text editing needs (even if it slows
+    you down initially)
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 坚持使用编辑器来满足你所有的文本编辑需求（即使它最初会减慢你的速度）
+- en: 'Look things up as you go: if it seems like there should be a better way to
+    do something, there probably is'
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 随时查找信息：如果你觉得有更好的方法来做某事，那么很可能确实有。
+- en: 'If you follow the above method, fully committing to using the new program for
+    all text editing purposes, the timeline for learning a sophisticated text editor
+    looks like this. In an hour or two, you’ll learn basic editor functions such as
+    opening and editing files, save/quit, and navigating buffers. Once you’re 20 hours
+    in, you should be as fast as you were with your old editor. After that, the benefits
+    start: you will have enough knowledge and muscle memory that using the new editor
+    saves you time. Modern text editors are fancy and powerful tools, so the learning
+    never stops: you’ll get even faster as you learn more.'
+  id: totrans-7
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你遵循上述方法，完全承诺使用新程序进行所有文本编辑，学习复杂文本编辑器的时程表看起来是这样的。在一小时或两小时内，你将学会基本的编辑器功能，如打开和编辑文件、保存/退出和导航缓冲区。一旦你投入了20小时，你应该和以前使用旧编辑器一样快。之后，好处开始显现：你将拥有足够的知识和肌肉记忆，使用新编辑器可以节省你的时间。现代文本编辑器是花哨且强大的工具，因此学习永远不会停止：随着你学习的深入，你会变得更加快速。
+- en: Which editor to learn?
+  id: totrans-8
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 学习哪个编辑器？
+- en: Programmers have [strong opinions](https://en.wikipedia.org/wiki/Editor_war)
+    about their text editors.
+  id: totrans-9
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 程序员们对他们使用的文本编辑器有[强烈的意见](https://en.wikipedia.org/wiki/Editor_war)。
+- en: Which editors are popular today? See this [Stack Overflow survey](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)
+    (there may be some bias because Stack Overflow users may not be representative
+    of programmers as a whole). [Visual Studio Code](https://code.visualstudio.com/)
+    is the most popular editor. [Vim](https://www.vim.org/) is the most popular command-line-based
+    editor.
+  id: totrans-10
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 今天哪些编辑器受欢迎？请参阅这个[Stack Overflow调查](https://insights.stackoverflow.com/survey/2019/#development-environments-and-tools)（可能存在一些偏差，因为Stack
+    Overflow用户可能不能代表所有程序员）。[Visual Studio Code](https://code.visualstudio.com/)是最受欢迎的编辑器。[Vim](https://www.vim.org/)是最受欢迎的基于命令行的编辑器。
+- en: Vim
+  id: totrans-11
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Vim
+- en: All the instructors of this class use Vim as their editor. Vim has a rich history;
+    it originated from the Vi editor (1976), and it’s still being developed today.
+    Vim has some really neat ideas behind it, and for this reason, lots of tools support
+    a Vim emulation mode (for example, 1.4 million people have installed [Vim emulation
+    for VS code](https://github.com/VSCodeVim/Vim)). Vim is probably worth learning
+    even if you finally end up switching to some other text editor.
+  id: totrans-12
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本课程的所有讲师都使用Vim作为他们的编辑器。Vim有着丰富的历史；它起源于1976年的Vi编辑器，并且至今仍在开发中。Vim背后有一些非常巧妙的思想，因此许多工具支持Vim模拟模式（例如，有140万人安装了[VS
+    Code的Vim模拟](https://github.com/VSCodeVim/Vim)）。即使你最终切换到其他文本编辑器，学习Vim也可能值得。
+- en: It’s not possible to teach all of Vim’s functionality in 50 minutes, so we’re
+    going to focus on explaining the philosophy of Vim, teaching you the basics, showing
+    you some of the more advanced functionality, and giving you the resources to master
+    the tool.
+  id: totrans-13
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在50分钟内不可能教授Vim的所有功能，因此我们将专注于解释Vim的哲学，教你基础知识，展示一些更高级的功能，并为你提供掌握这个工具的资源。
+- en: Philosophy of Vim
+  id: totrans-14
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Vim的哲学
+- en: 'When programming, you spend most of your time reading/editing, not writing.
+    For this reason, Vim is a *modal* editor: it has different modes for inserting
+    text vs manipulating text. Vim is programmable (with Vimscript and also other
+    languages like Python), and Vim’s interface itself is a programming language:
+    keystrokes (with mnemonic names) are commands, and these commands are composable.
+    Vim avoids the use of the mouse, because it’s too slow; Vim even avoids using
+    the arrow keys because it requires too much movement.'
+  id: totrans-15
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在编程时，您大部分时间都在阅读/编辑，而不是写作。因此，Vim 是一个 *模式编辑器*：它有插入文本和操作文本的不同模式。Vim 是可编程的（使用 Vimscript
+    以及其他语言如 Python），Vim 的界面本身也是一种编程语言：按键（带有助记名）是命令，这些命令可以组合。Vim 避免使用鼠标，因为它太慢；Vim 甚至避免使用箭头键，因为它需要太多的移动。
+- en: The end result is an editor that can match the speed at which you think.
+  id: totrans-16
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 最终结果是，一个可以匹配您思考速度的编辑器。
+- en: Modal editing
+  id: totrans-17
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 模式编辑
+- en: Vim’s design is based on the idea that a lot of programmer time is spent reading,
+    navigating, and making small edits, as opposed to writing long streams of text.
+    For this reason, Vim has multiple operating modes.
+  id: totrans-18
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Vim 的设计基于这样一个理念：程序员的大部分时间都花在阅读、导航和进行小幅度编辑上，而不是编写长篇文本。因此，Vim 有多个操作模式。
+- en: '**Normal**: for moving around a file and making edits'
+  id: totrans-19
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**正常模式**：用于在文件中移动和编辑'
+- en: '**Insert**: for inserting text'
+  id: totrans-20
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**插入模式**：用于插入文本'
+- en: '**Replace**: for replacing text'
+  id: totrans-21
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**替换模式**：用于替换文本'
+- en: '**Visual** (plain, line, or block): for selecting blocks of text'
+  id: totrans-22
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**视觉模式**（平面、行或块）：用于选择文本块'
+- en: '**Command-line**: for running a command'
+  id: totrans-23
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**命令行模式**：用于运行命令'
+- en: Keystrokes have different meanings in different operating modes. For example,
+    the letter `x` in Insert mode will just insert a literal character ‘x’, but in
+    Normal mode, it will delete the character under the cursor, and in Visual mode,
+    it will delete the selection.
+  id: totrans-24
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在不同的操作模式下，按键有不同的含义。例如，在插入模式下，字母 `x` 只会插入一个字符 'x'，但在正常模式下，它将删除光标下的字符，在视觉模式下，它将删除选定的文本。
+- en: In its default configuration, Vim shows the current mode in the bottom left.
+    The initial/default mode is Normal mode. You’ll generally spend most of your time
+    between Normal mode and Insert mode.
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在默认配置下，Vim 在左下角显示当前模式。初始/默认模式是正常模式。您通常会花费大部分时间在正常模式和插入模式之间。
+- en: You change modes by pressing `<ESC>` (the escape key) to switch from any mode
+    back to Normal mode. From Normal mode, enter Insert mode with `i`, Replace mode
+    with `R`, Visual mode with `v`, Visual Line mode with `V`, Visual Block mode with
+    `<C-v>` (Ctrl-V, sometimes also written `^V`), and Command-line mode with `:`.
+  id: totrans-26
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您可以通过按下 `<ESC>`（退格键）来切换模式，从任何模式返回到正常模式。从正常模式，使用 `i` 进入插入模式，使用 `R` 进入替换模式，使用
+    `v` 进入视觉模式，使用 `V` 进入视觉行模式，使用 `<C-v>`（Ctrl-V，有时也写作 `^V`）进入视觉块模式，以及使用 `:` 进入命令行模式。
+- en: 'You use the `<ESC>` key a lot when using Vim: consider remapping Caps Lock
+    to Escape ([macOS instructions](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS))
+    or create an [alternative mapping](https://vim.fandom.com/wiki/Avoid_the_escape_key#Mappings)
+    for `<ESC>` with a simple key sequence.'
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用 Vim 时，您会经常使用 `<ESC>` 键：考虑将 Caps Lock 映射到 Escape ([macOS 指令](https://vim.fandom.com/wiki/Map_caps_lock_to_escape_in_macOS))
+    或创建一个 [替代映射](https://vim.fandom.com/wiki/Avoid_the_escape_key#Mappings) 以简单的键序列来映射
+    `<ESC>`。
+- en: Basics
+  id: totrans-28
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 基础知识
+- en: Inserting text
+  id: totrans-29
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 插入文本
+- en: From Normal mode, press `i` to enter Insert mode. Now, Vim behaves like any
+    other text editor, until you press `<ESC>` to return to Normal mode. This, along
+    with the basics explained above, are all you need to start editing files using
+    Vim (though not particularly efficiently, if you’re spending all your time editing
+    from Insert mode).
+  id: totrans-30
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 从正常模式，按 `i` 键进入插入模式。现在，Vim 的行为就像任何其他文本编辑器一样，直到您按下 `<ESC>` 返回到正常模式。这，加上上面解释的基本知识，就是您开始使用
+    Vim 编辑文件所需的所有内容（尽管如果您一直从插入模式进行编辑，效率可能不是特别高）。
+- en: Buffers, tabs, and windows
+  id: totrans-31
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 缓冲区、标签页和窗口
+- en: Vim maintains a set of open files, called “buffers”. A Vim session has a number
+    of tabs, each of which has a number of windows (split panes). Each window shows
+    a single buffer. Unlike other programs you are familiar with, like web browsers,
+    there is not a 1-to-1 correspondence between buffers and windows; windows are
+    merely views. A given buffer may be open in *multiple* windows, even within the
+    same tab. This can be quite handy, for example, to view two different parts of
+    a file at the same time.
+  id: totrans-32
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Vim维护一组打开的文件，称为“缓冲区”。Vim会话包含多个标签页，每个标签页又包含多个窗口（分割的窗格）。每个窗口显示一个单独的缓冲区。与您熟悉的其他程序不同，如网页浏览器，缓冲区和窗口之间没有一一对应的关系；窗口仅仅是视图。一个特定的缓冲区可以在多个窗口中打开，甚至在同一标签页内。这可以非常方便，例如，同时查看文件的不同部分。
+- en: By default, Vim opens with a single tab, which contains a single window.
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 默认情况下，Vim以单个标签页打开，其中包含一个窗口。
+- en: Command-line
+  id: totrans-34
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 命令行
+- en: Command mode can be entered by typing `:` in Normal mode. Your cursor will jump
+    to the command line at the bottom of the screen upon pressing `:`. This mode has
+    many functionalities, including opening, saving, and closing files, and [quitting
+    Vim](https://twitter.com/iamdevloper/status/435555976687923200).
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在普通模式下输入`:`可以进入命令模式。在按下`:`后，光标将跳转到屏幕底部的命令行。此模式具有许多功能，包括打开、保存和关闭文件，以及[退出Vim](https://twitter.com/iamdevloper/status/435555976687923200)。
+- en: '`:q` quit (close window)'
+  id: totrans-36
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:q` 退出（关闭窗口）'
+- en: '`:w` save (“write”)'
+  id: totrans-37
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:w` 保存（“写入”）'
+- en: '`:wq` save and quit'
+  id: totrans-38
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:wq` 保存并退出'
+- en: '`:e {name of file}` open file for editing'
+  id: totrans-39
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:e {文件名}` 打开文件进行编辑'
+- en: '`:ls` show open buffers'
+  id: totrans-40
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:ls` 显示打开的缓冲区'
+- en: '`:help {topic}` open help'
+  id: totrans-41
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:help {主题}` 打开帮助'
+- en: '`:help :w` opens help for the `:w` command'
+  id: totrans-42
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:help :w` 打开`:w`命令的帮助'
+- en: '`:help w` opens help for the `w` movement'
+  id: totrans-43
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:help w` 打开`:w`移动的帮助'
+- en: Vim’s interface is a programming language
+  id: totrans-44
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Vim的界面是一种编程语言
+- en: The most important idea in Vim is that Vim’s interface itself is a programming
+    language. Keystrokes (with mnemonic names) are commands, and these commands *compose*.
+    This enables efficient movement and edits, especially once the commands become
+    muscle memory.
+  id: totrans-45
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Vim最重要的思想是Vim的界面本身是一种编程语言。按键（带有记忆名称）是命令，这些命令可以组合。这使得移动和编辑变得高效，尤其是当命令成为肌肉记忆后。
+- en: Movement
+  id: totrans-46
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 移动
+- en: You should spend most of your time in Normal mode, using movement commands to
+    navigate the buffer. Movements in Vim are also called “nouns”, because they refer
+    to chunks of text.
+  id: totrans-47
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您应该大部分时间都在普通模式下，使用移动命令在缓冲区中导航。Vim中的移动也称为“名词”，因为它们指的是文本块。
+- en: 'Basic movement: `hjkl` (left, down, up, right)'
+  id: totrans-48
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 基本移动：`hjkl`（左，下，上，右）
+- en: 'Words: `w` (next word), `b` (beginning of word), `e` (end of word)'
+  id: totrans-49
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 单词：`w`（下一个单词），`b`（单词开头），`e`（单词结尾）
+- en: 'Lines: `0` (beginning of line), `^` (first non-blank character), `$` (end of
+    line)'
+  id: totrans-50
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 行：`0`（行首），`^`（第一个非空白字符），`$`（行尾）
+- en: 'Screen: `H` (top of screen), `M` (middle of screen), `L` (bottom of screen)'
+  id: totrans-51
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 屏幕：`H`（屏幕顶部），`M`（屏幕中间），`L`（屏幕底部）
+- en: 'Scroll: `Ctrl-u` (up), `Ctrl-d` (down)'
+  id: totrans-52
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 滚动：`Ctrl-u`（向上），`Ctrl-d`（向下）
+- en: 'File: `gg` (beginning of file), `G` (end of file)'
+  id: totrans-53
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 文件：`gg`（文件开头），`G`（文件结尾）
+- en: 'Line numbers: `:{number}<CR>` or `{number}G` (line {number})'
+  id: totrans-54
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 行号：`:{数字}<CR>` 或 `{数字}G`（第{数字}行）
+- en: 'Misc: `%` (corresponding item)'
+  id: totrans-55
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 其他：`%`（对应项）
+- en: 'Find: `f{character}`, `t{character}`, `F{character}`, `T{character}`'
+  id: totrans-56
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 查找：`f{字符}`，`t{字符}`，`F{字符}`，`T{字符}`
+- en: find/to forward/backward {character} on the current line
+  id: totrans-57
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在当前行上查找/向前/向后{字符}
+- en: '`,` / `;` for navigating matches'
+  id: totrans-58
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`,` / `;` 用于导航匹配项'
+- en: 'Search: `/{regex}`, `n` / `N` for navigating matches'
+  id: totrans-59
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 搜索：`/{正则表达式}`，`n` / `N` 用于导航匹配项
+- en: Selection
+  id: totrans-60
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 选择
+- en: 'Visual modes:'
+  id: totrans-61
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 可视模式：
+- en: 'Visual: `v`'
+  id: totrans-62
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 可视：`v`
+- en: 'Visual Line: `V`'
+  id: totrans-63
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 可视行：`V`
+- en: 'Visual Block: `Ctrl-v`'
+  id: totrans-64
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 可视块：`Ctrl-v`
+- en: Can use movement keys to make selection.
+  id: totrans-65
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 可以使用移动键进行选择。
+- en: Edits
+  id: totrans-66
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 编辑
+- en: Everything that you used to do with the mouse, you now do with the keyboard
+    using editing commands that compose with movement commands. Here’s where Vim’s
+    interface starts to look like a programming language. Vim’s editing commands are
+    also called “verbs”, because verbs act on nouns.
+  id: totrans-67
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您以前用鼠标做的所有事情，现在都可以通过使用与移动命令组合的编辑命令在键盘上完成。这就是Vim的界面开始看起来像编程语言的地方。Vim的编辑命令也称为“动词”，因为动词作用于名词。
+- en: '`i` enter Insert mode'
+  id: totrans-68
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`i` 进入插入模式'
+- en: but for manipulating/deleting text, want to use something more than backspace
+  id: totrans-69
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 但对于操纵/删除文本，想要使用比退格键更强大的工具
+- en: '`o` / `O` insert line below / above'
+  id: totrans-70
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`o` / `O` 在下方/上方插入行'
+- en: '`d{motion}` delete {motion}'
+  id: totrans-71
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`d{动作}` 删除{动作}'
+- en: e.g. `dw` is delete word, `d$` is delete to end of line, `d0` is delete to beginning
+    of line
+  id: totrans-72
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 例如，`dw`是删除单词，`d$`是删除到行尾，`d0`是删除到行首
+- en: '`c{motion}` change {motion}'
+  id: totrans-73
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`c{动作}` 更改{动作}'
+- en: e.g. `cw` is change word
+  id: totrans-74
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 例如，`cw` 是更改单词
+- en: like `d{motion}` followed by `i`
+  id: totrans-75
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 如 `d{motion}` 后跟 `i`
+- en: '`x` delete character (equal to `dl`)'
+  id: totrans-76
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`x` 删除字符（等同于 `dl`）'
+- en: '`s` substitute character (equal to `cl`)'
+  id: totrans-77
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`s` 替换字符（等同于 `cl`）'
+- en: Visual mode + manipulation
+  id: totrans-78
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 视觉模式 + 操作
+- en: select text, `d` to delete it or `c` to change it
+  id: totrans-79
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 选择文本，`d` 删除它或 `c` 更改它
+- en: '`u` to undo, `<C-r>` to redo'
+  id: totrans-80
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`u` 撤销，`<C-r>` 重做'
+- en: '`y` to copy / “yank” (some other commands like `d` also copy)'
+  id: totrans-81
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`y` 复制/“yank”（一些其他命令如 `d` 也复制）'
+- en: '`p` to paste'
+  id: totrans-82
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`p` 粘贴'
+- en: 'Lots more to learn: e.g. `~` flips the case of a character'
+  id: totrans-83
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 还有更多要学习的内容：例如，`~` 切换字符的大小写
+- en: Counts
+  id: totrans-84
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 计数
+- en: You can combine nouns and verbs with a count, which will perform a given action
+    a number of times.
+  id: totrans-85
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以将名词和动词与一个计数器结合使用，这将执行给定的动作多次。
+- en: '`3w` move 3 words forward'
+  id: totrans-86
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`3w` 向前移动 3 个单词'
+- en: '`5j` move 5 lines down'
+  id: totrans-87
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`5j` 向下移动 5 行'
+- en: '`7dw` delete 7 words'
+  id: totrans-88
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`7dw` 删除 7 个单词'
+- en: Modifiers
+  id: totrans-89
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 修饰符
+- en: You can use modifiers to change the meaning of a noun. Some modifiers are `i`,
+    which means “inner” or “inside”, and `a`, which means “around”.
+  id: totrans-90
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以使用修饰符来改变名词的含义。一些修饰符是 `i`，表示“内部”或“里面”，和 `a`，表示“周围”。
+- en: '`ci(` change the contents inside the current pair of parentheses'
+  id: totrans-91
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`ci(` 更改当前括号对内的内容'
+- en: '`ci[` change the contents inside the current pair of square brackets'
+  id: totrans-92
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`ci[` 更改当前方括号对内的内容'
+- en: '`da''` delete a single-quoted string, including the surrounding single quotes'
+  id: totrans-93
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`da''` 删除单个引号字符串，包括周围的引号'
+- en: Demo
+  id: totrans-94
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 示例
+- en: 'Here is a broken [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz) implementation:'
+  id: totrans-95
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这里是一个损坏的 [fizz buzz](https://en.wikipedia.org/wiki/Fizz_buzz) 实现：
+- en: '[PRE0]'
+  id: totrans-96
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: 'We will fix the following issues:'
+  id: totrans-97
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们将修复以下问题：
+- en: Main is never called
+  id: totrans-98
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 主函数从未被调用
+- en: Starts at 0 instead of 1
+  id: totrans-99
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 从 0 开始而不是 1
+- en: Prints “fizz” and “buzz” on separate lines for multiples of 15
+  id: totrans-100
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在 15 的倍数上分别打印“fizz”和“buzz”
+- en: Prints “fizz” for multiples of 5
+  id: totrans-101
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 对于 5 的倍数打印“fizz”
+- en: Uses a hard-coded argument of 10 instead of taking a command-line argument
+  id: totrans-102
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 使用硬编码的 10 作为参数而不是接受命令行参数
+- en: See the lecture video for the demonstration. Compare how the above changes are
+    made using Vim to how you might make the same edits using another program. Notice
+    how very few keystrokes are required in Vim, allowing you to edit at the speed
+    you think.
+  id: totrans-103
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 观看演示视频。比较使用 Vim 实现上述更改的方式与你可能使用其他程序进行相同编辑的方式。注意在 Vim 中所需的按键非常少，这让你可以以你认为的速度进行编辑。
+- en: Customizing Vim
+  id: totrans-104
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 自定义 Vim
+- en: Vim is customized through a plain-text configuration file in `~/.vimrc` (containing
+    Vimscript commands). There are probably lots of basic settings that you want to
+    turn on.
+  id: totrans-105
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Vim 通过位于 `~/.vimrc` 的纯文本配置文件（包含 Vimscript 命令）进行自定义。可能有很多基本的设置是你想要启用的。
+- en: We are providing a well-documented basic config that you can use as a starting
+    point. We recommend using this because it fixes some of Vim’s quirky default behavior.
+    **Download our config [here](/2020/files/vimrc) and save it to `~/.vimrc`.**
+  id: totrans-106
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们提供了一个文档齐全的基本配置，你可以将其用作起点。我们建议使用这个配置，因为它修复了 Vim 一些古怪默认行为。**在此处下载我们的配置 [here](/2020/files/vimrc)
+    并保存到 `~/.vimrc`。**
+- en: Vim is heavily customizable, and it’s worth spending time exploring customization
+    options. You can look at people’s dotfiles on GitHub for inspiration, for example,
+    your instructors’ Vim configs ([Anish](https://github.com/anishathalye/dotfiles/blob/master/vimrc),
+    [Jon](https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.lua)
+    (uses [neovim](https://neovim.io/)), [Jose](https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc)).
+    There are lots of good blog posts on this topic too. Try not to copy-and-paste
+    people’s full configuration, but read it, understand it, and take what you need.
+  id: totrans-107
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Vim 可以高度自定义，花时间探索自定义选项是值得的。例如，你可以查看 GitHub 上人们的 dotfiles 以获得灵感，例如，你的指导老师的 Vim
+    配置（[Anish](https://github.com/anishathalye/dotfiles/blob/master/vimrc)，[Jon](https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.lua)（使用
+    [neovim](https://neovim.io/)），[Jose](https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc)）。关于这个主题也有很多好的博客文章。尽量不要复制粘贴人们的完整配置，而是阅读它，理解它，并取你需要的部分。
+- en: Extending Vim
+  id: totrans-108
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 扩展 Vim
+- en: There are tons of plugins for extending Vim. Contrary to outdated advice that
+    you might find on the internet, you do *not* need to use a plugin manager for
+    Vim (since Vim 8.0). Instead, you can use the built-in package management system.
+    Simply create the directory `~/.vim/pack/vendor/start/`, and put plugins in there
+    (e.g. via `git clone`).
+  id: totrans-109
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有很多插件可以扩展 Vim。与你在互联网上可能找到的过时建议相反，你不需要为 Vim 使用插件管理器（自 Vim 8.0 以来）。相反，你可以使用内置的包管理系统。只需创建目录
+    `~/.vim/pack/vendor/start/`，并将插件放在那里（例如，通过 `git clone`）。
+- en: 'Here are some of our favorite plugins:'
+  id: totrans-110
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这里有一些我们最喜欢的插件：
+- en: '[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim): fuzzy file finder'
+  id: totrans-111
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)：模糊文件查找器'
+- en: '[ack.vim](https://github.com/mileszs/ack.vim): code search'
+  id: totrans-112
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[ack.vim](https://github.com/mileszs/ack.vim)：代码搜索'
+- en: '[nerdtree](https://github.com/scrooloose/nerdtree): file explorer'
+  id: totrans-113
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[nerdtree](https://github.com/scrooloose/nerdtree)：文件浏览器'
+- en: '[vim-easymotion](https://github.com/easymotion/vim-easymotion): magic motions'
+  id: totrans-114
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[vim-easymotion](https://github.com/easymotion/vim-easymotion)：魔法移动'
+- en: 'We’re trying to avoid giving an overwhelmingly long list of plugins here. You
+    can check out the instructors’ dotfiles ([Anish](https://github.com/anishathalye/dotfiles),
+    [Jon](https://github.com/jonhoo/configs), [Jose](https://github.com/JJGO/dotfiles))
+    to see what other plugins we use. Check out [Vim Awesome](https://vimawesome.com/)
+    for more awesome Vim plugins. There are also tons of blog posts on this topic:
+    just search for “best Vim plugins”.'
+  id: totrans-115
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们在这里尽量避免提供一个过于冗长的插件列表。你可以查看讲师的配置文件（[Anish](https://github.com/anishathalye/dotfiles),
+    [Jon](https://github.com/jonhoo/configs), [Jose](https://github.com/JJGO/dotfiles)）来了解我们使用哪些其他插件。查看
+    [Vim Awesome](https://vimawesome.com/) 以获取更多令人惊叹的 Vim 插件。还有大量关于这个主题的博客文章：只需搜索“最佳
+    Vim 插件”。
+- en: Vim-mode in other programs
+  id: totrans-116
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 其他程序中的 Vim 模式
+- en: Many tools support Vim emulation. The quality varies from good to great; depending
+    on the tool, it may not support the fancier Vim features, but most cover the basics
+    pretty well.
+  id: totrans-117
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 许多工具支持 Vim 模拟。质量从好到优秀不等；根据工具的不同，它可能不支持更复杂的 Vim 功能，但大多数都很好地覆盖了基础功能。
+- en: Shell
+  id: totrans-118
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Shell
+- en: If you’re a Bash user, use `set -o vi`. If you use Zsh, `bindkey -v`. For Fish,
+    `fish_vi_key_bindings`. Additionally, no matter what shell you use, you can `export
+    EDITOR=vim`. This is the environment variable used to decide which editor is launched
+    when a program wants to start an editor. For example, `git` will use this editor
+    for commit messages.
+  id: totrans-119
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你使用 Bash，请使用 `set -o vi`。如果你使用 Zsh，请使用 `bindkey -v`。对于 Fish，请使用 `fish_vi_key_bindings`。此外，无论你使用什么
+    shell，你都可以 `export EDITOR=vim`。这是决定当程序想要启动编辑器时使用哪个编辑器的环境变量。例如，`git` 将使用此编辑器进行提交消息。
+- en: Readline
+  id: totrans-120
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Readline
+- en: 'Many programs use the [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)
+    library for their command-line interface. Readline supports (basic) Vim emulation
+    too, which can be enabled by adding the following line to the `~/.inputrc` file:'
+  id: totrans-121
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 许多程序使用 [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html)
+    库作为它们的命令行界面。Readline 还支持 (基本) Vim 模拟，可以通过在 `~/.inputrc` 文件中添加以下行来启用：
+- en: '[PRE1]'
+  id: totrans-122
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: With this setting, for example, the Python REPL will support Vim bindings.
+  id: totrans-123
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 使用此设置，例如，Python REPL 将支持 Vim 绑定。
+- en: Others
+  id: totrans-124
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 其他
+- en: There are even vim keybinding extensions for web [browsers](https://vim.fandom.com/wiki/Vim_key_bindings_for_web_browsers)
+    - some popular ones are [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+    for Google Chrome and [Tridactyl](https://github.com/tridactyl/tridactyl) for
+    Firefox. You can even get Vim bindings in [Jupyter notebooks](https://github.com/jupyterlab-contrib/jupyterlab-vim).
+    Here is a [long list](https://reversed.top/2016-08-13/big-list-of-vim-like-software)
+    of software with vim-like keybindings.
+  id: totrans-125
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 甚至有针对网页浏览器的 vim 键绑定扩展 [browsers](https://vim.fandom.com/wiki/Vim_key_bindings_for_web_browsers)
+    - 一些流行的有 [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+    用于 Google Chrome 和 [Tridactyl](https://github.com/tridactyl/tridactyl) 用于 Firefox。你甚至可以在
+    [Jupyter notebooks](https://github.com/jupyterlab-contrib/jupyterlab-vim) 中获得
+    Vim 绑定。这里有一个 [长列表](https://reversed.top/2016-08-13/big-list-of-vim-like-software)
+    的具有类似 vim 键绑定的软件。
+- en: Advanced Vim
+  id: totrans-126
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 高级 Vim
+- en: 'Here are a few examples to show you the power of the editor. We can’t teach
+    you all of these kinds of things, but you’ll learn them as you go. A good heuristic:
+    whenever you’re using your editor and you think “there must be a better way of
+    doing this”, there probably is: look it up online.'
+  id: totrans-127
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这里有一些示例来展示编辑器的强大功能。我们无法教你所有这些类型的东西，但你在使用过程中会学到它们。一个好的经验法则是：每当你使用你的编辑器并想“一定有更好的方法来做这件事”，通常确实有：在网上查找。
+- en: Search and replace
+  id: totrans-128
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 搜索和替换
+- en: '`:s` (substitute) command ([documentation](https://vim.fandom.com/wiki/Search_and_replace)).'
+  id: totrans-129
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`:s`（替换）命令 ([文档](https://vim.fandom.com/wiki/Search_and_replace))。'
+- en: '`%s/foo/bar/g`'
+  id: totrans-130
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`%s/foo/bar/g`'
+- en: replace foo with bar globally in file
+  id: totrans-131
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 在文件中全局替换 foo 为 bar
+- en: '`%s/\[.*\](\(.*\))/\1/g`'
+  id: totrans-132
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`%s/\[.*\](\(.*\))/\1/g`'
+- en: replace named Markdown links with plain URLs
+  id: totrans-133
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 将命名的 Markdown 链接替换为纯 URL
+- en: Multiple windows
+  id: totrans-134
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 多窗口
+- en: '`:sp` / `:vsp` to split windows'
+  id: totrans-135
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`:sp` / `:vsp` 用于分割窗口'
+- en: Can have multiple views of the same buffer.
+  id: totrans-136
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 可以有同一缓冲区的多个视图。
+- en: Macros
+  id: totrans-137
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 宏
+- en: '`q{character}` to start recording a macro in register `{character}`'
+  id: totrans-138
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`q{字符}` 在寄存器 `{字符}` 中开始录制宏'
+- en: '`q` to stop recording'
+  id: totrans-139
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`q` 停止录制'
+- en: '`@{character}` replays the macro'
+  id: totrans-140
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`@{字符}` 重新播放宏'
+- en: Macro execution stops on error
+  id: totrans-141
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 宏执行在出错时停止
+- en: '`{number}@{character}` executes a macro {number} times'
+  id: totrans-142
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`{number}@{character}` 执行宏 {number} 次'
+- en: Macros can be recursive
+  id: totrans-143
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 宏可以是递归的
+- en: first clear the macro with `q{character}q`
+  id: totrans-144
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 首先使用 `q{character}q` 清除宏
+- en: record the macro, with `@{character}` to invoke the macro recursively (will
+    be a no-op until recording is complete)
+  id: totrans-145
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 记录宏，使用 `@{character}` 来递归调用宏（在记录完成前将不会执行）
+- en: 'Example: convert xml to json ([file](/2020/files/example-data.xml))'
+  id: totrans-146
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 示例：将 xml 转换为 json ([文件](/2020/files/example-data.xml))
+- en: Array of objects with keys “name” / “email”
+  id: totrans-147
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 带有“name”/“email”键的对象数组
+- en: Use a Python program?
+  id: totrans-148
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 使用 Python 程序？
+- en: Use sed / regexes
+  id: totrans-149
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 使用 sed / 正则表达式
+- en: '`g/people/d`'
+  id: totrans-150
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`g/people/d`'
+- en: '`%s/<person>/{/g`'
+  id: totrans-151
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`%s/<person>/{/g`'
+- en: '`%s/<name>\(.*\)<\/name>/"name": "\1",/g`'
+  id: totrans-152
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`%s/<name>\(.*\)<\/name>/"name": "\1",/g`'
+- en: …
+  id: totrans-153
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: …
+- en: Vim commands / macros
+  id: totrans-154
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: Vim 命令/宏
+- en: '`Gdd`, `ggdd` delete first and last lines'
+  id: totrans-155
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`Gdd`, `ggdd` 删除第一行和最后一行'
+- en: Macro to format a single element (register `e`)
+  id: totrans-156
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 格式化单个元素的宏（寄存器 `e`）
+- en: Go to line with `<name>`
+  id: totrans-157
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 使用 `<name>` 跳转到行
+- en: '`qe^r"f>s": "<ESC>f<C"<ESC>q`'
+  id: totrans-158
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`qe^r"f>s": "<ESC>f<C"<ESC>q`'
+- en: Macro to format a person
+  id: totrans-159
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 格式化人员的宏
+- en: Go to line with `<person>`
+  id: totrans-160
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 使用 `<person>` 跳转到行
+- en: '`qpS{<ESC>j@eA,<ESC>j@ejS},<ESC>q`'
+  id: totrans-161
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`qpS{<ESC>j@eA,<ESC>j@ejS},<ESC>q`'
+- en: Macro to format a person and go to the next person
+  id: totrans-162
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 格式化人员并跳转到下一个人
+- en: Go to line with `<person>`
+  id: totrans-163
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 使用 `<person>` 跳转到行
+- en: '`qq@pjq`'
+  id: totrans-164
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`qq@pjq`'
+- en: Execute macro until end of file
+  id: totrans-165
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 执行宏直到文件末尾
+- en: '`999@q`'
+  id: totrans-166
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`999@q`'
+- en: Manually remove last `,` and add `[` and `]` delimiters
+  id: totrans-167
+  prefs:
+  - PREF_IND
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 手动删除最后的 `,` 并添加 `[` 和 `]` 分隔符
+- en: Resources
+  id: totrans-168
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 资源
+- en: '`vimtutor` is a tutorial that comes installed with Vim - if Vim is installed,
+    you should be able to run `vimtutor` from your shell'
+  id: totrans-169
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`vimtutor` 是一个与 Vim 一起安装的教程 - 如果 Vim 已安装，你应该可以从你的 shell 中运行 `vimtutor`'
+- en: '[Vim Adventures](https://vim-adventures.com/) is a game to learn Vim'
+  id: totrans-170
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vim Adventures](https://vim-adventures.com/) 是一个学习 Vim 的游戏'
+- en: '[Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)'
+  id: totrans-171
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)'
+- en: '[Vim Advent Calendar](https://vimways.org/2019/) has various Vim tips'
+  id: totrans-172
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vim Advent Calendar](https://vimways.org/2019/) 有各种 Vim 技巧'
+- en: '[Vim Golf](https://www.vimgolf.com/) is [code golf](https://en.wikipedia.org/wiki/Code_golf),
+    but where the programming language is Vim’s UI'
+  id: totrans-173
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vim Golf](https://www.vimgolf.com/) 是 [code golf](https://en.wikipedia.org/wiki/Code_golf)，但编程语言是
+    Vim 的 UI'
+- en: '[Vi/Vim Stack Exchange](https://vi.stackexchange.com/)'
+  id: totrans-174
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vi/Vim Stack Exchange](https://vi.stackexchange.com/)'
+- en: '[Vim Screencasts](http://vimcasts.org/)'
+  id: totrans-175
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vim Screencasts](http://vimcasts.org/)'
+- en: '[Practical Vim](https://pragprog.com/titles/dnvim2/) (book)'
+  id: totrans-176
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Practical Vim](https://pragprog.com/titles/dnvim2/)（书籍）'
+- en: Exercises
+  id: totrans-177
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 练习
+- en: 'Complete `vimtutor`. Note: it looks best in a [80x24](https://en.wikipedia.org/wiki/VT100)
+    (80 columns by 24 lines) terminal window.'
+  id: totrans-178
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 完成 `vimtutor`。注意：它在 [80x24](https://en.wikipedia.org/wiki/VT100)（80 列 x 24 行）的终端窗口中看起来最好。
+- en: Download our [basic vimrc](/2020/files/vimrc) and save it to `~/.vimrc`. Read
+    through the well-commented file (using Vim!), and observe how Vim looks and behaves
+    slightly differently with the new config.
+  id: totrans-179
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 下载我们的[基本 vimrc](/2020/files/vimrc)并将其保存到`~/.vimrc`。仔细阅读这个有良好注释的文件（使用 Vim！），并观察
+    Vim 在新配置下的外观和行为略有不同。
+- en: 'Install and configure a plugin: [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim).'
+  id: totrans-180
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 安装并配置插件：[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)。
+- en: Create the plugins directory with `mkdir -p ~/.vim/pack/vendor/start`
+  id: totrans-181
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 使用 `mkdir -p ~/.vim/pack/vendor/start` 创建插件目录
+- en: 'Download the plugin: `cd ~/.vim/pack/vendor/start; git clone https://github.com/ctrlpvim/ctrlp.vim`'
+  id: totrans-182
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 下载插件：`cd ~/.vim/pack/vendor/start; git clone https://github.com/ctrlpvim/ctrlp.vim`
+- en: Read the [documentation](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md)
+    for the plugin. Try using CtrlP to locate a file by navigating to a project directory,
+    opening Vim, and using the Vim command-line to start `:CtrlP`.
+  id: totrans-183
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 阅读插件的[文档](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md)。尝试使用
+    CtrlP 通过导航到项目目录，打开 Vim，并使用 Vim 命令行启动 `:CtrlP` 来定位文件。
+- en: Customize CtrlP by adding [configuration](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options)
+    to your `~/.vimrc` to open CtrlP by pressing Ctrl-P.
+  id: totrans-184
+  prefs:
+  - PREF_IND
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 通过添加[配置](https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md#basic-options)到你的`~/.vimrc`中来自定义
+    CtrlP，通过按 Ctrl-P 来打开 CtrlP。
+- en: To practice using Vim, re-do the [Demo](#demo) from lecture on your own machine.
+  id: totrans-185
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 为了练习使用 Vim，在自己的机器上重新做讲座中的[演示](#demo)。
+- en: Use Vim for *all* your text editing for the next month. Whenever something seems
+    inefficient, or when you think “there must be a better way”, try Googling it,
+    there probably is. If you get stuck, come to office hours or send us an email.
+  id: totrans-186
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 在接下来的一个月内使用 Vim 进行所有文本编辑。每当遇到效率低下或认为“一定有更好的方法”时，尝试在 Google 上搜索，可能真的有。如果你卡住了，请来办公室或给我们发电子邮件。
+- en: Configure your other tools to use Vim bindings (see instructions above).
+  id: totrans-187
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 将你的其他工具配置为使用 Vim 绑定（见上方说明）。
+- en: Further customize your `~/.vimrc` and install more plugins.
+  id: totrans-188
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 进一步自定义你的 `~/.vimrc` 并安装更多插件。
+- en: (Advanced) Convert XML to JSON ([example file](/2020/files/example-data.xml))
+    using Vim macros. Try to do this on your own, but you can look at the [macros](#macros)
+    section above if you get stuck.
+  id: totrans-189
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: (高级) 使用 Vim 宏将 XML 转换为 JSON ([示例文件](/2020/files/example-data.xml))。尽量自己完成这个任务，但如果遇到困难，可以查看上面的[宏](#macros)部分。
+- en: '* * *'
+  id: totrans-190
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/editors.md).'
+  id: totrans-191
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页](https://github.com/missing-semester/missing-semester/blob/master/_2020/editors.md).'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-192
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本文档遵循[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可协议。

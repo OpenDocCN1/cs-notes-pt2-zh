@@ -1,0 +1,400 @@
+- en: Backups
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 备份
+- en: 原文：[https://missing.csail.mit.edu/2019/backups/](https://missing.csail.mit.edu/2019/backups/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: '[https://missing.csail.mit.edu/2019/backups/](https://missing.csail.mit.edu/2019/backups/)'
+- en: 'There are two types of people:'
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 人类有两种类型：
+- en: Those who do backups
+  id: totrans-3
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 那些进行备份的人
+- en: Those who will do backups
+  id: totrans-4
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 那些会进行备份的人
+- en: Any data you own that you haven’t backed up is data that could be gone at any
+    moment, forever. Here we will cover some good backup basics and the pitfalls of
+    some approaches.
+  id: totrans-5
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你拥有的任何未备份的数据都可能随时永远消失。在这里，我们将介绍一些良好的备份基础和一些方法的陷阱。
+- en: 3-2-1 Rule
+  id: totrans-6
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 3-2-1 规则
+- en: 'The [3-2-1 rule](https://www.us-cert.gov/sites/default/files/publications/data_backup_options.pdf)
+    is a general recommended strategy for backing up your data. It state that you
+    should have:'
+  id: totrans-7
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[3-2-1 规则](https://www.us-cert.gov/sites/default/files/publications/data_backup_options.pdf)是备份数据的一般推荐策略。它指出你应该有：'
+- en: at least **3 copies** of your data
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 至少**3份**你的数据副本
+- en: '**2** copies in **different mediums**'
+  id: totrans-9
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**2份**副本在**不同的介质**上'
+- en: '**1** of the copies being **offsite**'
+  id: totrans-10
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**1份**副本**离线存储**'
+- en: The main idea behind this recommendation is not to put all your eggs in one
+    basket. Having 2 different devices/disks ensures that a single hardware failure
+    doesn’t take away all your data. Similarly, if you store your only backup at home
+    and the house burns down or gets robbed you’ll lose everything! That’s what the
+    offsite copy is there for. Onsite backups give you availability and speed, offsite
+    give you the resiliency should a disaster happen.
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 这个建议背后的主要思想不是把所有的鸡蛋放在一个篮子里。拥有2个不同的设备/磁盘可以确保单个硬件故障不会夺走你所有的数据。同样，如果你只在家里存储唯一的备份，而房子着火了或被盗了，你将失去一切！这就是离线副本的作用。本地备份为你提供了可用性和速度，离线备份则在发生灾难时提供了弹性。
+- en: Testing your backups
+  id: totrans-12
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 测试你的备份
+- en: A common pitfall when performing backups is blindly trusting whatever the system
+    says it’s doing and not verifying that the data can be properly recovered. Toy
+    Story 2 was almost lost and their backups were not working, [luck](https://www.youtube.com/watch?v=8dhp_20j0Ys)
+    ended up saving them.
+  id: totrans-13
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在执行备份时，一个常见的陷阱是盲目相信系统所说的操作，而不验证数据是否可以正确恢复。Toy Story 2 几乎丢失，他们的备份没有工作，[幸运](https://www.youtube.com/watch?v=8dhp_20j0Ys)最终救了他们。
+- en: Versioning
+  id: totrans-14
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 版本控制
+- en: 'You should understand that [RAID](https://en.wikipedia.org/wiki/RAID) is not
+    a backup, and in general **mirroring is not a backup solution**. Simply syncing
+    your files somewhere will not help in several scenarios, such as:'
+  id: totrans-15
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你应该了解[RAID](https://en.wikipedia.org/wiki/RAID)不是备份，并且通常**镜像不是备份解决方案**。简单地将文件同步到某个地方在几种情况下不会有所帮助，例如：
+- en: Data corruption
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 数据损坏
+- en: Malicious software
+  id: totrans-17
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 恶意软件
+- en: Deleting files by mistake
+  id: totrans-18
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 错误删除文件
+- en: If the changes on your data propagate to the backup then you won’t be able to
+    recover in these scenarios. Note that this is the case for a lot of cloud storage
+    solutions like Dropbox, Google Drive, One Drive, &c. Some of them do keep deleted
+    data around for short amounts of time but usually the interface to recover is
+    not something you want to be using to recover large amounts of files.
+  id: totrans-19
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 如果你的数据变化传播到备份中，那么在这些场景中你将无法恢复。请注意，这适用于许多云存储解决方案，如Dropbox、Google Drive、One Drive
+    等。其中一些确实会保留删除的数据一段时间，但通常恢复接口不是你想要用来恢复大量文件的东西。
+- en: A proper backup system should be versioned in order to prevent this failure
+    mode. By providing different snapshots in time one can easily navigate them to
+    restore whatever was lost. The most widely known software of this kind is macOS
+    Time Machine.
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一个合适的备份系统应该进行版本控制，以防止这种故障模式。通过提供不同时间点的快照，可以轻松导航以恢复丢失的内容。这类最知名的软件是macOS Time
+    Machine。
+- en: Deduplication
+  id: totrans-21
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 数据去重
+- en: However, making several copies of your data might be extremely costly in terms
+    of disk space. Nevertheless, from one version to the next, most data will be identical
+    and needs not be transferred again. This is where [data deduplication](https://en.wikipedia.org/wiki/Data_deduplication)
+    comes into play, by keeping track of what has already been stored one can do **incremental
+    backups** where only the changes from one version to the next need to be stored.
+    This significantly reduces the amount of space needed for backups beyond the first
+    copy.
+  id: totrans-22
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 然而，制作多个数据副本可能会在磁盘空间方面非常昂贵。尽管如此，从一份版本到下一份版本，大多数数据将是相同的，不需要再次传输。这就是[数据去重](https://en.wikipedia.org/wiki/Data_deduplication)发挥作用的地方，通过跟踪已经存储的内容，可以进行**增量备份**，只需存储从一份版本到下一份版本的变化。这显著减少了备份所需的空间，除了第一份副本之外。
+- en: Encryption
+  id: totrans-23
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 加密
+- en: Since we might be backing up to untrusted third parties like cloud providers
+    it is worth considering that if you backup your data is copied *as is* then it
+    could potentially be looked by unwanted agents. Documents like your taxes are
+    sensitive information that should not be backed up in plain format. To prevent
+    this, many backup solutions offer **client side encryption** where data is encrypted
+    before being sent to the server. That way the server cannot read the data it is
+    storing but you can decrypt it with your secret key.
+  id: totrans-24
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 由于我们可能会备份到不受信任的第三方，如云服务提供商，因此值得考虑的是，如果你备份的数据是原样复制的，那么它可能被不受欢迎的代理查看。像你的税务文件这样的文档是敏感信息，不应以明文格式备份。为了防止这种情况，许多备份解决方案提供了**客户端加密**功能，即在数据发送到服务器之前对其进行加密。这样，服务器无法读取它存储的数据，但你可以用你的密钥解密它。
+- en: As a side note, if your disk (or home partition) is not encrypted, then anyone
+    that get hold of your computer can manage to override the user access controls
+    and read your data. Modern hardware supports fast and efficient read and writes
+    of encrypted data so you might want to consider enabling **full disk encryption**.
+  id: totrans-25
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 作为附带说明，如果你的磁盘（或家庭分区）未加密，那么任何获得你的电脑的人都可以设法绕过用户访问控制并读取你的数据。现代硬件支持加密数据的快速和高效读写，因此你可能想考虑启用**全盘加密**。
+- en: Append only
+  id: totrans-26
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 仅追加
+- en: The properties reviewed so far focus on hardware failure or user mistakes but
+    fail to address what happens if a malicious agent wanted to delete your data.
+    Namely, say someone hacks into your system, are they able to wipe all your copies
+    of the data you care about? If you worry about that scenario then you need some
+    sort of append only backup solution. In general, this means having a server that
+    will allow you to send new data but will refuse to delete existing data. Usually
+    users have two keys, an append only key that supports creating new backups and
+    a full access key that also allows for deleting old backups that are no longer
+    needed. The latter one is stored offline.
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 到目前为止审查的属性主要集中在硬件故障或用户错误上，但未能解决恶意代理想要删除你的数据时会发生什么。也就是说，如果有人黑入你的系统，他们能否删除你关心的所有数据副本？如果你担心这种情况，那么你需要某种形式的仅追加备份解决方案。通常，这意味着拥有一个服务器，它允许你发送新数据，但拒绝删除现有数据。通常用户有两个密钥，一个仅追加密钥，支持创建新的备份，以及一个完整访问密钥，它还允许删除不再需要的旧备份。后者存储在离线状态。
+- en: Note that this is a quite challenging scenario since you need the ability to
+    make changes whilst still preventing a malicious user from deleting your data.
+    Existing commercial solutions include [Tarsnap](https://www.tarsnap.com/) and
+    [Borgbase](https://www.borgbase.com/).
+  id: totrans-28
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，这是一个相当具有挑战性的场景，因为你需要在防止恶意用户删除你的数据的同时，具备修改数据的能力。现有的商业解决方案包括[Tarsnap](https://www.tarsnap.com/)和[Borgbase](https://www.borgbase.com/)。
+- en: Additional considerations
+  id: totrans-29
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 其他考虑因素
+- en: 'Some other things you may want to look into are:'
+  id: totrans-30
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可能还想了解的一些其他事情是：
+- en: '**Periodic backups**: outdated backups can become pretty useless. Making backups
+    regularly should be a consideration for your system'
+  id: totrans-31
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**定期备份**：过时的备份可能变得相当无用。定期备份应该成为你系统的一个考虑因素。'
+- en: '**Bootable backups**: some programs allow you to clone your entire disk. That
+    way you have an image that contains an entire copy of your system you can boot
+    directly from.'
+  id: totrans-32
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**可启动备份**：一些程序允许你克隆整个磁盘。这样，你就有了一个包含整个系统副本的镜像，可以直接从它启动。'
+- en: '**Differential backup strategies**, you may not necessarily care the same about
+    all your data. You can define different backup policies for different types of
+    data.'
+  id: totrans-33
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**差异备份策略**，你可能并不一定对所有数据都关心得一样。你可以为不同类型的数据定义不同的备份策略。'
+- en: '**Append only backups** an additional consideration is to enforce append only
+    operations to your backup repositories in order to prevent malicious agents to
+    delete them if they get hold of your machine.'
+  id: totrans-34
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '**仅追加备份**，另一个需要考虑的是，为了防止恶意代理在获取你的机器后删除它们，需要强制执行对备份存储库的仅追加操作。'
+- en: Webservices
+  id: totrans-35
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Webservices
+- en: Not all the data that you use lives on your hard disk. If you use **webservices**,
+    then it might be the case that some data you care about, such as Google Docs presentations
+    or Spotify playlists, is stored online. Another easy example that is easy to forget
+    is email accounts with web access, such as Gmail. Figuring out a backup solution
+    in these cases is somewhat trickier. However, there are many services that allow
+    you to download your data, either directly or via an API. Tools such as [gmvault](https://github.com/gaubert/gmvault)
+    for Gmail are available to download the email files to your computer.
+  id: totrans-36
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您使用的并非所有数据都存储在您的硬盘上。如果您使用 **webservices**，那么您关心的某些数据，如 Google Docs 演示文稿或 Spotify
+    播单，可能存储在网上。另一个容易忘记的简单例子是具有网络访问权限的电子邮件账户，如 Gmail。在这些情况下，找出备份解决方案可能有些棘手。然而，有许多服务允许您直接或通过
+    API 下载您的数据。例如，[gmvault](https://github.com/gaubert/gmvault) 这样的工具可以将电子邮件文件下载到您的计算机上。
+- en: Webpages
+  id: totrans-37
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 网页
+- en: Similarly, some high quality content can be found online in the form of webpages.
+    If said content is static one can easily back it up by just saving the website
+    and all of its attachments. Another alternative is the [Wayback Machine](https://archive.org/web/),
+    a massive digital archive of the World Wide Web managed by the [Internet Archive](https://archive.org/),
+    a non profit organization focused on the preservation of all sorts of media. The
+    Wayback Machine allows you to capture and archive webpages being able to later
+    retrieve all the snapshots that have been archived for that website. If you find
+    it useful, consider [donating](https://archive.org/donate/) to the project.
+  id: totrans-38
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 类似地，一些高质量的内容可以以网页的形式在网上找到。如果这些内容是静态的，可以通过保存整个网站及其所有附件来轻松备份。另一个选择是 [Wayback Machine](https://archive.org/web/)，这是一个由
+    [Internet Archive](https://archive.org/) 管理的庞大的网络档案馆，该档案馆是一个专注于所有类型媒体保护的非营利组织。Wayback
+    Machine 允许您捕获和存档网页，以便以后检索该网站存档的所有快照。如果您觉得它很有用，请考虑 [捐赠](https://archive.org/donate/)
+    给该项目。
+- en: Resources
+  id: totrans-39
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 资源
+- en: 'Some good backup programs and services we have used and can honestly recommend:'
+  id: totrans-40
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们使用过并真诚推荐的某些优秀的备份程序和服务：
+- en: '[Tarsnap](https://www.tarsnap.com/) - deduplicated, encrypted online backup
+    service for the truly paranoid.'
+  id: totrans-41
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Tarsnap](https://www.tarsnap.com/) - 为真正偏执的人提供的去重、加密在线备份服务。'
+- en: '[Borg Backup](https://borgbackup.readthedocs.io) - deduplicated backup program
+    that supports compression and authenticated encryption. If you need a cloud provider
+    [BorgBase](https://www.borgbase.com/) is one popular option.'
+  id: totrans-42
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Borg Backup](https://borgbackup.readthedocs.io) - 支持压缩和认证加密的去重备份程序。如果您需要云提供商，[BorgBase](https://www.borgbase.com/)
+    是一个流行的选择。'
+- en: '[rsync](https://rsync.samba.org/) is a utility that provides fast incremental
+    file transfer. It is not a full backup solution.'
+  id: totrans-43
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[rsync](https://rsync.samba.org/) 是一种提供快速增量文件传输的实用程序。它不是一个完整的备份解决方案。'
+- en: '[rclone](https://rclone.org/) like rsync but for cloud storage providers such
+    as Amazon S3, Dropbox, Google Drive, rsync.net, &c. Supports client side encryption
+    of remote folders.'
+  id: totrans-44
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[rclone](https://rclone.org/) 类似于 rsync，但适用于云存储提供商，如 Amazon S3、Dropbox、Google
+    Drive、rsync.net 等。支持远程文件夹的客户端加密。'
+- en: Exercises
+  id: totrans-45
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Consider how you are (not) backing up your data and look into fixing/improving
+    that.
+  id: totrans-46
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 考虑您是如何（或不）备份您的数据，并查找改进的方法。
+- en: Figure out how to backup your email accounts
+  id: totrans-47
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 找出如何备份您的电子邮件账户
+- en: Choose a webservice you use often (Spotify, Google Music, etc.) and figure out
+    what options for backing up your data are. Often people have already made tools
+    (such as [youtube-dl](https://ytdl-org.github.io/youtube-dl/)) solutions based
+    on available APIs.
+  id: totrans-48
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 选择您经常使用的网络服务（如 Spotify、Google Music 等），并找出备份您数据的选择。通常，人们已经基于可用的 API 制作了工具（如
+    [youtube-dl](https://ytdl-org.github.io/youtube-dl/)）解决方案。
+- en: Think of a website you have visited repeatedly over the years and look it up
+    in [archive.org](https://archive.org/web/), how many versions does it have?
+  id: totrans-49
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 想想您多年来反复访问的网站，并在 [archive.org](https://archive.org/web/) 中查找它，它有多少个版本？
+- en: One way to efficiently implement deduplication is to use hardlinks. Whereas
+    symbolic link (also called a soft link or a symlink) is a file that points to
+    another file or folder, a hardlink is a exact copy of the pointer (it uses the
+    same inode and points to the same place in the disk). Thus if the original file
+    is removed a symlink stops working whereas a hard link doesn’t. However, hardlinks
+    only work for files. Try using the command `ln` to create hard links and compare
+    them to symlinks created with `ln -s`. (In macOS you will need to install the
+    gnu coreutils or the hln package).
+  id: totrans-50
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 实现去重的一种高效方法是使用硬链接。与符号链接（也称为软链接或符号链接）是指向另一个文件或文件夹的文件不同，硬链接是指针的精确副本（它使用相同的inode并指向磁盘上的同一位置）。因此，如果删除原始文件，符号链接将停止工作，而硬链接则不会。然而，硬链接仅适用于文件。尝试使用`ln`命令创建硬链接，并将它们与使用`ln
+    -s`创建的符号链接进行比较。（在macOS上，您需要安装gnu coreutils或hln包）。
+- en: '* * *'
+  id: totrans-51
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2019/backups.md).'
+  id: totrans-52
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2019/backups.md).'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-53
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本文档遵循[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可协议。

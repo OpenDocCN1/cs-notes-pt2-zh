@@ -1,0 +1,716 @@
+- en: Shell Tools and Scripting
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Shell 工具和脚本
+- en: 原文：[https://missing.csail.mit.edu/2020/shell-tools/](https://missing.csail.mit.edu/2020/shell-tools/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2020/shell-tools/](https://missing.csail.mit.edu/2020/shell-tools/)
+- en: In this lecture, we will present some of the basics of using bash as a scripting
+    language along with a number of shell tools that cover several of the most common
+    tasks that you will be constantly performing in the command line.
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在本讲座中，我们将介绍使用 bash 作为脚本语言的一些基本知识，以及一些覆盖了你在命令行中会不断执行的一些常见任务的 Shell 工具。
+- en: Shell Scripting
+  id: totrans-3
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Shell 脚本
+- en: So far we have seen how to execute commands in the shell and pipe them together.
+    However, in many scenarios you will want to perform a series of commands and make
+    use of control flow expressions like conditionals or loops.
+  id: totrans-4
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 到目前为止，我们已经看到了如何在 Shell 中执行命令并将它们管道连接起来。然而，在许多场景中，你可能想要执行一系列命令并使用控制流表达式，如条件或循环。
+- en: Shell scripts are the next step in complexity. Most shells have their own scripting
+    language with variables, control flow and its own syntax. What makes shell scripting
+    different from other scripting programming languages is that it is optimized for
+    performing shell-related tasks. Thus, creating command pipelines, saving results
+    into files, and reading from standard input are primitives in shell scripting,
+    which makes it easier to use than general purpose scripting languages. For this
+    section we will focus on bash scripting since it is the most common.
+  id: totrans-5
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Shell 脚本在复杂性上是下一步。大多数 Shell 都有自己的脚本语言，包括变量、控制流和自己的语法。使 Shell 脚本与其他脚本编程语言不同的地方在于，它针对执行
+    Shell 相关任务进行了优化。因此，创建命令管道、将结果保存到文件和从标准输入读取是 Shell 脚本中的基本操作，这使得它比通用脚本语言更容易使用。在本节中，我们将重点关注
+    bash 脚本，因为它是最常见的。
+- en: To assign variables in bash, use the syntax `foo=bar` and access the value of
+    the variable with `$foo`. Note that `foo = bar` will not work since it is interpreted
+    as calling the `foo` program with arguments `=` and `bar`. In general, in shell
+    scripts the space character will perform argument splitting. This behavior can
+    be confusing to use at first, so always check for that.
+  id: totrans-6
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在 bash 中分配变量时，使用语法 `foo=bar` 并使用 `$foo` 访问变量的值。请注意，`foo = bar` 不会工作，因为它被解释为调用
+    `foo` 程序，参数为 `=` 和 `bar`。一般来说，在 Shell 脚本中，空格字符将执行参数分割。这种行为一开始可能会让人困惑，所以总是要检查这一点。
+- en: Strings in bash can be defined with `'` and `"` delimiters, but they are not
+    equivalent. Strings delimited with `'` are literal strings and will not substitute
+    variable values whereas `"` delimited strings will.
+  id: totrans-7
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在 bash 中，字符串可以使用 `'` 和 `"` 分隔符定义，但它们并不等价。使用 `'` 分隔的字符串是字面字符串，不会替换变量值，而使用 `"`
+    分隔的字符串会。
+- en: '[PRE0]'
+  id: totrans-8
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE0]'
+- en: As with most programming languages, bash supports control flow techniques including
+    `if`, `case`, `while` and `for`. Similarly, `bash` has functions that take arguments
+    and can operate with them. Here is an example of a function that creates a directory
+    and `cd`s into it.
+  id: totrans-9
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 与大多数编程语言一样，bash 支持控制流技术，包括 `if`、`case`、`while` 和 `for`。同样，`bash` 有接受参数并可以与之操作的函数。以下是一个创建目录并
+    `cd` 进入该目录的函数示例。
+- en: '[PRE1]'
+  id: totrans-10
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE1]'
+- en: Here `$1` is the first argument to the script/function. Unlike other scripting
+    languages, bash uses a variety of special variables to refer to arguments, error
+    codes, and other relevant variables. Below is a list of some of them. A more comprehensive
+    list can be found [here](https://tldp.org/LDP/abs/html/special-chars.html).
+  id: totrans-11
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在这里，`$1` 是脚本/函数的第一个参数。与其它脚本语言不同，bash 使用各种特殊变量来引用参数、错误代码和其他相关变量。以下是一些它们的列表。更全面的列表可以在[这里](https://tldp.org/LDP/abs/html/special-chars.html)找到。
+- en: '`$0` - Name of the script'
+  id: totrans-12
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$0` - 脚本名称'
+- en: '`$1` to `$9` - Arguments to the script. `$1` is the first argument and so on.'
+  id: totrans-13
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$1` 到 `$9` - 脚本的参数。`$1` 是第一个参数，以此类推。'
+- en: '`$@` - All the arguments'
+  id: totrans-14
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$@` - 所有参数'
+- en: '`$#` - Number of arguments'
+  id: totrans-15
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$#` - 参数数量'
+- en: '`$?` - Return code of the previous command'
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$?` - 上一个命令的返回码'
+- en: '`$$` - Process identification number (PID) for the current script'
+  id: totrans-17
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$$` - 当前脚本的进程标识号（PID）'
+- en: '`!!` - Entire last command, including arguments. A common pattern is to execute
+    a command only for it to fail due to missing permissions; you can quickly re-execute
+    the command with sudo by doing `sudo !!`'
+  id: totrans-18
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`!!` - 包括参数在内的整个最后一个命令。一个常见的模式是执行一个命令，但由于缺少权限而失败；你可以通过执行 `sudo !!` 来快速重新执行该命令。'
+- en: '`$_` - Last argument from the last command. If you are in an interactive shell,
+    you can also quickly get this value by typing `Esc` followed by `.` or `Alt+.`'
+  id: totrans-19
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`$_` - 上一个命令的最后一个参数。如果你在一个交互式 Shell 中，你也可以通过输入 `Esc` 后跟 `.` 或 `Alt+.` 来快速获取这个值。'
+- en: Commands will often return output using `STDOUT`, errors through `STDERR`, and
+    a Return Code to report errors in a more script-friendly manner. The return code
+    or exit status is the way scripts/commands have to communicate how execution went.
+    A value of 0 usually means everything went OK; anything different from 0 means
+    an error occurred.
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 命令通常会通过 `STDOUT` 返回输出，通过 `STDERR` 返回错误，并通过返回码以更脚本友好的方式报告错误。返回码或退出状态是脚本/命令必须用来传达执行情况的方式。值为
+    0 通常表示一切正常；任何不同于 0 的值都表示发生了错误。
+- en: Exit codes can be used to conditionally execute commands using `&&` (and operator)
+    and `||` (or operator), both of which are [short-circuiting](https://en.wikipedia.org/wiki/Short-circuit_evaluation)
+    operators. Commands can also be separated within the same line using a semicolon
+    `;`. The `true` program will always have a 0 return code and the `false` command
+    will always have a 1 return code. Let’s see some examples
+  id: totrans-21
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 可以使用退出码来通过 `&&`（和操作符）和 `||`（或操作符）条件性地执行命令，这两个都是 [短路求值](https://en.wikipedia.org/wiki/Short-circuit_evaluation)
+    操作符。也可以使用分号 `;` 在同一行内分隔命令。`true` 程序总是有 0 返回码，而 `false` 命令总是有 1 返回码。让我们看看一些示例。
+- en: '[PRE2]'
+  id: totrans-22
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE2]'
+- en: Another common pattern is wanting to get the output of a command as a variable.
+    This can be done with *command substitution*. Whenever you place `$( CMD )` it
+    will execute `CMD`, get the output of the command and substitute it in place.
+    For example, if you do `for file in $(ls)`, the shell will first call `ls` and
+    then iterate over those values. A lesser known similar feature is *process substitution*,
+    `<( CMD )` will execute `CMD` and place the output in a temporary file and substitute
+    the `<()` with that file’s name. This is useful when commands expect values to
+    be passed by file instead of by STDIN. For example, `diff <(ls foo) <(ls bar)`
+    will show differences between files in dirs `foo` and `bar`.
+  id: totrans-23
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 另一个常见的模式是想要将命令的输出作为变量。这可以通过 *命令替换* 来完成。每次你放置 `$( CMD )`，它将执行 `CMD`，获取命令的输出并将其替换在原位置。例如，如果你执行
+    `for file in $(ls)`，shell 将首先调用 `ls`，然后遍历这些值。一个不太为人所知的相关特性是 *进程替换*，`<( CMD )`
+    将执行 `CMD` 并将输出放置在临时文件中，并用 `<()` 替换该文件名。这在命令期望通过文件而不是通过 STDIN 传递值时很有用。例如，`diff
+    <(ls foo) <(ls bar)` 将显示 `foo` 和 `bar` 目录中文件的差异。
+- en: Since that was a huge information dump, let’s see an example that showcases
+    some of these features. It will iterate through the arguments we provide, `grep`
+    for the string `foobar`, and append it to the file as a comment if it’s not found.
+  id: totrans-24
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 由于那是一个大量信息堆叠，让我们看看一个示例，展示了一些这些功能。它将遍历我们提供的参数，使用 `grep` 搜索字符串 `foobar`，如果未找到，则将其作为注释追加到文件中。
+- en: '[PRE3]'
+  id: totrans-25
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE3]'
+- en: In the comparison we tested whether `$?` was not equal to 0. Bash implements
+    many comparisons of this sort - you can find a detailed list in the manpage for
+    [`test`](https://www.man7.org/linux/man-pages/man1/test.1.html). When performing
+    comparisons in bash, try to use double brackets `[[ ]]` in favor of simple brackets
+    `[ ]`. Chances of making mistakes are lower although it won’t be portable to `sh`.
+    A more detailed explanation can be found [here](https://mywiki.wooledge.org/BashFAQ/031).
+  id: totrans-26
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在比较测试中，我们测试了 `$?` 是否不等于 0。Bash 实现了许多此类比较 - 你可以在 `test` 的手册页中找到一个详细的列表（[test](https://www.man7.org/linux/man-pages/man1/test.1.html)）。在
+    Bash 中执行比较时，尽量使用双括号 `[[ ]]` 而不是简单的括号 `[ ]`。这样犯错的几率会低一些，尽管它不会移植到 `sh`。更详细的解释可以在[这里](https://mywiki.wooledge.org/BashFAQ/031)找到。
+- en: When launching scripts, you will often want to provide arguments that are similar.
+    Bash has ways of making this easier, expanding expressions by carrying out filename
+    expansion. These techniques are often referred to as shell *globbing*.
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 当启动脚本时，你通常会想要提供相似的参数。Bash 有一些方法可以使这变得更容易，通过执行文件名扩展来展开表达式。这些技术通常被称为 shell *通配符*。
+- en: Wildcards - Whenever you want to perform some sort of wildcard matching, you
+    can use `?` and `*` to match one or any amount of characters respectively. For
+    instance, given files `foo`, `foo1`, `foo2`, `foo10` and `bar`, the command `rm
+    foo?` will delete `foo1` and `foo2` whereas `rm foo*` will delete all but `bar`.
+  id: totrans-28
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 通配符 - 无论何时你想执行某种通配符匹配，你可以使用 `?` 和 `*` 来分别匹配一个或任意数量的字符。例如，给定文件 `foo`、`foo1`、`foo2`、`foo10`
+    和 `bar`，命令 `rm foo?` 将会删除 `foo1` 和 `foo2`，而 `rm foo*` 将会删除除了 `bar` 以外的所有文件。
+- en: Curly braces `{}` - Whenever you have a common substring in a series of commands,
+    you can use curly braces for bash to expand this automatically. This comes in
+    very handy when moving or converting files.
+  id: totrans-29
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 大括号 `{}` - 当你在一系列命令中有一个共同的子字符串时，你可以使用大括号让 bash 自动展开。这在移动或转换文件时非常有用。
+- en: '[PRE4]'
+  id: totrans-30
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE4]'
+- en: Writing `bash` scripts can be tricky and unintuitive. There are tools like [shellcheck](https://github.com/koalaman/shellcheck)
+    that will help you find errors in your sh/bash scripts.
+  id: totrans-31
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 编写 `bash` 脚本可能很棘手且不直观。有一些工具，如 [shellcheck](https://github.com/koalaman/shellcheck)，可以帮助你找到
+    sh/bash 脚本中的错误。
+- en: 'Note that scripts need not necessarily be written in bash to be called from
+    the terminal. For instance, here’s a simple Python script that outputs its arguments
+    in reversed order:'
+  id: totrans-32
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，脚本不一定要用 bash 编写才能从终端调用。例如，这里有一个简单的 Python 脚本，它会以相反的顺序输出其参数：
+- en: '[PRE5]'
+  id: totrans-33
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE5]'
+- en: The kernel knows to execute this script with a python interpreter instead of
+    a shell command because we included a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
+    line at the top of the script. It is good practice to write shebang lines using
+    the [`env`](https://www.man7.org/linux/man-pages/man1/env.1.html) command that
+    will resolve to wherever the command lives in the system, increasing the portability
+    of your scripts. To resolve the location, `env` will make use of the `PATH` environment
+    variable we introduced in the first lecture. For this example the shebang line
+    would look like `#!/usr/bin/env python`.
+  id: totrans-34
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 内核知道使用 Python 解释器而不是 shell 命令来执行此脚本，因为我们已经在脚本顶部包含了 [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
+    行。使用 `env`（[链接](https://www.man7.org/linux/man-pages/man1/env.1.html)）命令编写 shebang
+    行是一种良好的实践，该命令将解析到系统中命令所在的位置，从而提高脚本的可移植性。为了解析位置，`env` 将使用我们在第一讲中介绍过的 `PATH` 环境变量。对于这个例子，shebang
+    行将看起来像 `#!/usr/bin/env python`。
+- en: 'Some differences between shell functions and scripts that you should keep in
+    mind are:'
+  id: totrans-35
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你应该记住的一些 shell 函数和脚本之间的区别是：
+- en: Functions have to be in the same language as the shell, while scripts can be
+    written in any language. This is why including a shebang for scripts is important.
+  id: totrans-36
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 函数必须与 shell 使用相同的语言，而脚本可以用任何语言编写。这就是为什么为脚本包含 shebang 行很重要的原因。
+- en: Functions are loaded once when their definition is read. Scripts are loaded
+    every time they are executed. This makes functions slightly faster to load, but
+    whenever you change them you will have to reload their definition.
+  id: totrans-37
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 函数在读取其定义时只加载一次。脚本每次执行时都会被加载。这使得函数的加载速度略快，但每次更改它们时，你将不得不重新加载它们的定义。
+- en: Functions are executed in the current shell environment whereas scripts execute
+    in their own process. Thus, functions can modify environment variables, e.g. change
+    your current directory, whereas scripts can’t. Environment variables which have
+    been exported using [`export`](https://www.man7.org/linux/man-pages/man1/export.1p.html)
+    are passed by value to scripts.
+  id: totrans-38
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 函数在当前 shell 环境中执行，而脚本则在它们自己的进程中执行。因此，函数可以修改环境变量，例如更改你的当前目录，而脚本则不能。使用 `export`（[链接](https://www.man7.org/linux/man-pages/man1/export.1p.html)）导出的环境变量会按值传递给脚本。
+- en: As with any programming language, functions are a powerful construct to achieve
+    modularity, code reuse, and clarity of shell code. Often shell scripts will include
+    their own function definitions.
+  id: totrans-39
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 与任何编程语言一样，函数是一种强大的结构，可以实现模块化、代码重用和 shell 代码的清晰性。通常，shell 脚本会包含它们自己的函数定义。
+- en: Shell Tools
+  id: totrans-40
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Shell 工具
+- en: Finding how to use commands
+  id: totrans-41
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 查找如何使用命令
+- en: At this point, you might be wondering how to find the flags for the commands
+    in the aliasing section such as `ls -l`, `mv -i` and `mkdir -p`. More generally,
+    given a command, how do you go about finding out what it does and its different
+    options? You could always start googling, but since UNIX predates StackOverflow,
+    there are built-in ways of getting this information.
+  id: totrans-42
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 到目前为止，你可能想知道如何在别名部分找到命令的标志，例如 `ls -l`、`mv -i` 和 `mkdir -p`。更普遍地说，给定一个命令，你如何找到它的作用及其不同的选项？你总是可以从谷歌开始搜索，但由于
+    UNIX 早在 StackOverflow 之前就存在，所以有一些内置的方法可以获取这些信息。
+- en: As we saw in the shell lecture, the first-order approach is to call said command
+    with the `-h` or `--help` flags. A more detailed approach is to use the `man`
+    command. Short for manual, [`man`](https://www.man7.org/linux/man-pages/man1/man.1.html)
+    provides a manual page (called manpage) for a command you specify. For example,
+    `man rm` will output the behavior of the `rm` command along with the flags that
+    it takes, including the `-i` flag we showed earlier. In fact, what I have been
+    linking so far for every command is the online version of the Linux manpages for
+    the commands. Even non-native commands that you install will have manpage entries
+    if the developer wrote them and included them as part of the installation process.
+    For interactive tools such as the ones based on ncurses, help for the commands
+    can often be accessed within the program using the `:help` command or typing `?`.
+  id: totrans-43
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 正如我们在shell课程中看到的，一阶方法是使用`-h`或`--help`标志调用该命令。更详细的方法是使用`man`命令。简称为手册，[`man`](https://www.man7.org/linux/man-pages/man1/man.1.html)为指定的命令提供了一个手册页（称为manpage）。例如，`man
+    rm`将输出`rm`命令的行为以及它所接受的标志，包括我们之前展示的`-i`标志。实际上，到目前为止，我链接的每个命令都是Linux手册页的在线版本。即使是您安装的非原生命令，如果开发者在安装过程中编写了它们并将其包含在内，也会有manpage条目。对于基于ncurses的交互式工具，通常可以使用`:help`命令或输入`?`在程序内部访问命令的帮助。
+- en: Sometimes manpages can provide overly detailed descriptions of the commands,
+    making it hard to decipher what flags/syntax to use for common use cases. [TLDR
+    pages](https://tldr.sh/) are a nifty complementary solution that focuses on giving
+    example use cases of a command so you can quickly figure out which options to
+    use. For instance, I find myself referring back to the tldr pages for [`tar`](https://tldr.inbrowser.app/pages/common/tar)
+    and [`ffmpeg`](https://tldr.inbrowser.app/pages/common/ffmpeg) way more often
+    than the manpages.
+  id: totrans-44
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有时，manpages可能会提供过于详细的命令描述，使得难以分辨出在常见用例中应该使用哪些标志/语法。[TLDR页面](https://tldr.sh/)是一个巧妙的补充解决方案，它专注于提供命令的示例用例，以便您可以快速确定要使用哪些选项。例如，我发现自己在`tar`和`ffmpeg`的tldr页面上比manpages上引用得更多。
+- en: Finding files
+  id: totrans-45
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 查找文件
+- en: 'One of the most common repetitive tasks that every programmer faces is finding
+    files or directories. All UNIX-like systems come packaged with [`find`](https://www.man7.org/linux/man-pages/man1/find.1.html),
+    a great shell tool to find files. `find` will recursively search for files matching
+    some criteria. Some examples:'
+  id: totrans-46
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 每个程序员都面临的最常见的重复性任务之一是查找文件或目录。所有类UNIX系统都预装了[`find`](https://www.man7.org/linux/man-pages/man1/find.1.html)，这是一个伟大的shell工具，用于查找文件。`find`将递归地搜索符合某些标准的文件。以下是一些示例：
+- en: '[PRE6]'
+  id: totrans-47
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE6]'
+- en: Beyond listing files, find can also perform actions over files that match your
+    query. This property can be incredibly helpful to simplify what could be fairly
+    monotonous tasks.
+  id: totrans-48
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 除了列出文件外，`find`还可以对匹配您查询的文件执行操作。这个特性可以非常有助于简化可能相当单调的任务。
+- en: '[PRE7]'
+  id: totrans-49
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE7]'
+- en: Despite `find`’s ubiquitousness, its syntax can sometimes be tricky to remember.
+    For instance, to simply find files that match some pattern `PATTERN` you have
+    to execute `find -name '*PATTERN*'` (or `-iname` if you want the pattern matching
+    to be case insensitive). You could start building aliases for those scenarios,
+    but part of the shell philosophy is that it is good to explore alternatives. Remember,
+    one of the best properties of the shell is that you are just calling programs,
+    so you can find (or even write yourself) replacements for some. For instance,
+    [`fd`](https://github.com/sharkdp/fd) is a simple, fast, and user-friendly alternative
+    to `find`. It offers some nice defaults like colorized output, default regex matching,
+    and Unicode support. It also has, in my opinion, a more intuitive syntax. For
+    example, the syntax to find a pattern `PATTERN` is `fd PATTERN`.
+  id: totrans-50
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 尽管`find`无处不在，但其语法有时可能难以记住。例如，要简单地查找匹配某些模式`PATTERN`的文件，您必须执行`find -name '*PATTERN*'`（或者如果您想使模式匹配不区分大小写，则使用`-iname`）。您可以为这些场景开始构建别名，但shell哲学的一部分是探索替代方案。记住，shell最好的特性之一就是您只是在调用程序，因此您可以找到（甚至自己编写）一些程序的替代品。例如，[`fd`](https://github.com/sharkdp/fd)是`find`的一个简单、快速且用户友好的替代品。它提供了一些很好的默认设置，如彩色输出、默认正则表达式匹配和Unicode支持。在我看来，它还具有更直观的语法。例如，查找模式`PATTERN`的语法是`fd
+    PATTERN`。
+- en: Most would agree that `find` and `fd` are good, but some of you might be wondering
+    about the efficiency of looking for files every time versus compiling some sort
+    of index or database for quickly searching. That is what [`locate`](https://www.man7.org/linux/man-pages/man1/locate.1.html)
+    is for. `locate` uses a database that is updated using [`updatedb`](https://www.man7.org/linux/man-pages/man1/updatedb.1.html).
+    In most systems, `updatedb` is updated daily via [`cron`](https://www.man7.org/linux/man-pages/man8/cron.8.html).
+    Therefore one trade-off between the two is speed vs freshness. Moreover `find`
+    and similar tools can also find files using attributes such as file size, modification
+    time, or file permissions, while `locate` just uses the file name. A more in-depth
+    comparison can be found [here](https://unix.stackexchange.com/questions/60205/locate-vs-find-usage-pros-and-cons-of-each-other).
+  id: totrans-51
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 大多数人都会同意`find`和`fd`是好的，但有些人可能想知道每次查找文件与编译某种索引或数据库以快速搜索之间的效率问题。这正是`locate`的作用所在。`locate`使用的是通过`updatedb`更新的数据库。在大多数系统中，`updatedb`是通过`cron`每天更新的。因此，这两种方法之间的权衡是速度与新鲜度。此外，`find`和类似工具还可以使用文件大小、修改时间或文件权限等属性来查找文件，而`locate`仅使用文件名。更深入的比较可以在[这里](https://unix.stackexchange.com/questions/60205/locate-vs-find-usage-pros-and-cons-of-each-other)找到。
+- en: Finding code
+  id: totrans-52
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 查找代码
+- en: Finding files by name is useful, but quite often you want to search based on
+    file *content*. A common scenario is wanting to search for all files that contain
+    some pattern, along with where in those files said pattern occurs. To achieve
+    this, most UNIX-like systems provide [`grep`](https://www.man7.org/linux/man-pages/man1/grep.1.html),
+    a generic tool for matching patterns from the input text. `grep` is an incredibly
+    valuable shell tool that we will cover in greater detail during the data wrangling
+    lecture.
+  id: totrans-53
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通过文件名查找文件是有用的，但很多时候你希望根据文件*内容*进行搜索。一个常见的场景是想要搜索包含某些模式的所有文件，以及这些模式在这些文件中的位置。为了实现这一点，大多数类UNIX系统提供了`grep`，这是一个从输入文本中匹配模式的通用工具。`grep`是一个极其有价值的shell工具，我们将在数据整理讲座中更详细地介绍它。
+- en: For now, know that `grep` has many flags that make it a very versatile tool.
+    Some I frequently use are `-C` for getting **C**ontext around the matching line
+    and `-v` for in**v**erting the match, i.e. print all lines that do **not** match
+    the pattern. For example, `grep -C 5` will print 5 lines before and after the
+    match. When it comes to quickly searching through many files, you want to use
+    `-R` since it will **R**ecursively go into directories and look for files for
+    the matching string.
+  id: totrans-54
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 目前，要知道`grep`有许多标志使其成为一个非常通用的工具。我经常使用的是`-C`，用于获取匹配行的**上下文**，以及`-v`用于**反转**匹配，即打印所有不匹配模式的行。例如，`grep
+    -C 5`将打印匹配前后各5行。当需要快速搜索多个文件时，应使用`-R`，因为它将**递归地**进入目录并查找匹配的字符串。
+- en: 'But `grep -R` can be improved in many ways, such as ignoring `.git` folders,
+    using multi CPU support, &c. Many `grep` alternatives have been developed, including
+    [ack](https://github.com/beyondgrep/ack3), [ag](https://github.com/ggreer/the_silver_searcher)
+    and [rg](https://github.com/BurntSushi/ripgrep). All of them are fantastic and
+    pretty much provide the same functionality. For now I am sticking with ripgrep
+    (`rg`), given how fast and intuitive it is. Some examples:'
+  id: totrans-55
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 但`grep -R`可以通过许多方式改进，例如忽略`.git`文件夹，使用多CPU支持等。已经开发了许多`grep`替代工具，包括[ack](https://github.com/beyondgrep/ack3)、[ag](https://github.com/ggreer/the_silver_searcher)和[rg](https://github.com/BurntSushi/ripgrep)。所有这些都非常出色，几乎提供了相同的功能。目前我坚持使用ripgrep（`rg`），因为它既快又直观。以下是一些示例：
+- en: '[PRE8]'
+  id: totrans-56
+  prefs: []
+  type: TYPE_PRE
+  zh: '[PRE8]'
+- en: Note that as with `find`/`fd`, it is important that you know that these problems
+    can be quickly solved using one of these tools, while the specific tools you use
+    are not as important.
+  id: totrans-57
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 注意，与`find`/`fd`一样，了解这些问题可以通过使用这些工具之一快速解决是很重要的，而你所使用的具体工具并不那么重要。
+- en: Finding shell commands
+  id: totrans-58
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 查找shell命令
+- en: So far we have seen how to find files and code, but as you start spending more
+    time in the shell, you may want to find specific commands you typed at some point.
+    The first thing to know is that typing the up arrow will give you back your last
+    command, and if you keep pressing it you will slowly go through your shell history.
+  id: totrans-59
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 到目前为止，我们已经看到了如何查找文件和代码，但随着你在shell中花费更多时间，你可能想要找到你之前输入的特定命令。首先要知道的是，按上箭头键会给你回退到最后一条命令，如果你继续按它，你将逐渐浏览你的shell历史记录。
+- en: The `history` command will let you access your shell history programmatically.
+    It will print your shell history to the standard output. If we want to search
+    there we can pipe that output to `grep` and search for patterns. `history | grep
+    find` will print commands that contain the substring “find”.
+  id: totrans-60
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '`history` 命令允许你以编程方式访问你的 shell 历史记录。它将你的 shell 历史记录打印到标准输出。如果我们想在那里搜索，可以将该输出通过
+    `grep` 管道搜索模式。`history | grep find` 将打印包含子字符串“find”的命令。'
+- en: In most shells, you can make use of `Ctrl+R` to perform backwards search through
+    your history. After pressing `Ctrl+R`, you can type a substring you want to match
+    for commands in your history. As you keep pressing it, you will cycle through
+    the matches in your history. This can also be enabled with the UP/DOWN arrows
+    in [zsh](https://github.com/zsh-users/zsh-history-substring-search). A nice addition
+    on top of `Ctrl+R` comes with using [fzf](https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#ctrl-r)
+    bindings. `fzf` is a general-purpose fuzzy finder that can be used with many commands.
+    Here it is used to fuzzily match through your history and present results in a
+    convenient and visually pleasing manner.
+  id: totrans-61
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在大多数 shell 中，你可以使用 `Ctrl+R` 来执行历史记录的反向搜索。按下 `Ctrl+R` 后，你可以输入你想要匹配历史记录中命令的子字符串。随着你持续按下它，你将遍历历史记录中的匹配项。这也可以通过
+    [zsh](https://github.com/zsh-users/zsh-history-substring-search) 中的 UP/DOWN 光标键来启用。在
+    `Ctrl+R` 的基础上，使用 [fzf](https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#ctrl-r)
+    绑定是一个很好的补充。`fzf` 是一个通用的模糊查找器，可以与许多命令一起使用。在这里，它用于模糊匹配你的历史记录，并以方便和视觉上令人愉悦的方式呈现结果。
+- en: Another cool history-related trick I really enjoy is **history-based autosuggestions**.
+    First introduced by the [fish](https://fishshell.com/) shell, this feature dynamically
+    autocompletes your current shell command with the most recent command that you
+    typed that shares a common prefix with it. It can be enabled in [zsh](https://github.com/zsh-users/zsh-autosuggestions)
+    and it is a great quality of life trick for your shell.
+  id: totrans-62
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 另一个我非常喜欢的、与历史记录相关的技巧是**基于历史的自动补全**。这一功能最初由 [fish](https://fishshell.com/) shell
+    提出，它动态地使用与当前 shell 命令共享相同前缀的最近输入的命令来自动补全你的当前 shell 命令。在 [zsh](https://github.com/zsh-users/zsh-autosuggestions)
+    中可以启用此功能，这对于你的 shell 来说是一个极好的提升生活质量的技巧。
+- en: You can modify your shell’s history behavior, like preventing commands with
+    a leading space from being included. This comes in handy when you are typing commands
+    with passwords or other bits of sensitive information. To do this, add `HISTCONTROL=ignorespace`
+    to your `.bashrc` or `setopt HIST_IGNORE_SPACE` to your `.zshrc`. If you make
+    the mistake of not adding the leading space, you can always manually remove the
+    entry by editing your `.bash_history` or `.zsh_history`.
+  id: totrans-63
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 你可以修改你的 shell 的历史行为，例如防止以空格开头的命令被包含。当你输入带有密码或其他敏感信息的命令时，这会很有用。为此，将 `HISTCONTROL=ignorespace`
+    添加到你的 `.bashrc` 或将 `setopt HIST_IGNORE_SPACE` 添加到你的 `.zshrc`。如果你不小心没有添加前导空格，你总是可以通过编辑你的
+    `.bash_history` 或 `.zsh_history` 来手动删除条目。
+- en: Directory Navigation
+  id: totrans-64
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 目录导航
+- en: So far, we have assumed that you are already where you need to be to perform
+    these actions. But how do you go about quickly navigating directories? There are
+    many simple ways that you could do this, such as writing shell aliases or creating
+    symlinks with [ln -s](https://www.man7.org/linux/man-pages/man1/ln.1.html), but
+    the truth is that developers have figured out quite clever and sophisticated solutions
+    by now.
+  id: totrans-65
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 到目前为止，我们假设你已经处于执行这些操作所需的位置。但你是如何快速导航目录的呢？有许多简单的方法可以实现这一点，例如编写 shell 别名或使用 [ln
+    -s](https://www.man7.org/linux/man-pages/man1/ln.1.html) 创建符号链接，但事实是，开发者现在已经找到了相当巧妙和复杂的解决方案。
+- en: As with the theme of this course, you often want to optimize for the common
+    case. Finding frequent and/or recent files and directories can be done through
+    tools like [`fasd`](https://github.com/clvv/fasd) and [`autojump`](https://github.com/wting/autojump).
+    Fasd ranks files and directories by [*frecency*](https://web.archive.org/web/20210421120120/https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Frecency_algorithm),
+    that is, by both *frequency* and *recency*. By default, `fasd` adds a `z` command
+    that you can use to quickly `cd` using a substring of a *frecent* directory. For
+    example, if you often go to `/home/user/files/cool_project` you can simply use
+    `z cool` to jump there. Using autojump, this same change of directory could be
+    accomplished using `j cool`.
+  id: totrans-66
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 与本课程的主题一样，你通常希望优化常见情况。通过工具如 [fasd](https://github.com/clvv/fasd) 和 [autojump](https://github.com/wting/autojump)
+    可以找到频繁和/或最近的文件和目录。Fasd 通过 [*frecency*](https://web.archive.org/web/20210421120120/https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Frecency_algorithm)
+    对文件和目录进行排序，即通过 *频率* 和 *最近修改时间*。默认情况下，`fasd` 添加了一个 `z` 命令，你可以用它通过 *frecent* 目录的子字符串快速
+    `cd`。例如，如果你经常访问 `/home/user/files/cool_project`，你可以简单地使用 `z cool` 来跳转到那里。使用 autojump，同样的目录更改可以通过
+    `j cool` 完成。
+- en: 'More complex tools exist to quickly get an overview of a directory structure:
+    [`tree`](https://linux.die.net/man/1/tree), [`broot`](https://github.com/Canop/broot)
+    or even full fledged file managers like [`nnn`](https://github.com/jarun/nnn)
+    or [`ranger`](https://github.com/ranger/ranger).'
+  id: totrans-67
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 存在更复杂的工具，可以快速查看目录结构：[tree](https://linux.die.net/man/1/tree)、[broot](https://github.com/Canop/broot)
+    或甚至完整的文件管理器如 [nnn](https://github.com/jarun/nnn) 或 [ranger](https://github.com/ranger/ranger)。
+- en: Exercises
+  id: totrans-68
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: 练习
+- en: Read [`man ls`](https://www.man7.org/linux/man-pages/man1/ls.1.html) and write
+    an `ls` command that lists files in the following manner
+  id: totrans-69
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 阅读 `man ls`（[链接](https://www.man7.org/linux/man-pages/man1/ls.1.html)）并编写一个
+    `ls` 命令，以以下方式列出文件
+- en: Includes all files, including hidden files
+  id: totrans-70
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 包括所有文件，包括隐藏文件
+- en: Sizes are listed in human readable format (e.g. 454M instead of 454279954)
+  id: totrans-71
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 大小以人类可读格式列出（例如，454M而不是454279954）
+- en: Files are ordered by recency
+  id: totrans-72
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 文件按最近修改顺序排列
+- en: Output is colorized
+  id: totrans-73
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 输出已着色
+- en: A sample output would look like this
+  id: totrans-74
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+  zh: 一个示例输出可能看起来像这样
+- en: '[PRE9]'
+  id: totrans-75
+  prefs:
+  - PREF_IND
+  type: TYPE_PRE
+  zh: '[PRE9]'
+- en: Write bash functions `marco` and `polo` that do the following. Whenever you
+    execute `marco` the current working directory should be saved in some manner,
+    then when you execute `polo`, no matter what directory you are in, `polo` should
+    `cd` you back to the directory where you executed `marco`. For ease of debugging
+    you can write the code in a file `marco.sh` and (re)load the definitions to your
+    shell by executing `source marco.sh`.
+  id: totrans-76
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 编写 bash 函数 `marco` 和 `polo`，执行以下操作。每次执行 `marco` 时，当前工作目录应以某种方式保存，然后当执行 `polo`
+    时，无论你在哪个目录，`polo` 应该将你 `cd` 回执行 `marco` 的目录。为了便于调试，你可以将代码写入文件 `marco.sh`，并通过执行
+    `source marco.sh` 将定义重新加载到你的 shell 中。
+- en: Say you have a command that fails rarely. In order to debug it you need to capture
+    its output but it can be time consuming to get a failure run. Write a bash script
+    that runs the following script until it fails and captures its standard output
+    and error streams to files and prints everything at the end. Bonus points if you
+    can also report how many runs it took for the script to fail.
+  id: totrans-77
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 假设你有一个很少失败的命令。为了调试它，你需要捕获其输出，但获取失败运行可能很耗时。编写一个 bash 脚本，该脚本会一直运行直到失败，并将标准输出和错误流捕获到文件中，并在最后打印一切。如果你还能报告脚本失败所需的运行次数，则加分。
+- en: '[PRE10]'
+  id: totrans-78
+  prefs:
+  - PREF_IND
+  type: TYPE_PRE
+  zh: '[PRE10]'
+- en: As we covered in the lecture `find`’s `-exec` can be very powerful for performing
+    operations over the files we are searching for. However, what if we want to do
+    something with **all** the files, like creating a zip file? As you have seen so
+    far commands will take input from both arguments and STDIN. When piping commands,
+    we are connecting STDOUT to STDIN, but some commands like `tar` take inputs from
+    arguments. To bridge this disconnect there’s the [`xargs`](https://www.man7.org/linux/man-pages/man1/xargs.1.html)
+    command which will execute a command using STDIN as arguments. For example `ls
+    | xargs rm` will delete the files in the current directory.
+  id: totrans-79
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: 正如我们在讲座中提到的，`find` 的 `-exec` 可以非常强大，用于对搜索到的文件执行操作。然而，如果我们想对 **所有** 文件做些什么，比如创建一个压缩文件呢？如你所见，到目前为止，命令将从参数和
+    STDIN 中获取输入。当管道命令时，我们连接 STDOUT 到 STDIN，但一些命令如 `tar` 从参数中获取输入。为了弥合这种脱节，有 `xargs`（[链接](https://www.man7.org/linux/man-pages/man1/xargs.1.html)）命令，它将使用
+    STDIN 作为参数执行命令。例如，`ls | xargs rm` 将删除当前目录中的文件。
+- en: 'Your task is to write a command that recursively finds all HTML files in the
+    folder and makes a zip with them. Note that your command should work even if the
+    files have spaces (hint: check `-d` flag for `xargs`).'
+  id: totrans-80
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+  zh: 你的任务是编写一个命令，以递归方式查找文件夹中的所有 HTML 文件，并将它们打包成 zip 文件。请注意，即使文件名中包含空格，你的命令也应该能够正常工作（提示：检查
+    `xargs` 的 `-d` 标志）。
+- en: If you’re on macOS, note that the default BSD `find` is different from the one
+    included in [GNU coreutils](https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands).
+    You can use `-print0` on `find` and the `-0` flag on `xargs`. As a macOS user,
+    you should be aware that command-line utilities shipped with macOS may differ
+    from the GNU counterparts; you can install the GNU versions if you like by [using
+    brew](https://formulae.brew.sh/formula/coreutils).
+  id: totrans-81
+  prefs:
+  - PREF_IND
+  type: TYPE_NORMAL
+  zh: 如果你使用的是 macOS，请注意，默认的 BSD `find` 命令与包含在 [GNU coreutils](https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands)
+    中的命令不同。你可以在 `find` 命令中使用 `-print0`，并在 `xargs` 中使用 `-0` 标志。作为 macOS 用户，你应该知道 macOS
+    中的命令行工具可能与 GNU 版本不同；如果你喜欢，可以通过 [使用 brew](https://formulae.brew.sh/formula/coreutils)
+    安装 GNU 版本。
+- en: (Advanced) Write a command or script to recursively find the most recently modified
+    file in a directory. More generally, can you list all files by recency?
+  id: totrans-82
+  prefs:
+  - PREF_OL
+  type: TYPE_NORMAL
+  zh: (高级) 编写一个命令或脚本，以递归方式查找目录中最新的文件。更普遍地说，你能按时间顺序列出所有文件吗？
+- en: '* * *'
+  id: totrans-83
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/shell-tools.md).'
+  id: totrans-84
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2020/shell-tools.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-85
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本作品受 [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0) 许可。

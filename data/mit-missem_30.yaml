@@ -1,0 +1,847 @@
+- en: Q&A
+  id: totrans-0
+  prefs:
+  - PREF_H1
+  type: TYPE_NORMAL
+  zh: Q&A
+- en: 原文：[https://missing.csail.mit.edu/2020/qa/](https://missing.csail.mit.edu/2020/qa/)
+  id: totrans-1
+  prefs:
+  - PREF_BQ
+  type: TYPE_NORMAL
+  zh: 原文：[https://missing.csail.mit.edu/2020/qa/](https://missing.csail.mit.edu/2020/qa/)
+- en: 'For the last lecture, we answered questions that the students submitted:'
+  id: totrans-2
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于最后一堂课，我们回答了学生提交的问题：
+- en: '[Any recommendations on learning Operating Systems related topics like processes,
+    virtual memory, interrupts, memory management, etc](#any-recommendations-on-learning-operating-systems-related-topics-like-processes-virtual-memory-interrupts-memory-management-etc)'
+  id: totrans-3
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[关于学习操作系统相关主题（如进程、虚拟内存、中断、内存管理等）有任何推荐吗？](#any-recommendations-on-learning-operating-systems-related-topics-like-processes-virtual-memory-interrupts-memory-management-etc)'
+- en: '[What are some of the tools you’d prioritize learning first?](#what-are-some-of-the-tools-youd-prioritize-learning-first)'
+  id: totrans-4
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[你优先学习哪些工具？](#what-are-some-of-the-tools-youd-prioritize-learning-first)'
+- en: '[When do I use Python versus a Bash scripts versus some other language?](#when-do-i-use-python-versus-a-bash-scripts-versus-some-other-language)'
+  id: totrans-5
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[我何时使用Python、Bash脚本或其它语言？](#when-do-i-use-python-versus-a-bash-scripts-versus-some-other-language)'
+- en: '[What is the difference between `source script.sh` and `./script.sh`](#what-is-the-difference-between-source-scriptsh-and-scriptsh)'
+  id: totrans-6
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[`source script.sh` 和 `./script.sh` 之间的区别是什么？](#what-is-the-difference-between-source-scriptsh-and-scriptsh)'
+- en: '[What are the places where various packages and tools are stored and how does
+    referencing them work? What even is `/bin` or `/lib`?](#what-are-the-places-where-various-packages-and-tools-are-stored-and-how-does-referencing-them-work-what-even-is-bin-or-lib)'
+  id: totrans-7
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[各种软件包和工具存储在哪些地方？如何引用它们？`/bin` 或 `/lib` 是什么？](#what-are-the-places-where-various-packages-and-tools-are-stored-and-how-does-referencing-them-work-what-even-is-bin-or-lib)'
+- en: '[Should I `apt-get install` a python-whatever, or `pip install` whatever package?](#should-i-apt-get-install-a-python-whatever-or-pip-install-whatever-package)'
+  id: totrans-8
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[我应该使用`apt-get install`安装python-whatever，还是使用`pip install`安装任何包？](#should-i-apt-get-install-a-python-whatever-or-pip-install-whatever-package)'
+- en: '[What’s the easiest and best profiling tools to use to improve performance
+    of my code?](#whats-the-easiest-and-best-profiling-tools-to-use-to-improve-performance-of-my-code)'
+  id: totrans-9
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[使用哪些最容易和最好的性能分析工具来提高我的代码性能？](#whats-the-easiest-and-best-profiling-tools-to-use-to-improve-performance-of-my-code)'
+- en: '[What browser plugins do you use?](#what-browser-plugins-do-you-use)'
+  id: totrans-10
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[你使用哪些浏览器插件？](#what-browser-plugins-do-you-use)'
+- en: '[What are other useful data wrangling tools?](#what-are-other-useful-data-wrangling-tools)'
+  id: totrans-11
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[还有其他有用的数据处理工具吗？](#what-are-other-useful-data-wrangling-tools)'
+- en: '[What is the difference between Docker and a Virtual Machine?](#what-is-the-difference-between-docker-and-a-virtual-machine)'
+  id: totrans-12
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Docker和虚拟机之间的区别是什么？](#what-is-the-difference-between-docker-and-a-virtual-machine)'
+- en: '[What are the advantages and disadvantages of each OS and how can we choose
+    between them (e.g. choosing the best Linux distribution for our purposes)?](#what-are-the-advantages-and-disadvantages-of-each-os-and-how-can-we-choose-between-them-eg-choosing-the-best-linux-distribution-for-our-purposes)'
+  id: totrans-13
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[每个操作系统的优缺点是什么？我们如何在这之间做出选择（例如，选择最适合我们目的的最佳Linux发行版）？](#what-are-the-advantages-and-disadvantages-of-each-os-and-how-can-we-choose-between-them-eg-choosing-the-best-linux-distribution-for-our-purposes)'
+- en: '[Vim vs Emacs?](#vim-vs-emacs)'
+  id: totrans-14
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vim与Emacs？](#vim-vs-emacs)'
+- en: '[Any tips or tricks for Machine Learning applications?](#any-tips-or-tricks-for-machine-learning-applications)'
+  id: totrans-15
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[对于机器学习应用有什么技巧或窍门吗？](#any-tips-or-tricks-for-machine-learning-applications)'
+- en: '[Any more Vim tips?](#any-more-vim-tips)'
+  id: totrans-16
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[还有更多Vim技巧吗？](#any-more-vim-tips)'
+- en: '[What is 2FA and why should I use it?](#what-is-2fa-and-why-should-i-use-it)'
+  id: totrans-17
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[什么是双因素认证（2FA）以及为什么我应该使用它？](#what-is-2fa-and-why-should-i-use-it)'
+- en: '[Any comments on differences between web browsers?](#any-comments-on-differences-between-web-browsers)'
+  id: totrans-18
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[关于不同网络浏览器之间的差异有什么评论吗？](#any-comments-on-differences-between-web-browsers)'
+- en: Any recommendations on learning Operating Systems related topics like processes,
+    virtual memory, interrupts, memory management, etc
+  id: totrans-19
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 关于学习操作系统相关主题（如进程、虚拟内存、中断、内存管理等）有任何推荐吗？
+- en: First, it is unclear whether you actually need to be very familiar with all
+    of these topics since they are very low level topics. They will matter as you
+    start writing more low level code like implementing or modifying a kernel. Otherwise,
+    most topics will not be relevant, with the exception of processes and signals
+    that were briefly covered in other lectures.
+  id: totrans-20
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 首先，你是否真的需要非常熟悉所有这些主题还不明确，因为它们都是非常底层的主题。当你开始编写更底层的代码，如实现或修改内核时，它们才会变得重要。否则，大多数主题将不会相关，除了在其它讲座中简要提到的进程和信号。
+- en: 'Some good resources to learn about this topic:'
+  id: totrans-21
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些关于这个主题的好资源：
+- en: '[MIT’s 6.828 class](https://pdos.csail.mit.edu/6.828/) - Graduate level class
+    on Operating System Engineering. Class materials are publicly available.'
+  id: totrans-22
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[MIT 的 6.828 课程](https://pdos.csail.mit.edu/6.828/) - 操作系统工程研究生课程。课程材料公开可用。'
+- en: Modern Operating Systems (4th ed) - by Andrew S. Tanenbaum is a good overview
+    of many of the mentioned concepts.
+  id: totrans-23
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 《现代操作系统》（第4版）- 安德鲁·S·坦南鲍姆所著，对许多提到的概念提供了良好的概述。
+- en: The Design and Implementation of the FreeBSD Operating System - A good resource
+    about the FreeBSD OS (note that this is not Linux).
+  id: totrans-24
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 《FreeBSD 操作系统的设计与实现》- 关于 FreeBSD 操作系统的好资源（请注意，这并非 Linux）。
+- en: Other guides like [Writing an OS in Rust](https://os.phil-opp.com/) where people
+    implement a kernel step by step in various languages, mostly for teaching purposes.
+  id: totrans-25
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 其他指南，如 [在 Rust 中编写操作系统](https://os.phil-opp.com/)，其中人们以各种语言逐步实现内核，主要用于教学目的。
+- en: What are some of the tools you’d prioritize learning first?
+  id: totrans-26
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 您会优先学习哪些工具？
+- en: 'Some topics worth prioritizing:'
+  id: totrans-27
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些值得优先考虑的主题：
+- en: Learning how to use your keyboard more and your mouse less. This can be through
+    keyboard shortcuts, changing interfaces, &c.
+  id: totrans-28
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 学习如何更多地使用键盘而不是鼠标。这可以通过键盘快捷键、更改界面等方式实现。
+- en: Learning your editor well. As a programmer most of your time is spent editing
+    files so it really pays off to learn this skill well.
+  id: totrans-29
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 熟练掌握您的编辑器。作为一名程序员，您的大部分时间都花在编辑文件上，因此熟练掌握这项技能是非常有价值的。
+- en: Learning how to automate and/or simplify repetitive tasks in your workflow because
+    the time savings will be enormous…
+  id: totrans-30
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 学习如何自动化和/或简化您的工作流程中的重复性任务，因为这将节省大量时间……
+- en: Learning about version control tools like Git and how to use it in conjunction
+    with GitHub to collaborate in modern software projects.
+  id: totrans-31
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 了解版本控制工具如 Git 以及如何将其与 GitHub 结合使用以在现代软件项目中协作。
+- en: When do I use Python versus a Bash scripts versus some other language?
+  id: totrans-32
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 我在何时使用 Python、Bash 脚本或其他语言？
+- en: 'In general, bash scripts are useful for short and simple one-off scripts when
+    you just want to run a specific series of commands. bash has a set of oddities
+    that make it hard to work with for larger programs or scripts:'
+  id: totrans-33
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 通常，bash 脚本适用于短小简单的单次脚本，当您只想运行一系列特定命令时。bash 有一些怪癖，使得它难以用于较大的程序或脚本：
+- en: bash is easy to get right for a simple use case but it can be really hard to
+    get right for all possible inputs. For example, spaces in script arguments have
+    led to countless bugs in bash scripts.
+  id: totrans-34
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: bash 对于简单用例来说很容易正确使用，但对于所有可能的输入来说，它可能非常难以正确使用。例如，脚本参数中的空格在 bash 脚本中导致了无数错误。
+- en: bash is not amenable to code reuse so it can be hard to reuse components of
+    previous programs you have written. More generally, there is no concept of software
+    libraries in bash.
+  id: totrans-35
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: bash 不适合代码重用，因此重用先前编写的程序组件可能很困难。更普遍地说，bash 中没有软件库的概念。
+- en: bash relies on many magic strings like `$?` or `$@` to refer to specific values,
+    whereas other languages refer to them explicitly, like `exitCode` or `sys.args`
+    respectively.
+  id: totrans-36
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: bash 依赖于许多魔法字符串，如 `$?` 或 `$@` 来引用特定值，而其他语言则明确地引用它们，例如 `exitCode` 或 `sys.args`。
+- en: Therefore, for larger and/or more complex scripts we recommend using more mature
+    scripting languages like Python or Ruby. You can find online countless libraries
+    that people have already written to solve common problems in these languages.
+    If you find a library that implements the specific functionality you care about
+    in some language, usually the best thing to do is to just use that language.
+  id: totrans-37
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 因此，对于更大和/或更复杂的脚本，我们建议使用更成熟的脚本语言，如 Python 或 Ruby。您可以在网上找到无数已经编写来解决这些语言中常见问题的库。如果您发现某个库实现了您关心的特定功能，通常最好的做法就是使用那种语言。
+- en: What is the difference between `source script.sh` and `./script.sh`
+  id: totrans-38
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: '`source script.sh` 和 `./script.sh` 之间的区别是什么？'
+- en: In both cases the `script.sh` will be read and executed in a bash session, the
+    difference lies in which session is running the commands. For `source` the commands
+    are executed in your current bash session and thus any changes made to the current
+    environment, like changing directories or defining functions will persist in the
+    current session once the `source` command finishes executing. When running the
+    script standalone like `./script.sh`, your current bash session starts a new instance
+    of bash that will run the commands in `script.sh`. Thus, if `script.sh` changes
+    directories, the new bash instance will change directories but once it exits and
+    returns control to the parent bash session, the parent session will remain in
+    the same place. Similarly, if `script.sh` defines a function that you want to
+    access in your terminal, you need to `source` it for it to be defined in your
+    current bash session. Otherwise, if you run it, the new bash process will be the
+    one to process the function definition instead of your current shell.
+  id: totrans-39
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在这两种情况下，`script.sh`都会在bash会话中读取和执行，区别在于哪个会话正在运行这些命令。对于`source`，命令将在您的当前bash会话中执行，因此对当前环境所做的任何更改，如更改目录或定义函数，将在`source`命令执行完毕后持续存在于当前会话中。当像`./script.sh`那样独立运行脚本时，您的当前bash会话将启动一个新的bash实例来运行`script.sh`中的命令。因此，如果`script.sh`更改目录，新的bash实例将更改目录，但一旦它退出并将控制权返回给父bash会话，父会话将保持在同一位置。同样，如果`script.sh`定义了一个您想在终端中访问的函数，您需要`source`它，以便在您的当前bash会话中定义。否则，如果您运行它，新的bash进程将处理函数定义，而不是您的当前shell。
+- en: What are the places where various packages and tools are stored and how does
+    referencing them work? What even is `/bin` or `/lib`?
+  id: totrans-40
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 各种包和工具存储在哪里？如何引用它们？`/bin`或`/lib`是什么？
+- en: Regarding programs that you execute in your terminal, they are all found in
+    the directories listed in your `PATH` environment variable and you can use the
+    `which` command (or the `type` command) to check where your shell is finding a
+    specific program. In general, there are some conventions about where specific
+    types of files live. Here are some of the ones we talked about, check the [Filesystem,
+    Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
+    for a more comprehensive list.
+  id: totrans-41
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 关于您在终端中运行的程序，它们都位于您的`PATH`环境变量中列出的目录中，您可以使用`which`命令（或`type`命令）来检查您的shell正在寻找特定程序的位置。一般来说，有一些关于特定类型文件存放位置的传统。以下是我们讨论的一些内容，有关更全面的列表，请参阅[文件系统层次标准](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)。
+- en: '`/bin` - Essential command binaries'
+  id: totrans-42
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/bin` - 重要的命令二进制文件'
+- en: '`/sbin` - Essential system binaries, usually to be run by root'
+  id: totrans-43
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/sbin` - 重要的系统二进制文件，通常由root运行'
+- en: '`/dev` - Device files, special files that often are interfaces to hardware
+    devices'
+  id: totrans-44
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/dev` - 设备文件，通常是硬件设备的接口'
+- en: '`/etc` - Host-specific system-wide configuration files'
+  id: totrans-45
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/etc` - 主机特定的系统级配置文件'
+- en: '`/home` - Home directories for users in the system'
+  id: totrans-46
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/home` - 系统中用户的家目录'
+- en: '`/lib` - Common libraries for system programs'
+  id: totrans-47
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/lib` - 系统程序的公共库'
+- en: '`/opt` - Optional application software'
+  id: totrans-48
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/opt` - 可选的应用软件'
+- en: '`/sys` - Contains information and configuration for the system (covered in
+    the [first lecture](/2020/course-shell/))'
+  id: totrans-49
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/sys` - 包含系统信息和配置（在[第一讲](/2020/course-shell/)中介绍）'
+- en: '`/tmp` - Temporary files (also `/var/tmp`). Usually deleted between reboots.'
+  id: totrans-50
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/tmp` - 临时文件（也有`/var/tmp`）。通常在重启之间被删除。'
+- en: '`/usr/` - Read only user data'
+  id: totrans-51
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/usr/` - 只读用户数据'
+- en: '`/usr/bin` - Non-essential command binaries'
+  id: totrans-52
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/usr/bin` - 非重要命令二进制文件'
+- en: '`/usr/sbin` - Non-essential system binaries, usually to be run by root'
+  id: totrans-53
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/usr/sbin` - 非重要系统二进制文件，通常由root运行'
+- en: '`/usr/local/bin` - Binaries for user compiled programs'
+  id: totrans-54
+  prefs:
+  - PREF_IND
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/usr/local/bin` - 用户编译程序的二进制文件'
+- en: '`/var` - Variable files like logs or caches'
+  id: totrans-55
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '`/var` - 变量文件，如日志或缓存'
+- en: Should I `apt-get install` a python-whatever, or `pip install` whatever package?
+  id: totrans-56
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 我应该使用`apt-get install`安装一个python-whatever，还是使用`pip install`安装任何包？
+- en: 'There’s no universal answer to this question. It’s related to the more general
+    question of whether you should use your system’s package manager or a language-specific
+    package manager to install software. A few things to take into account:'
+  id: totrans-57
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于这个问题没有统一的答案。它与更普遍的问题有关，即您应该使用系统包管理器还是语言特定的包管理器来安装软件。以下是一些需要考虑的事项：
+- en: Common packages will be available through both, but less popular ones or more
+    recent ones might not be available in your system package manager. In this case,
+    using the language-specific tool is the better choice.
+  id: totrans-58
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 常见包将通过两者都提供，但不太受欢迎的或较新的包可能不在您的系统包管理器中提供。在这种情况下，使用语言特定的工具是更好的选择。
+- en: Similarly, language-specific package managers usually have more up to date versions
+    of packages than system package managers.
+  id: totrans-59
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 类似地，语言特定的包管理器通常比系统包管理器提供更新的包版本。
+- en: When using your system package manager, libraries will be installed system wide.
+    This means that if you need different versions of a library for development purposes,
+    the system package manager might not suffice. For this scenario, most programming
+    languages provide some sort of isolated or virtual environment so you can install
+    different versions of libraries without running into conflicts. For Python, there’s
+    virtualenv, and for Ruby, there’s RVM.
+  id: totrans-60
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 当使用您的系统包管理器时，库将被系统范围内安装。这意味着，如果您需要为开发目的安装不同版本的库，系统包管理器可能就不够用了。在这种情况下，大多数编程语言都提供某种隔离或虚拟环境，这样您就可以在不发生冲突的情况下安装库的不同版本。对于Python，有virtualenv，而对于Ruby，则有RVM。
+- en: Depending on the operating system and the hardware architecture, some of these
+    packages might come with binaries or might need to be compiled. For instance,
+    in ARM computers like the Raspberry Pi, using the system package manager can be
+    better than the language specific one if the former comes in form of binaries
+    and the latter needs to be compiled. This is highly dependent on your specific
+    setup.
+  id: totrans-61
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 根据操作系统和硬件架构，这些包中的一些可能包含二进制文件，或者可能需要编译。例如，在像树莓派这样的ARM计算机上，如果系统包管理器提供的是二进制文件，而语言特定的包管理器需要编译，那么使用系统包管理器可能比使用语言特定的包管理器更好。这高度依赖于您的具体配置。
+- en: You should try to use one solution or the other and not both since that can
+    lead to conflicts that are hard to debug. Our recommendation is to use the language-specific
+    package manager whenever possible, and to use isolated environments (like Python’s
+    virtualenv) to avoid polluting the global environment.
+  id: totrans-62
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 您应该尝试使用一种解决方案或另一种解决方案，而不是两者都使用，因为这可能导致难以调试的冲突。我们的建议是在可能的情况下使用语言特定的包管理器，并使用隔离环境（如Python的virtualenv）来避免污染全局环境。
+- en: What’s the easiest and best profiling tools to use to improve performance of
+    my code?
+  id: totrans-63
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 使用什么是最简单和最好的分析工具来提高我代码的性能？
+- en: The easiest tool that is quite useful for profiling purposes is [print timing](/2020/debugging-profiling/#timing).
+    You just manually compute the time taken between different parts of your code.
+    By repeatedly doing this, you can effectively do a binary search over your code
+    and find the segment of code that took the longest.
+  id: totrans-64
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于分析目的来说，最简单且相当有用的工具是[打印计时](/2020/debugging-profiling/#timing)。您只需手动计算代码不同部分之间所花费的时间。通过反复这样做，您可以有效地在代码上执行二分搜索，并找到耗时最长的代码段。
+- en: For more advanced tools, Valgrind’s [Callgrind](https://valgrind.org/docs/manual/cl-manual.html)
+    lets you run your program and measure how long everything takes and all the call
+    stacks, namely which function called which other function. It then produces an
+    annotated version of your program’s source code with the time taken per line.
+    However, it slows down your program by an order of magnitude and does not support
+    threads. For other cases, the [`perf`](https://www.brendangregg.com/perf.html)
+    tool and other language specific sampling profilers can output useful data pretty
+    quickly. [Flamegraphs](https://www.brendangregg.com/flamegraphs.html) are a good
+    visualization tool for the output of said sampling profilers. You should also
+    try to use specific tools for the programming language or task you are working
+    with. For example, for web development, the dev tools built into Chrome and Firefox
+    have fantastic profilers.
+  id: totrans-65
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于更高级的工具，Valgrind的[Callgrind](https://valgrind.org/docs/manual/cl-manual.html)允许您运行程序并测量每项操作所需的时间以及所有调用栈，即哪个函数调用了哪个其他函数。然后，它会产生带有每行所花费时间的程序源代码的注释版本。然而，它会使程序的速度慢一个数量级，并且不支持线程。对于其他情况，`perf`工具和其他语言特定的采样分析器可以快速输出有用的数据。[火焰图](https://www.brendangregg.com/flamegraphs.html)是上述采样分析器输出的良好可视化工具。您还应该尝试使用针对您正在使用的编程语言或任务的特定工具。例如，对于Web开发，Chrome和Firefox内置的开发工具具有出色的分析器。
+- en: Sometimes the slow part of your code will be because your system is waiting
+    for an event like a disk read or a network packet. In those cases, it is worth
+    checking that back-of-the-envelope calculations about the theoretical speed in
+    terms of hardware capabilities do not deviate from the actual readings. There
+    are also specialized tools to analyze the wait times in system calls. These include
+    tools like [eBPF](https://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html)
+    that perform kernel tracing of user programs. In particular [`bpftrace`](https://github.com/iovisor/bpftrace)
+    is worth checking out if you need to perform this sort of low level profiling.
+  id: totrans-66
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 有时候，你的代码中较慢的部分可能是因为你的系统正在等待像磁盘读取或网络数据包这样的事件。在这些情况下，检查关于硬件能力的理论速度的粗略计算是否与实际读数不偏离是值得的。还有专门的分析系统调用等待时间的工具。这些包括像[eBPF](https://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html)这样的工具，它执行用户程序的内核跟踪。特别是如果你需要执行这种低级分析，`bpftrace`（https://github.com/iovisor/bpftrace）是值得检查的。
+- en: What browser plugins do you use?
+  id: totrans-67
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 你使用哪些浏览器插件？
+- en: 'Some of our favorites, mostly related to security and usability:'
+  id: totrans-68
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们的一些最爱，大多与安全和可用性相关：
+- en: '[uBlock Origin](https://github.com/gorhill/uBlock) - It is a [wide-spectrum](https://github.com/gorhill/uBlock/wiki/Blocking-mode)
+    blocker that doesn’t just stop ads, but all sorts of third-party communication
+    a page may try to do. This also covers inline scripts and other types of resource
+    loading. If you’re willing to spend some time on configuration to make things
+    work, go to [medium mode](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-medium-mode)
+    or even [hard mode](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-hard-mode).
+    Those will make some sites not work until you’ve fiddled with the settings enough,
+    but will also significantly improve your online security. Otherwise, the [easy
+    mode](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-easy-mode) is already
+    a good default that blocks most ads and tracking. You can also define your own
+    rules about what website objects to block.'
+  id: totrans-69
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[uBlock Origin](https://github.com/gorhill/uBlock) - 它是一个[宽频带](https://github.com/gorhill/uBlock/wiki/Blocking-mode)拦截器，不仅阻止广告，还阻止页面可能尝试的所有第三方通信。这也包括内联脚本和其他类型的资源加载。如果你愿意花些时间进行配置以使一切正常工作，请转到[中等模式](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-medium-mode)或甚至[困难模式](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-hard-mode)。这将使一些网站在调整设置足够后才能正常工作，但也会显著提高你的在线安全性。否则，[简单模式](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-easy-mode)已经是一个很好的默认设置，可以阻止大多数广告和跟踪。你还可以定义自己的规则，关于要阻止哪些网站对象。'
+- en: '[Stylus](https://github.com/openstyles/stylus/) - a fork of Stylish (don’t
+    use Stylish, it was shown to [steal users’ browsing history](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/)),
+    allows you to sideload custom CSS stylesheets to websites. With Stylus you can
+    easily customize and modify the appearance of websites. This can be removing a
+    sidebar, changing the background color or even the text size or font choice. This
+    is fantastic for making websites that you visit frequently more readable. Moreover,
+    Stylus can find styles written by other users and published in [userstyles.org](https://userstyles.org/).
+    Most common websites have one or several dark theme stylesheets for instance.'
+  id: totrans-70
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Stylus](https://github.com/openstyles/stylus/) - 是Stylish的一个分支（不要使用Stylish，因为它已被证明会[窃取用户的浏览历史](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/))，允许你向网站侧载自定义CSS样式表。使用Stylus，你可以轻松地自定义和修改网站的外观。这包括移除侧边栏、更改背景颜色，甚至文本大小或字体选择。这对于使你经常访问的网站更易读是非常棒的。此外，Stylus还可以找到其他用户编写并发布在[userstyles.org](https://userstyles.org/)上的样式。例如，大多数常见网站都有一个或多个暗色主题样式表。'
+- en: Full Page Screen Capture - [Built into Firefox](https://screenshots.firefox.com/)
+    and [Chrome extension](https://chrome.google.com/webstore/detail/full-page-screen-capture/fdpohaocaechififmbbbbbknoalclacl?hl=en).
+    Lets you take a screenshot of a full website, often much better than printing
+    for reference purposes.
+  id: totrans-71
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 全页屏幕截图 - [集成在Firefox中](https://screenshots.firefox.com/)和[Chrome扩展](https://chrome.google.com/webstore/detail/full-page-screen-capture/fdpohaocaechififmbbbbbknoalclacl?hl=en)。允许你截取整个网站的截图，通常比打印用于参考更好。
+- en: '[Multi Account Containers](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
+    - lets you separate cookies into “containers”, allowing you to browse the web
+    with different identities and/or ensuring that websites are unable to share information
+    between them.'
+  id: totrans-72
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[多账户容器](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/)
+    - 允许你将cookie分离到“容器”中，这样你可以使用不同的身份浏览网页，或者确保网站之间无法共享信息。'
+- en: Password Manager Integration - Most password managers have browser extensions
+    that make inputting your credentials into websites not only more convenient but
+    also more secure. Compared to simply copy-pasting your user and password, these
+    tools will first check that the website domain matches the one listed for the
+    entry, preventing phishing attacks that impersonate popular websites to steal
+    credentials.
+  id: totrans-73
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 密码管理器集成 - 大多数密码管理器都有浏览器扩展，可以让你在网站上输入凭据不仅更方便，而且更安全。与简单地复制粘贴用户名和密码相比，这些工具首先会检查网站域名是否与条目中列出的域名匹配，从而防止冒充知名网站以窃取凭据的钓鱼攻击。
+- en: '[Vimium](https://github.com/philc/vimium) - A browser extension that provides
+    keyboard-based navigation and control of the web in the spirit of the Vim editor.'
+  id: totrans-74
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[Vimium](https://github.com/philc/vimium) - 一个提供基于键盘导航和控制网页的浏览器扩展，其灵感来源于Vim编辑器。'
+- en: What are other useful data wrangling tools?
+  id: totrans-75
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 其他有用的数据处理工具有哪些？
+- en: Some of the data wrangling tools we did not have time to cover during the data
+    wrangling lecture include `jq` or `pup` which are specialized parsers for JSON
+    and HTML data respectively. The Perl programming language is another good tool
+    for more advanced data wrangling pipelines. Another trick is the `column -t` command
+    that can be used to convert whitespace text (not necessarily aligned) into properly
+    column aligned text.
+  id: totrans-76
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 在数据处理讲座中我们没有时间涵盖的一些数据处理工具包括`jq`或`pup`，它们分别是针对JSON和HTML数据的专用解析器。Perl编程语言也是更高级数据处理管道的好工具。另一个技巧是`column
+    -t`命令，它可以用来将空白文本（不一定对齐）转换为正确对齐的文本。
+- en: More generally a couple of more unconventional data wrangling tools are vim
+    and Python. For some complex and multi-line transformations, vim macros can be
+    a quite invaluable tool to use. You can just record a series of actions and repeat
+    them as many times as you want, for instance in the editors [lecture notes](/2020/editors/#macros)
+    (and last year’s [video](/2019/editors/)) there is an example of converting an
+    XML-formatted file into JSON just using vim macros.
+  id: totrans-77
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 更普遍地说，还有一些不太常规的数据处理工具是vim和Python。对于一些复杂的多行转换，vim宏可以是一个非常有价值的工具。你可以记录一系列动作，并重复执行任意次数，例如在编辑器的[讲义](/2020/editors/#macros)（以及去年的[视频](/2019/editors/)）中，有一个使用vim宏将XML格式文件转换为JSON的例子。
+- en: For tabular data, often presented in CSVs, the [pandas](https://pandas.pydata.org/)
+    Python library is a great tool. Not only because it makes it quite easy to define
+    complex operations like group by, join or filters; but also makes it quite easy
+    to plot different properties of your data. It also supports exporting to many
+    table formats including XLS, HTML or LaTeX. Alternatively the R programming language
+    (an arguably [bad](https://arrgh.tim-smith.us/) programming language) has lots
+    of functionality for computing statistics over data and can be quite useful as
+    the last step of your pipeline. [ggplot2](https://ggplot2.tidyverse.org/) is a
+    great plotting library in R.
+  id: totrans-78
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于通常以CSV格式呈现的表格数据，Python的[pandas](https://pandas.pydata.org/)库是一个很好的工具。不仅因为它使得定义复杂的操作（如分组、连接或过滤器）变得相当容易；还因为它使得绘制数据的不同属性变得相当容易。它还支持导出到多种表格格式，包括XLS、HTML或LaTeX。或者，R编程语言（一个有争议的[糟糕](https://arrgh.tim-smith.us/)编程语言）在计算数据统计方面有很多功能，可以作为管道的最后一步非常有用。[ggplot2](https://ggplot2.tidyverse.org/)是R中一个优秀的绘图库。
+- en: What is the difference between Docker and a Virtual Machine?
+  id: totrans-79
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Docker和虚拟机之间的区别是什么？
+- en: 'Docker is based on a more general concept called containers. The main difference
+    between containers and virtual machines is that virtual machines will execute
+    an entire OS stack, including the kernel, even if the kernel is the same as the
+    host machine. Unlike VMs, containers avoid running another instance of the kernel
+    and instead share the kernel with the host. In Linux, this is achieved through
+    a mechanism called LXC, and it makes use of a series of isolation mechanisms to
+    spin up a program that thinks it’s running on its own hardware but it’s actually
+    sharing the hardware and kernel with the host. Thus, containers have a lower overhead
+    than a full VM. On the flip side, containers have a weaker isolation and only
+    work if the host runs the same kernel. For instance if you run Docker on macOS,
+    Docker needs to spin up a Linux virtual machine to get an initial Linux kernel
+    and thus the overhead is still significant. Lastly, Docker is a specific implementation
+    of containers and it is tailored for software deployment. Because of this, it
+    has some quirks: for example, Docker containers will not persist any form of storage
+    between reboots by default.'
+  id: totrans-80
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Docker 基于一个更通用的概念，称为容器。容器和虚拟机之间的主要区别在于虚拟机会执行整个操作系统堆栈，包括内核，即使内核与宿主机器相同。与虚拟机不同，容器避免运行另一个内核实例，而是与宿主共享内核。在
+    Linux 中，这是通过称为 LXC 的机制实现的，并利用一系列隔离机制来启动一个认为它在自己的硬件上运行的程序，但实际上它与宿主共享硬件和内核。因此，容器比完整虚拟机的开销更低。另一方面，容器的隔离性较弱，并且只有在宿主运行相同内核的情况下才能工作。例如，如果你在
+    macOS 上运行 Docker，Docker 需要启动一个 Linux 虚拟机以获取初始 Linux 内核，因此开销仍然很大。最后，Docker 是容器的一个特定实现，它针对软件部署进行了定制。因此，它有一些怪癖：例如，默认情况下，Docker
+    容器在重启之间不会持久化任何形式的存储。
+- en: What are the advantages and disadvantages of each OS and how can we choose between
+    them (e.g. choosing the best Linux distribution for our purposes)?
+  id: totrans-81
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 每个操作系统的优缺点是什么？我们如何在这之间做出选择（例如，选择最适合我们目的的最佳 Linux 发行版）？
+- en: Regarding Linux distros, even though there are many, many distros, most of them
+    will behave fairly identically for most use cases. Most of Linux and UNIX features
+    and inner workings can be learned in any distro. A fundamental difference between
+    distros is how they deal with package updates. Some distros, like Arch Linux,
+    use a rolling update policy where things are bleeding-edge but things might break
+    every so often. On the other hand, some distros like Debian, CentOS or Ubuntu
+    LTS releases are much more conservative with releasing updates in their repositories
+    so things are usually more stable at the expense of sacrificing newer features.
+    Our recommendation for an easy and stable experience with both desktops and servers
+    is to use Debian or Ubuntu.
+  id: totrans-82
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 关于 Linux 发行版，尽管种类繁多，但大多数发行版在大多数使用场景下表现相当相似。Linux 和 UNIX 的许多特性和内部工作原理在任何发行版中都可以学习到。发行版之间的一个基本区别在于它们处理软件包更新的方式。一些发行版，如
+    Arch Linux，采用滚动更新策略，这意味着技术前沿但偶尔可能会出现问题。另一方面，一些发行版如 Debian、CentOS 或 Ubuntu LTS
+    版本在它们的仓库中发布更新时更为保守，因此通常更稳定，但牺牲了一些新功能。我们推荐使用 Debian 或 Ubuntu 来获得桌面和服务器上既简单又稳定的体验。
+- en: Mac OS is a good middle point between Windows and Linux that has a nicely polished
+    interface. However, Mac OS is based on BSD rather than Linux, so some parts of
+    the system and commands are different. An alternative worth checking is FreeBSD.
+    Even though some programs will not run on FreeBSD, the BSD ecosystem is much less
+    fragmented and better documented than Linux. We discourage Windows for anything
+    but for developing Windows applications or if there is some deal breaker feature
+    that you need, like good driver support for gaming.
+  id: totrans-83
+  prefs: []
+  type: TYPE_NORMAL
+  zh: Mac OS 是 Windows 和 Linux 之间一个很好的中间点，它有一个非常精致的界面。然而，Mac OS 基于 BSD 而不是 Linux，因此系统的一些部分和命令是不同的。另一个值得检查的替代方案是
+    FreeBSD。尽管一些程序在 FreeBSD 上无法运行，但 BSD 生态系统比 Linux 更少碎片化，文档也更好。我们不建议使用 Windows，除非是用于开发
+    Windows 应用程序或需要某些决定性功能，例如良好的游戏驱动程序支持。
+- en: For dual boot systems, we think that the most working implementation is macOS’
+    bootcamp and that any other combination can be problematic on the long run, specially
+    if you combine it with other features like disk encryption.
+  id: totrans-84
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 对于双启动系统，我们认为 macOS 的 Boot Camp 是最有效的实现方式，而任何其他组合在长期使用中都可能存在问题，特别是如果你将其与其他功能（如磁盘加密）结合使用。
+- en: Vim vs Emacs?
+  id: totrans-85
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: Vim 与 Emacs？
+- en: The three of us use vim as our primary editor but Emacs is also a good alternative
+    and it’s worth trying both to see which works better for you. Emacs does not follow
+    vim’s modal editing, but this can be enabled through Emacs plugins like [Evil](https://github.com/emacs-evil/evil)
+    or [Doom Emacs](https://github.com/hlissner/doom-emacs). An advantage of using
+    Emacs is that extensions can be implemented in Lisp, a better scripting language
+    than vimscript, Vim’s default scripting language.
+  id: totrans-86
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 我们三个人使用 vim 作为我们的主要编辑器，但 Emacs 也是一个不错的选择，值得尝试两者以看哪个更适合你。Emacs 不遵循 vim 的模式编辑，但可以通过
+    Emacs 插件如 [Evil](https://github.com/emacs-evil/evil) 或 [Doom Emacs](https://github.com/hlissner/doom-emacs)
+    启用。使用 Emacs 的一个优点是扩展可以在 Lisp 中实现，这是一种比 Vimscript 更好的脚本语言，Vim 的默认脚本语言。
+- en: Any tips or tricks for Machine Learning applications?
+  id: totrans-87
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 有关于机器学习应用的任何技巧或窍门吗？
+- en: Some of the lessons and takeaways from this class can directly be applied to
+    ML applications. As it is the case with many science disciplines, in ML you often
+    perform a series of experiments and want to check what things worked and what
+    didn’t. You can use shell tools to easily and quickly search through these experiments
+    and aggregate the results in a sensible way. This could mean subselecting all
+    experiments in a given time frame or that use a specific dataset. By using a simple
+    JSON file to log all relevant parameters of the experiments, this can be incredibly
+    simple with the tools we covered in this class. Lastly, if you do not work with
+    some sort of cluster where you submit your GPU jobs, you should look into how
+    to automate this process since it can be a quite time consuming task that also
+    eats away your mental energy.
+  id: totrans-88
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本课程的一些经验和教训可以直接应用于机器学习应用。正如许多科学学科的情况一样，在机器学习中，你经常进行一系列实验，并希望检查哪些事情有效，哪些无效。你可以使用
+    shell 工具轻松快速地搜索这些实验，并以合理的方式汇总结果。这可能意味着在给定的时间范围内选择所有实验，或者使用特定的数据集。通过使用简单的 JSON
+    文件记录所有相关实验参数，这可以非常简单，因为我们在这个课程中介绍的工具。最后，如果你不与某种类型的集群一起工作，其中你提交 GPU 作业，你应该考虑如何自动化此过程，因为这可能是一个相当耗时的任务，也会消耗你的精神能量。
+- en: Any more Vim tips?
+  id: totrans-89
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 还有更多 Vim 技巧吗？
+- en: 'A few more tips:'
+  id: totrans-90
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 一些额外的技巧：
+- en: Plugins - Take your time and explore the plugin landscape. There are a lot of
+    great plugins that address some of vim’s shortcomings or add new functionality
+    that composes well with existing vim workflows. For this, good resources are [VimAwesome](https://vimawesome.com/)
+    and other programmers’ dotfiles.
+  id: totrans-91
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 插件 - 仔细探索插件领域。有很多优秀的插件解决了 vim 的一些不足，或者添加了与现有 vim 工作流程很好地结合的新功能。为此，[VimAwesome](https://vimawesome.com/)
+    和其他程序员的 dotfiles 是很好的资源。
+- en: Marks - In vim, you can set a mark doing `m<X>` for some letter `X`. You can
+    then go back to that mark doing `'<X>`. This lets you quickly navigate to specific
+    locations within a file or even across files.
+  id: totrans-92
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 标记 - 在 vim 中，你可以通过 `m<X>` 为某个字母 `X` 设置一个标记。然后你可以通过 `'<X>'` 返回到那个标记。这让你可以快速导航到文件中的特定位置，甚至跨文件。
+- en: Navigation - `Ctrl+O` and `Ctrl+I` move you backward and forward respectively
+    through your recently visited locations.
+  id: totrans-93
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 导航 - `Ctrl+O` 和 `Ctrl+I` 分别将你向后和向前移动到最近访问的位置。
+- en: Undo Tree - Vim has a quite fancy mechanism for keeping track of changes. Unlike
+    other editors, vim stores a tree of changes so even if you undo and then make
+    a different change you can still go back to the original state by navigating the
+    undo tree. Some plugins like [gundo.vim](https://github.com/sjl/gundo.vim) and
+    [undotree](https://github.com/mbbill/undotree) expose this tree in a graphical
+    way.
+  id: totrans-94
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 撤销树 - Vim 有一种相当花哨的机制来跟踪更改。与其他编辑器不同，vim 存储一个更改树，因此即使你撤销更改后进行不同的更改，你仍然可以通过导航撤销树回到原始状态。一些插件，如
+    [gundo.vim](https://github.com/sjl/gundo.vim) 和 [undotree](https://github.com/mbbill/undotree)，以图形方式展示了这个树。
+- en: Undo with time - The `:earlier` and `:later` commands will let you navigate
+    the files using time references instead of one change at a time.
+  id: totrans-95
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 基于时间的撤销 - `:earlier` 和 `:later` 命令将允许你使用时间参考而不是逐个更改来导航文件。
+- en: '[Persistent undo](https://vim.fandom.com/wiki/Using_undo_branches#Persistent_undo)
+    is an amazing built-in feature of vim that is disabled by default. It persists
+    undo history between vim invocations. By setting `undofile` and `undodir` in your
+    `.vimrc`, vim will store a per-file history of changes.'
+  id: totrans-96
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: '[持久撤销](https://vim.fandom.com/wiki/Using_undo_branches#Persistent_undo) 是 vim
+    的一个惊人的内置功能，默认情况下是禁用的。它会在 vim 调用之间持续撤销历史。通过在 `.vimrc` 中设置 `undofile` 和 `undodir`，vim
+    将存储每个文件的更改历史。'
+- en: Leader Key - The leader key is a special key that is often left to the user
+    to be configured for custom commands. The pattern is usually to press and release
+    this key (often the space key) and then some other key to execute a certain command.
+    Often, plugins will use this key to add their own functionality, for instance
+    the UndoTree plugin uses `<Leader> U` to open the undo tree.
+  id: totrans-97
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 领导键 - 领导键是一个特殊键，通常留给用户配置自定义命令。通常的做法是按下并释放此键（通常是空格键），然后按下另一个键来执行特定命令。通常，插件会使用此键来添加它们自己的功能，例如UndoTree插件使用`<Leader>
+    U`来打开撤销树。
+- en: Advanced Text Objects - Text objects like searches can also be composed with
+    vim commands. E.g. `d/<pattern>` will delete to the next match of said pattern
+    or `cgn` will change the next occurrence of the last searched string.
+  id: totrans-98
+  prefs:
+  - PREF_UL
+  type: TYPE_NORMAL
+  zh: 高级文本对象 - 类似于搜索的文本对象也可以与vim命令组合。例如，`d/<pattern>`将删除到下一个匹配的该模式，或者`cgn`将更改最后一个搜索字符串的下一个出现。
+- en: What is 2FA and why should I use it?
+  id: totrans-99
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 什么是2FA，为什么我应该使用它？
+- en: Two Factor Authentication (2FA) adds an extra layer of protection to your accounts
+    on top of passwords. In order to login, you not only have to know some password,
+    but you also have to “prove” in some way you have access to some hardware device.
+    In the most simple case, this can be achieved by receiving an SMS on your phone,
+    although there are [known issues](https://www.kaspersky.com/blog/2fa-practical-guide/24219/)
+    with SMS 2FA. A better alternative we endorse is to use a [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor)
+    solution like [YubiKey](https://www.yubico.com/).
+  id: totrans-100
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 双因素认证（2FA）在密码的基础上为您的账户增加了额外的安全层。为了登录，您不仅要知道一些密码，还必须以某种方式“证明”您有权访问某些硬件设备。在最简单的情况下，这可以通过在您的手机上接收短信来实现，尽管存在[已知问题](https://www.kaspersky.com/blog/2fa-practical-guide/24219/)与短信2FA相关。我们推荐的一个更好的替代方案是使用[通用第二因素](https://en.wikipedia.org/wiki/Universal_2nd_Factor)解决方案，如[YubiKey](https://www.yubico.com/)。
+- en: Any comments on differences between web browsers?
+  id: totrans-101
+  prefs:
+  - PREF_H2
+  type: TYPE_NORMAL
+  zh: 对不同网络浏览器之间的差异有何评论？
+- en: The current landscape of browsers as of 2020 is that most of them are like Chrome
+    because they use the same engine (Blink). This means that Microsoft Edge which
+    is also based on Blink, and Safari, which is based on WebKit, a similar engine
+    to Blink, are just worse versions of Chrome. Chrome is a reasonably good browser
+    both in terms of performance and usability. Should you want an alternative, Firefox
+    is our recommendation. It is comparable to Chrome in pretty much every regard
+    and it excels for privacy reasons. Another browser called [Flow](https://www.ekioh.com/flow-browser/)
+    is not user ready yet, but it is implementing a new rendering engine that promises
+    to be faster than the current ones.
+  id: totrans-102
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 截至2020年的浏览器格局是，大多数浏览器都像Chrome一样，因为它们使用相同的引擎（Blink）。这意味着基于Blink的Microsoft Edge和基于与Blink类似的引擎WebKit的Safari只是Chrome的较差版本。Chrome在性能和可用性方面都是一个相当不错的浏览器。如果您想要一个替代品，我们推荐Firefox。它在几乎所有方面都与Chrome相当，并且由于隐私原因而表现出色。另一个名为[Flow](https://www.ekioh.com/flow-browser/)的浏览器尚未准备好供用户使用，但它正在实施一个承诺比当前引擎更快的新的渲染引擎。
+- en: '* * *'
+  id: totrans-103
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '* * *'
+- en: '[Edit this page](https://github.com/missing-semester/missing-semester/blob/master/_2020/qa.md).'
+  id: totrans-104
+  prefs: []
+  type: TYPE_NORMAL
+  zh: '[编辑此页面](https://github.com/missing-semester/missing-semester/blob/master/_2020/qa.md)。'
+- en: Licensed under [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0).
+  id: totrans-105
+  prefs: []
+  type: TYPE_NORMAL
+  zh: 本文档遵循[CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0)许可协议。
