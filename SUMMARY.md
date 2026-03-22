@@ -10,6 +10,7 @@
 +   [CMU 15-850 高级算法笔记](docs/cmu-15850-adv-algo/README.md)
 +   [CMU 21-218 离散数学笔记](docs/cmu-21228-discmath/README.md)
 +   [CMU 未来数据库系统研讨会 2025 笔记](docs/cmu-ftr-db-sem-2025/README.md)
++   [CMU SQL 或死亡研讨会笔记](docs/cmu-sqlordead-sem/README.md)
 +   [MIT 18.S191 计算机思维导论笔记](docs/mit-18s191-intro/README.md)
 +   [MIT 6.004 数字设计与计算机系统结构笔记](docs/mit-6004-ddca/README.md)
 +   [MIT 6.005 软件构建讲义](docs/mit-6005-swbd/README.md)
