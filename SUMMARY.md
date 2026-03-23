@@ -9,6 +9,7 @@
 +   [CMU 17-799 数据库查询优化笔记](docs/cmu-15799-db-qry-opti/README.md)
 +   [CMU 15-850 高级算法笔记](docs/cmu-15850-adv-algo/README.md)
 +   [CMU 21-218 离散数学笔记](docs/cmu-21228-discmath/README.md)
++   [CMU 数据库构建块研讨会笔记](docs/cmu-db-bdblk-sem/README.md)
 +   [CMU 未来数据库系统研讨会 2025 笔记](docs/cmu-ftr-db-sem-2025/README.md)
 +   [CMU SQL 或死亡研讨会笔记](docs/cmu-sqlordead-sem/README.md)
 +   [MIT 18.S191 计算机思维导论笔记](docs/mit-18s191-intro/README.md)
