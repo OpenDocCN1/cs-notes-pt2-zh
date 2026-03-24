@@ -28,6 +28,7 @@
 +   [MIT  6.S081 操作系统工程笔记](docs/mit-6s081-os/README.md)
 +   [MIT 6.S905 困惑的人的编程笔记](docs/mit-6s095-prog-pzl/README.md)
 +   [MIT CMS.595 学习、媒介与技术笔记](docs/mit-cms595-lrn-med-tech/README.md)
++   [MIT D4M 数据库信号处理笔记](docs/mit-d4m-db-sgnproc/README.md)
 +   [MIT 黑客工具笔记](docs/mit-hkrtl/README.md)
 +   [MIT 计算机科学教育中遗失的一学期笔记](docs/mit-miss-sem-cs-edu/README.md)
 +   [MIT 缺失的一学期 2026 笔记](docs/mit-missem-2026/README.md)
