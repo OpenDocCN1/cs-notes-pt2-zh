@@ -16,6 +16,7 @@
 +   [MIT 18.S191 计算机思维导论笔记](docs/mit-18s191-intro/README.md)
 +   [MIT 6.004 数字设计与计算机系统结构笔记](docs/mit-6004-ddca/README.md)
 +   [MIT 6.005 软件构建讲义](docs/mit-6005-swbd/README.md)
++   [MIT 6.006 算法导论教材（算法导论第四版）](docs/mit-6006-intro-algo-4e/README.md)
 +   [MIT 6.00SC 计算机科学与编程导论笔记](docs/mit-600sc-cs-prog-intro/README.md)
 +   [MIT 6.01SC EECS 导论笔记](docs/mit-601sc-eecs-intro/README.md)
 +   [MIT 6.042J 计算机科学的数学基础笔记](docs/mit-6042j-mcs/README.md)
