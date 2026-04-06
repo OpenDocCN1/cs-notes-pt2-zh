@@ -74,7 +74,6 @@
 +   [UCB CS61c 组成原理中文笔记](docs/ucb-cs61c-arch/README.md)
 +   [UCB 全栈开发笔记](docs/ucb-flstk/README.md)
 +   [UCB Linux 系统管理笔记](docs/ucb-linux-sysadm/README.md)
-+   [UCD ECS032a Python 数据分析笔记](docs/ucd-ecs032a-pyda-intro/README.md)
 +   [UCD ECS036a C 底层编程笔记](docs/ucd-ecs036a-c-udrl-prog/README.md)
 +   [UCD ECS150 计算机科学笔记](docs/ucd-ecs150-cs/README.md)
 +   [UCD ECS150 操作系统与系统编程笔记](docs/ucd-ecs150-os-sysprog/README.md)
@@ -101,5 +100,4 @@
 +   [UIUC CS374 算法笔记](docs/uiuc-cs374-algo/README.md)
 +   [UIUC CS473 算法笔记](docs/uiuc-cs473-algo/README.md)
 +   [UIUC CS598 高级数据结构笔记](docs/uiuc-cs598-adv-dast/README.md)
-+   [UIUC ECE364 机器学习编程方法笔记](docs/uiuc-ece364-ml-prog-mtd/README.md)
 +   [UIUC ECE408 应用并行编程笔记](docs/uiuc-ece408-app-prll-comp/README.md)

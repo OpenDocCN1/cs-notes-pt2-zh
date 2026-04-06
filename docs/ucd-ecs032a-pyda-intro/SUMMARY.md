@@ -1,8 +1,0 @@
-+   [UCD ECS032a Python 数据分析笔记](README.md)
-+   [001：Python入门与基础语法](ucd-ecs032a-pyda-intro-001.md)
-+   [002：数据结构与控制流](ucd-ecs032a-pyda-intro-002.md)
-+   [003：pandas入门与表格数据处理 📊](ucd-ecs032a-pyda-intro-003.md)
-+   [004：代码组织、函数与迭代](ucd-ecs032a-pyda-intro-004.md)
-+   [005：代码组织、可重复性与综合实践](ucd-ecs032a-pyda-intro-005.md)
-+   [006：使用Python的API进行网络爬虫 🕸️](ucd-ecs032a-pyda-intro-006.md)
-+   [007：Jupyter与AWS入门 🚀](ucd-ecs032a-pyda-intro-007.md)
