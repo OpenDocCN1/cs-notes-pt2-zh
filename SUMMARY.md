@@ -49,6 +49,7 @@
 +   [MIT 6.009 街头数学讲义](docs/MIT_6.009_街头数学讲义/README.md)
 +   [MIT 6.011 控制论和信号处理导论讲义](docs/MIT_6.011_控制论和信号处理导论讲义/README.md)
 +   [MIT 6.02 EECS2 数字通信系统讲义](docs/MIT_6.02_EECS2_数字通信系统讲义/README.md)
++   [MIT 6.033 计算机系统工程讲义](docs/MIT_6.033_计算机系统工程讲义/README.md)
 +   [斯坦福 AA228V 安全关键系统验证笔记](docs/stf-aa228v-sftctsys/README.md)
 +   [斯坦福代数编程理论笔记](docs/stf-alg-cd-thr/README.md)
 +   [斯坦福算法笔记](docs/stf-algo/README.md)
