@@ -45,6 +45,7 @@
 +   [MIT 6.003 信号系统讲义](docs/MIT_6.003_信号系统讲义/README.md)
 +   [MIT 6.004 计算机程序设计原理第二部分](docs/MIT_6.004_计算机程序设计原理第二部分/README.md)
 +   [MIT 6.006 算法导论讲义](docs/MIT_6.006_算法导论讲义/README.md)
++   [MIT 6.009 街头数学讲义](docs/MIT_6.009_街头数学讲义/README.md)
 +   [斯坦福 AA228V 安全关键系统验证笔记](docs/stf-aa228v-sftctsys/README.md)
 +   [斯坦福代数编程理论笔记](docs/stf-alg-cd-thr/README.md)
 +   [斯坦福算法笔记](docs/stf-algo/README.md)
