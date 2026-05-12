@@ -42,6 +42,7 @@
 +   [MIT 计算机科学教育中遗失的一学期笔记](docs/mit-miss-sem-cs-edu/README.md)
 +   [MIT 缺失的一学期 2026 笔记](docs/mit-missem-2026/README.md)
 +   [MIT 缺失的一学期中文官方讲义](docs/mit-missem-notes/README.md)
++   [MIT 18.S996：科学家的范畴论](docs/MIT_18.S996：科学家的范畴论/README.md)
 +   [MIT 6.003 信号系统讲义](docs/MIT_6.003_信号系统讲义/README.md)
 +   [MIT 6.004 计算机程序设计原理第二部分](docs/MIT_6.004_计算机程序设计原理第二部分/README.md)
 +   [MIT 6.006 算法导论讲义](docs/MIT_6.006_算法导论讲义/README.md)
