@@ -124,3 +124,4 @@
 +   [UIUC CS598 高级数据结构笔记](docs/uiuc-cs598-adv-dast/README.md)
 +   [UIUC ECE408 应用并行编程笔记](docs/uiuc-ece408-app-prll-comp/README.md)
 +   [UIUC CS173：理论计算机科学的积木](docs/UIUC_CS173：理论计算机科学的积木/README.md)
++   [UIUC CS374 算法中文讲义](docs/UIUC_CS374_算法中文讲义/README.md)
