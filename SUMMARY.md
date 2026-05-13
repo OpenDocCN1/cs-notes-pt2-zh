@@ -56,6 +56,7 @@
 +   [MIT 6.851 高级数据结构讲义](docs/MIT_6.851_高级数据结构讲义/README.md)
 +   [MIT 6.854J 高级算法讲义](docs/MIT_6.854J_高级算法讲义/README.md)
 +   [MIT 6.901 发明专利讲义](docs/MIT_6.901_发明专利讲义/README.md)
++   [MIT 6.977 超快光学讲义](docs/MIT_6.977_超快光学讲义/README.md)
 +   [斯坦福 AA228V 安全关键系统验证笔记](docs/stf-aa228v-sftctsys/README.md)
 +   [斯坦福代数编程理论笔记](docs/stf-alg-cd-thr/README.md)
 +   [斯坦福算法笔记](docs/stf-algo/README.md)
