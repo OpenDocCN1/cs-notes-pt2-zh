@@ -53,6 +53,7 @@
 +   [MIT 6.042J：面向计算机科学的数学（MCS）](docs/MIT_6.042J：面向计算机科学的数学（MCS）/README.md)
 +   [MIT 6.061 电力系统导论讲义](docs/MIT_6.061_电力系统导论讲义/README.md)
 +   [MIT 6.828 操作系统讲义](docs/MIT_6.828_操作系统讲义/README.md)
++   [MIT 6.851 高级数据结构讲义](docs/MIT_6.851_高级数据结构讲义/README.md)
 +   [MIT 6.854J 高级算法讲义](docs/MIT_6.854J_高级算法讲义/README.md)
 +   [斯坦福 AA228V 安全关键系统验证笔记](docs/stf-aa228v-sftctsys/README.md)
 +   [斯坦福代数编程理论笔记](docs/stf-alg-cd-thr/README.md)
