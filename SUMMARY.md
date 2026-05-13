@@ -52,6 +52,7 @@
 +   [MIT 6.033 计算机系统工程讲义](docs/MIT_6.033_计算机系统工程讲义/README.md)
 +   [MIT 6.042J：面向计算机科学的数学（MCS）](docs/MIT_6.042J：面向计算机科学的数学（MCS）/README.md)
 +   [MIT 6.061 电力系统导论讲义](docs/MIT_6.061_电力系统导论讲义/README.md)
++   [MIT 6.701 纳电子导论讲义](docs/MIT_6.701_纳电子导论讲义/README.md)
 +   [MIT 6.828 操作系统讲义](docs/MIT_6.828_操作系统讲义/README.md)
 +   [MIT 6.851 高级数据结构讲义](docs/MIT_6.851_高级数据结构讲义/README.md)
 +   [MIT 6.854J 高级算法讲义](docs/MIT_6.854J_高级算法讲义/README.md)
