@@ -93,6 +93,7 @@
 +   [UCB CS61c 组成原理中文笔记](docs/ucb-cs61c-arch/README.md)
 +   [UCB 全栈开发笔记](docs/ucb-flstk/README.md)
 +   [UCB Linux 系统管理笔记](docs/ucb-linux-sysadm/README.md)
++   [UCB CS262A 计算机系统的高级话题讲义](docs/UCB_CS262A_计算机系统的高级话题讲义/README.md)
 +   [UCD ECS036a C 底层编程笔记](docs/ucd-ecs036a-c-udrl-prog/README.md)
 +   [UCD ECS150 计算机科学笔记](docs/ucd-ecs150-cs/README.md)
 +   [UCD ECS150 操作系统与系统编程笔记](docs/ucd-ecs150-os-sysprog/README.md)
