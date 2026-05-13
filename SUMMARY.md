@@ -103,6 +103,7 @@
 +   [UCD ECS50 C 与汇编笔记](docs/ucd-ecs50-c-asm/README.md)
 +   [UCD 搜索引擎优化笔记](docs/ucd-seo/README.md)
 +   [UCI Go 语言编程笔记](docs/uci-go-prog/README.md)
++   [UCLA CS232 静态程序分析阅读清单](docs/UCLA_CS232_静态程序分析阅读清单/README.md)
 +   [UCSC C 语言编程笔记](docs/ucsc-c-prog/README.md)
 +   [UCSC C 语言结构化编程笔记](docs/ucsc-c-stct-prog/README.md)
 +   [UCSC C++ 编程笔记](docs/ucsc-cpp-prog/README.md)
