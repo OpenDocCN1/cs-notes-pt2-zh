@@ -78,15 +78,15 @@
 修订后的接口包含以下五个方法：
 
 以下是五个核心方法的描述：
+
+![](img/beb13ea5c1cb9a7741a87d161f9b26b2_13.png)
+
 ```pseudocode
 操作 enterScope():        // 进入新作用域
     压入一个新的、空的作用域到作用域栈顶
 
 操作 exitScope():         // 退出当前作用域
     弹出作用域栈顶的作用域
-
-![](img/beb13ea5c1cb9a7741a87d161f9b26b2_13.png)
-
 操作 addSymbol(symbol):   // 添加符号
     将 symbol 添加到当前作用域（栈顶的作用域）中
 

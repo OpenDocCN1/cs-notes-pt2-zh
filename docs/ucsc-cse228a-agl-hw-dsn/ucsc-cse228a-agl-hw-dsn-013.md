@@ -173,15 +173,15 @@ def testAddition(a: Int, b: Int, dut: SignMagAdder): Unit = {
 
 ![](img/9030807e2298d0684ac3f1365257bccc_81.png)
 
-```scala
-import org.scalatest.flatspec.AnyFlatSpec
-import chiseltest._
-import chisel3._
 
 ![](img/9030807e2298d0684ac3f1365257bccc_83.png)
 
 ![](img/9030807e2298d0684ac3f1365257bccc_85.png)
 
+```scala
+import org.scalatest.flatspec.AnyFlatSpec
+import chiseltest._
+import chisel3._
 class SignMagAdderTest extends AnyFlatSpec with ChiselScalatestTester {
   behavior of "SignMagAdder"
   // 测试用例1

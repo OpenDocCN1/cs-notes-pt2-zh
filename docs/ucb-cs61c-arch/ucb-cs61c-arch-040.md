@@ -131,21 +131,21 @@ int main() {
 
 ![](img/871db9a38be557766c273c0ebed8a644_53.png)
 
-```c
-#include <stdio.h>
-#include <math.h>
 
 ![](img/871db9a38be557766c273c0ebed8a644_55.png)
 
 ![](img/871db9a38be557766c273c0ebed8a644_57.png)
 
-static long num_steps = 1000000; // 积分步数
-double step;
 
 ![](img/871db9a38be557766c273c0ebed8a644_59.png)
 
 ![](img/871db9a38be557766c273c0ebed8a644_61.png)
 
+```c
+#include <stdio.h>
+#include <math.h>
+static long num_steps = 1000000; // 积分步数
+double step;
 int main() {
     int i;
     double x, pi, sum = 0.0;
@@ -188,9 +188,6 @@ for (i = 0; i < num_steps; i++) {
 
 ![](img/871db9a38be557766c273c0ebed8a644_71.png)
 
-```c
-#include <stdio.h>
-#include <omp.h>
 
 ![](img/871db9a38be557766c273c0ebed8a644_73.png)
 
@@ -198,8 +195,6 @@ for (i = 0; i < num_steps; i++) {
 
 ![](img/871db9a38be557766c273c0ebed8a644_77.png)
 
-static long num_steps = 1000000;
-double step;
 
 ![](img/871db9a38be557766c273c0ebed8a644_79.png)
 
@@ -207,6 +202,11 @@ double step;
 
 ![](img/871db9a38be557766c273c0ebed8a644_83.png)
 
+```c
+#include <stdio.h>
+#include <omp.h>
+static long num_steps = 1000000;
+double step;
 int main() {
     int i;
     double pi, sum = 0.0;

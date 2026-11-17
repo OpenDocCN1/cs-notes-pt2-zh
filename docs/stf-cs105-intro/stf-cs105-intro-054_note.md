@@ -45,6 +45,9 @@ file.close()
 ![](img/cade2a8903ac1e0c5226c7608f03a281_10.png)
 
 **代码示例：读取文件并求和**
+
+![](img/cade2a8903ac1e0c5226c7608f03a281_12.png)
+
 ```python
 # 1. 打开文件
 file = open("data.txt", "r")
@@ -54,9 +57,6 @@ total = 0
 for line in file:
     number = int(line)  # 将从文件读取的字符串转换为整数
     total = total + number
-
-![](img/cade2a8903ac1e0c5226c7608f03a281_12.png)
-
 # 3. 关闭文件
 file.close()
 

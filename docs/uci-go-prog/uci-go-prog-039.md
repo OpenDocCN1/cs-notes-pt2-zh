@@ -69,14 +69,14 @@ func triangleArea(p1, p2, p3 Point) float64 {
 
 更进一步，可以定义一个 `Triangle` 结构体，这样函数只需要一个参数。
 
+
+![](img/3663f50f5833728bef759957d8023acb_3.png)
+
 ```go
 // 更优的方式：语义更清晰
 type Triangle struct {
     p1, p2, p3 Point
 }
-
-![](img/3663f50f5833728bef759957d8023acb_3.png)
-
 func (t Triangle) area() float64 {
     // ... 计算逻辑
 }

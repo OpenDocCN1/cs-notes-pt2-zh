@@ -117,19 +117,19 @@ stats-rs = "0.12.0"
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_34.png)
 
-```rust
-// 引入整个crate（库）
-extern crate stats_rs;
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_36.png)
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_38.png)
 
-// 从stats_rs的statistics模块中，引入mean和median这两个特定函数
-use stats_rs::statistics::{mean, median};
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_40.png)
 
+```rust
+// 引入整个crate（库）
+extern crate stats_rs;
+// 从stats_rs的statistics模块中，引入mean和median这两个特定函数
+use stats_rs::statistics::{mean, median};
 fn main() {
     let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
     let m = mean(&data);

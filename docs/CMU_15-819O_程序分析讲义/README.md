@@ -1337,17 +1337,17 @@ Steensgaard 找到的解决方案是基于在程序中为每个变量使用常�
 3: q := □&y
 4: s := □&q
 5: r := □s
+![Graph 1](img/7ec0dd7b2a05adbe099d07a11ab73922_55_0.png)
+
+![Graph 2](img/7ec0dd7b2a05adbe099d07a11ab73922_55_1.png)
+
+![Graph 3](img/7ec0dd7b2a05adbe099d07a11ab73922_56_0.png)
+
 ```
 
 Andersen 的指向分析将产生以下图形：
-![Graph 1](img/7ec0dd7b2a05adbe099d07a11ab73922_55_0.png)
-
 但在 Steensgaard 的设置中，当我们发现 $r$ 既可以指向 $q$ 也可以指向 $p$ 时，我们必须将 $q$ 和 $p$ 合并为一个节点：
-![Graph 2](img/7ec0dd7b2a05adbe099d07a11ab73922_55_1.png)
-
 请注意，我们失去了精度：通过合并 $p$ 和 $q$ 的节点，我们的图表现出了 $s$ 可能指向 $p$ 的情况，而实际上并非如此。但我们还没有完成。现在 $pq$ 有两个出箭头，所以我们必须合并节点 $x$ 和 $y$。Steensgaard 算法产生的最终图形如下：
-![Graph 3](img/7ec0dd7b2a05adbe099d07a11ab73922_56_0.png)
-
 现在让我们更准确地定义 Steensgaard 的分析。我们将研究一个不考虑函数指针的简化版本的分析。分析可以如下指定：
 
 $$
@@ -1398,11 +1398,11 @@ Steensgaard 使用以下程序说明了他的算法：
 5: else
 6:   y := □&x
 7: c := □&y
+![Graph 4](img/7ec0dd7b2a05adbe099d07a11ab73922_57_0.png)
+
 ```
 
 他的分析为该程序产生了以下图形：
-![Graph 4](img/7ec0dd7b2a05adbe099d07a11ab73922_57_0.png)
-
 Rayside 举例说明了 Andersen 必须做更多工作的情况：
 
 ```
@@ -1410,6 +1410,13 @@ Rayside 举例说明了 Andersen 必须做更多工作的情况：
 2: q := □&y
 3: p := □q
 4: q := □&z
+
+![Rule 1](img/7ec0dd7b2a05adbe099d07a11ab73922_59_0.png)
+![Rule 2](img/7ec0dd7b2a05adbe099d07a11ab73922_59_1.png)
+![Rule 3](img/7ec0dd7b2a05adbe099d07a11ab73922_59_2.png)
+![Rule 4](img/7ec0dd7b2a05adbe099d07a11ab73922_59_3.png)
+![Rule 5](img/7ec0dd7b2a05adbe099d07a11ab73922_59_4.png)
+
 ```
 
 处理完前三个语句后，Steensgaard 算法将统一变量 $x$ 和 $y$，$p$ 和 $q$ 都指向统一的节点。相比之下，Andersen 算法将 $p$ 和 $q$ 都指向 $x$ 和 $y$ 都是的。当第四个语句被处理时，Steensgaard 的算法只需要做一定量的工作，将 $z$ 与已经合并的 $xy$ 节点合并在一起。另一方面，Andersen 的算法不仅需要从 $q$ 到 $z$ 创建一个指向关系，还必须将这种关系传播到 $p$。正是这个额外的传播步骤导致了这些算法之间的显著性能差异。
@@ -1425,13 +1432,6 @@ Steensgaard 的指针分析是不敏感于字段的；如果使其敏感于字�
 ## 4 将上下文敏感性添加到 Andersen 的算法中
 
 我们可以定义 Andersen 的指向算法的一个上下文敏感版本。在下面的方法中，我们为每个调用点单独分析每个函数。该分析跟踪当前上下文，即当前过程的调用点 $n$。在约束条件中，我们根据定义变量的过程的调用上下文 $n$，为每个变量 $x$ 分别跟踪不同的值，并根据在 `new` 指令 $k$ 时分配该位置的调用上下文 $n$，为每个内存位置 $l$ 跟踪不同的值。规则如下：
-
-![Rule 1](img/7ec0dd7b2a05adbe099d07a11ab73922_59_0.png)
-![Rule 2](img/7ec0dd7b2a05adbe099d07a11ab73922_59_1.png)
-![Rule 3](img/7ec0dd7b2a05adbe099d07a11ab73922_59_2.png)
-![Rule 4](img/7ec0dd7b2a05adbe099d07a11ab73922_59_3.png)
-![Rule 5](img/7ec0dd7b2a05adbe099d07a11ab73922_59_4.png)
-
 为了说明这个分析，想象一下我们有以下代码：
 
 ```java
@@ -1452,11 +1452,11 @@ if (...) {
     A y = d1.f(new C());
     y.g(); // 哪个 g 被调用了?
 }
+![Alias Graph](img/7ec0dd7b2a05adbe099d07a11ab73922_60_0.png)
+
 ```
 
 分析产生以下别名图：
-![Alias Graph](img/7ec0dd7b2a05adbe099d07a11ab73922_60_0.png)
-
 在这个例子中，跟踪变量 $a$ 的两个不同版本足以区分通过方法 $f$ 传递的类型为 $B$ 和 $C$ 的对象，这意味着分析可以准确地跟踪每个程序位置调用的 $g$ 的版本。
 
 然而，调用字符串上下文敏感性是有限的。考虑以下示例，改编自 Ryder 的笔记：

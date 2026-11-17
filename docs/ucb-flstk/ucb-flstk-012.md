@@ -20,12 +20,12 @@ Express 是一个基于 Node.js 的后端 Web 应用框架。它专为构建 Web
 
 以下是一个简单的 Express 服务器代码示例：
 
-```javascript
-const express = require('express');
-const app = express();
 
 ![](img/18f8b419755349cc15567673482ae2ee_2.png)
 
+```javascript
+const express = require('express');
+const app = express();
 app.get('/', (req, res) => {
   res.json({ message: 'API 正在运行' });
 });
@@ -207,15 +207,15 @@ module.exports = mongoose.model(‘User’, UserSchema);
 
 首先，实现用户注册 (`/signup`) 端点：
 
+
+![](img/18f8b419755349cc15567673482ae2ee_24.png)
+
 ```javascript
 const express = require(‘express’);
 const router = express.Router();
 const User = require(‘../models/User’);
 const bcrypt = require(‘bcryptjs’);
 const jwt = require(‘jsonwebtoken’);
-
-![](img/18f8b419755349cc15567673482ae2ee_24.png)
-
 // 用户注册
 router.post(‘/signup’, async (req, res) => {
   const { username, email, password } = req.body;
@@ -366,13 +366,13 @@ router.post(‘/login’, async (req, res) => {
 
 我们将创建一个中间件来验证 JWT。创建 `middleware/auth.js` 文件：
 
-```javascript
-const jwt = require(‘jsonwebtoken’);
 
 ![](img/18f8b419755349cc15567673482ae2ee_54.png)
 
 ![](img/18f8b419755349cc15567673482ae2ee_56.png)
 
+```javascript
+const jwt = require(‘jsonwebtoken’);
 module.exports = function (req, res, next) {
   // 从请求头中获取 token
   const token = req.header(‘x-auth-token’);

@@ -40,15 +40,15 @@
 
 ![](img/72ed7edbcb2a8518c041f0069b3a8b51_20.png)
 
+
+![](img/72ed7edbcb2a8518c041f0069b3a8b51_22.png)
+
 ```swift
 // 定义一个包含两个GridItem的数组，创建两列布局
 let columns = [
     GridItem(.flexible(minimum: 80), spacing: 10, alignment: .top),
     GridItem(.flexible(minimum: 80), spacing: 10, alignment: .top)
 ]
-
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_22.png)
-
 LazyVGrid(columns: columns, spacing: 20) {
     ForEach(items) { item in
         ItemView(item: item)

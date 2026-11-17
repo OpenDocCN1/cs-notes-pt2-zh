@@ -166,11 +166,11 @@ pylab.show()
 
 我们可以通过编写程序来模拟这个实验，验证帕斯卡的计算：
 
-```python
-import random
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_93.png)
 
+```python
+import random
 def simulate_dice_game(num_trials):
     wins = 0
     for _ in range(num_trials):

@@ -151,14 +151,14 @@ int add(int a, int b) {
 ![](img/accff86ef85fbe5cdf56d9fe0496ac57_50.png)
 
 结构体用于创建自定义的复合数据类型，是实现抽象数据类型（ADT）的方式。
+
+![](img/accff86ef85fbe5cdf56d9fe0496ac57_52.png)
+
 ```c
 typedef struct {
     int feet;
     int inches;
 } Height;
-
-![](img/accff86ef85fbe5cdf56d9fe0496ac57_52.png)
-
 Height h;
 h.feet = 5;
 h.inches = 11;
@@ -183,12 +183,12 @@ C语言的控制流语句（`if`, `else`, `while`, `for`, `switch`）与Java非�
 ![](img/accff86ef85fbe5cdf56d9fe0496ac57_60.png)
 
 让我们看一个计算正弦值的简单C程序：
-```c
-#include <stdio.h>
-#include <math.h>
 
 ![](img/accff86ef85fbe5cdf56d9fe0496ac57_62.png)
 
+```c
+#include <stdio.h>
+#include <math.h>
 int main(void) {
     int angle_degrees;
     double angle_radians, pi, value;

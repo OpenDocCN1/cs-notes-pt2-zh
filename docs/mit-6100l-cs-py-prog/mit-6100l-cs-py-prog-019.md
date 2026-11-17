@@ -404,13 +404,6 @@ class Rabbit(Animal):
 
 ![](img/6839f46cc3482eb7c540e2abc3dd0e9d_141.png)
 
-```python
-r1 = Rabbit(3)
-r2 = Rabbit(4)
-r3 = Rabbit(5)
-print(f"r1 id: {r1.get_rid()}") # 输出：r1 id: 00001
-print(f"r2 id: {r2.get_rid()}") # 输出：r2 id: 00002
-print(f"r3 id: {r3.get_rid()}") # 输出：r3 id: 00003
 
 ![](img/6839f46cc3482eb7c540e2abc3dd0e9d_143.png)
 
@@ -422,9 +415,6 @@ print(f"r3 id: {r3.get_rid()}") # 输出：r3 id: 00003
 
 ![](img/6839f46cc3482eb7c540e2abc3dd0e9d_149.png)
 
-r4 = r1 + r2  # 调用 __add__，创建父母为r1和r2的新兔子
-print(f"r4 id: {r4.get_rid()}") # 输出：r4 id: 00004
-print(f"r4's parent ids: {r4.get_parent1().get_rid()}, {r4.get_parent2().get_rid()}")
 
 ![](img/6839f46cc3482eb7c540e2abc3dd0e9d_151.png)
 
@@ -434,6 +424,16 @@ print(f"r4's parent ids: {r4.get_parent1().get_rid()}, {r4.get_parent2().get_rid
 
 ![](img/6839f46cc3482eb7c540e2abc3dd0e9d_157.png)
 
+```python
+r1 = Rabbit(3)
+r2 = Rabbit(4)
+r3 = Rabbit(5)
+print(f"r1 id: {r1.get_rid()}") # 输出：r1 id: 00001
+print(f"r2 id: {r2.get_rid()}") # 输出：r2 id: 00002
+print(f"r3 id: {r3.get_rid()}") # 输出：r3 id: 00003
+r4 = r1 + r2  # 调用 __add__，创建父母为r1和r2的新兔子
+print(f"r4 id: {r4.get_rid()}") # 输出：r4 id: 00004
+print(f"r4's parent ids: {r4.get_parent1().get_rid()}, {r4.get_parent2().get_rid()}")
 r5 = r2 + r1
 print(r4 == r5)  # 输出：True，因为父母相同（r1和r2）
 ```

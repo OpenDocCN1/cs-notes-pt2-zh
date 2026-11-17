@@ -114,12 +114,6 @@ end
 
 ![](img/b8e1d125d9ff89215ae2d0f3136f14a4_67.png)
 
-```julia
-function rectangle(x, y, w, h)
-    xs = [x, x+w, x+w, x]
-    ys = [y, y, y+h, y+h]
-    return (xs, ys)
-end
 
 ![](img/b8e1d125d9ff89215ae2d0f3136f14a4_69.png)
 
@@ -139,6 +133,12 @@ end
 
 ![](img/b8e1d125d9ff89215ae2d0f3136f14a4_85.png)
 
+```julia
+function rectangle(x, y, w, h)
+    xs = [x, x+w, x+w, x]
+    ys = [y, y, y+h, y+h]
+    return (xs, ys)
+end
 function circle(x, y, r, n=30)
     θ = range(0, 2π, length=n)
     xs = x .+ r .* cos.(θ)

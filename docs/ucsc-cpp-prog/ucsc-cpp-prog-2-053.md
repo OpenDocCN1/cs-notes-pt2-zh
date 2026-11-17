@@ -20,19 +20,19 @@
 
 以下是使用元组实现一个简单3D点类的示例。实现方式有很多种，元组并非唯一选择，也不一定带来显著的效率优势，但它展示了如何自然地整合这一功能。
 
-```cpp
-#include <tuple>
 
 ![](img/277b940a168abd67a2a1e03ba61c81e9_3.png)
 
 ![](img/277b940a168abd67a2a1e03ba61c81e9_5.png)
 
-class Point3D {
-private:
-    std::tuple<double, double, double> p; // 元组存储三个double值
 
 ![](img/277b940a168abd67a2a1e03ba61c81e9_7.png)
 
+```cpp
+#include <tuple>
+class Point3D {
+private:
+    std::tuple<double, double, double> p; // 元组存储三个double值
 public:
     // 默认构造函数：将点设置在原点 (0,0,0)
     Point3D() : p(std::make_tuple(0.0, 0.0, 0.0)) {}

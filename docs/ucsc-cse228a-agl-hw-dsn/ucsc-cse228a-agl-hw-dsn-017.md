@@ -119,9 +119,6 @@ val anyEven = numbers.exists(isEven) // true
 让我们结合所学，用几行代码实现一个质数生成器。
 
 **代码示例：**
-```scala
-def removeMultiplesOf(x: Int)(nums: Seq[Int]): Seq[Int] =
-  nums.filterNot(_ % x == 0)
 
 ![](img/c88e4c9a563ee724c0424acc68066893_53.png)
 
@@ -129,6 +126,12 @@ def removeMultiplesOf(x: Int)(nums: Seq[Int]): Seq[Int] =
 
 ![](img/c88e4c9a563ee724c0424acc68066893_57.png)
 
+
+![](img/c88e4c9a563ee724c0424acc68066893_59.png)
+
+```scala
+def removeMultiplesOf(x: Int)(nums: Seq[Int]): Seq[Int] =
+  nums.filterNot(_ % x == 0)
 def sieve(nums: Seq[Int]): Seq[Int] = {
   if (nums.isEmpty) Seq.empty
   else {
@@ -136,9 +139,6 @@ def sieve(nums: Seq[Int]): Seq[Int] = {
     head +: sieve(removeMultiplesOf(head)(nums.tail))
   }
 }
-
-![](img/c88e4c9a563ee724c0424acc68066893_59.png)
-
 val primesUnder100 = sieve(2 to 100)
 ```
 这段代码优雅地展示了如何通过组合 `filter` 和递归来构建算法。
@@ -236,10 +236,6 @@ x match {
 ![](img/c88e4c9a563ee724c0424acc68066893_111.png)
 
 **代码示例：**
-```scala
-case class Vehicle(color: String, driver: String)
-case class Helicopter(color: String, driver: String) extends Vehicle(color, driver)
-case class Submarine(color: String, driver: String) extends Vehicle(color, driver)
 
 ![](img/c88e4c9a563ee724c0424acc68066893_113.png)
 
@@ -249,16 +245,20 @@ case class Submarine(color: String, driver: String) extends Vehicle(color, drive
 
 ![](img/c88e4c9a563ee724c0424acc68066893_119.png)
 
-val fleet = Seq(
-  Helicopter("gray", "Alice"),
-  Helicopter("blue", "Bob"),
-  Submarine("yellow", "Charlie")
-)
 
 ![](img/c88e4c9a563ee724c0424acc68066893_121.png)
 
 ![](img/c88e4c9a563ee724c0424acc68066893_123.png)
 
+```scala
+case class Vehicle(color: String, driver: String)
+case class Helicopter(color: String, driver: String) extends Vehicle(color, driver)
+case class Submarine(color: String, driver: String) extends Vehicle(color, driver)
+val fleet = Seq(
+  Helicopter("gray", "Alice"),
+  Helicopter("blue", "Bob"),
+  Submarine("yellow", "Charlie")
+)
 fleet.foreach {
   case Helicopter("blue", pilot) => println(s"$pilot flies a blue helicopter")
   case Submarine(color, _) if color != "yellow" => println(s"A $color submarine")
@@ -334,6 +334,14 @@ if (maybeNumber.isDefined) {
 ![](img/c88e4c9a563ee724c0424acc68066893_153.png)
 
 **代码示例：**
+
+![](img/c88e4c9a563ee724c0424acc68066893_155.png)
+
+![](img/c88e4c9a563ee724c0424acc68066893_157.png)
+
+
+![](img/c88e4c9a563ee724c0424acc68066893_159.png)
+
 ```scala
 val numbersWithOptions = Seq(Some(1), None, Some(3), None)
 
@@ -342,19 +350,11 @@ val firstOrDefault = numbersWithOptions.head.getOrElse(-1)
 
 // 使用 flatten 提取所有有效值
 val allValues = numbersWithOptions.flatten // 得到 Seq(1, 3)
-
-![](img/c88e4c9a563ee724c0424acc68066893_155.png)
-
-![](img/c88e4c9a563ee724c0424acc68066893_157.png)
-
 // 使用模式匹配处理
 numbersWithOptions.foreach {
   case Some(value) => println(value)
   case None => println("No value")
 }
-
-![](img/c88e4c9a563ee724c0424acc68066893_159.png)
-
 // 使用 foreach (自动跳过 None)
 numbersWithOptions.foreach(_.foreach(println))
 ```

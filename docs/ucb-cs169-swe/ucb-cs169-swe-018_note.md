@@ -198,15 +198,18 @@ report.output_report
 
 ![](img/3be1d71e56856fc469366fb9d362137b_8.png)
 
+
+![](img/3be1d71e56856fc469366fb9d362137b_10.png)
+
+
+![](img/3be1d71e56856fc469366fb9d362137b_12.png)
+
 ```ruby
 class PdfFormatter
   def output
     # 生成基础PDF
   end
 end
-
-![](img/3be1d71e56856fc469366fb9d362137b_10.png)
-
 class PdfWithPasswordFormatter
   def initialize(pdf_formatter)
     @pdf_formatter = pdf_formatter
@@ -222,9 +225,6 @@ class PdfWithPasswordFormatter
     # 添加密码逻辑
   end
 end
-
-![](img/3be1d71e56856fc469366fb9d362137b_12.png)
-
 # 组合使用
 basic_pdf = PdfFormatter.new
 secure_pdf = PdfWithPasswordFormatter.new(basic_pdf)

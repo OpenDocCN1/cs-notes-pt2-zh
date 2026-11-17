@@ -107,19 +107,19 @@
 
 以下是一个能完成基本构建任务的 `Makefile`：
 
-```makefile
-myfact: main.o fact.o
-	gcc main.o fact.o -o myfact
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_42.png)
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_44.png)
 
-main.o: main.c fact.h
-	gcc -c main.c -o main.o
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_46.png)
 
+```makefile
+myfact: main.o fact.o
+	gcc main.o fact.o -o myfact
+main.o: main.c fact.h
+	gcc -c main.c -o main.o
 fact.o: fact.c fact.h
 	gcc -c fact.c -o fact.o
 
@@ -162,6 +162,11 @@ README.html: README.md
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_60.png)
 
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_62.png)
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_64.png)
+
 ```makefile
 all: myfact README.html
 
@@ -173,11 +178,6 @@ main.o: main.c fact.h
 
 fact.o: fact.c fact.h
 	gcc -c fact.c -o fact.o
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_62.png)
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_64.png)
-
 README.html: README.md
 	pandoc README.md -o README.html
 ```
@@ -265,14 +265,14 @@ myfact: main.o fact.o
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_90.png)
 
-```makefile
-CC = gcc
-CFLAGS = -Wall -Wextra
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_92.png)
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_93.png)
 
+```makefile
+CC = gcc
+CFLAGS = -Wall -Wextra
 %.o: %.c fact.h
 	$(CC) $(CFLAGS) -c $< -o $@
 ```
@@ -283,21 +283,21 @@ CFLAGS = -Wall -Wextra
 ### 4. 集中管理文件列表
 将最终目标和中间对象文件列表也定义为变量。
 
-```makefile
-TARGETS = myfact README.html
-OBJECTS = main.o fact.o
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_97.png)
 
-all: $(TARGETS)
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_99.png)
 
-myfact: $(OBJECTS)
-	$(CC) $^ -o $@
 
 ![](img/8038d42c0442aa53f884ced67aae4b8c_101.png)
 
+```makefile
+TARGETS = myfact README.html
+OBJECTS = main.o fact.o
+all: $(TARGETS)
+myfact: $(OBJECTS)
+	$(CC) $^ -o $@
 clean:
 	rm -f $(TARGETS) $(OBJECTS)
 ```
@@ -439,6 +439,30 @@ fact.o: fact.c fact.h
 
 结合以上所有技巧，我们得到一个功能完善、通用性强的高级 `Makefile`：
 
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_142.png)
+
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_144.png)
+
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_146.png)
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_148.png)
+
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_150.png)
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_152.png)
+
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_154.png)
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_156.png)
+
+
+![](img/8038d42c0442aa53f884ced67aae4b8c_158.png)
+
 ```makefile
 # 工具和标志定义
 CC = gcc
@@ -450,23 +474,12 @@ Q =
 else
 Q = @
 endif
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_142.png)
-
 # 文件列表定义
 TARGETS = myfact README.html
 OBJECTS = main.o fact.o
 DEPS = $(OBJECTS:.o=.d) # 依赖文件列表
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_144.png)
-
 # 默认目标
 all: $(TARGETS)
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_146.png)
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_148.png)
-
 # 链接可执行文件
 myfact: $(OBJECTS)
 	$(Q)echo "LD $@"
@@ -476,27 +489,14 @@ myfact: $(OBJECTS)
 %.o: %.c
 	$(Q)echo "CC $<"
 	$(Q)$(CC) $(CFLAGS) -c $< -o $@
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_150.png)
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_152.png)
-
 # 转换Markdown为HTML
 %.html: %.md
 	$(Q)echo "PANDOC $<"
 	$(Q)pandoc $< -o $@
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_154.png)
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_156.png)
-
 # 清理生成文件
 clean:
 	$(Q)echo "CLEAN"
 	$(Q)rm -f $(TARGETS) $(OBJECTS) $(DEPS)
-
-![](img/8038d42c0442aa53f884ced67aae4b8c_158.png)
-
 # 包含自动生成的依赖关系
 -include $(DEPS)
 ```

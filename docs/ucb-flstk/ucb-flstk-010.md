@@ -112,10 +112,6 @@ npm install express cors
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_45.png)
 
 接下来，在 `server.js` 文件中，用以下代码替换之前的内容：
-```javascript
-// 导入所需的模块
-const express = require('express');
-const cors = require('cors');
 
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_47.png)
 
@@ -125,6 +121,13 @@ const cors = require('cors');
 
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_52.png)
 
+
+![](img/7d6c21f07be064be8e2b53d1455dcb32_54.png)
+
+```javascript
+// 导入所需的模块
+const express = require('express');
+const cors = require('cors');
 // 创建一个 Express 应用实例
 const app = express();
 
@@ -135,9 +138,6 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
-
-![](img/7d6c21f07be064be8e2b53d1455dcb32_54.png)
-
 // 让服务器在 3042 端口上开始监听网络请求
 app.listen(3042, () => {
   console.log('Server listening on port 3042');

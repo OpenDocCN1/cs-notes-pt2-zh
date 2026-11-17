@@ -117,12 +117,6 @@ STA可以在设计流程的不同阶段运行（如综合后、布局布线后�
 一个典型例子是将线性结构的操作（如递归求和）改为树形结构。
 
 **代码示例：线性求和 vs. 树形求和**
-```scala
-// 线性深度 O(n) - 延迟大
-def popCountLinear(vec: Seq[Bool]): UInt = {
-    if (vec.isEmpty) 0.U
-    else vec.head.asUInt + popCountLinear(vec.tail)
-}
 
 ![](img/4702d06830745499394024f242f61a21_40.png)
 
@@ -134,6 +128,12 @@ def popCountLinear(vec: Seq[Bool]): UInt = {
 
 ![](img/4702d06830745499394024f242f61a21_48.png)
 
+```scala
+// 线性深度 O(n) - 延迟大
+def popCountLinear(vec: Seq[Bool]): UInt = {
+    if (vec.isEmpty) 0.U
+    else vec.head.asUInt + popCountLinear(vec.tail)
+}
 // 对数深度 O(log n) - 延迟小
 def popCountTree(vec: Seq[Bool]): UInt = {
     if (vec.length <= 1) vec.headOption.map(_.asUInt).getOrElse(0.U)

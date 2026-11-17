@@ -183,12 +183,12 @@ int pipe(int fds[2]);
 
 以下是一个简单的管道示例，父进程向子进程发送字符串：
 
-```c
-int fds[2];
-pipe(fds); // 创建管道
 
 ![](img/e8c16a216dab678dec1c79e51f021b08_79.png)
 
+```c
+int fds[2];
+pipe(fds); // 创建管道
 pid_t pid = fork();
 if (pid == 0) {
     // 子进程：关闭写入端，准备读取
@@ -266,6 +266,11 @@ execlp("sort", "sort", NULL);
 
 以下是 `subprocess` 函数的简化框架和 `main` 函数中的用法：
 
+
+![](img/e8c16a216dab678dec1c79e51f021b08_105.png)
+
+![](img/e8c16a216dab678dec1c79e51f021b08_107.png)
+
 ```c
 // subprocess_t 结构体，用于返回子进程信息
 typedef struct {
@@ -293,11 +298,6 @@ subprocess_t subprocess(char *command) {
         return sp;
     }
 }
-
-![](img/e8c16a216dab678dec1c79e51f021b08_105.png)
-
-![](img/e8c16a216dab678dec1c79e51f021b08_107.png)
-
 // 在 main 函数中使用
 int main() {
     // 启动 sort 命令作为子进程

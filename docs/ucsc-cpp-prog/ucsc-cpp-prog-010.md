@@ -43,12 +43,12 @@ inline void swap(T& x, T& y) {
 
 现在，让我们看看如何在主函数中使用这个泛型的`swap`函数。
 
-```cpp
-#include <iostream>
-#include <complex>
 
 ![](img/db6b6eb58480a08700bf015c783a5a41_7.png)
 
+```cpp
+#include <iostream>
+#include <complex>
 int main() {
     int i1 = 1, i2 = 2;
     double d1 = 3.14, d2 = 2.71;

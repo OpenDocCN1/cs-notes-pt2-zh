@@ -112,9 +112,10 @@ HTML标签通常成对出现，由开始标签和结束标签组成，内容写�
 
 ![](img/c8707bd7bb5380f1164d5044997b9e6b_15.png)
 
+<img src="https://example.com/image.jpg" alt="图片描述">
+
 ```html
 <!-- 使用网络链接 -->
-<img src="https://example.com/image.jpg" alt="图片描述">
 <!-- 使用本地相对路径 (假设图片与HTML文件在同一目录) -->
 <img src="myphoto.jpg" alt="我的照片">
 ```

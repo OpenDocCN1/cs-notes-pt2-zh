@@ -135,6 +135,9 @@ print(close_enough(nine_hundredths, temp - thousandths))  # 输出：True
 *   **典型情况**：预期的正常输入。
 
 例如，测试一个判断回文串的函数：
+
+![](img/dd67664246b4f93c00ef147d627a71ae_21.png)
+
 ```python
 def is_palindrome(s):
     # 函数实现...
@@ -148,9 +151,6 @@ test_cases = [
     ("aba", True),     # 奇数长度回文
     ("abba", True),    # 偶数长度回文
 ]
-
-![](img/dd67664246b4f93c00ef147d627a71ae_21.png)
-
 all_passed = True
 for input_str, expected in test_cases:
     result = is_palindrome(input_str)

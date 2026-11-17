@@ -112,10 +112,6 @@ pid_t waitpid(pid_t pid, int *status, int options);
 
 ![](img/12985c8e5f99b7c7460e806495676228_58.png)
 
-```c
-#include <stdio.h>
-#include <sys/wait.h>
-#include <unistd.h>
 
 ![](img/12985c8e5f99b7c7460e806495676228_60.png)
 
@@ -125,6 +121,10 @@ pid_t waitpid(pid_t pid, int *status, int options);
 
 ![](img/12985c8e5f99b7c7460e806495676228_65.png)
 
+```c
+#include <stdio.h>
+#include <sys/wait.h>
+#include <unistd.h>
 int main(int argc, char *argv[]) {
     printf("Before.\n");
     pid_t pid = fork();

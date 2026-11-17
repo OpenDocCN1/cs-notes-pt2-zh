@@ -149,14 +149,14 @@ struct Node {
 对于双向链表，我们需要结合`Rc`和`RefCell`：`Rc`允许多个所有者共享数据，`RefCell`允许在需要时对共享数据进行可变访问。
 
 最终，一个可行的双向链表节点定义可能如下：
-```rust
-use std::rc::Rc;
-use std::cell::RefCell;
 
 ![](img/aad80fad031ae52b4704d6fca30bd944_11.png)
 
 ![](img/aad80fad031ae52b4704d6fca30bd944_13.png)
 
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
 struct Node {
     value: i32,
     prev: Option<Rc<RefCell<Node>>>,

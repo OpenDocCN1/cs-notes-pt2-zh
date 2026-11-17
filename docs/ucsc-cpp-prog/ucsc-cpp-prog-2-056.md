@@ -14,6 +14,12 @@
 
 以下是代码示例：
 
+
+![](img/97085fa72e9cc879fb5c63ab962672c4_3.png)
+
+
+![](img/97085fa72e9cc879fb5c63ab962672c4_4.png)
+
 ```cpp
 // 基类定义
 class Base {
@@ -21,9 +27,6 @@ public:
     virtual Base* create(int id) = 0; // 虚工厂方法
     virtual ~Base() {}
 };
-
-![](img/97085fa72e9cc879fb5c63ab962672c4_3.png)
-
 // 派生类1
 class Derived1 : public Base {
 public:
@@ -34,9 +37,6 @@ public:
         return nullptr; // 错误情况返回空对象
     }
 };
-
-![](img/97085fa72e9cc879fb5c63ab962672c4_4.png)
-
 // 派生类2
 class Derived2 : public Base {
 public:

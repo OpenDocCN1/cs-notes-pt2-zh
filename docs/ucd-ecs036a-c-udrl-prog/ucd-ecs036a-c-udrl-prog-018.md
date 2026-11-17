@@ -125,15 +125,15 @@ gcc -g mcat.o dgets.o -o mcat
 
 对于多文件项目，手动输入编译命令很繁琐。我们可以使用`make`工具和`Makefile`文件来管理构建过程。一个简单的`Makefile`可能如下所示：
 
+
+![](img/36d811a8b2548d91cd04e834ee9e4c76_2.png)
+
 ```makefile
 CC = gcc
 CFLAGS = -g
 
 mcat: mcat.o dgets.o
 	$(CC) $(CFLAGS) -o mcat mcat.o dgets.o
-
-![](img/36d811a8b2548d91cd04e834ee9e4c76_2.png)
-
 mcat.o: mcat.c
 	$(CC) $(CFLAGS) -c mcat.c
 

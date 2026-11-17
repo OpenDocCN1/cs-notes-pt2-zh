@@ -447,9 +447,6 @@ L = [‘A’, ‘B’, ‘C’]
 
 ![](img/faafd195adde2fbf0b6029296d7ca827_226.png)
 
-```python
-L = [4, 5, 6]
-print(id(L))  # 输出一个代表内存地址的数字
 
 ![](img/faafd195adde2fbf0b6029296d7ca827_228.png)
 
@@ -459,8 +456,6 @@ print(id(L))  # 输出一个代表内存地址的数字
 
 ![](img/faafd195adde2fbf0b6029296d7ca827_232.png)
 
-L.append(8)
-print(id(L))  # 输出相同的数字，说明是同一个对象被修改了
 
 ![](img/faafd195adde2fbf0b6029296d7ca827_234.png)
 
@@ -470,6 +465,11 @@ print(id(L))  # 输出相同的数字，说明是同一个对象被修改了
 
 ![](img/faafd195adde2fbf0b6029296d7ca827_240.png)
 
+```python
+L = [4, 5, 6]
+print(id(L))  # 输出一个代表内存地址的数字
+L.append(8)
+print(id(L))  # 输出相同的数字，说明是同一个对象被修改了
 L = []        # 将名称 L 绑定到一个新的空列表对象
 print(id(L))  # 输出不同的数字，说明 L 现在指向了另一个对象
 ```

@@ -53,13 +53,13 @@
 
 以下是一个应用程序利用回滚的示例代码：
 
+
+![](img/2dc76992b10ad5e451848b74c0ab5a67_13.png)
+
 ```sql
 BEGIN TRANSACTION;
 -- 执行一些SQL操作，例如UPDATE、INSERT
 UPDATE accounts SET balance = balance - 100 WHERE user_id = 123;
-
-![](img/2dc76992b10ad5e451848b74c0ab5a67_13.png)
-
 -- 询问用户是否确认
 -- 如果用户确认
 COMMIT;

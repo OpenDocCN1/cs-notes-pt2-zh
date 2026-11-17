@@ -59,12 +59,12 @@ public:
 
 ![](img/6ff7cacd1db7a462850f488545db0a68_17.png)
 
-```cpp
-B* bp = new D; // 基类指针指向派生类对象
-D* dp = new D; // 派生类指针指向派生类对象
 
 ![](img/6ff7cacd1db7a462850f488545db0a68_18.png)
 
+```cpp
+B* bp = new D; // 基类指针指向派生类对象
+D* dp = new D; // 派生类指针指向派生类对象
 bp->f(1);   // 调用 B::f(int) （静态绑定？动态绑定？）
 bp->f(1.0); // 调用 D::f(double) （动态绑定）
 dp->f(1);   // 调用 B::f(int) （通过派生类指针访问继承的基类函数）

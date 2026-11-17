@@ -120,12 +120,6 @@ C++线程同样共享进程内存，每个线程拥有独立的栈，但可以�
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_67.png)
 
-```cpp
-#include <iostream>
-#include <thread>
-#include <vector>
-// 需要包含自定义的 oslock.h 来保证 cout 的线程安全
-#include "oslock.h"
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_69.png)
 
@@ -133,14 +127,20 @@ C++线程同样共享进程内存，每个线程拥有独立的栈，但可以�
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_73.png)
 
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_75.png)
+
+```cpp
+#include <iostream>
+#include <thread>
+#include <vector>
+// 需要包含自定义的 oslock.h 来保证 cout 的线程安全
+#include "oslock.h"
 void recharge() {
     oslock lock;
     std::cout << "I recharge by spending time alone." << std::endl;
     osunlock unlock;
 }
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_75.png)
-
 int main(int argc, char *argv[]) {
     const size_t kNumIntroverts = 6;
     std::vector<std::thread> introverts(kNumIntroverts);
@@ -194,11 +194,6 @@ int main(int argc, char *argv[]) {
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_100.png)
 
 以下是传递参数的示例程序：
-```cpp
-#include <iostream>
-#include <thread>
-#include <vector>
-#include "oslock.h"
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_102.png)
 
@@ -214,6 +209,20 @@ int main(int argc, char *argv[]) {
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_113.png)
 
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_115.png)
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_117.png)
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_119.png)
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_121.png)
+
+```cpp
+#include <iostream>
+#include <thread>
+#include <vector>
+#include "oslock.h"
 void greeter(size_t id, size_t numTimes) {
     for (size_t i = 0; i < numTimes; ++i) {
         oslock lock;
@@ -227,15 +236,6 @@ void greeter(size_t id, size_t numTimes) {
     std::cout << "Greeter #" << id << " has issued all greetings and goes home." << std::endl;
     osunlock unlock;
 }
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_115.png)
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_117.png)
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_119.png)
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_121.png)
-
 int main(int argc, char *argv[]) {
     std::cout << "Welcome to Greetland!" << std::endl;
     const size_t kNumGreeters = 6;
@@ -331,8 +331,6 @@ void ticketAgent(size_t id, size_t& tickets) {
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_164.png)
 
 互斥锁可以确保同一时间只有一个线程能进入被锁保护的“临界区”代码。
-```cpp
-#include <mutex>
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_166.png)
 
@@ -340,11 +338,20 @@ void ticketAgent(size_t id, size_t& tickets) {
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_170.png)
 
-std::mutex ticketLock; // 全局互斥锁
-size_t remainingTickets = 250;
 
 ![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_172.png)
 
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_174.png)
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_176.png)
+
+![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_178.png)
+
+```cpp
+#include <mutex>
+std::mutex ticketLock; // 全局互斥锁
+size_t remainingTickets = 250;
 void ticketAgent(size_t id, size_t& tickets, std::mutex& lock) {
     while (true) {
         lock.lock(); // 加锁
@@ -367,13 +374,6 @@ void ticketAgent(size_t id, size_t& tickets, std::mutex& lock) {
     std::cout << "Agent #" << id << " notices all tickets are sold and goes home." << std::endl;
     osunlock unlock;
 }
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_174.png)
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_176.png)
-
-![](img/87f93b0bc9a9d8e944eb7fb7dd38f262_178.png)
-
 int main() {
     std::thread agents[10];
     for (size_t i = 0; i < 10; ++i) {

@@ -53,15 +53,15 @@ while condition1:
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_18.png)
 
+
+![](img/9e0784c65c73f82fc05451c8c8ab04cd_20.png)
+
 ```python
 # 方法一：通过索引遍历
 s = "demo string"
 for index in range(len(s)):
     if s[index] == 'i' or s[index] == 'u':
         print("There's an i or u")
-
-![](img/9e0784c65c73f82fc05451c8c8ab04cd_20.png)
-
 # 方法二：直接遍历字符
 s = "demo string"
 for char in s:
@@ -182,9 +182,6 @@ print(f"Number of unique letters: {len(seen)}")
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_39.png)
 
-```python
-x = int(input("Enter an integer: "))
-guess = 0
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_41.png)
 
@@ -194,6 +191,9 @@ guess = 0
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_47.png)
 
+```python
+x = int(input("Enter an integer: "))
+guess = 0
 while guess**2 < x:
     guess += 1
 
@@ -207,9 +207,6 @@ else:
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_49.png)
 
-```python
-x = int(input("Enter an integer: "))
-neg_flag = False
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_51.png)
 
@@ -217,15 +214,9 @@ neg_flag = False
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_54.png)
 
-if x < 0:
-    neg_flag = True
-    x = abs(x)
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_56.png)
 
-guess = 0
-while guess**2 < x:
-    guess += 1
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_58.png)
 
@@ -233,6 +224,15 @@ while guess**2 < x:
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_61.png)
 
+```python
+x = int(input("Enter an integer: "))
+neg_flag = False
+if x < 0:
+    neg_flag = True
+    x = abs(x)
+guess = 0
+while guess**2 < x:
+    guess += 1
 if guess**2 == x:
     if neg_flag:
         print(f"Square root of {-x} is {guess}i")
@@ -375,12 +375,15 @@ print(x)         # 输出 0.9999999999999999
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_96.png)
 
-```python
-num = 1507
-result = ""
 
 ![](img/9e0784c65c73f82fc05451c8c8ab04cd_98.png)
 
+
+![](img/9e0784c65c73f82fc05451c8c8ab04cd_100.png)
+
+```python
+num = 1507
+result = ""
 if num == 0:
     result = "0"
 else:
@@ -388,9 +391,6 @@ else:
         remainder = num % 2
         result = str(remainder) + result
         num = num // 2
-
-![](img/9e0784c65c73f82fc05451c8c8ab04cd_100.png)
-
 print(result)  # 输出 10111100011
 ```
 

@@ -209,13 +209,6 @@ call fib            # 调用 fib(n-1)
 
 **正确做法**：我们需要在调用前，将需要保存的值（如当前的`n`，或`fib(n-1)`的中间结果）存放到安全的地方——要么是被调用者负责的寄存器（需先保存），要么是栈上的局部变量空间。
 
-```assembly
-# 序言
-pushl %ebp
-movl %esp, %ebp
-subl $4, %esp           # 为局部变量分配空间
-.equ n, 8(%ebp)
-.equ temp, -4(%ebp)     # 用于保存中间结果
 
 ![](img/054bde6ac0132687bfd9a600b569d85e_13.png)
 
@@ -223,15 +216,22 @@ subl $4, %esp           # 为局部变量分配空间
 
 ![](img/054bde6ac0132687bfd9a600b569d85e_17.png)
 
+
+![](img/054bde6ac0132687bfd9a600b569d85e_19.png)
+
+```assembly
+# 序言
+pushl %ebp
+movl %esp, %ebp
+subl $4, %esp           # 为局部变量分配空间
+.equ n, 8(%ebp)
+.equ temp, -4(%ebp)     # 用于保存中间结果
 # 基础情况判断
 movl n(%ebp), %ecx
 cmpl $0, %ecx
 je base_case
 cmpl $1, %ecx
 je base_case
-
-![](img/054bde6ac0132687bfd9a600b569d85e_19.png)
-
 # 递归情况：计算 fib(n-1)
 movl n(%ebp), %ecx
 decl %ecx               # ECX = n-1

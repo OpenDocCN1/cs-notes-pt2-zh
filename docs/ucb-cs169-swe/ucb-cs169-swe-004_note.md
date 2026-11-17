@@ -104,15 +104,15 @@ end
 
 ![](img/188385e4e33c07762ebb26c392632fa9_35.png)
 
-```ruby
-if 0
-  puts “0 is truthy!” # 这行会被执行
-end
 
 ![](img/188385e4e33c07762ebb26c392632fa9_37.png)
 
 ![](img/188385e4e33c07762ebb26c392632fa9_39.png)
 
+```ruby
+if 0
+  puts “0 is truthy!” # 这行会被执行
+end
 if nil
   puts “This will not print.”
 end

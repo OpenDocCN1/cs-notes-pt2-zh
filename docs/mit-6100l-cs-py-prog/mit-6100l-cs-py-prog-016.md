@@ -120,6 +120,11 @@ def fib(x):
 
 ![](img/4d2ae59e3beb8d01b12549e1935775a3_73.png)
 
+
+![](img/4d2ae59e3beb8d01b12549e1935775a3_75.png)
+
+![](img/4d2ae59e3beb8d01b12549e1935775a3_77.png)
+
 ```python
 def fib_efficient(n, d):
     if n in d:
@@ -128,11 +133,6 @@ def fib_efficient(n, d):
         ans = fib_efficient(n-1, d) + fib_efficient(n-2, d)
         d[n] = ans
         return ans
-
-![](img/4d2ae59e3beb8d01b12549e1935775a3_75.png)
-
-![](img/4d2ae59e3beb8d01b12549e1935775a3_77.png)
-
 # 初始化字典，包含基础情况
 d = {1:1, 2:1}
 print(fib_efficient(6, d))

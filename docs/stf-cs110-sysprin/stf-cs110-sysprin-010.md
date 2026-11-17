@@ -144,10 +144,6 @@ int main() {
 分析了平行分支后，我们最后考察一个线性进程链的场景，重点在于`waitpid`的返回值如何影响流程。
 
 考虑以下程序：
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/wait.h>
 
 ![](img/c4d04a56eb3fdffe753f10d82be4ef4b_13.png)
 
@@ -159,6 +155,10 @@ int main() {
 
 ![](img/c4d04a56eb3fdffe753f10d82be4ef4b_20.png)
 
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
 int main() {
     printf("0");
     pid_t pid = fork();

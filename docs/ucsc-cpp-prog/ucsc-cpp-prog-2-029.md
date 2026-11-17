@@ -50,15 +50,15 @@
 
 ![](img/0c9debfeeb7189226c57bab0c685495c_9.png)
 
+
+![](img/0c9debfeeb7189226c57bab0c685495c_11.png)
+
 ```cpp
 class B {
 public:
     int i = 1;
     virtual void printI() { std::cout << i << " inside B\n"; } // 声明为虚函数
 };
-
-![](img/0c9debfeeb7189226c57bab0c685495c_11.png)
-
 class D : public B {
 public:
     int i = 2;
@@ -70,13 +70,13 @@ public:
 
 ![](img/0c9debfeeb7189226c57bab0c685495c_13.png)
 
+
+![](img/0c9debfeeb7189226c57bab0c685495c_15.png)
+
 ```cpp
 B b_obj;
 D d_obj;
 B* pb = &b_obj; // 指向基类对象的指针
-
-![](img/0c9debfeeb7189226c57bab0c685495c_15.png)
-
 pb->printI(); // 输出: 1 inside B
 pb = &d_obj;  // 指针现在指向派生类对象
 pb->printI(); // 因为printI是虚函数，输出: 2 inside D

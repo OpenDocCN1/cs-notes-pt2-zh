@@ -45,15 +45,15 @@
 我们为队列构建了一个参考模型（`QueueModel`），它能在仿真中预测队列的正确行为。然后，我们创建一个测试平台，将我们的设计（DUT）与这个模型连接起来，在同一个仿真中比较两者的输出。
 
 以下是连接设计与模型的代码框架：
-```scala
-// 这是一个简化的示意代码
-val dut = Module(new SimpleQueue) // 我们的设计
-val model = Module(new QueueModel) // 参考模型
 
 ![](img/20056405d2392dea74d159c448bee472_1.png)
 
 ![](img/20056405d2392dea74d159c448bee472_2.png)
 
+```scala
+// 这是一个简化的示意代码
+val dut = Module(new SimpleQueue) // 我们的设计
+val model = Module(new QueueModel) // 参考模型
 // 将相同的输入同时提供给设计和模型
 dut.io.enq <> model.io.enqSource
 model.io.deqSink <> dut.io.deq

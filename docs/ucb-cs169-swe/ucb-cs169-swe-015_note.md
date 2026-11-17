@@ -114,14 +114,14 @@ end
 ![](img/0b01a30501fea891eb38872f66d2ae79_13.png)
 
 我们可以这样定义：
+
+![](img/0b01a30501fea891eb38872f66d2ae79_15.png)
+
 ```ruby
 class Movie < ApplicationRecord
   has_many :reviews
   has_many :moviegoers, through: :reviews
 end
-
-![](img/0b01a30501fea891eb38872f66d2ae79_15.png)
-
 class Moviegoer < ApplicationRecord
   has_many :reviews
   has_many :movies, through: :reviews

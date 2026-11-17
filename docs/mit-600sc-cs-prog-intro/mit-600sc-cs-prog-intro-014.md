@@ -24,6 +24,14 @@
 
 以下是实现一个简单整数集合哈希表的代码框架：
 
+
+![](img/711750ae6d5e444ba9d8e6f04b9d60f4_7.png)
+
+
+![](img/711750ae6d5e444ba9d8e6f04b9d60f4_9.png)
+
+![](img/711750ae6d5e444ba9d8e6f04b9d60f4_11.png)
+
 ```python
 num_buckets = 47  # 全局变量，定义桶的数量
 
@@ -34,9 +42,6 @@ def create():
     for i in range(num_buckets):
         hash_table.append([])
     return hash_table
-
-![](img/711750ae6d5e444ba9d8e6f04b9d60f4_7.png)
-
 def hash_elem(e):
     """哈希函数：计算元素e应放入哪个桶"""
     global num_buckets
@@ -46,11 +51,6 @@ def insert(hash_table, i):
     """向哈希表中插入元素i"""
     bucket = hash_elem(i)
     hash_table[bucket].append(i)  # 可能存在重复元素
-
-![](img/711750ae6d5e444ba9d8e6f04b9d60f4_9.png)
-
-![](img/711750ae6d5e444ba9d8e6f04b9d60f4_11.png)
-
 def member(hash_table, i):
     """检查元素i是否在哈希表中"""
     bucket = hash_elem(i)

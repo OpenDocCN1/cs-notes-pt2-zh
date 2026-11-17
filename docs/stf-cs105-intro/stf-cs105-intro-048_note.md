@@ -145,12 +145,12 @@ celsius = float(input("Enter temperature in Celsius: "))
 ![](img/1e56225584b4fc49f9911359f77fde5d_32.png)
 
 现在，我们有了完整的程序：
-```python
-# 提示用户输入摄氏温度，并转换为浮点数
-celsius = float(input("Enter temperature in Celsius: "))
 
 ![](img/1e56225584b4fc49f9911359f77fde5d_34.png)
 
+```python
+# 提示用户输入摄氏温度，并转换为浮点数
+celsius = float(input("Enter temperature in Celsius: "))
 # 进行华氏度转换计算
 fahrenheit = celsius * 9 / 5 + 32
 

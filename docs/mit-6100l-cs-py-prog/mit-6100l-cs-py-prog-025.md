@@ -53,13 +53,13 @@ plt.show()
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_10.png)
 
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_12.png)
+
 ```python
 # 创建无序的X和Y数据
 test_x = [0, 5, 3, 2, 8, 1]
 test_y = [0, 25, 9, 4, 64, 1]  # 对应x值的平方
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_12.png)
-
 # 绘制散点图
 plt.scatter(test_x, test_y)
 plt.show()
@@ -93,15 +93,15 @@ plt.show()
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_20.png)
 
-```python
-# 创建第一个图形窗口并绘制指数数据
-plt.figure('Exponential')
-plt.plot(x_vals, exponential)
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_22.png)
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_23.png)
 
+```python
+# 创建第一个图形窗口并绘制指数数据
+plt.figure('Exponential')
+plt.plot(x_vals, exponential)
 # 创建第二个图形窗口并绘制线性数据
 plt.figure('Linear')
 plt.plot(x_vals, linear)
@@ -122,6 +122,20 @@ plt.show()
 
 一个专业的图表必须包含清晰的标题和坐标轴标签。我们还可以自定义坐标轴的范围和刻度。
 
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_28.png)
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_29.png)
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_31.png)
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_32.png)
+
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_34.png)
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_35.png)
+
 ```python
 # 模拟月度温度数据
 months = range(1, 13)
@@ -136,23 +150,9 @@ plt.ylabel('Temperature (F)')
 
 # 设置X轴范围，去掉两边的空白
 plt.xlim(1, 12)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_28.png)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_29.png)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_31.png)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_32.png)
-
 # 设置X轴刻度为每个月，并用月份名称标注
 month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 plt.xticks(months, month_names)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_34.png)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_35.png)
-
 plt.show()
 ```
 
@@ -170,9 +170,6 @@ plt.show()
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_43.png)
 
-```python
-boston_temps = [30, 32, 40, 50, 60, 70, 75, 73, 65, 55, 45, 35]
-phoenix_temps = [55, 58, 65, 73, 82, 92, 95, 93, 88, 78, 65, 56]
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_45.png)
 
@@ -182,11 +179,14 @@ phoenix_temps = [55, 58, 65, 73, 82, 92, 95, 93, 88, 78, 65, 56]
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_49.png)
 
-plt.plot(months, boston_temps, label='Boston')
-plt.plot(months, phoenix_temps, label='Phoenix')
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_51.png)
 
+```python
+boston_temps = [30, 32, 40, 50, 60, 70, 75, 73, 65, 55, 45, 35]
+phoenix_temps = [55, 58, 65, 73, 82, 92, 95, 93, 88, 78, 65, 56]
+plt.plot(months, boston_temps, label='Boston')
+plt.plot(months, phoenix_temps, label='Phoenix')
 plt.title('Average Monthly Temperature Comparison')
 plt.xlabel('Month')
 plt.ylabel('Temperature (F)')
@@ -266,17 +266,17 @@ plt.plot(months, phoenix_temps, ‘ro--‘, linewidth=3, label=‘Phoenix‘) # 
 
 ![](img/c1f3dd4c058738be1c0c627d923b1011_84.png)
 
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_86.png)
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_88.png)
+
 ```python
 # 创建一个2行1列的子图布局，并激活第一个子图（顶部）
 plt.subplot(2, 1, 1)
 plt.plot(months, boston_temps, ‘b-‘)
 plt.title(‘Boston‘)
 plt.ylim(0, 100) # 统一Y轴范围以便比较
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_86.png)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_88.png)
-
 # 激活第二个子图（底部）
 plt.subplot(2, 1, 2)
 plt.plot(months, phoenix_temps, ‘r--‘)
@@ -295,6 +295,11 @@ plt.show()
 
 首先，我们需要编写函数来读取和处理数据文件：
 
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_90.png)
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_91.png)
+
 ```python
 def read_population_data(filename):
     """读取人口数据文件，返回年份列表和人口列表。"""
@@ -310,11 +315,6 @@ def read_population_data(filename):
                 dates.append(int(year))
                 populations.append(int(pop))
     return dates, populations
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_90.png)
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_91.png)
-
 # 使用函数读取数据并绘图
 years, population = read_population_data(‘us_population.txt‘)
 plt.plot(years, population)
@@ -412,6 +412,9 @@ plt.show()
 
 最后，我们分析一个更复杂的数据集：多个城市长达55年的每日温度数据。我们将计算每个城市的年平均温度，并观察其变化趋势。
 
+
+![](img/c1f3dd4c058738be1c0c627d923b1011_120.png)
+
 ```python
 def get_yearly_averages(filename, city_name):
     """获取指定城市每年的平均温度。"""
@@ -431,9 +434,6 @@ def get_yearly_averages(filename, city_name):
     sorted_years = sorted(avg_temps.keys())
     sorted_avgs = [avg_temps[yr] for yr in sorted_years]
     return sorted_years, sorted_avgs
-
-![](img/c1f3dd4c058738be1c0c627d923b1011_120.png)
-
 # 比较四个城市的温度趋势
 cities = [‘Boston‘, ‘San Diego‘, ‘Phoenix‘, ‘Miami‘]
 for city in cities:

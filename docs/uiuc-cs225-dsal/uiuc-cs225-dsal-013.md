@@ -129,17 +129,17 @@ P(h) = (R, P(h-1), P(h-1)), 对于 h >= 0
 整棵树则由一个指向根节点的指针来管理。
 
 用代码可以表示为：
+
+![](img/1f5a1ed81344141d8b42f1306e93c09c_31.png)
+
+![](img/1f5a1ed81344141d8b42f1306e93c09c_33.png)
+
 ```cpp
 struct TreeNode {
     DataType data;
     TreeNode* left;
     TreeNode* right;
 };
-
-![](img/1f5a1ed81344141d8b42f1306e93c09c_31.png)
-
-![](img/1f5a1ed81344141d8b42f1306e93c09c_33.png)
-
 class BinaryTree {
 private:
     TreeNode* root;

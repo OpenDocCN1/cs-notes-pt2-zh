@@ -108,6 +108,12 @@ T -> ( E )
 
 以下是每个函数的具体实现：
 
+
+![](img/d35af73ff360a5f3025348a9f8f06dcf_10.png)
+
+
+![](img/d35af73ff360a5f3025348a9f8f06dcf_12.png)
+
 ```cpp
 // 匹配 E -> T
 bool E1() {
@@ -138,9 +144,6 @@ bool E() {
 bool T1() {
     return term(INT);
 }
-
-![](img/d35af73ff360a5f3025348a9f8f06dcf_10.png)
-
 // 匹配 T -> int * T
 bool T2() {
     Token* save = next;
@@ -160,9 +163,6 @@ bool T3() {
     next = save;
     return false;
 }
-
-![](img/d35af73ff360a5f3025348a9f8f06dcf_12.png)
-
 // 主函数 T
 bool T() {
     Token* save = next;

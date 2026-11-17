@@ -118,6 +118,9 @@ turso db tokens create my-demo-db
 
 创建 `src/demo.ts` 文件，编写连接数据库和执行查询的代码。
 
+
+![](img/8b2d98c3900020dcd3d68ca84ea0fe19_1.png)
+
 ```typescript
 import { createClient } from "@libsql/client";
 
@@ -141,9 +144,6 @@ async function main() {
     client.close();
   }
 }
-
-![](img/8b2d98c3900020dcd3d68ca84ea0fe19_1.png)
-
 main();
 ```
 

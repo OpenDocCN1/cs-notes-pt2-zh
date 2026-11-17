@@ -161,6 +161,13 @@ release() {
 
 ![](img/22a440ab5259f377d19dc5be83e46a76_3.png)
 
+
+![](img/22a440ab5259f377d19dc5be83e46a76_5.png)
+
+![](img/22a440ab5259f377d19dc5be83e46a76_6.png)
+
+![](img/22a440ab5259f377d19dc5be83e46a76_7.png)
+
 ```c
 // 生产者伪代码
 producer() {
@@ -171,13 +178,6 @@ producer() {
     enqueue(item);
     release(&buffer_lock);
 }
-
-![](img/22a440ab5259f377d19dc5be83e46a76_5.png)
-
-![](img/22a440ab5259f377d19dc5be83e46a76_6.png)
-
-![](img/22a440ab5259f377d19dc5be83e46a76_7.png)
-
 // 消费者伪代码
 consumer() {
     acquire(&buffer_lock);

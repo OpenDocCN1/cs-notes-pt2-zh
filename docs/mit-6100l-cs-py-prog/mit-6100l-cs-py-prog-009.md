@@ -201,11 +201,6 @@ Python会先计算右侧 `(y, x)` 这个元组，然后按顺序将值分配给�
 
 **2. 函数返回多个值**
 函数只能返回一个对象，但我们可以利用元组打包多个值作为这一个对象返回。
-```python
-def quotient_remainder(x, y):
-    q = x // y  # 商
-    r = x % y   # 余数
-    return (q, r)  # 返回一个包含两个值的元组
 
 ![](img/b8701551fa437370a915fb528ac5d236_109.png)
 
@@ -213,6 +208,11 @@ def quotient_remainder(x, y):
 
 ![](img/b8701551fa437370a915fb528ac5d236_112.png)
 
+```python
+def quotient_remainder(x, y):
+    q = x // y  # 商
+    r = x % y   # 余数
+    return (q, r)  # 返回一个包含两个值的元组
 result = quotient_remainder(10, 3)  # result 是 (3, 1)
 quot, rem = quotient_remainder(5, 2)  # 元组解包：quot=2, rem=1
 ```
@@ -225,17 +225,17 @@ quot, rem = quotient_remainder(5, 2)  # 元组解包：quot=2, rem=1
 
 **3. 接收可变数量的参数**
 在定义函数时，可以使用 `*args` 形式的参数来接收任意数量的实参，这些实参在函数内部会被自动封装成一个元组。
+
+![](img/b8701551fa437370a915fb528ac5d236_119.png)
+
+![](img/b8701551fa437370a915fb528ac5d236_121.png)
+
 ```python
 def my_mean(*args):
     total = 0
     for num in args:  # args 是一个元组
         total += num
     return total / len(args)
-
-![](img/b8701551fa437370a915fb528ac5d236_119.png)
-
-![](img/b8701551fa437370a915fb528ac5d236_121.png)
-
 print(my_mean(1, 2, 3, 4, 5))  # 输出 3.0
 print(my_mean(60, 70, 80))     # 输出 70.0
 ```
@@ -280,12 +280,6 @@ print(my_mean(60, 70, 80))     # 输出 70.0
 ![](img/b8701551fa437370a915fb528ac5d236_140.png)
 
 例如，计算列表元素和的两种方式：
-```python
-# 方式一：迭代索引（稍显繁琐）
-L = [8, 3, 5]
-total = 0
-for i in range(len(L)):
-    total += L[i]
 
 ![](img/b8701551fa437370a915fb528ac5d236_142.png)
 
@@ -295,6 +289,12 @@ for i in range(len(L)):
 
 ![](img/b8701551fa437370a915fb528ac5d236_147.png)
 
+```python
+# 方式一：迭代索引（稍显繁琐）
+L = [8, 3, 5]
+total = 0
+for i in range(len(L)):
+    total += L[i]
 # 方式二：直接迭代元素（推荐）
 L = [8, 3, 5]
 total = 0

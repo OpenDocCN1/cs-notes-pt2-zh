@@ -329,10 +329,6 @@ else:
 
 ![](img/9a9d3b2482d9097b8e6a514e32a7a11b_108.png)
 
-```python
-peace = 22
-sleep = 2
-total = peace + sleep
 
 ![](img/9a9d3b2482d9097b8e6a514e32a7a11b_110.png)
 
@@ -342,6 +338,10 @@ total = peace + sleep
 
 ![](img/9a9d3b2482d9097b8e6a514e32a7a11b_114.png)
 
+```python
+peace = 22
+sleep = 2
+total = peace + sleep
 if total > 24:
     print("Impossible schedule")
 elif total == 24:

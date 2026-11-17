@@ -139,9 +139,6 @@ print(x)           # 打印全局变量 x，仍然是 5
 3.  从一个函数中返回另一个函数。
 
 **示例：函数赋值**
-```python
-def is_even(i):
-    return i % 2 == 0
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_54.png)
 
@@ -149,6 +146,9 @@ def is_even(i):
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_57.png)
 
+```python
+def is_even(i):
+    return i % 2 == 0
 my_func = is_even  # 将 is_even 函数对象赋值给变量 my_func
 # 现在 my_func 和 is_even 指向同一个函数
 a = my_func(3)     # 返回 False
@@ -192,9 +192,6 @@ b = is_even(4)     # 返回 True
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_87.png)
 
 **示例：通用计算器函数**
-```python
-def add(a, b):
-    return a + b
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_89.png)
 
@@ -204,9 +201,6 @@ def add(a, b):
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_95.png)
 
-def div(a, b):
-    print(f"Dividing {a} by {b}")
-    return a / b if b != 0 else None
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_97.png)
 
@@ -218,12 +212,18 @@ def div(a, b):
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_105.png)
 
-def calc(op, x, y):
-    """ op 是一个函数，接受两个参数 """
-    return op(x, y)
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_107.png)
 
+```python
+def add(a, b):
+    return a + b
+def div(a, b):
+    print(f"Dividing {a} by {b}")
+    return a / b if b != 0 else None
+def calc(op, x, y):
+    """ op 是一个函数，接受两个参数 """
+    return op(x, y)
 result1 = calc(add, 2, 3)   # 调用 calc，传入 add 函数，返回 5
 result2 = calc(div, 6, 2)   # 调用 calc，传入 div 函数，打印信息并返回 3.0
 ```
@@ -252,28 +252,11 @@ result2 = calc(div, 6, 2)   # 调用 calc，传入 div 函数，打印信息并�
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_127.png)
 
-```python
-def apply_criteria(criteria, n):
-    """
-    参数:
-        criteria: 一个函数，接受一个整数，返回布尔值。
-        n: 一个整数。
-    返回:
-        满足 criteria 函数的数字的个数 (从 0 到 n)。
-    """
-    count = 0
-    for i in range(n + 1):          # 遍历 0 到 n
-        if criteria(i):             # 调用传入的判断函数
-            count += 1
-    return count
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_129.png)
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_131.png)
 
-# 使用示例
-def is_even(num):
-    return num % 2 == 0
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_133.png)
 
@@ -289,8 +272,6 @@ def is_even(num):
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_145.png)
 
-def equals_five(num):
-    return num == 5
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_147.png)
 
@@ -304,6 +285,25 @@ def equals_five(num):
 
 ![](img/44fc4ecde02490e505a2bd8808a8b3ce_156.png)
 
+```python
+def apply_criteria(criteria, n):
+    """
+    参数:
+        criteria: 一个函数，接受一个整数，返回布尔值。
+        n: 一个整数。
+    返回:
+        满足 criteria 函数的数字的个数 (从 0 到 n)。
+    """
+    count = 0
+    for i in range(n + 1):          # 遍历 0 到 n
+        if criteria(i):             # 调用传入的判断函数
+            count += 1
+    return count
+# 使用示例
+def is_even(num):
+    return num % 2 == 0
+def equals_five(num):
+    return num == 5
 print(apply_criteria(is_even, 10))   # 输出 6 (0,2,4,6,8,10)
 print(apply_criteria(equals_five, 10)) # 输出 1 (只有5)
 ```

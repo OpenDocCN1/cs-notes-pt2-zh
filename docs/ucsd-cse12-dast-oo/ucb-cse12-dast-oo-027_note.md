@@ -51,13 +51,13 @@
 
 ![](img/d033e180b10198e7505380d47100f2a0_7.png)
 
+
+![](img/d033e180b10198e7505380d47100f2a0_9.png)
+
 ```java
 boolean isBST(TreeNode root) {
     return isBSTHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 }
-
-![](img/d033e180b10198e7505380d47100f2a0_9.png)
-
 boolean isBSTHelper(TreeNode node, int low, int high) {
     // 空树是有效的BST
     if (node == null) {

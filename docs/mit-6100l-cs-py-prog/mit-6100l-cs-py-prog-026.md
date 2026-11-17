@@ -268,22 +268,11 @@ hash((1, 2))    # 返回一个整数
 
 ![](img/cb405334840604e69c721d8295bc8a66_154.png)
 
-```python
-import random
 
 ![](img/cb405334840604e69c721d8295bc8a66_156.png)
 
 ![](img/cb405334840604e69c721d8295bc8a66_158.png)
 
-def dice_probability(side_of_interest, num_trials=10000):
-    dice_faces = ['.', '..', '...', '....', '.....', '......'] # 代表1到6点
-    count = 0
-    for _ in range(num_trials):
-        roll = random.choice(dice_faces) # 模拟一次掷骰
-        if roll == side_of_interest:
-            count += 1
-    probability = count / num_trials
-    return probability
 
 ![](img/cb405334840604e69c721d8295bc8a66_160.png)
 
@@ -299,6 +288,17 @@ def dice_probability(side_of_interest, num_trials=10000):
 
 ![](img/cb405334840604e69c721d8295bc8a66_170.png)
 
+```python
+import random
+def dice_probability(side_of_interest, num_trials=10000):
+    dice_faces = ['.', '..', '...', '....', '.....', '......'] # 代表1到6点
+    count = 0
+    for _ in range(num_trials):
+        roll = random.choice(dice_faces) # 模拟一次掷骰
+        if roll == side_of_interest:
+            count += 1
+    probability = count / num_trials
+    return probability
 print(dice_probability('....')) # 估算得到4点的概率
 ```
 通过增加 `num_trials`（如到1,000,000次），我们可以得到更接近理论值（1/6 ≈ 0.1667）的估计。

@@ -130,11 +130,11 @@ let rec interp_expr (defns : defn list) (env : value Symtab.t) (e : expr) : valu
 
 我们决定使用函数代码的起始地址（标签地址）来表示函数值，并使用一个特殊的标签位来标记。
 
-```ocaml
-let function_tag = 0b111  (* 例如，使用最后三位作为函数标签 *)
 
 ![](img/2248c37dab8bef217426d4f5fc0135eb_30.png)
 
+```ocaml
+let function_tag = 0b111  (* 例如，使用最后三位作为函数标签 *)
 let ensure_fn (rax_reg : reg) : directive list =
   [ Mov (R11, rax_reg)
   ; And (R11, Imm heap_mask)  (* 检查标签位 *)

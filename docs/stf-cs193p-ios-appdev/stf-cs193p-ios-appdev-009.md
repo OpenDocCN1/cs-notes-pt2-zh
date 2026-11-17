@@ -156,8 +156,6 @@ AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
 
 牌堆由所有未发出的卡片堆叠而成。
 
-```swift
-@Namespace private var dealingNamespace
 
 ![](img/711a6f9e75d5251933b0dd4981118cf8_23.png)
 
@@ -165,6 +163,8 @@ AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
 
 ![](img/711a6f9e75d5251933b0dd4981118cf8_26.png)
 
+```swift
+@Namespace private var dealingNamespace
 ZStack {
     ForEach(undealtCards) { card in
         CardView(card: card)
@@ -187,6 +187,9 @@ ZStack {
 
 发牌函数遍历所有卡片，将它们加入`dealt`集合，并为每张卡片添加递增的动画延迟，模拟依次发出的效果。
 
+
+![](img/711a6f9e75d5251933b0dd4981118cf8_31.png)
+
 ```swift
 private func deal() {
     var delay: TimeInterval = 0
@@ -197,9 +200,6 @@ private func deal() {
         delay += dealInterval
     }
 }
-
-![](img/711a6f9e75d5251933b0dd4981118cf8_31.png)
-
 // 动画常量
 private let dealAnimation: Animation = .easeInOut(duration: 1)
 private let dealInterval: TimeInterval = 0.15

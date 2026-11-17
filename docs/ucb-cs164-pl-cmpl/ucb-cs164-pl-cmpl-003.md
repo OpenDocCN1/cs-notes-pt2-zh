@@ -26,6 +26,14 @@
 
 ![](img/3f597cc09a12f90392d9f49f5cc5b682_5.png)
 
+
+![](img/3f597cc09a12f90392d9f49f5cc5b682_7.png)
+
+
+![](img/3f597cc09a12f90392d9f49f5cc5b682_9.png)
+
+![](img/3f597cc09a12f90392d9f49f5cc5b682_10.png)
+
 ```ocaml
 type fabric = Linen | Cotton | Wool
 type item = FabricSample of fabric | Dress of int * fabric | Suit of int * int * fabric
@@ -34,18 +42,10 @@ let cost_per_yard = function
   | Linen -> 10.0
   | Cotton -> 5.0
   | Wool -> 15.0
-
-![](img/3f597cc09a12f90392d9f49f5cc5b682_7.png)
-
 let yards_required = function
   | FabricSample _ -> 0.1
   | Dress (yards, _) -> float_of_int yards
   | Suit (jacket_yards, pants_yards, _) -> float_of_int (jacket_yards + pants_yards)
-
-![](img/3f597cc09a12f90392d9f49f5cc5b682_9.png)
-
-![](img/3f597cc09a12f90392d9f49f5cc5b682_10.png)
-
 let fabric_budget item =
   match item with
   | Dress (_, Wool) -> print_endline "Why are we making a summer dress out of wool?"

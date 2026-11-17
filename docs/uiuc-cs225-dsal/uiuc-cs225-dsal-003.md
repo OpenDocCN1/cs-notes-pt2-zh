@@ -162,11 +162,6 @@
 
 ![](img/36947c91fbde9e9ddb3e92988d111608_127.png)
 
-```cpp
-Cube* createCube() {
-    Cube c(20);
-    return &c; // 返回局部变量c的地址
-}
 
 ![](img/36947c91fbde9e9ddb3e92988d111608_129.png)
 
@@ -182,6 +177,11 @@ Cube* createCube() {
 
 ![](img/36947c91fbde9e9ddb3e92988d111608_140.png)
 
+```cpp
+Cube* createCube() {
+    Cube c(20);
+    return &c; // 返回局部变量c的地址
+}
 int main() {
     Cube* c = createCube();
     someOtherFunction();

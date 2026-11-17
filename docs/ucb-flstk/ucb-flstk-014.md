@@ -290,6 +290,11 @@ module.exports = mongoose.model('User', UserSchema);
 
 我们创建一个中间件来验证JWT。然后，可以创建一个受保护的路由，例如 **GET /me**，用于返回当前登录用户的信息。
 
+
+![](img/f1a2c5f12ca87d13bcf9a7d48b4dc21b_11.png)
+
+![](img/f1a2c5f12ca87d13bcf9a7d48b4dc21b_12.png)
+
 ```javascript
 // 中间件：验证JWT
 const authMiddleware = (req, res, next) => {
@@ -304,11 +309,6 @@ const authMiddleware = (req, res, next) => {
         res.status(401).json({ msg: 'Token is not valid' });
     }
 };
-
-![](img/f1a2c5f12ca87d13bcf9a7d48b4dc21b_11.png)
-
-![](img/f1a2c5f12ca87d13bcf9a7d48b4dc21b_12.png)
-
 // 受保护的路由
 router.get('/me', authMiddleware, async (req, res) => {
     try {

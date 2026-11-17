@@ -49,6 +49,9 @@
 ![](img/821506c5840d2c6177d1553f2ba392e4_34.png)
 
 **关键代码模式示例：**
+
+![](img/821506c5840d2c6177d1553f2ba392e4_36.png)
+
 ```cpp
 // 创建管道
 int pipefd[2];
@@ -58,9 +61,6 @@ pipe(pipefd);
 dup2(pipefd[1], STDOUT_FILENO);
 close(pipefd[0]);
 close(pipefd[1]);
-
-![](img/821506c5840d2c6177d1553f2ba392e4_36.png)
-
 // 父进程读取子进程输出
 ```
 此外，一个重要的细节是父进程必须使用 `waitpid` 等待子进程结束，否则可能导致 shell 提示符过早返回，程序行为异常。
@@ -134,10 +134,6 @@ std::mutex mtx;
 ![](img/821506c5840d2c6177d1553f2ba392e4_69.png)
 
 **使用 `wait` 的标准模式：**
-```cpp
-std::mutex mtx;
-std::condition_variable cv;
-bool ready = false;
 
 ![](img/821506c5840d2c6177d1553f2ba392e4_70.png)
 
@@ -147,12 +143,6 @@ bool ready = false;
 
 ![](img/821506c5840d2c6177d1553f2ba392e4_75.png)
 
-// 等待线程
-std::unique_lock<std::mutex> lock(mtx);
-while(!ready) { // 必须用循环防止虚假唤醒
-    cv.wait(lock);
-}
-// ... 条件满足，执行操作 ...
 
 ![](img/821506c5840d2c6177d1553f2ba392e4_77.png)
 
@@ -168,6 +158,16 @@ while(!ready) { // 必须用循环防止虚假唤醒
 
 ![](img/821506c5840d2c6177d1553f2ba392e4_85.png)
 
+```cpp
+std::mutex mtx;
+std::condition_variable cv;
+bool ready = false;
+// 等待线程
+std::unique_lock<std::mutex> lock(mtx);
+while(!ready) { // 必须用循环防止虚假唤醒
+    cv.wait(lock);
+}
+// ... 条件满足，执行操作 ...
 // 通知线程
 {
     std::lock_guard<std::mutex> lg(mtx);
@@ -221,15 +221,15 @@ cv.wait(lock, []{ return ready; }); // 等价于上面的 while 循环
 ![](img/821506c5840d2c6177d1553f2ba392e4_112.png)
 
 以下是一个使用初始为0的信号量实现线程等待的示例：
+
+![](img/821506c5840d2c6177d1553f2ba392e4_114.png)
+
 ```cpp
 semaphore done(0); // 初始许可为0
 std::thread worker([&done] {
     // ... 执行任务 ...
     done.signal(); // 任务完成，发出信号
 });
-
-![](img/821506c5840d2c6177d1553f2ba392e4_114.png)
-
 // 主线程等待工作线程完成
 done.wait();
 std::cout << "Worker finished!" << std::endl;
@@ -262,6 +262,9 @@ worker.join();
 *   还需要一个 `mutex` 来保护对缓冲区指针（`head`, `tail`）的并发修改。
 
 **伪代码逻辑：**
+
+![](img/821506c5840d2c6177d1553f2ba392e4_128.png)
+
 ```cpp
 // 生产者
 emptySlots.wait(); // 等待有空位
@@ -269,9 +272,6 @@ mtx.lock();
 // 向缓冲区写入数据
 mtx.unlock();
 fullSlots.signal(); // 通知消费者有新数据
-
-![](img/821506c5840d2c6177d1553f2ba392e4_128.png)
-
 // 消费者
 fullSlots.wait(); // 等待有数据
 mtx.lock();

@@ -130,14 +130,14 @@ val = withinEpsilon(2, 3, 1.5) # val 的值为 True
 
 ![](img/8e95f14f856b2d9487461c8a387c5f22_47.png)
 
+
+![](img/8e95f14f856b2d9487461c8a387c5f22_49.png)
+
 ```python
 def f(x):
     x = x + 1
     print(‘x in f:‘, x)
     return x
-
-![](img/8e95f14f856b2d9487461c8a387c5f22_49.png)
-
 x = 3
 z = f(x)
 print(‘z:‘, z)

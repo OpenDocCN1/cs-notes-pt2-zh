@@ -110,6 +110,9 @@ void GraduateStudent::print() const {
 
 现在让我们看看如何使用这个简单的层次结构。
 
+
+![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_9.png)
+
 ```cpp
 Student mayPole("May Pole", 100, 3.8, Year::FRESHMAN);
 GraduateStudent morrisPole("Morris Pole", 200, 3.25,
@@ -118,9 +121,6 @@ GraduateStudent morrisPole("Morris Pole", 200, 3.25,
 
 Student* ps = &mayPole;
 ps->print(); // 调用 Student::print()
-
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_9.png)
-
 ps = &morrisPole; // ps 现在指向派生类对象
 ps->print(); // 仍然调用 Student::print()！ (非virtual情况下)
 

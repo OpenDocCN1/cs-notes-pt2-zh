@@ -54,14 +54,14 @@
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_37.png)
 
-```cpp
-// 修正前：传递了错误的类型引用
-threadFunction(..., (unsigned int&)remainingTickets, ...);
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_39.png)
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_41.png)
 
+```cpp
+// 修正前：传递了错误的类型引用
+threadFunction(..., (unsigned int&)remainingTickets, ...);
 // 修正后：使用正确的 size_t 类型
 threadFunction(..., (size_t&)remainingTickets, ...);
 ```
@@ -152,13 +152,6 @@ threadFunction(..., (size_t&)remainingTickets, ...);
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_103.png)
 
-```cpp
-void philosopher(size_t id, mutex& leftFork, mutex& rightFork) {
-    for (size_t i = 0; i < 3; ++i) { // 每个哲学家进行3轮思考-进餐
-        think(id); // 思考一段时间
-        eat(id, leftFork, rightFork); // 尝试进餐
-    }
-}
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_105.png)
 
@@ -166,6 +159,13 @@ void philosopher(size_t id, mutex& leftFork, mutex& rightFork) {
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_109.png)
 
+```cpp
+void philosopher(size_t id, mutex& leftFork, mutex& rightFork) {
+    for (size_t i = 0; i < 3; ++i) { // 每个哲学家进行3轮思考-进餐
+        think(id); // 思考一段时间
+        eat(id, leftFork, rightFork); // 尝试进餐
+    }
+}
 void eat(size_t id, mutex& leftFork, mutex& rightFork) {
     leftFork.lock();   // 拿起左手边的叉子
     rightFork.lock();  // 拿起右手边的叉子
@@ -395,9 +395,6 @@ void grantPermission(size_t& permits, mutex& m, condition_variable_any& cv) {
 
 **使用信号量简化哲学家问题**：
 
-```cpp
-// 声明一个初始值为4的信号量
-semaphore permits(4);
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_238.png)
 
@@ -405,6 +402,9 @@ semaphore permits(4);
 
 ![](img/048b7e540d7f0db4c80128b8a9481077_242.png)
 
+```cpp
+// 声明一个初始值为4的信号量
+semaphore permits(4);
 // 在哲学家线程中，替换之前的 waitForPermission 和 grantPermission
 void philosopher(size_t id, mutex& leftFork, mutex& rightFork, semaphore& permits) {
     for (size_t i = 0; i < 3; ++i) {

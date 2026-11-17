@@ -53,14 +53,14 @@ class Child(name: String) extends Parent(name) {
 
 ![](img/a49c2b14ce693bb7c3676471fc4e43b8_9.png)
 
+
+![](img/a49c2b14ce693bb7c3676471fc4e43b8_11.png)
+
 ```scala
 abstract class AbstractParent(val name: String) {
   val phrase: String // 抽象字段，没有初始值
   def greet(): Unit = println(s"$phrase, $name") // 具体方法
 }
-
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_11.png)
-
 class EnglishChild(name: String) extends AbstractParent(name) {
   val phrase: String = "Hello" // 子类必须提供抽象字段的值
 }

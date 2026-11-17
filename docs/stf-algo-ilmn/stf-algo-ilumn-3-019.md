@@ -49,6 +49,9 @@ Kruskal算法的核心思想非常简单：按成本升序考虑所有边，如�
 
 以下是算法的核心步骤：
 
+
+![](img/ceed78c5da317d9fc1e651dbe9d89e06_6.png)
+
 ```pseudocode
 // 预处理：将边按成本升序排序，重命名为 e1, e2, ..., em
 Sort edges by cost and re-index as e1, e2, ..., em
@@ -58,9 +61,6 @@ T = ∅ // 初始化生成树为空集
 for i = 1 to m do
     if (T ∪ {ei}) has no cycle then
         T = T ∪ {ei} // 加入边ei
-
-![](img/ceed78c5da317d9fc1e651dbe9d89e06_6.png)
-
 return T
 ```
 

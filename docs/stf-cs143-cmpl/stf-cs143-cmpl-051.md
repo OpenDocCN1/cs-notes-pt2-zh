@@ -33,12 +33,12 @@ class Count:
 
 现在，考虑定义一个 `Count` 的子类 `Stock`，用于跟踪库存物品。
 
-```python
-class Stock(Count):
-    name: str
 
 ![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_7.png)
 
+```python
+class Stock(Count):
+    name: str
 # 尝试使用
 s: Stock = Stock()
 s = s.increment()  # 这里会出现类型错误！

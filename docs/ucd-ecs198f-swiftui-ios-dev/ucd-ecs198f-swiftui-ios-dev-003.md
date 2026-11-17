@@ -14,6 +14,9 @@
 
 以下是如何定义和使用计算属性的示例：
 
+
+![](img/6b14e3f8c7d837721a20006465460015_4.png)
+
 ```swift
 let name = "John"
 let age = 25
@@ -21,9 +24,6 @@ let age = 25
 var greeting: String {
     "Hello, my name is \(name)."
 }
-
-![](img/6b14e3f8c7d837721a20006465460015_4.png)
-
 var greetingWithAge: String {
     "\(greeting) I am \(age) years old."
 }

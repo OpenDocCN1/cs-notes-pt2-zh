@@ -225,9 +225,6 @@ let student2 = UIUCStudent {
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_86.png)
 
 **代码**：
-```rust
-struct TestScores(i32, i32, i32);
-struct LectureReviews(i32, i32, i32);
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_88.png)
 
@@ -239,6 +236,9 @@ struct LectureReviews(i32, i32, i32);
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_94.png)
 
+```rust
+struct TestScores(i32, i32, i32);
+struct LectureReviews(i32, i32, i32);
 let midterm = TestScores(85, 90, 78);
 // midterm.0, midterm.1, midterm.2 访问值
 ```

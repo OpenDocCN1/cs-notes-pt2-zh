@@ -346,8 +346,6 @@ print(old_list) # 输出：[999, 20, 30, 40]，原始列表也被修改了
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_169.png)
 
-```python
-import copy
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_171.png)
 
@@ -357,7 +355,6 @@ import copy
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_176.png)
 
-old_list = [[1, 2], [3, 4], [5, 6]]
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_178.png)
 
@@ -367,10 +364,6 @@ old_list = [[1, 2], [3, 4], [5, 6]]
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_182.png)
 
-# 浅拷贝
-shallow_copy = old_list[:]
-# 深拷贝
-deep_copy = copy.deepcopy(old_list)
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_184.png)
 
@@ -380,6 +373,13 @@ deep_copy = copy.deepcopy(old_list)
 
 ![](img/efad76c3e8c4490c462d988e1439ac55_189.png)
 
+```python
+import copy
+old_list = [[1, 2], [3, 4], [5, 6]]
+# 浅拷贝
+shallow_copy = old_list[:]
+# 深拷贝
+deep_copy = copy.deepcopy(old_list)
 # 修改原始列表的一个子元素
 old_list[1][1] = 999
 

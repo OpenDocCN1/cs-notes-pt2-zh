@@ -146,14 +146,14 @@ fn main() {
 
 ![](img/bb00932b4a4da9b6539b168972d71949_44.png)
 
-```rust
-use std::sync::{Arc, Mutex};
-use std::thread;
 
 ![](img/bb00932b4a4da9b6539b168972d71949_46.png)
 
 ![](img/bb00932b4a4da9b6539b168972d71949_47.png)
 
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
 fn main() {
     // 使用 Arc 包装 Mutex，使其可以安全地在多个线程间共享
     let counter = Arc::new(Mutex::new(0));

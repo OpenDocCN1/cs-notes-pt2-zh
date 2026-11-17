@@ -268,10 +268,6 @@ Lambda 的“捕获”功能是其强大之处，它允许函数访问并操作�
 
 ![](img/cbc9d80603f5807b8374eb9f12191323_161.png)
 
-```c
-#include <fcntl.h>
-#include <unistd.h>
-#define BUFSIZE 1024
 
 ![](img/cbc9d80603f5807b8374eb9f12191323_163.png)
 
@@ -281,6 +277,10 @@ Lambda 的“捕获”功能是其强大之处，它允许函数访问并操作�
 
 ![](img/cbc9d80603f5807b8374eb9f12191323_169.png)
 
+```c
+#include <fcntl.h>
+#include <unistd.h>
+#define BUFSIZE 1024
 int main() {
     int infd = open("input.txt", O_RDONLY);
     int outfd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);

@@ -42,13 +42,13 @@ struct ListElement {
 
 `nullptr`是对普通0的改进。0本质上是一个整数值，虽然可以转换，但历史上它被视为整数。将其用作其他类型的基类型需要进行转换。此外，还有一个名为`NULL`的宏，也常见于传统代码中。`nullptr`是对这两种旧做法的改进。
 
+
+![](img/2885026a23d6ac12ca6b8c9592c31a73_7.png)
+
 ```cpp
 // 旧做法
 ListElement* next = 0;
 ListElement* next = NULL;
-
-![](img/2885026a23d6ac12ca6b8c9592c31a73_7.png)
-
 // 现代C++推荐做法
 ListElement* next = nullptr;
 ```

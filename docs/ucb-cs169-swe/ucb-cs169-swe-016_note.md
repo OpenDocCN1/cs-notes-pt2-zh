@@ -67,6 +67,11 @@ master (稳定版)
 3.  **分支命名**：建议使用清晰的名字，例如 `michael/add-user-authentication`。
 
 **常用命令**：
+
+![](img/d55169e6fbcf24ff5e0d52f86f45e399_14.png)
+
+![](img/d55169e6fbcf24ff5e0d52f86f45e399_16.png)
+
 ```bash
 # 创建并切换到一个新分支
 git checkout -b feature/your-feature-name
@@ -74,11 +79,6 @@ git checkout -b feature/your-feature-name
 # 在该分支上进行开发、提交
 git add .
 git commit -m "完成用户登录界面"
-
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_14.png)
-
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_16.png)
-
 # 将分支推送到远程仓库（如GitHub）
 git push origin feature/your-feature-name
 ```

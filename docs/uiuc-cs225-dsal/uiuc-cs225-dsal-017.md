@@ -136,6 +136,11 @@ V find(const K& key) {
 2.  如果`find`返回了一个指向`nullptr`的引用（即键不存在），就在这个位置`new`一个新节点并赋值给该引用。
 
 **代码描述（简化版，假设键不存在）**：
+
+![](img/801cb0b584abceeb8ba8d322e67448c8_33.png)
+
+![](img/801cb0b584abceeb8ba8d322e67448c8_34.png)
+
 ```cpp
 // 返回指针引用的辅助查找函数
 TreeNode*& findRef(TreeNode*& root, const K& key) {
@@ -148,11 +153,6 @@ TreeNode*& findRef(TreeNode*& root, const K& key) {
         return findRef(root->right, key);
     }
 }
-
-![](img/801cb0b584abceeb8ba8d322e67448c8_33.png)
-
-![](img/801cb0b584abceeb8ba8d322e67448c8_34.png)
-
 // 插入操作（不处理键已存在的情况）
 void insert(const K& key, const V& value) {
     TreeNode*& location = findRef(root, key); // 找到应该插入的位置的引用

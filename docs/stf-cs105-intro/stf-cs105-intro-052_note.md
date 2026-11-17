@@ -144,21 +144,21 @@ print(average)  # 输出：212.5
 
 ![](img/4ceecc23b682fcb799e9184940d1c20e_34.png)
 
+
+![](img/4ceecc23b682fcb799e9184940d1c20e_36.png)
+
+
+![](img/4ceecc23b682fcb799e9184940d1c20e_38.png)
+
 ```python
 service_zips = [94301, 94304, 94305]
 user_zip = int(input("What is your zip code? "))
 
 zip_found = False  # 先设置一个“未找到”的标志
-
-![](img/4ceecc23b682fcb799e9184940d1c20e_36.png)
-
 for zip_code in service_zips:
     if user_zip == zip_code:
         print("Delivery is available to you!")
         zip_found = True  # 找到了，把标志设为 True
-
-![](img/4ceecc23b682fcb799e9184940d1c20e_38.png)
-
 # 循环结束后，检查标志
 if not zip_found:  # 如果 zip_found 为 False
     print("Sorry, no delivery available.")

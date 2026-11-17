@@ -158,12 +158,6 @@ abs(a - b) < epsilon
     *   否则，将猜测值增加一个步长：`guess += increment`。
 
 以下是该算法的Python实现框架：
-```python
-x = 25
-epsilon = 0.01
-increment = 0.0001
-guess = 0.0
-num_guesses = 0
 
 ![](img/62dfdc0e1d0249bec4fe8fa171809840_64.png)
 
@@ -171,12 +165,18 @@ num_guesses = 0
 
 ![](img/62dfdc0e1d0249bec4fe8fa171809840_67.png)
 
-while abs(guess**2 - x) >= epsilon and guess**2 <= x:
-    guess += increment
-    num_guesses += 1
 
 ![](img/62dfdc0e1d0249bec4fe8fa171809840_69.png)
 
+```python
+x = 25
+epsilon = 0.01
+increment = 0.0001
+guess = 0.0
+num_guesses = 0
+while abs(guess**2 - x) >= epsilon and guess**2 <= x:
+    guess += increment
+    num_guesses += 1
 if abs(guess**2 - x) < epsilon:
     print(f'近似平方根为: {guess}')
 else:

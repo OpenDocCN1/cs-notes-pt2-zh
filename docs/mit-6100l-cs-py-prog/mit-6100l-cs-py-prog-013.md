@@ -142,15 +142,6 @@ except:
 
 修改之前的`sum_digits`函数，如果字符串包含非数字字符，我们不是简单地跳过，而是主动引发一个带有清晰信息的`ValueError`。
 
-```python
-def sum_digits_raise(s):
-    total = 0
-    for char in s:
-        try:
-            total += int(char)
-        except ValueError:
-            raise ValueError(‘String contained a non-digit character.‘)
-    return total
 
 ![](img/b69ddd28c09bcfce9388980855d29f9d_30.png)
 
@@ -160,6 +151,15 @@ def sum_digits_raise(s):
 
 ![](img/b69ddd28c09bcfce9388980855d29f9d_36.png)
 
+```python
+def sum_digits_raise(s):
+    total = 0
+    for char in s:
+        try:
+            total += int(char)
+        except ValueError:
+            raise ValueError(‘String contained a non-digit character.‘)
+    return total
 print(sum_digits_raise(‘123‘)) # 正常输出：6
 print(sum_digits_raise(‘123a‘)) # 引发 ValueError: String contained a non-digit character.
 ```
@@ -184,6 +184,9 @@ assert <condition>, ‘Error message if condition is False‘
 
 继续使用`sum_digits`函数，假设我们的约定要求输入字符串`s`非空。
 
+
+![](img/b69ddd28c09bcfce9388980855d29f9d_42.png)
+
 ```python
 def sum_digits_assert(s):
     assert len(s) > 0, ‘Input string cannot be empty‘
@@ -192,9 +195,6 @@ def sum_digits_assert(s):
         if char in ‘0123456789‘:
             total += int(char)
     return total
-
-![](img/b69ddd28c09bcfce9388980855d29f9d_42.png)
-
 print(sum_digits_assert(‘123‘)) # 正常输出：6
 print(sum_digits_assert(‘‘)) # 引发 AssertionError: Input string cannot be empty
 ```
@@ -251,6 +251,13 @@ def pairwise_division(L_num, L_denom):
 ![](img/b69ddd28c09bcfce9388980855d29f9d_58.png)
 
 最后，添加断言来强制执行输入约定：
+
+![](img/b69ddd28c09bcfce9388980855d29f9d_60.png)
+
+![](img/b69ddd28c09bcfce9388980855d29f9d_62.png)
+
+![](img/b69ddd28c09bcfce9388980855d29f9d_64.png)
+
 ```python
 def pairwise_division(L_num, L_denom):
     assert len(L_num) > 0 and len(L_denom) > 0, ‘Input lists cannot be empty.‘
@@ -262,13 +269,6 @@ def pairwise_division(L_num, L_denom):
             raise ValueError(‘Denominator list contains zero.‘)
         result.append(L_num[i] / L_denom[i])
     return result
-
-![](img/b69ddd28c09bcfce9388980855d29f9d_60.png)
-
-![](img/b69ddd28c09bcfce9388980855d29f9d_62.png)
-
-![](img/b69ddd28c09bcfce9388980855d29f9d_64.png)
-
 # 测试
 print(pairwise_division([4,5,6], [1,2,3])) # 输出：[4.0, 2.5, 2.0]
 print(pairwise_division([4,5], [1,2,3])) # 引发 AssertionError: Input lists must have the same length.

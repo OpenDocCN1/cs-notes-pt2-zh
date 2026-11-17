@@ -8,10 +8,11 @@
 
 以下是一个来自维基百科页面的超文本摘录示例：
 
+<img src="http://example.com/image.png" alt="示例图片">
+
 ```html
 <h2>历史</h2>
 <p>HTTP 最初旨在传输文档，现在已被用于许多其他事情，如 <a href="http://www.w3.org/pub/WWW/">流媒体</a> 等。</p>
-<img src="http://example.com/image.png" alt="示例图片">
 ```
 
 在基本层面上，超文本文档就是一个文本文档，浏览器根据文档中特殊的格式命令（称为“标记”）来显示它。例如，`<h2>` 标签表示这是一个二级标题，应以更大的字体显示。超链接则是一种特殊的标记，表示标签内的内容在被点击时，应加载指定的 URL。
@@ -73,16 +74,16 @@ If-Modified-Since: Wed, 21 Oct 2022 07:28:00 GMT
 
 以下是成功响应的一个示例：
 
-```
-HTTP/1.1 200 OK
-Content-Type: text/html
-Content-Length: 1234
-Last-Modified: Wed, 21 Oct 2022 07:28:00 GMT
 
 ![](img/7db2f506b048df93c7adb215325dff31_11.png)
 
 ![](img/7db2f506b048df93c7adb215325dff31_13.png)
 
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 1234
+Last-Modified: Wed, 21 Oct 2022 07:28:00 GMT
 <!DOCTYPE html>
 <html>
 ...

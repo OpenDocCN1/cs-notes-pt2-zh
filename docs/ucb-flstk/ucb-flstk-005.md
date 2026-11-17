@@ -145,14 +145,14 @@ if (score >= 90) {
 
 `for` 循环和 `while` 循环用于重复执行代码。
 
+
+![](img/d144928d9b7cd4c460af009d89439950_10.png)
+
 ```javascript
 // for 循环
 for (let i = 0; i < 5; i++) {
     console.log(“循环次数：” + i);
 }
-
-![](img/d144928d9b7cd4c460af009d89439950_10.png)
-
 // while 循环
 let count = 0;
 while (count < 3) {
@@ -260,6 +260,11 @@ person.greet(); // “大家好，我是张三”
 
 JSON是一种轻量级的数据交换格式，它基于JavaScript对象的语法，但要求键名必须用双引号 `“”` 包裹。
 
+
+![](img/d144928d9b7cd4c460af009d89439950_40.png)
+
+![](img/d144928d9b7cd4c460af009d89439950_41.png)
+
 ```javascript
 // JavaScript 对象
 let jsObject = { name: “李四”, age: 30 };
@@ -267,11 +272,6 @@ let jsObject = { name: “李四”, age: 30 };
 // 转换为 JSON 字符串
 let jsonString = JSON.stringify(jsObject);
 console.log(jsonString); // 输出：{“name”:”李四”,”age”:30} (字符串)
-
-![](img/d144928d9b7cd4c460af009d89439950_40.png)
-
-![](img/d144928d9b7cd4c460af009d89439950_41.png)
-
 // 将 JSON 字符串解析回 JavaScript 对象
 let parsedObject = JSON.parse(jsonString);
 console.log(parsedObject.name); // “李四”
@@ -346,15 +346,15 @@ console.log(arr2); // [1, 2, 3, 4, 5]
 
 扩展运算符可以方便地复制或合并对象。注意，这创建的是**浅拷贝**。
 
+
+![](img/d144928d9b7cd4c460af009d89439950_62.png)
+
 ```javascript
 let original = { a: 1, b: 2 };
 let copy = { …original }; // 复制 original 的所有属性
 copy.a = 99;
 console.log(original.a); // 1 (原对象未受影响)
 console.log(copy.a); // 99
-
-![](img/d144928d9b7cd4c460af009d89439950_62.png)
-
 // 合并对象
 let defaults = { theme: “dark”, volume: 80 };
 let userSettings = { volume: 50 };

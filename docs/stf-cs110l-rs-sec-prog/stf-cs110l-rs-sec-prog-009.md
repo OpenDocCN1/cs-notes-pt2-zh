@@ -115,14 +115,14 @@ for (int i = 0; i < 6; i++) {
 
 如果我们尝试在Rust中直接翻译这段代码：
 
-```rust
-let names = ["Frank", "John", "Laura", "Marco", "Julie", "Patty"];
-let mut handles = vec![];
 
 ![](img/273e4e7ec71e372474f26e7df8760fdc_11.png)
 
 ![](img/273e4e7ec71e372474f26e7df8760fdc_13.png)
 
+```rust
+let names = ["Frank", "John", "Laura", "Marco", "Julie", "Patty"];
+let mut handles = vec![];
 for i in 0..6 {
     let handle = thread::spawn(|| {
         println!("Hello from {}", names[i]); // 错误！闭包捕获了 `i`

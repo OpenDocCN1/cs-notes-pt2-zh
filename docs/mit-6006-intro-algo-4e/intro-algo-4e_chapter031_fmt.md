@@ -1325,6 +1325,8 @@ Miller-Rabin 素性测试的伪代码出现在 `MILLER-RABIN` 和 `WITNESS` 过�
 
 让我们首先了解 `WITNESS` 的工作原理，然后我们将看到 Miller-Rabin 素性测试如何使用它。设 `n` – 1 = 2^(`t`)`u`，其中 `t` ≥ 1，`u` 是奇数。也就是说，`n` – 1 的二进制表示是奇整数 `u` 的二进制表示，后面紧跟着 `t` 个零。因此，![art](img/Art_P1233.jpg)，这样计算 `a^(n−1)` mod `n` 的一种方法是先计算 `a^(u)` mod `n`，然后连续平方结果 `t` 次。
 
+4   ![art](img/Art_P1234.jpg)
+
 ```
 MILLER-RABIN(n, s) // n > 2 是奇数
 1 对于 j = 1 到 s
@@ -1337,7 +1339,6 @@ WITNESS(a, n)
 1 令 t 和 u 满足 t ≥ 1，u 是奇数，并且 n – 1 = 2^(t)u
 2 x[0] = MODULAR-EXPONENTIATION(a, u, n)
 3 对于 i = 1 到 t
-4   ![art](img/Art_P1234.jpg)
 5 如果 x[i] == 1 并且 x[i–1] ≠ 1 并且 x[i–1] ≠ n – 1
 6   返回 TRUE // 找到了 1 的非平凡平方根
 7 如果 x[t] ≠ 1

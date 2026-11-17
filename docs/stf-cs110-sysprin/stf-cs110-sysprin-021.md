@@ -193,9 +193,6 @@ while ((count = read(sock_fd, &ch, 1)) > 0) {
 
 ![](img/969edac52273f03a794226a015ab0a12_88.png)
 
-```c
-// 伪代码：非阻塞客户端核心循环
-set_nonblocking(sock_fd); // 将套接字设置为非阻塞
 
 ![](img/969edac52273f03a794226a015ab0a12_90.png)
 
@@ -203,6 +200,9 @@ set_nonblocking(sock_fd); // 将套接字设置为非阻塞
 
 ![](img/969edac52273f03a794226a015ab0a12_94.png)
 
+```c
+// 伪代码：非阻塞客户端核心循环
+set_nonblocking(sock_fd); // 将套接字设置为非阻塞
 while (!done) {
     count = read(sock_fd, &ch, 1);
     if (count > 0) {

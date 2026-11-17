@@ -43,12 +43,12 @@ C++通过**签名匹配**机制来解决。编译器提供了一种自动区分�
 
 让我们看看这是如何工作的。以下是C++版本的`main`函数示例：
 
-```cpp
-#include <iostream>
-using namespace std;
 
 ![](img/88bb72d59a5a5df15d62e069f8493c28_3.png)
 
+```cpp
+#include <iostream>
+using namespace std;
 int main() {
     int m = 5, n = 10;
     double x = 5.5, y = 10.5;

@@ -10,19 +10,19 @@
 
 上一节我们介绍了 `rethrows` 的基本概念，本节中我们来看看具体的代码示例。
 
-```swift
-// 1. 扩展 String 使其遵循 Error 协议
-extension String: Error {}
 
 ![](img/92fece0b55ccda6c93be7a700d6849e4_2.png)
 
+
+![](img/92fece0b55ccda6c93be7a700d6849e4_4.png)
+
+```swift
+// 1. 扩展 String 使其遵循 Error 协议
+extension String: Error {}
 // 2. 定义两个函数
 func functionThatThrows() throws {
     throw "发生错误"
 }
-
-![](img/92fece0b55ccda6c93be7a700d6849e4_4.png)
-
 func functionThatDoesNotThrow() -> Bool {
     return true
 }

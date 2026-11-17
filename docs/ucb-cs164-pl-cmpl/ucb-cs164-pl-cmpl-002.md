@@ -108,17 +108,17 @@ type fabric = Linen | Cotton | Wool
 ![](img/8988002a35f2508a39599753650b3add_24.png)
 
 我们可以编写一个函数，根据布料类型计算每码价格：
+
+![](img/8988002a35f2508a39599753650b3add_26.png)
+
+![](img/8988002a35f2508a39599753650b3add_27.png)
+
 ```ocaml
 let cost_per_yard f =
   match f with
   | Linen -> 15
   | Cotton -> 6
   | Wool -> 18
-
-![](img/8988002a35f2508a39599753650b3add_26.png)
-
-![](img/8988002a35f2508a39599753650b3add_27.png)
-
 let _ = cost_per_yard Linen (* 输出: 15 *)
 let _ = cost_per_yard Cotton (* 输出: 6 *)
 let _ = cost_per_yard Wool (* 输出: 18 *)

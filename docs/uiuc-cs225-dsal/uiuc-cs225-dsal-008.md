@@ -50,23 +50,11 @@
 
 以下是一个代码示例及其输出结果的总结：
 
-```cpp
-// 假设有基类 Cube 和派生类 RubiksCube
-Cube c1;
-c1.print1(); // 输出: Cube
-c1.print2(); // 输出: Cube
-c1.print3(); // 输出: Cube
-c1.print4(); // 输出: Cube
 
 ![](img/f88f79e49a671bd7e40512bec0dad7c5_34.png)
 
 ![](img/f88f79e49a671bd7e40512bec0dad7c5_36.png)
 
-RubiksCube r;
-r.print1(); // 输出: RubiksCube
-r.print2(); // 输出: Cube (因为 print2 非虚函数)
-r.print3(); // 输出: RubiksCube
-r.print4(); // 输出: RubiksCube
 
 ![](img/f88f79e49a671bd7e40512bec0dad7c5_38.png)
 
@@ -74,6 +62,18 @@ r.print4(); // 输出: RubiksCube
 
 ![](img/f88f79e49a671bd7e40512bec0dad7c5_42.png)
 
+```cpp
+// 假设有基类 Cube 和派生类 RubiksCube
+Cube c1;
+c1.print1(); // 输出: Cube
+c1.print2(); // 输出: Cube
+c1.print3(); // 输出: Cube
+c1.print4(); // 输出: Cube
+RubiksCube r;
+r.print1(); // 输出: RubiksCube
+r.print2(); // 输出: Cube (因为 print2 非虚函数)
+r.print3(); // 输出: RubiksCube
+r.print4(); // 输出: RubiksCube
 Cube& c_ref = r;
 c_ref.print1(); // 输出: RubiksCube (虚函数，使用实际类型)
 c_ref.print2(); // 输出: Cube (非虚函数，使用声明类型)
@@ -129,6 +129,11 @@ virtual void print5() = 0;
 
 ![](img/f88f79e49a671bd7e40512bec0dad7c5_71.png)
 
+
+![](img/f88f79e49a671bd7e40512bec0dad7c5_73.png)
+
+![](img/f88f79e49a671bd7e40512bec0dad7c5_75.png)
+
 ```cpp
 class AbstractCube {
 public:
@@ -137,11 +142,6 @@ public:
     int someData; // 数据成员
 };
 // AbstractCube a; // 错误！不能实例化抽象类
-
-![](img/f88f79e49a671bd7e40512bec0dad7c5_73.png)
-
-![](img/f88f79e49a671bd7e40512bec0dad7c5_75.png)
-
 class ConcreteCube : public AbstractCube {
 public:
     void mustImplement() override { /* 必须提供实现 */ }
@@ -206,6 +206,9 @@ private:
 ```
 
 **list.hpp (模板实现)**
+
+![](img/f88f79e49a671bd7e40512bec0dad7c5_79.png)
+
 ```cpp
 // 注意：模板实现通常放在 .hpp 或直接在 .h 文件中
 #include "list.h"
@@ -217,9 +220,6 @@ template <typename T>
 bool List<T>::isEmpty() const {
     return head == nullptr;
 }
-
-![](img/f88f79e49a671bd7e40512bec0dad7c5_79.png)
-
 template <typename T>
 void List<T>::insert(const T& data) {
     // 插入逻辑...

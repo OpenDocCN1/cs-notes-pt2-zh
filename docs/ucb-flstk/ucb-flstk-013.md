@@ -99,6 +99,9 @@ return (
 
 将以上所有步骤组合起来，我们就得到了一个完整的计数器组件：
 
+
+![](img/7a9e564249570305ada245e8f13151fd_4.png)
+
 ```javascript
 import React, { useState } from 'react';
 
@@ -121,9 +124,6 @@ function Counter() {
     </div>
   );
 }
-
-![](img/7a9e564249570305ada245e8f13151fd_4.png)
-
 export default Counter;
 ```
 

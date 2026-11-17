@@ -143,15 +143,15 @@ print(grades['John'])  # 输出：B
 
 ![](img/eafcba2c2d0205decd9962752d38c30a_69.png)
 
-```python
-grades = {'Anna': 'B', 'Matt': 'A'}
-grades['Grace'] = 'A'  # 添加新条目：Grace -> A
-print(grades)  # 输出：{'Anna': 'B', 'Matt': 'A', 'Grace': 'A'}
 
 ![](img/eafcba2c2d0205decd9962752d38c30a_71.png)
 
 ![](img/eafcba2c2d0205decd9962752d38c30a_73.png)
 
+```python
+grades = {'Anna': 'B', 'Matt': 'A'}
+grades['Grace'] = 'A'  # 添加新条目：Grace -> A
+print(grades)  # 输出：{'Anna': 'B', 'Matt': 'A', 'Grace': 'A'}
 grades['Grace'] = 'C'  # 修改已有条目：Grace -> C
 print(grades)  # 输出：{'Anna': 'B', 'Matt': 'A', 'Grace': 'C'}
 ```
@@ -339,6 +339,11 @@ Python使用哈希函数将键转换为一个数字（哈希值），这个数�
 
 ### 步骤1：创建频率字典
 
+
+![](img/eafcba2c2d0205decd9962752d38c30a_139.png)
+
+![](img/eafcba2c2d0205decd9962752d38c30a_141.png)
+
 ```python
 def generate_freq_dict(song):
     """接收一个歌词字符串，返回一个单词频率字典。"""
@@ -351,11 +356,6 @@ def generate_freq_dict(song):
         else:                     # 如果单词是第一次出现
             freq_dict[word] = 1   # 在字典中添加该单词，计数为1
     return freq_dict
-
-![](img/eafcba2c2d0205decd9962752d38c30a_139.png)
-
-![](img/eafcba2c2d0205decd9962752d38c30a_141.png)
-
 # 示例
 lyrics = "Ro Ro Ro your boat gently down the stream"
 freq = generate_freq_dict(lyrics)
@@ -397,6 +397,9 @@ print(f"Most common word(s): {common_words}, appearing {freq_num} times.")
 
 ![](img/eafcba2c2d0205decd9962752d38c30a_155.png)
 
+
+![](img/eafcba2c2d0205decd9962752d38c30a_157.png)
+
 ```python
 def words_with_freq_at_least(freq_dict, min_freq):
     """
@@ -415,9 +418,6 @@ def words_with_freq_at_least(freq_dict, min_freq):
         for word in common_words:
             del freq_dict[word]
     return result
-
-![](img/eafcba2c2d0205decd9962752d38c30a_157.png)
-
 # 接上例 (注意：此函数会修改输入的字典)
 freq_copy = freq.copy()  # 使用副本，避免修改原数据
 high_freq_words = words_with_freq_at_least(freq_copy, 2)

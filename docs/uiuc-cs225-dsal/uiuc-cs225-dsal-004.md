@@ -150,13 +150,6 @@ delete[] x;
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_86.png)
 
-```cpp
-Cube joinCubes(Cube c1, Cube c2) {
-    int totalVol = c1.getVolume() + c2.getVolume();
-    double newLength = cbrt(totalVol);
-    Cube result(newLength);
-    return result;
-}
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_88.png)
 
@@ -168,6 +161,13 @@ Cube joinCubes(Cube c1, Cube c2) {
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_95.png)
 
+```cpp
+Cube joinCubes(Cube c1, Cube c2) {
+    int totalVol = c1.getVolume() + c2.getVolume();
+    double newLength = cbrt(totalVol);
+    Cube result(newLength);
+    return result;
+}
 // 调用
 Cube* c1 = new Cube(4);
 Cube* c2 = new Cube(5);
@@ -215,13 +215,6 @@ Cube c3 = joinCubes(*c1, *c2); // 注意：传递的是解引用后的对象
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_121.png)
 
-```cpp
-Cube joinCubes(Cube* c1, Cube* c2) {
-    int totalVol = c1->getVolume() + c2->getVolume(); // 使用 -> 操作符
-    double newLength = cbrt(totalVol);
-    Cube result(newLength);
-    return result;
-}
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_123.png)
 
@@ -231,6 +224,13 @@ Cube joinCubes(Cube* c1, Cube* c2) {
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_128.png)
 
+```cpp
+Cube joinCubes(Cube* c1, Cube* c2) {
+    int totalVol = c1->getVolume() + c2->getVolume(); // 使用 -> 操作符
+    double newLength = cbrt(totalVol);
+    Cube result(newLength);
+    return result;
+}
 // 调用
 Cube* c1 = new Cube(4);
 Cube* c2 = new Cube(5);
@@ -274,6 +274,11 @@ Cube c3 = joinCubes(c1, c2); // 直接传递指针
 
 ![](img/96def365bcdb88c79d8cca26a613f02e_151.png)
 
+
+![](img/96def365bcdb88c79d8cca26a613f02e_153.png)
+
+![](img/96def365bcdb88c79d8cca26a613f02e_154.png)
+
 ```cpp
 Cube joinCubes(Cube& c1, Cube& c2) { // 参数类型是 Cube&
     int totalVol = c1.getVolume() + c2.getVolume(); // 使用 . 操作符
@@ -281,11 +286,6 @@ Cube joinCubes(Cube& c1, Cube& c2) { // 参数类型是 Cube&
     Cube result(newLength);
     return result;
 }
-
-![](img/96def365bcdb88c79d8cca26a613f02e_153.png)
-
-![](img/96def365bcdb88c79d8cca26a613f02e_154.png)
-
 // 调用
 Cube* c1 = new Cube(4);
 Cube* c2 = new Cube(5);

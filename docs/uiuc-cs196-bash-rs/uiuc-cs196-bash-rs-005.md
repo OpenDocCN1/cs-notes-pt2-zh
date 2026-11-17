@@ -255,8 +255,6 @@ Rust的数据类型主要分为两类：标量类型和复合类型。
 ![](img/6e5d51dd66a2cde6b882038389bd2645_115.png)
 
 `if` 表达式允许你根据条件执行不同的代码分支。在Rust中，`if` 是一个表达式，意味着它可以返回一个值。
-```rust
-let number = 6;
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_117.png)
 
@@ -266,14 +264,16 @@ let number = 6;
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_122.png)
 
+
+![](img/6e5d51dd66a2cde6b882038389bd2645_124.png)
+
+```rust
+let number = 6;
 if number % 2 == 0 {
     println!("数字是偶数");
 } else {
     println!("数字是奇数");
 }
-
-![](img/6e5d51dd66a2cde6b882038389bd2645_124.png)
-
 // if 表达式返回值
 let result = if number > 5 { "大" } else { "小" };
 println!("数字是{}的", result);
@@ -365,14 +365,14 @@ Rust提供了几种循环方式：`loop`、`while` 和 `for`。
 ![](img/6e5d51dd66a2cde6b882038389bd2645_166.png)
 
 注释用于解释代码，编译器会忽略它们。Rust使用 `//` 来开始一行注释。
-```rust
-// 这是一个单行注释
-let lucky_number = 7; // 这也是一个注释
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_168.png)
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_169.png)
 
+```rust
+// 这是一个单行注释
+let lucky_number = 7; // 这也是一个注释
 /*
 这是一个
 多行注释块

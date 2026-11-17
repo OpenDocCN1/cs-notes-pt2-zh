@@ -57,11 +57,11 @@ fn identity<T>(x: T) -> T {
 
 我们还可以为泛型参数添加特质约束。例如，一个函数要求其参数同时实现 `Display` 和 `PartialOrd` 特质：
 
-```rust
-use std::fmt::Display;
 
 ![](img/ec55f5672d2955956bd033a9cf70e52d_7.png)
 
+```rust
+use std::fmt::Display;
 fn print_min<T: Display + PartialOrd>(x: T, y: T) {
     if x < y {
         println!("最小值是: {}", x);
@@ -118,6 +118,11 @@ let b = Rc::clone(&a); // 增加引用计数
 
 以下是使用 `Rc` 实现持久化链表的 `push` 方法示例：
 
+
+![](img/ec55f5672d2955956bd033a9cf70e52d_14.png)
+
+![](img/ec55f5672d2955956bd033a9cf70e52d_16.png)
+
 ```rust
 use std::rc::Rc;
 
@@ -125,11 +130,6 @@ struct Node<T> {
     value: T,
     next: Option<Rc<Node<T>>>,
 }
-
-![](img/ec55f5672d2955956bd033a9cf70e52d_14.png)
-
-![](img/ec55f5672d2955956bd033a9cf70e52d_16.png)
-
 struct PersistentList<T> {
     head: Option<Rc<Node<T>>>,
     size: u32,

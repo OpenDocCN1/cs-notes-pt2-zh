@@ -103,6 +103,9 @@ a.property = 10; // 正确：可以修改对象的属性。
 ![](img/2c08eb44f71fd5e70b78fc82e83f390d_40.png)
 
 考虑以下示例：
+
+![](img/2c08eb44f71fd5e70b78fc82e83f390d_42.png)
+
 ```javascript
 const me = {
     petName: ‘dog‘,
@@ -110,9 +113,6 @@ const me = {
     getPetName: function() { return this.petName; },
     morePets: function() { this.numberPets++; }
 };
-
-![](img/2c08eb44f71fd5e70b78fc82e83f390d_42.png)
-
 const stolenMorePets = me.morePets;
 stolenMorePets(); // 此时函数内的 `this` 不是 `me`，所以 `me.numberPets` 不会增加。
 

@@ -225,8 +225,6 @@ function Feed() {
 
 接着，我们创建 `NewStory` 组件（在 `modules/NewPostInput/NewStory.jsx` 中）。这个组件会渲染 `NewPostInput`，并将 `addNewStory` 函数作为回调传递给它。
 
-```jsx
-import NewPostInput from ‘./NewPostInput‘;
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_33.png)
 
@@ -234,6 +232,8 @@ import NewPostInput from ‘./NewPostInput‘;
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_36.png)
 
+```jsx
+import NewPostInput from ‘./NewPostInput‘;
 function NewStory(props) {
   // 这个函数会被 NewPostInput 在提交时调用
   const addStory = (value) => {
@@ -290,6 +290,12 @@ function Feed() {
 
 具体代码如下：
 
+
+![](img/374f9e896f9309ae77e8daaaad756d9c_38.png)
+
+
+![](img/374f9e896f9309ae77e8daaaad756d9c_40.png)
+
 ```jsx
 // index.jsx
 import { createBrowserRouter， RouterProvider } from ‘react-router-dom‘;
@@ -297,9 +303,6 @@ import App from ‘./App‘;
 import Feed from ‘./pages/Feed‘;
 import Profile from ‘./pages/Profile‘;
 import NotFound from ‘./pages/NotFound‘;
-
-![](img/374f9e896f9309ae77e8daaaad756d9c_38.png)
-
 // 1. 创建路由配置
 const router = createBrowserRouter([
   {
@@ -319,9 +322,6 @@ const router = createBrowserRouter([
     ]，
   }，
 ]);
-
-![](img/374f9e896f9309ae77e8daaaad756d9c_40.png)
-
 // 2. 使用 RouterProvider 并提供路由配置
 const root = ReactDOM.createRoot(document.getElementById(‘root‘));
 root.render(
@@ -397,14 +397,14 @@ storiesList = stories.map((story) => (
 
 然后，在 `Card.jsx` 组件中，我们接收这些属性，并首先渲染 `SingleStory` 组件。
 
-```jsx
-// Card.jsx
-import SingleStory from ‘./SingleStory‘;
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_48.png)
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_50.png)
 
+```jsx
+// Card.jsx
+import SingleStory from ‘./SingleStory‘;
 function Card(props) {
   return (
     <div className=“card“>

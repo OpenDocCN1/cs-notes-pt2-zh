@@ -104,12 +104,12 @@ CS110 是计算机系统原理课程。本课程假设你已经修过 CS106A、C
 ![](img/a24171389b50634ece0607b1841cc3fe_54.png)
 
 以下是 `open` 系统调用的基本用法：
-```c
-#include <fcntl.h>
-#include <unistd.h>
 
 ![](img/a24171389b50634ece0607b1841cc3fe_56.png)
 
+```c
+#include <fcntl.h>
+#include <unistd.h>
 int open(const char *pathname, int flags, mode_t mode);
 ```
 *   `pathname`：文件路径。
@@ -219,17 +219,11 @@ int main() {
 ![](img/a24171389b50634ece0607b1841cc3fe_129.png)
 
 以下是核心逻辑的代码框架：
-```c
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <errno.h>
 
 ![](img/a24171389b50634ece0607b1841cc3fe_131.png)
 
 ![](img/a24171389b50634ece0607b1841cc3fe_133.png)
 
-#define BUFFER_SIZE 1024
 
 ![](img/a24171389b50634ece0607b1841cc3fe_135.png)
 
@@ -237,6 +231,12 @@ int main() {
 
 ![](img/a24171389b50634ece0607b1841cc3fe_139.png)
 
+```c
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <errno.h>
+#define BUFFER_SIZE 1024
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         fprintf(stderr, "Usage: %s <source> <destination>\n", argv[0]);

@@ -197,11 +197,11 @@ SIMD并非新概念。早在1957年麻省理工学院的TX-2计算机就包含�
 ![](img/8909df85cfbf71088110ca0d873a6380_134.png)
 
 例如，使用SSE内部函数进行向量加法的代码片段可能如下所示：
-```c
-#include <xmmintrin.h> // SSE头文件
 
 ![](img/8909df85cfbf71088110ca0d873a6380_136.png)
 
+```c
+#include <xmmintrin.h> // SSE头文件
 __m128 vec_a, vec_b, vec_result; // 声明128位向量寄存器
 // ... 将数据从内存加载到 vec_a 和 vec_b ...
 vec_result = _mm_add_ps(vec_a, vec_b); // 执行4个float的并行加法

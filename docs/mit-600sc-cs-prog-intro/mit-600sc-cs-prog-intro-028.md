@@ -31,6 +31,11 @@
 
 例如，定义一个 `Shape` 基类，并让 `Rectangle` 和 `Circle` 继承它。两者都实现了 `area()` 方法。我们可以创建一个包含各种形状的列表，并统一调用它们的 `area()` 方法，而无需检查每个对象的类型。
 
+
+![](img/32b01e3e2c85f99880f30e36c5d2ac81_3.png)
+
+![](img/32b01e3e2c85f99880f30e36c5d2ac81_5.png)
+
 ```python
 class Shape:
     def area(self):
@@ -42,11 +47,6 @@ class Rectangle(Shape):
         self.width = width
     def area(self):
         return self.length * self.width
-
-![](img/32b01e3e2c85f99880f30e36c5d2ac81_3.png)
-
-![](img/32b01e3e2c85f99880f30e36c5d2ac81_5.png)
-
 class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius

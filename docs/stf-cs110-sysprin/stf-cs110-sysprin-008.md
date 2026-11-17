@@ -69,15 +69,15 @@
     ```
 
 以下是一个简单的示例程序，演示`raise`的用法：
-```c
-#include <stdio.h>
-#include <signal.h>
-#include <unistd.h>
 
 ![](img/186d56cf3cf36e03a3d35caf5aa63c69_30.png)
 
 ![](img/186d56cf3cf36e03a3d35caf5aa63c69_32.png)
 
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
 int main() {
     printf("我将终止自己的进程。\n");
     raise(SIGKILL); // 进程向自己发送SIGKILL信号

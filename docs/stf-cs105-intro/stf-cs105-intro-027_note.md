@@ -125,15 +125,15 @@ ol li {
 ```
 
 **CSS代码示例：**
+
+![](img/1e86f6367c46cbd2859025aaaea2ee77_40.png)
+
 ```css
 /* 将所有具有`class="important"`的元素变为绿色斜体 */
 .important {
     color: green;
     font-style: italic;
 }
-
-![](img/1e86f6367c46cbd2859025aaaea2ee77_40.png)
-
 /* 组合选择器：只将具有`class="important"`的段落加上下划线 */
 p.important {
     text-decoration: underline;

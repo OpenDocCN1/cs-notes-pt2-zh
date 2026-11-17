@@ -119,13 +119,13 @@ stableSort(items, index);
 
 ![](img/2278acda2e1af9105b1cd5305f1c723f_51.png)
 
+
+![](img/2278acda2e1af9105b1cd5305f1c723f_53.png)
+
 ```java
 List<String> answer = new ArrayList<>();
 int start = 0;
 int n = items.size();
-
-![](img/2278acda2e1af9105b1cd5305f1c723f_53.png)
-
 while (start < n) {
     int end = start + 1;
     // 寻找当前分组的结束位置

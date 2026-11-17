@@ -205,13 +205,13 @@ int main() {
 *   **无用户缓冲**：每次 `read`/`write` 都直接引发系统调用。但内核内部仍有缓存以提高磁盘I/O效率。
 *   **更直接的控制**：提供更底层的操作。
 
+
+![](img/b59c0e1f5f8864879bc09f46bc086ef0_16.png)
+
 ```c
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-
-![](img/b59c0e1f5f8864879bc09f46bc086ef0_16.png)
-
 int main() {
     int in_fd = open("input.txt", O_RDONLY); // 低级打开，返回文件描述符（int）
     int out_fd = open("output.txt", O_WRONLY | O_CREAT, 0644);

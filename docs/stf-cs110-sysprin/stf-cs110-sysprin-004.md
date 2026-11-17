@@ -245,13 +245,13 @@
 ![](img/c5b69340c585f582e2f65bbaf36c1a1e_146.png)
 
 代码示例：
+
+![](img/c5b69340c585f582e2f65bbaf36c1a1e_148.png)
+
 ```c
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
-
-![](img/c5b69340c585f582e2f65bbaf36c1a1e_148.png)
-
 int main() {
     pid_t pid = fork(); // 在这里，进程一分为二
     if (pid == 0) {
@@ -306,10 +306,6 @@ int main() {
 
 ![](img/c5b69340c585f582e2f65bbaf36c1a1e_175.png)
 
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <assert.h>
 
 ![](img/c5b69340c585f582e2f65bbaf36c1a1e_177.png)
 
@@ -321,6 +317,10 @@ int main() {
 
 ![](img/c5b69340c585f582e2f65bbaf36c1a1e_184.png)
 
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <assert.h>
 int main() {
     char trail[] = "ABCD";
     for (int i = 0; trail[i] != ‘\0‘; i++) {

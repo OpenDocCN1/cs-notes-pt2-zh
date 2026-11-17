@@ -88,13 +88,13 @@ def square(n):
 
 ![](img/535f0cd2e79c46fb7b61984998eac2e7_18.png)
 
-```python
-import time
 
 ![](img/535f0cd2e79c46fb7b61984998eac2e7_20.png)
 
 ![](img/535f0cd2e79c46fb7b61984998eac2e7_22.png)
 
+```python
+import time
 def time_wrapper(func, inputs):
     for inp in inputs:
         t_start = time.time()

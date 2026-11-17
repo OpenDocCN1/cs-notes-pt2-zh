@@ -223,8 +223,6 @@ for (int i = 0; i < 3; i++) {
 ![](img/5307d4923970aa2b8e91ebe06d2ca1fa_131.png)
 
 **核心代码：阻塞与解除阻塞信号**
-```c
-#include <signal.h>
 
 ![](img/5307d4923970aa2b8e91ebe06d2ca1fa_133.png)
 
@@ -236,9 +234,6 @@ for (int i = 0; i < 3; i++) {
 
 ![](img/5307d4923970aa2b8e91ebe06d2ca1fa_141.png)
 
-sigset_t set;
-sigemptyset(&set); // 初始化空信号集
-sigaddset(&set, SIGCHLD); // 将 SIGCHLD 加入集合
 
 ![](img/5307d4923970aa2b8e91ebe06d2ca1fa_143.png)
 
@@ -246,11 +241,16 @@ sigaddset(&set, SIGCHLD); // 将 SIGCHLD 加入集合
 
 ![](img/5307d4923970aa2b8e91ebe06d2ca1fa_147.png)
 
-// 在 fork 和关键操作前，阻塞 SIGCHLD
-sigprocmask(SIG_BLOCK, &set, NULL);
 
 ![](img/5307d4923970aa2b8e91ebe06d2ca1fa_149.png)
 
+```c
+#include <signal.h>
+sigset_t set;
+sigemptyset(&set); // 初始化空信号集
+sigaddset(&set, SIGCHLD); // 将 SIGCHLD 加入集合
+// 在 fork 和关键操作前，阻塞 SIGCHLD
+sigprocmask(SIG_BLOCK, &set, NULL);
 // ... 执行 fork、将子进程加入列表等关键操作 ...
 
 // 关键操作完成后，解除阻塞

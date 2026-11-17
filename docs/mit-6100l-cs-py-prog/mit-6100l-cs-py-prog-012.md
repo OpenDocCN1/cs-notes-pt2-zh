@@ -343,11 +343,6 @@ def bisection_root(x, epsilon=0.01):
 
 ![](img/d8514180f455f1105d04f9e9dcc504c9_218.png)
 
-```python
-def make_prod(a):
-    def g(b):
-        return a * b
-    return g
 
 ![](img/d8514180f455f1105d04f9e9dcc504c9_220.png)
 
@@ -355,6 +350,11 @@ def make_prod(a):
 
 ![](img/d8514180f455f1105d04f9e9dcc504c9_223.png)
 
+```python
+def make_prod(a):
+    def g(b):
+        return a * b
+    return g
 doubler = make_prod(2)  # doubler 现在是一个将输入乘以2的函数
 value = doubler(3)       # 结果为 6
 ```

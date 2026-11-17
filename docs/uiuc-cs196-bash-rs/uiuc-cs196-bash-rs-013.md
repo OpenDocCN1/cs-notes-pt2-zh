@@ -33,6 +33,20 @@
 
 以下是如何在Rust中定义一个闭包：
 
+
+![](img/a5f0a8e50c24615ae5ca8b787dbd88be_7.png)
+
+![](img/a5f0a8e50c24615ae5ca8b787dbd88be_9.png)
+
+![](img/a5f0a8e50c24615ae5ca8b787dbd88be_11.png)
+
+
+![](img/a5f0a8e50c24615ae5ca8b787dbd88be_13.png)
+
+![](img/a5f0a8e50c24615ae5ca8b787dbd88be_15.png)
+
+![](img/a5f0a8e50c24615ae5ca8b787dbd88be_17.png)
+
 ```rust
 // 普通函数
 fn add_two(x: i32) -> i32 {
@@ -41,22 +55,8 @@ fn add_two(x: i32) -> i32 {
 
 // 等效的闭包（完整形式）
 let add_two_closure = |x: i32| -> i32 { x + 2 };
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_7.png)
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_9.png)
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_11.png)
-
 // 更简洁的闭包（Rust可以推断类型）
 let add_two_closure = |x| { x + 2 };
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_13.png)
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_15.png)
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_17.png)
-
 // 最简洁的形式（单表达式可省略花括号）
 let add_two_closure = |x| x + 2;
 ```
@@ -154,13 +154,6 @@ Map、Filter 和 Fold 可以链式组合在一起，形成非常强大的数据�
 
 假设我们有一个篮球运动员列表，我们想计算所有全明星球员在本赛季为球队贡献的总分数（得分 + 助攻得分）：
 
-```rust
-struct Player {
-    name: String,
-    points: u32,
-    assisted_points: u32,
-    all_star: bool,
-}
 
 ![](img/a5f0a8e50c24615ae5ca8b787dbd88be_41.png)
 
@@ -168,6 +161,13 @@ struct Player {
 
 ![](img/a5f0a8e50c24615ae5ca8b787dbd88be_44.png)
 
+```rust
+struct Player {
+    name: String,
+    points: u32,
+    assisted_points: u32,
+    all_star: bool,
+}
 fn total_points_contributed_by_all_stars(players: Vec<Player>) -> u32 {
     players
         .into_iter() // 创建迭代器

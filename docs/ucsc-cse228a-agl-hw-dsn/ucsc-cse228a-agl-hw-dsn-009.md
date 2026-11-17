@@ -155,13 +155,13 @@ object MyCounter {
 
 **Chisel 标准库中的计数器：**
 Chisel 已经提供了强大的 `Counter` 对象，它包含多个工厂方法。
-```scala
-import chisel3.util.Counter
 
 ![](img/4f3a8a4902b64641feace121425aec2a_9.png)
 
 ![](img/4f3a8a4902b64641feace121425aec2a_11.png)
 
+```scala
+import chisel3.util.Counter
 // 方法1：计数到 n
 val (countValue, wrap) = Counter(io.enable, n)
 // 方法2：按范围计数
@@ -205,16 +205,16 @@ class MyModule extends Module {
 
 **继承与嵌套 Bundle：**
 Bundle 可以继承和嵌套，以构建更复杂的数据结构。
-```scala
-// 继承：添加符号位
-class SignedMag extends Mag {
-    val s = Bool() // 符号位
-}
 
 ![](img/4f3a8a4902b64641feace121425aec2a_19.png)
 
 ![](img/4f3a8a4902b64641feace121425aec2a_21.png)
 
+```scala
+// 继承：添加符号位
+class SignedMag extends Mag {
+    val s = Bool() // 符号位
+}
 // 嵌套：包含一个SignedMag的向量
 class PairBundle extends Bundle {
     val nums = Vec(2, new SignedMag())
@@ -249,12 +249,12 @@ class Handshake extends Bundle {
 
 **Scala 的 Option 类型：**
 `Option[T]` 表示一个可能存在的 `T` 类型值。它有两个子类：`Some(value)` 表示存在值，`None` 表示不存在。
-```scala
-val maybeNum: Option[Int] = Some(4)
-val emptyNum: Option[Int] = None
 
 ![](img/4f3a8a4902b64641feace121425aec2a_25.png)
 
+```scala
+val maybeNum: Option[Int] = Some(4)
+val emptyNum: Option[Int] = None
 // 安全访问
 if (maybeNum.isDefined) {
     println(maybeNum.get) // 输出 4

@@ -103,14 +103,17 @@ int main() {
 ![](img/19222fbe98cc11f6aecaca86961a0c29_13.png)
 
 **示例代码：一个安全的信号处理模式**
+
+![](img/19222fbe98cc11f6aecaca86961a0c29_15.png)
+
+
+![](img/19222fbe98cc11f6aecaca86961a0c29_17.png)
+
 ```c
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
 #include <stdatomic.h>
-
-![](img/19222fbe98cc11f6aecaca86961a0c29_15.png)
-
 // 使用 volatile 和 _Atomic 确保安全访问
 static volatile sig_atomic_t keep_running = 1;
 
@@ -118,9 +121,6 @@ void handler(int sig) {
     // 安全操作：只设置一个标志
     keep_running = 0;
 }
-
-![](img/19222fbe98cc11f6aecaca86961a0c29_17.png)
-
 int main() {
     signal(SIGINT, handler);
 

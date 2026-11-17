@@ -113,17 +113,17 @@ fn amnomnom(s: String) {
 在C语言中，你可能以多种方式编写此代码，但只有一种方式是正确的（在适当的位置释放内存）。Rust迫使你明确意图，不允许你含糊不清或犯错误，比如使用已释放的内存或双重释放。
 
 为了保留所有权并在主函数中释放，我们可以传递引用：
+
+![](img/69e0baa6ef3dd584d596b134dc202e6c_33.png)
+
+![](img/69e0baa6ef3dd584d596b134dc202e6c_34.png)
+
 ```rust
 fn main() {
     let s = String::from("hello");
     amnomnom(&s);
     amnomnom(&s);
 }
-
-![](img/69e0baa6ef3dd584d596b134dc202e6c_33.png)
-
-![](img/69e0baa6ef3dd584d596b134dc202e6c_34.png)
-
 fn amnomnom(s: &String) {
     println!("{}", s);
 }

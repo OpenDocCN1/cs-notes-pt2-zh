@@ -119,9 +119,6 @@ class Coordinate(object):
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_63.png)
 
-```python
-c = Coordinate(3, 4)
-origin = Coordinate(0, 0)
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_65.png)
 
@@ -129,8 +126,6 @@ origin = Coordinate(0, 0)
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_68.png)
 
-print(f"c.x is {c.x}, origin.x is {origin.x}")
-print(f"Distance is {c.distance(origin)}")
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_70.png)
 
@@ -138,6 +133,11 @@ print(f"Distance is {c.distance(origin)}")
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_73.png)
 
+```python
+c = Coordinate(3, 4)
+origin = Coordinate(0, 0)
+print(f"c.x is {c.x}, origin.x is {origin.x}")
+print(f"Distance is {c.distance(origin)}")
 c.to_origin()
 print(f"After reset, c.x is {c.x}, c.y is {c.y}")
 ```
@@ -219,10 +219,6 @@ class Circle(object):
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_120.png)
 
-```python
-my_circle = Circle(Coordinate(2, 2), 2)
-p1 = Coordinate(1, 1)
-p2 = Coordinate(10, 10)
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_122.png)
 
@@ -238,6 +234,10 @@ p2 = Coordinate(10, 10)
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_133.png)
 
+```python
+my_circle = Circle(Coordinate(2, 2), 2)
+p1 = Coordinate(1, 1)
+p2 = Coordinate(10, 10)
 print(my_circle.is_inside(p1))  # 输出: True
 print(my_circle.is_inside(p2))  # 输出: False
 ```
@@ -387,12 +387,6 @@ class Fraction(object):
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_197.png)
 
-```python
-a = Fraction(1, 4)
-b = Fraction(3, 4)
-
-print(a)        # 输出: 1/4
-print(b)        # 输出: 3/4
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_199.png)
 
@@ -408,9 +402,6 @@ print(b)        # 输出: 3/4
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_209.png)
 
-c = a * b       # 使用 * 运算符
-print(c)        # 输出: 3/16
-print(float(c)) # 输出: 0.1875
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_211.png)
 
@@ -422,6 +413,15 @@ print(float(c)) # 输出: 0.1875
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_218.png)
 
+```python
+a = Fraction(1, 4)
+b = Fraction(3, 4)
+
+print(a)        # 输出: 1/4
+print(b)        # 输出: 3/4
+c = a * b       # 使用 * 运算符
+print(c)        # 输出: 3/16
+print(float(c)) # 输出: 0.1875
 d = a + b       # 使用 + 运算符
 print(d)        # 输出: 16/16 (即 1/1)
 ```
@@ -442,12 +442,6 @@ print(d)        # 输出: 16/16 (即 1/1)
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_228.png)
 
-```python
-def gcd(a, b):
-    # 计算最大公约数的辅助函数
-    while b:
-        a, b = b, a % b
-    return a
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_230.png)
 
@@ -459,6 +453,12 @@ def gcd(a, b):
 
 ![](img/bda7caa5b8c30732a62547bf1f180abb_238.png)
 
+```python
+def gcd(a, b):
+    # 计算最大公约数的辅助函数
+    while b:
+        a, b = b, a % b
+    return a
 class Fraction(object):
     # ... 之前的 __init__, __str__, __mul__, __add__, __float__ 方法 ...
 

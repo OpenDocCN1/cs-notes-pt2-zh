@@ -231,8 +231,6 @@ NavigationSplitView {
 
 ![](img/a889660acbcc6bfb2f8c97c2d79590a3_58.png)
 
-```swift
-enum Field { case name, addEmojis }
 
 ![](img/a889660acbcc6bfb2f8c97c2d79590a3_60.png)
 
@@ -240,6 +238,8 @@ enum Field { case name, addEmojis }
 
 ![](img/a889660acbcc6bfb2f8c97c2d79590a3_64.png)
 
+```swift
+enum Field { case name, addEmojis }
 struct PaletteEditor: View {
     @Binding var palette: Palette
     @FocusState private var focusedField: Field? // 可选的焦点状态

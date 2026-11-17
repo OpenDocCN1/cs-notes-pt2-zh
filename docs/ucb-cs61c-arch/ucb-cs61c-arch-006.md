@@ -148,6 +148,13 @@ if (new_arr != NULL) {
 
 让我们通过一个在链表头部插入节点的例子，来综合运用动态内存分配和双指针的概念。
 
+
+![](img/4dde71387e03da961511e2352368038f_34.png)
+
+![](img/4dde71387e03da961511e2352368038f_35.png)
+
+![](img/4dde71387e03da961511e2352368038f_37.png)
+
 ```c
 struct node {
     char* data;
@@ -165,13 +172,6 @@ void add_to_front(struct node** head_ref, char* new_data) {
     // 4. 更新链表头指针，使其指向新节点
     *head_ref = new_node;
 }
-
-![](img/4dde71387e03da961511e2352368038f_34.png)
-
-![](img/4dde71387e03da961511e2352368038f_35.png)
-
-![](img/4dde71387e03da961511e2352368038f_37.png)
-
 int main() {
     struct node* head = NULL;
     add_to_front(&head, “abc”);
@@ -217,15 +217,15 @@ int main() {
 
 识别内存错误需要练习。考虑以下代码片段，其中包含了多个内存管理错误：
 
+
+![](img/4dde71387e03da961511e2352368038f_51.png)
+
 ```c
 void some_func() {
     int f, h;
     int* ptr = &f;
     free(ptr); // 错误 1: 尝试释放栈地址
 }
-
-![](img/4dde71387e03da961511e2352368038f_51.png)
-
 int main() {
     int* p = (int*)malloc(sizeof(int));
     free(p + 1); // 错误 2: 释放非 malloc 返回的原始地址

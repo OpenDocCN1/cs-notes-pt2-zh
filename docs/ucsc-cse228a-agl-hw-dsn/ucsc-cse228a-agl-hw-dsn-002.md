@@ -142,14 +142,14 @@ Scala中有两种变量：`var`（可变）和`val`（不可变）。
 
 尝试重新赋值给`val`会导致编译错误。
 
-```scala
-var mutableVar = 0
-mutableVar = 5 // 正确
 
 ![](img/5897a48c08126e43c9ce7b1ae1b1c2c9_49.png)
 
 ![](img/5897a48c08126e43c9ce7b1ae1b1c2c9_51.png)
 
+```scala
+var mutableVar = 0
+mutableVar = 5 // 正确
 val immutableVal = 42
 immutableVal = 43 // 错误：无法对 val 变量重新赋值
 ```

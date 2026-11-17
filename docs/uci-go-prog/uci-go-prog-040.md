@@ -81,6 +81,9 @@ func foo(a int, b int) {
 
 现在，我们通过引入一个新函数来分离条件判断：
 
+
+![](img/f6bc54ee5a8dd0bfc6bdb563d32234d4_3.png)
+
 ```go
 func foo(a int, b int) {
     // ... 一些代码 ...
@@ -89,9 +92,6 @@ func foo(a int, b int) {
     }
     // ... 更多代码 ...
 }
-
-![](img/f6bc54ee5a8dd0bfc6bdb563d32234d4_3.png)
-
 func checkB(b int) {
     // ... 一些代码 ...
     if b == 1 {

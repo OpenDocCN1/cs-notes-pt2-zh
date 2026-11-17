@@ -97,10 +97,6 @@ struct hostent *gethostbyname(const char *name);
 
 ![](img/1175ce1bb2aa4c74fdf727bbf8d79962_52.png)
 
-```c
-#include <netdb.h>
-#include <arpa/inet.h>
-#include <stdio.h>
 
 ![](img/1175ce1bb2aa4c74fdf727bbf8d79962_54.png)
 
@@ -116,6 +112,10 @@ struct hostent *gethostbyname(const char *name);
 
 ![](img/1175ce1bb2aa4c74fdf727bbf8d79962_66.png)
 
+```c
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <stdio.h>
 void resolve_hostname(const char* hostname) {
     struct hostent *he = gethostbyname(hostname);
     if (he == NULL) {
