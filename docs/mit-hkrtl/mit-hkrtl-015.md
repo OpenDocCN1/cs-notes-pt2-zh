@@ -20,9 +20,7 @@
 
 以下是几个核心的浏览器快捷键：
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_10.png)
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_12.png)
 
 ![](img/5d77d4d592f2caabc93887dd456d74f7_14.png)
 
@@ -73,7 +71,6 @@
 
 ![](img/5d77d4d592f2caabc93887dd456d74f7_23.png)
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_25.png)
 
 ## 自定义网页外观 🎨
 
@@ -140,7 +137,6 @@ curl ... | jq '.[1]'
 
 **Selenium** 是一个流行的框架，它通过 **WebDriver** 控制真实的浏览器实例。你可以用 Python 等语言编写脚本，指示浏览器执行一系列操作。
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_39.png)
 
 例如，自动将网页保存到 Wayback Machine：
 ```python
@@ -156,13 +152,10 @@ driver.quit()
 ```
 这适用于自动化测试、数据抓取或任何重复性的网页操作任务。
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_41.png)
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_43.png)
 
 ---
 
-![](img/5d77d4d592f2caabc93887dd456d74f7_45.png)
 
 ![](img/5d77d4d592f2caabc93887dd456d74f7_47.png)
 

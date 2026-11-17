@@ -10,11 +10,9 @@
 
 ## 测验场景图示
 
-![](img/daaf4689d47cc625d4fbc0c7395184ca_0.png)
 
 以下是描述该场景的图示：
 
-![](img/daaf4689d47cc625d4fbc0c7395184ca_0.png)
 
 这张图展示了两个请求（Request A 和 Request B）通过同一个 TCP 连接被发送到服务器。
 
@@ -33,7 +31,6 @@
 
 然而，实际的网络行为可能更复杂，因为请求和响应的处理时间不同。
 
-![](img/daaf4689d47cc625d4fbc0c7395184ca_2.png)
 
 ## 可能遇到的问题
 
@@ -47,9 +44,7 @@
 
 为了帮助分析，测验还提供了更多的视觉线索：
 
-![](img/daaf4689d47cc625d4fbc0c7395184ca_3.png)
 
-![](img/daaf4689d47cc625d4fbc0c7395184ca_2.png)
 
 ![](img/daaf4689d47cc625d4fbc0c7395184ca_3.png)
 

@@ -128,7 +128,6 @@ Firebolt 一项核心优化是“子结果缓存”（Fire Cache），特别是�
 
 ---
 
-![](img/86624f3239d8ac2467c61039d1adac2d_5.png)
 
 ![](img/86624f3239d8ac2467c61039d1adac2d_6.png)
 

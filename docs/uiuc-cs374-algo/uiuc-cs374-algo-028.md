@@ -1,8 +1,6 @@
 # 028：不可判定性
 
-![](img/b779207002ff892f32aaab31aa4623bf_0.png)
 
-![](img/b779207002ff892f32aaab31aa4623bf_2.png)
 
 ![](img/b779207002ff892f32aaab31aa4623bf_3.png)
 

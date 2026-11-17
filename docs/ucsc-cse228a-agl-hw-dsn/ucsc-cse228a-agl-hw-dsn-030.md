@@ -127,15 +127,11 @@ Scala 提供了丰富的范围操作。`until` 是排他的，`to` 是包含的�
 
 Chisel 断言（`assert`）用于硬件设计，其参数类型是 Chisel 的 `Bool`。它只在仿真中存在，如果条件为假，会导致仿真失败。在工业中，大量使用 Chisel 断言来编写测试模块。
 
-![](img/a32f0d9c1224d37090b22dcdd083e4e4_1.png)
 
-![](img/a32f0d9c1224d37090b22dcdd083e4e4_3.png)
 
 Scala 断言（`assert`）用于 Scala 程序本身，在构造/生成期间运行，不会存在于硬件中。它的参数类型是 Scala 的 `Boolean`。
 
-![](img/a32f0d9c1224d37090b22dcdd083e4e4_5.png)
 
-![](img/a32f0d9c1224d37090b22dcdd083e4e4_7.png)
 
 `require` 也是一个 Scala 特性，用于检查输入合理性（例如参数范围）。`assert` 和 `require` 都是运行时检查。区别在于，可以通过编译器标志禁用 `assert`，但 `require` 不会。因此，风格上通常用 `require` 进行输入合法性检查，用 `assert` 保护内部不变量。
 

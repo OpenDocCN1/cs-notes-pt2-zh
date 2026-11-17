@@ -24,7 +24,6 @@ Node.js 带来了一个强大的工具：NPM（Node Package Manager）。它类�
 
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_7.png)
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_9.png)
 
 ## Node.js 的能力与限制 ⚡
 
@@ -180,9 +179,7 @@ app.get('/', (req, res) => {
 
 服务器已经就绪，现在我们来创建一个简单的 HTML 客户端页面与之交互。
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_70.png)
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_72.png)
 
 在项目中创建一个新文件，命名为 `client.html`，并填入以下内容：
 ```html
@@ -210,9 +207,7 @@ app.get('/', (req, res) => {
 ```
 直接双击在浏览器中打开这个 `client.html` 文件（注意，它不是通过我们的 Node.js 服务器提供的）。点击 “Get Stuff” 按钮，页面会向 `localhost:3042` 上的服务器发送请求，并将服务器返回的递增数字显示出来。
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_74.png)
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_76.png)
 
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_78.png)
 
@@ -234,7 +229,6 @@ app.get('/', (req, res) => {
 
 我们客户端使用的 `fetch()` 函数是现代浏览器提供的用于发起网络请求的 API。它返回一个 Promise 对象，这使得我们可以用 `async/await` 语法优雅地处理异步操作（即需要等待服务器响应的操作）。
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_90.png)
 
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_92.png)
 

@@ -8,13 +8,10 @@ Chisel并非一门独立的语言，而是嵌入在Scala中的一个库。这意
 
 ## Chisel类型与操作
 
-![](img/4dfd83cc96ba0ecb6af22f5ed73e09a3_1.png)
 
-![](img/4dfd83cc96ba0ecb6af22f5ed73e09a3_2.png)
 
 在Chisel中，我们使用特定的类型来表示硬件信号。理解这些类型及其转换是编写正确代码的关键。
 
-![](img/4dfd83cc96ba0ecb6af22f5ed73e09a3_4.png)
 
 ### 基本类型与转换
 
@@ -48,11 +45,9 @@ Chisel支持大多数你期望的硬件操作符。但有一个重要的例外�
 
 ## 创建你的第一个模块
 
-![](img/4dfd83cc96ba0ecb6af22f5ed73e09a3_6.png)
 
 现在，让我们将理论知识付诸实践，创建一个简单的硬件模块。
 
-![](img/4dfd83cc96ba0ecb6af22f5ed73e09a3_8.png)
 
 上一节我们介绍了Scala语法，本节中我们来看看如何定义一个Chisel模块。我们将构建一个异或门（XOR Gate）。
 

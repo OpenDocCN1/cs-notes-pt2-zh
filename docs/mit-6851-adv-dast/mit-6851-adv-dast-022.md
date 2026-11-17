@@ -1,8 +1,6 @@
 # 022：内存模型的历史 📚
 
-![](img/d5c7ee227818676b157cd7da5a9e7088_1.png)
 
-![](img/d5c7ee227818676b157cd7da5a9e7088_2.png)
 
 ![](img/d5c7ee227818676b157cd7da5a9e7088_3.png)
 

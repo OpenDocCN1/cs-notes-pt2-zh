@@ -57,9 +57,7 @@ mutating func addEmoji(_ emoji: String, at position: Emoji.Position, size: Int) 
 }
 ```
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_1.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_3.png)
 
 这个函数会为每个新添加的表情符号分配一个唯一的ID，并确保模型的状态可以被正确修改。
 
@@ -102,9 +100,7 @@ class EmojiArtDocument: ObservableObject {
 
 主视图使用 `ZStack` 布局，将背景图像和表情符号叠加显示：
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_5.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_7.png)
 
 ```swift
 struct EmojiArtDocumentView: View {
@@ -127,13 +123,9 @@ struct EmojiArtDocumentView: View {
 }
 ```
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_9.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_10.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_12.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_14.png)
 
 在这个视图中：
 - `GeometryReader` 用于获取视图的坐标系统，以便正确放置表情符号。
@@ -185,21 +177,15 @@ struct EmojiArtDocumentView: View {
 - `SterileData` 是一个自定义类型，支持字符串、URL和图像数据的拖放。
 - `drop` 函数根据拖放的数据类型执行相应的操作，例如设置背景图像或添加表情符号。
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_16.png)
 
 ## 手势操作与缩放功能 ✋
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_18.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_20.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_22.png)
 
 接下来，我们将为EmojiArt添加手势操作功能，支持缩放和平移。这是通过 `gesture` 修饰符实现的。
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_24.png)
 
-![](img/15c6a875e6864a9723d1c9635dc2cb11_26.png)
 
 以下是实现缩放功能的代码：
 

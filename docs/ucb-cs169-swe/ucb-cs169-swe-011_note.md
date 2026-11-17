@@ -72,9 +72,7 @@ Cucumber本身及其周边工具提供了许多功能来简化测试。
 
 Cucumber支持使用管道符（`|`）定义的表格数据。它会自动将表格解析成哈希数组，方便在步骤定义中使用。这对于填充多个表单字段或创建一组数据特别有用。
 
-![](img/ce3ffcd033543aed7b196740c40d342f_11.png)
 
-![](img/ce3ffcd033543aed7b196740c40d342f_13.png)
 
 #### 3. 时间测试（Timecop）
 
@@ -82,17 +80,14 @@ Cucumber支持使用管道符（`|`）定义的表格数据。它会自动将表
 
 ### Capybara 交互指南
 
-![](img/ce3ffcd033543aed7b196740c40d342f_15.png)
 
 ![](img/ce3ffcd033543aed7b196740c40d342f_17.png)
 
-![](img/ce3ffcd033543aed7b196740c40d342f_19.png)
 
 Capybara 与浏览器中的页面进行交互。页面就是一个HTML文档，包含各种元素。
 
 ![](img/ce3ffcd033543aed7b196740c40d342f_21.png)
 
-![](img/ce3ffcd033543aed7b196740c40d342f_23.png)
 
 以下是一些核心方法：
 
@@ -150,7 +145,6 @@ Capybara 与浏览器中的页面进行交互。页面就是一个HTML文档，�
 
 ### 远程会议建议
 
-![](img/ce3ffcd033543aed7b196740c40d342f_25.png)
 
 ![](img/ce3ffcd033543aed7b196740c40d342f_27.png)
 
@@ -178,9 +172,7 @@ Capybara 与浏览器中的页面进行交互。页面就是一个HTML文档，�
 
 ### Web服务器 vs. 应用服务器
 
-![](img/ce3ffcd033543aed7b196740c40d342f_41.png)
 
-![](img/ce3ffcd033543aed7b196740c40d342f_42.png)
 
 ![](img/ce3ffcd033543aed7b196740c40d342f_44.png)
 

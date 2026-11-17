@@ -8,9 +8,7 @@
 
 上一节我们介绍了递归的基本概念。本节中我们来看看如何将递归函数改写为迭代形式，并比较两者的优劣。
 
-![](img/dd67664246b4f93c00ef147d627a71ae_3.png)
 
-![](img/dd67664246b4f93c00ef147d627a71ae_5.png)
 
 递归是一种通过函数调用自身来解决问题的分治技术。它包含一个**基础情况**（最小的子问题）和一个**递归情况**（将问题分解为更小的子问题）。
 
@@ -52,7 +50,6 @@ def recursive_fibonacci(n):
         return recursive_fibonacci(n-1) + recursive_fibonacci(n-2)
 ```
 
-![](img/dd67664246b4f93c00ef147d627a71ae_7.png)
 
 其迭代版本需要更多的“簿记”工作来跟踪状态：
 ```python
@@ -72,9 +69,7 @@ def iterative_fibonacci(n):
 
 理解了代码结构的选择后，我们需要关注计算机进行数值计算时的内在限制，即浮点数的精度问题。
 
-![](img/dd67664246b4f93c00ef147d627a71ae_9.png)
 
-![](img/dd67664246b4f93c00ef147d627a71ae_11.png)
 
 浮点数在计算机中的表示是不精确的。这意味着你不应该直接比较两个浮点数是否完全相等。
 
@@ -87,9 +82,7 @@ print(tenth == thousandths + nine_hundredths)  # 输出：False
 ```
 这是因为 `0.1` 在二进制中无法被精确表示。
 
-![](img/dd67664246b4f93c00ef147d627a71ae_13.png)
 
-![](img/dd67664246b4f93c00ef147d627a71ae_15.png)
 
 解决方案是定义一个误差容忍度 **epsilon**，并比较两个数的差值是否小于这个 epsilon：
 ```python
@@ -126,9 +119,7 @@ print(close_enough(nine_hundredths, temp - thousandths))  # 输出：True
 
 最后，当程序出现错误（bug）时，系统化的调试方法至关重要。调试时，目标不是快速尝试，而是理解代码为何产生当前输出。
 
-![](img/dd67664246b4f93c00ef147d627a71ae_17.png)
 
-![](img/dd67664246b4f93c00ef147d627a71ae_19.png)
 
 一个有效的方法是构建一个**测试框架**。为你的函数设计一系列测试用例，包括：
 *   **边界情况**：输入的最小、最大或特殊值。
@@ -136,7 +127,6 @@ print(close_enough(nine_hundredths, temp - thousandths))  # 输出：True
 
 例如，测试一个判断回文串的函数：
 
-![](img/dd67664246b4f93c00ef147d627a71ae_21.png)
 
 ```python
 def is_palindrome(s):
@@ -165,7 +155,6 @@ if all_passed:
 
 ## 总结
 
-![](img/dd67664246b4f93c00ef147d627a71ae_23.png)
 
 ![](img/dd67664246b4f93c00ef147d627a71ae_25.png)
 

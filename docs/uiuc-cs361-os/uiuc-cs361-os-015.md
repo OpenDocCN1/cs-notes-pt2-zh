@@ -10,9 +10,7 @@
 
 ## 内存布局与系统malloc的差异
 
-![](img/f9da48ae44feff64054776b88d4cc833_1.png)
 
-![](img/f9da48ae44feff64054776b88d4cc833_2.png)
 
 上一节我们介绍了动态内存分配的基本目标。本节中，我们来看看我们实现的简单分配器与系统`malloc`（如glibc中的实现）在内存布局上的关键区别。
 
@@ -27,7 +25,6 @@ cat /proc/<PID>/maps
 
 ---
 
-![](img/f9da48ae44feff64054776b88d4cc833_4.png)
 
 ## 观察内存分配状态
 
@@ -40,7 +37,6 @@ cat /proc/<PID>/maps
 (gdb) x/40x ptr
 ```
 
-![](img/f9da48ae44feff64054776b88d4cc833_6.png)
 
 通过观察，我们可以看到：
 *   分配给用户的数据区（充满了我们设置的测试模式，如`0x41414141`，即字符‘AAAA’）。
@@ -48,7 +44,6 @@ cat /proc/<PID>/maps
 
 ---
 
-![](img/f9da48ae44feff64054776b88d4cc833_8.png)
 
 ## 分析内存块头信息
 

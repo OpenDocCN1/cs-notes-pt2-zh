@@ -1,6 +1,5 @@
 # 007：栈和队列
 
-![](img/4c2fdfbd984460c513bc6ca4ce7ee3af_0.png)
 
 ![](img/4c2fdfbd984460c513bc6ca4ce7ee3af_0.png)
 
@@ -172,6 +171,5 @@ std::stack<int, std::list<int>> myStack; // 使用std::list作为底层容器
 
 栈和队列是构建更复杂算法和系统的基石，理解它们对于学习数据结构与算法至关重要。
 
-![](img/4c2fdfbd984460c513bc6ca4ce7ee3af_2.png)
 
 ![](img/4c2fdfbd984460c513bc6ca4ce7ee3af_2.png)

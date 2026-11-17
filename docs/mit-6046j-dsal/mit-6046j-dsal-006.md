@@ -1,12 +1,8 @@
 # L4：分治：vEB树 🌳
 
-![](img/31f373ab56a41f4be7444dbb41fcafcb_0.png)
 
-![](img/31f373ab56a41f4be7444dbb41fcafcb_2.png)
 
-![](img/31f373ab56a41f4be7444dbb41fcafcb_4.png)
 
-![](img/31f373ab56a41f4be7444dbb41fcafcb_6.png)
 
 ![](img/31f373ab56a41f4be7444dbb41fcafcb_7.png)
 

@@ -47,20 +47,16 @@ int main() {
 
 **核心问题**：输出序列 `ninja` `ghost` 是否可能出现？
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_1.png)
 
 **分析过程**：
 1.  父进程`fork`出子进程。
 2.  父进程执行`kill(pid, SIGUSR1)`向子进程发送`SIGUSR1`信号，然后打印`ninja`。
 3.  子进程打印`ghost`，然后`return 0`。
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_3.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_5.png)
 
 要出现`ninja`先于`ghost`打印，父进程必须在子进程打印`ghost`前发送信号并执行自己的`printf`。这在理论上是可能的。
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_7.png)
 
 然而，要使得`ghost`在`pirate`之前打印，则要求信号在子进程打印`ghost`之后、但在其从`main`返回之前才被传递和处理。但一旦信号发出，在子进程执行流程中（包括`printf("ghost")`和`return 0`之间），信号处理器随时可能被触发。如果信号在`ghost`打印后、返回前被处理，则会执行`bat`函数打印`pirate`并`exit(0)`，导致`ghost`后的`return 0`不会执行。
 
@@ -131,7 +127,6 @@ int main() {
 *   1(Child1), 2(Child2), 1(Child1), 2(Child2), 6(Child1), 5(Parent)
 *   1(Child1), 2(Child2), 2(Child2), 1(Child1), 6(Child1), 5(Parent)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_9.png)
 
 **变体思考**：如果将`if (counter > 0)`改为`if (counter >= 0)`，那么初始父进程也会打印其`counter`值0。这个0可以出现在第一个1之前、之后或中间两个数字的任意位置，导致可能的输出序列数量大幅增加。
 
@@ -145,15 +140,10 @@ int main() {
 
 考虑以下程序：
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_13.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_15.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_17.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_18.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_20.png)
 
 ```c
 #include <stdio.h>
@@ -190,21 +180,15 @@ int main() {
 ```
 **假设**：`printf`原子且刷新，`fork`成功。`waitpid`在目标子进程不存在时返回-1。
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_21.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_23.png)
 
 ![](img/c4d04a56eb3fdffe753f10d82be4ef4b_25.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_26.png)
 
 **问题**：程序的输出是什么？
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_28.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_29.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_31.png)
 
 **分析过程**：
 1.  初始进程（P0）打印**0**，然后`fork`出子进程P1。
@@ -220,69 +204,44 @@ int main() {
     *   如果P1已经结束，`waitpid`失败，返回-1，打印**5**。
     *   最后，P0总是打印**6**。
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_33.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_35.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_37.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_39.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_41.png)
 
 因此，该程序有**两种可能的输出**：
 1.  **0 1 2 3 4 6** （当P0的`waitpid`成功等待到P1时）
 2.  **0 1 2 3 5 6** （当P1先于P0执行`waitpid`而结束时）
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_43.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_45.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_47.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_48.png)
 
 ---
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_50.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_51.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_53.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_55.png)
 
 ## 总结
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_57.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_58.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_60.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_62.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_64.png)
 
 本节课中，我们一起深入分析了三个涉及多进程和信号的复杂编程问题。
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_66.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_68.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_69.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_71.png)
 
 *   在**问题一**中，我们学习了信号处理函数的执行时机如何严格限制输出序列的可能性，`ninja ghost`的顺序由于信号处理的必然介入而无法实现。
 *   在**问题二**中，我们练习了通过画进程树或跟踪执行流来分析多级`fork`和循环，明确了确定性与非确定性（竞态条件）输出的部分，并推导出所有可能结果。
 *   在**问题三**中，我们看到了`waitpid`的返回值如何依赖于进程调度的时序，导致程序存在两种不同的合法输出路径。
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_72.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_73.png)
 
-![](img/c4d04a56eb3fdffe753f10d82be4ef4b_75.png)
 
 ![](img/c4d04a56eb3fdffe753f10d82be4ef4b_77.png)
 

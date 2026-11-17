@@ -73,7 +73,6 @@ articles/another.html
 
 ## 总结
 
-![](img/1d9da9bdc94503fa1ae52c4703805a57_1.png)
 
 ![](img/1d9da9bdc94503fa1ae52c4703805a57_3.png)
 

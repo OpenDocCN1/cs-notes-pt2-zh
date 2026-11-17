@@ -1,8 +1,6 @@
 # 002：归纳法、语言与正则表达式
 
-![](img/6e4b8784f21f2e1b7d6bd96804f995ee_0.png)
 
-![](img/6e4b8784f21f2e1b7d6bd96804f995ee_2.png)
 
 ![](img/6e4b8784f21f2e1b7d6bd96804f995ee_3.png)
 

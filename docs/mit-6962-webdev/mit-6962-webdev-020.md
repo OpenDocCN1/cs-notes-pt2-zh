@@ -44,7 +44,6 @@ export { NewComment, NewStory };
 
 
 
-![](img/69a8e0c16000cb8a698c13e705325e15_10.png)
 
 ![](img/69a8e0c16000cb8a698c13e705325e15_10.png)
 
@@ -58,7 +57,6 @@ import { NewStory } from ‘./NewPostInput’;
 
 ![](img/69a8e0c16000cb8a698c13e705325e15_12.png)
 
-![](img/69a8e0c16000cb8a698c13e705325e15_14.png)
 
 保存更改后，页面错误更新为：`The requested module ‘./Feed’ does not provide an export named ‘default’`。这说明`Feed`组件本身的导出也有问题。
 
@@ -91,7 +89,6 @@ export default Feed;
 
 
 
-![](img/69a8e0c16000cb8a698c13e705325e15_20.png)
 
 ![](img/69a8e0c16000cb8a698c13e705325e15_16.png)
 
@@ -140,11 +137,9 @@ console.log(‘req.query.parentStory:’, req.query.parentStory);
 
 ![](img/69a8e0c16000cb8a698c13e705325e15_34.png)
 
-![](img/69a8e0c16000cb8a698c13e705325e15_28.png)
 
 代码将新故事加入了数组，但没有通过`res.send()`将其返回给前端。根据RESTful API设计，创建资源后通常将新创建的对象返回。
 
-![](img/69a8e0c16000cb8a698c13e705325e15_36.png)
 
 **修复方法：**
 在添加故事到数组后，发送新故事作为响应：

@@ -1,8 +1,6 @@
 # 013：回溯算法
 
-![](img/2ac539d2b7438fd9d7fdf3ef73051594_0.png)
 
-![](img/2ac539d2b7438fd9d7fdf3ef73051594_1.png)
 
 ![](img/2ac539d2b7438fd9d7fdf3ef73051594_3.png)
 

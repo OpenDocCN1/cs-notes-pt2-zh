@@ -1,6 +1,5 @@
 # 26：SQL 中的非线性递归与互递归 🧩
 
-![](img/43771b425ce5b32b6ff32a64b8cd4e6c_1.png)
 
 在本节课中，我们将深入探讨 SQL 递归查询中的两个高级概念：非线性递归与互递归。我们将了解它们是什么、如何工作、各自的优缺点，以及 SQL 标准对它们的支持情况。
 
@@ -33,7 +32,6 @@ SELECT ancestor FROM Ancestor WHERE descendant = ‘Mary’;
 
 这个查询是**线性递归**的，因为在递归查询部分，递归定义的关系 `Ancestor` 只出现了一次。
 
-![](img/43771b425ce5b32b6ff32a64b8cd4e6c_3.png)
 
 ---
 
@@ -81,7 +79,6 @@ SELECT ancestor FROM Ancestor WHERE descendant = ‘Mary’;
     1.  **查询更简洁**：在某些情况下，非线性表达更对称、更简短。
     2.  **收敛速度更快**：理论上，线性递归需要 **O(n)** 次迭代（n为深度），而非线性递归可能只需要 **O(log n)** 次迭代。对于大型数据库，这能显著提升性能。
 
-![](img/43771b425ce5b32b6ff32a64b8cd4e6c_5.png)
 
 *   **非线性递归的缺点**：
     *   **实现复杂**：高效实现非线性递归对数据库系统更具挑战性。
@@ -91,7 +88,6 @@ SELECT ancestor FROM Ancestor WHERE descendant = ‘Mary’;
 
 ## 3. 互递归
 
-![](img/43771b425ce5b32b6ff32a64b8cd4e6c_7.png)
 
 上一节我们介绍了单个关系的递归，本节中我们来看看关系之间相互引用的**互递归**。
 
@@ -134,7 +130,6 @@ WITH RECURSIVE
 SELECT * FROM Hub, Auth; -- 最终查询
 ```
 
-![](img/43771b425ce5b32b6ff32a64b8cd4e6c_9.png)
 
 可以看到，`Hub` 的定义依赖于 `Auth`，而 `Auth` 的定义又依赖于 `Hub`，形成了互递归。
 

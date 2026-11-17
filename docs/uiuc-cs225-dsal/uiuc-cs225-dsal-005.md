@@ -74,9 +74,7 @@ private:
 
 在以下情况中，拷贝构造函数会被调用：
 
-![](img/5f0a8be10adaaa9dd71d036ba7e44ad5_9.png)
 
-![](img/5f0a8be10adaaa9dd71d036ba7e44ad5_11.png)
 
 1.  用一个对象初始化另一个对象时：
     ```cpp

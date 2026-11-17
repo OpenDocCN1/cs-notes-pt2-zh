@@ -1,6 +1,5 @@
 # 008：Go工具 🛠️
 
-![](img/1857218a4fd52fe192bfa401190b4fbf_1.png)
 
 ![](img/1857218a4fd52fe192bfa401190b4fbf_3.png)
 

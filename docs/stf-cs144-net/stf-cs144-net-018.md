@@ -12,7 +12,6 @@
 
 ---
 
-![](img/da0fdbd1450885d6acf5541bbb5edcb1_0.png)
 
 ## 核心概念与规则
 

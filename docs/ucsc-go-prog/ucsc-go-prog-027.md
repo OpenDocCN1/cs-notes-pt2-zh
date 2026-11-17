@@ -1,6 +1,5 @@
 # 027：读取文件
 
-![](img/fbc6c8f6f16e1d29a0d9d8cfd54d0f01_0.png)
 
 ![](img/fbc6c8f6f16e1d29a0d9d8cfd54d0f01_0.png)
 

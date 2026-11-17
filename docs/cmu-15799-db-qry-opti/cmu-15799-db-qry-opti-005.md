@@ -1,6 +1,5 @@
 # 005：查询优化-CMU-15-799--(2025-年春季)-p05-P05-#05---Cascades-查询优化器-(CMU-Optimize!)
 
-![](img/879b91d33c16dade9b5713241cd38c79_0.png)
 
 ![](img/879b91d33c16dade9b5713241cd38c79_0.png)
 
@@ -164,10 +163,8 @@ CockroachDB的优化器采用Cascades框架，但有其特色：
 
 Cascades通过其统一、灵活、任务驱动的设计，为构建高效的查询优化器提供了一个强大的蓝图，其影响持续至今。
 
-![](img/879b91d33c16dade9b5713241cd38c79_2.png)
 
 ![](img/879b91d33c16dade9b5713241cd38c79_2.png)
 
-![](img/879b91d33c16dade9b5713241cd38c79_4.png)
 
 ![](img/879b91d33c16dade9b5713241cd38c79_4.png)

@@ -110,7 +110,6 @@
 
 ![](img/9f6483f77ad6179f9e7c1bef71e62963_2.png)
 
-![](img/9f6483f77ad6179f9e7c1bef71e62963_3.png)
 
 ![](img/9f6483f77ad6179f9e7c1bef71e62963_4.png)
 

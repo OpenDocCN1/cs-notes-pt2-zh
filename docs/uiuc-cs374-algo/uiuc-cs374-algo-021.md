@@ -1,6 +1,5 @@
 # 021：Bellman-Ford算法回顾与全对最短路径
 
-![](img/fd462df16caf56cef524f5335f9a626e_0.png)
 
 ![](img/fd462df16caf56cef524f5335f9a626e_2.png)
 

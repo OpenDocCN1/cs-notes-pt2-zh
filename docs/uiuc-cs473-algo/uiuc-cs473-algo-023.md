@@ -1,6 +1,5 @@
 # 023：最小成本流
 
-![](img/52c280a15b3d54fd395e0e1593acb9c6_0.png)
 
 ![](img/52c280a15b3d54fd395e0e1593acb9c6_2.png)
 

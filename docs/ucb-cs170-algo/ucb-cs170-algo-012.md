@@ -86,7 +86,6 @@ def fib_bottom_up(n):
     `dist[u] = min(dist[p] + weight(p, u))`，其中 `p` 是 `u` 的所有入边邻居。对于源点 `s`，`dist[s] = 0`。
 3.  **实现**：按照拓扑排序的顺序遍历顶点，利用上述递推关系更新 `dist` 数组。
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_3.png)
 
 算法伪代码如下：
 ```python
@@ -105,9 +104,7 @@ def shortest_path_dag(graph, source):
 
 **过渡**：我们学会了在无环图上高效计算最短路径。现在，考虑一个更一般的情况：图中允许有环，但我们对路径增加了一个新的约束——边数限制。
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_5.png)
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_7.png)
 
 ---
 
@@ -202,15 +199,11 @@ def floyd_warshall(graph):
 
 ---
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_21.png)
 
 ## 总结 🎯
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_23.png)
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_25.png)
 
-![](img/b6edd41a48d51e56d39a5079c83c41e3_27.png)
 
 本节课我们一起学习了动态规划的核心思想与应用：
 1.  **核心思想**：通过**记忆化**存储重叠子问题的解，避免重复计算，用空间换时间。

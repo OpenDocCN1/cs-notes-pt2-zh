@@ -1,8 +1,6 @@
 # 15：接口与继承实战
 
-![](img/a8ac2ed02c64bd48af8e5b46f429048e_1.png)
 
-![](img/a8ac2ed02c64bd48af8e5b46f429048e_3.png)
 
 ![](img/a8ac2ed02c64bd48af8e5b46f429048e_4.png)
 

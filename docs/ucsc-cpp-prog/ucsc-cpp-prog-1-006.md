@@ -4,11 +4,9 @@
 
 ---
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_1.png)
 
 ## 构建扑克牌抽象数据类型 🎴
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_3.png)
 
 上一节我们介绍了课程背景，本节中我们来看看如何表示扑克牌。为了进行概率计算，我们首先需要创建代表扑克牌和扑克牌组的抽象数据类型。
 
@@ -16,7 +14,6 @@
 
 我们使用C++11的枚举类来定义花色，这样可以指定底层数据类型以节省内存。
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_5.png)
 
 ```cpp
 enum class Suit : short { SPADE, HEART, DIAMOND, CLUB };
@@ -56,7 +53,6 @@ private:
 
 以下是初始化牌组的代码思路：我们使用一个`std::vector<Card>`来存储牌组，并通过嵌套循环生成所有牌。
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_7.png)
 
 ```cpp
 std::vector<Card> deck;
@@ -83,13 +79,11 @@ for (const auto& card : deck) {
 }
 ```
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_9.png)
 
 ---
 
 ## 判断牌型：同花与顺子 🎯
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_11.png)
 
 现在我们已经有了牌组，接下来需要编写函数来判断一手牌（5张牌）是否是特定的牌型。我们先从**同花**开始。
 
@@ -140,13 +134,10 @@ bool isStraightFlush(const std::vector<Card>& hand) {
 }
 ```
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_13.png)
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_14.png)
 
 代码的复用性在这里得到了很好的体现。
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_16.png)
 
 ---
 
@@ -154,7 +145,6 @@ bool isStraightFlush(const std::vector<Card>& hand) {
 
 理论概率计算可能很复杂，但我们可以通过**蒙特卡洛模拟**来近似估算概率。其核心思想是：通过大量随机实验（这里指发牌），统计特定事件（如出现同花顺）发生的频率，以此作为概率的估计。
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_18.png)
 
 以下是模拟的核心步骤：
 1.  初始化一副牌。
@@ -165,7 +155,6 @@ bool isStraightFlush(const std::vector<Card>& hand) {
     *   使用`isFlush`、`isStraight`、`isStraightFlush`函数判断牌型，并相应增加计数器。
 4.  循环结束后，用计数器除以总模拟次数，得到各牌型出现的近似概率。
 
-![](img/c3b0baa8dad0a43b3b8cf899c80c3762_20.png)
 
 ```cpp
 int main() {

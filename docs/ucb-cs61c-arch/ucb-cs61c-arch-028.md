@@ -18,31 +18,23 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_14.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_16.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_18.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_20.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_22.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_24.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_26.png)
 
 ## 概述：性能、效率与流水线
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_28.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_30.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_32.png)
 
 上一节我们完成了单周期RISC-V CPU的设计，确保它能正确工作。本节中，我们来看看如何让它运行得更快。我们将学习如何衡量和改进计算机的性能，并引入“流水线”这一关键概念，它就像一条高效的装配线，能显著提升处理器的吞吐量。
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_34.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_36.png)
 
 ## 性能的衡量标准 🏎️
 
@@ -52,13 +44,10 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_40.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_42.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_44.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_46.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_48.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_50.png)
 
@@ -68,11 +57,8 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_52.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_54.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_56.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_58.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_60.png)
 
@@ -84,11 +70,8 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_66.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_68.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_70.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_72.png)
 
 **程序执行时间 = 指令数 × 每条指令平均时钟周期数 × 时钟周期时间**
 
@@ -102,11 +85,9 @@
 *   **CPI**：平均每条指令所需的时钟周期数，由处理器架构（ISA）和具体实现（微架构）决定。
 *   **时钟周期时间**：由硬件工艺、关键路径延迟和功耗预算决定。
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_80.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_82.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_84.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_86.png)
 
@@ -120,11 +101,9 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_94.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_96.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_98.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_100.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_102.png)
 
@@ -132,13 +111,10 @@
 
 ## 能效的考量 🔋
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_106.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_108.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_110.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_112.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_114.png)
 
@@ -146,33 +122,24 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_116.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_118.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_120.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_122.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_124.png)
 
 **功耗 ∝ 电容 × 电压² × 频率**
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_126.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_128.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_130.png)
 
 因此，降低电压对减少功耗有极其显著的效果（平方关系）。然而，电压降低会减慢晶体管速度，并且存在泄漏功耗等问题。历史上，约2005年出现的“功耗墙”迫使处理器设计从单纯提升主频，转向了增加核心数量（并行化）和提升能效。
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_132.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_134.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_136.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_138.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_140.png)
 
 ## 流水线的基本思想 🧺
 
@@ -182,23 +149,18 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_146.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_148.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_150.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_152.png)
 
 流水线的灵感来源于日常生活中的装配线，例如洗衣房的工作流程。
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_154.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_156.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_158.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_160.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_162.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_164.png)
 
@@ -208,13 +170,9 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_166.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_168.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_170.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_172.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_174.png)
 
 以下是流水线的关键特点：
 *   **提高吞吐量**：多个任务在不同阶段同时进行，单位时间内完成的工作量大大增加。
@@ -236,7 +194,6 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_184.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_186.png)
 
 通过引入流水线，我们将指令执行过程划分为五个固定的阶段，并在每个阶段之间插入寄存器来隔离它们。这样，就像洗衣房一样，当第一条指令进入“执行”阶段时，第二条指令就可以进入“译码”阶段，第三条指令可以开始“取指”，从而实现多条指令的重叠执行，极大提高了吞吐量。
 
@@ -246,13 +203,10 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_190.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_192.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_194.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_196.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_198.png)
 
 ## 总结与展望
 
@@ -272,13 +226,10 @@
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_208.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_210.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_212.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_214.png)
 
-![](img/ec4a5cd07c1d687808d1979566f0bbf9_216.png)
 
 ![](img/ec4a5cd07c1d687808d1979566f0bbf9_218.png)
 

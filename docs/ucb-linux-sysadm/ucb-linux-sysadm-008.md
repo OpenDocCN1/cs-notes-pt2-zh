@@ -61,7 +61,6 @@ Git是分布式的，这意味着同一个仓库可以有多个副本，每个�
 
 以下是创建一个新Git仓库并进行首次提交的基本步骤：
 
-![](img/936786b73c3e45fcfdddc2c6c51fef1b_6.png)
 
 ![](img/936786b73c3e45fcfdddc2c6c51fef1b_8.png)
 
@@ -187,7 +186,6 @@ git push origin feature_branch
 *   **云存储服务**：直接使用Google Drive、Dropbox、iCloud等的同步客户端。
 *   **版本控制系统**：像Git这样的工具本身也是代码和文本项目的优秀备份机制，尤其是配合远程仓库使用。
 
-![](img/936786b73c3e45fcfdddc2c6c51fef1b_18.png)
 
 ![](img/936786b73c3e45fcfdddc2c6c51fef1b_20.png)
 

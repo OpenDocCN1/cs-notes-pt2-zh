@@ -170,7 +170,6 @@ SELECT * FROM RedCount WHERE scount < 10;
 
 编写 SQL 查询是一种声明式体验。接下来，我们将深入探讨数据库系统如何执行这些查询。
 
-![](img/cdfb9718f5915ae04934e75e3eafa223_3.png)
 
 ![](img/cdfb9718f5915ae04934e75e3eafa223_5.png)
 

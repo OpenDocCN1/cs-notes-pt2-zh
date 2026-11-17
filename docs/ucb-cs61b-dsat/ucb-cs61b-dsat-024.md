@@ -1,8 +1,6 @@
 # 24：渐进分析与运行时分析 🧮
 
-![](img/8fd7f889eb3145ca7626d18ea8420a3c_1.png)
 
-![](img/8fd7f889eb3145ca7626d18ea8420a3c_2.png)
 
 ![](img/8fd7f889eb3145ca7626d18ea8420a3c_3.png)
 

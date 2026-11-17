@@ -1,6 +1,5 @@
 # 005：Java集合、异常与JUnit测试入门
 
-![](img/a6ae58fe820288ff02cd4b2a5c333f8b_0.png)
 
 在本节课中，我们将学习Java集合框架的层次结构，回顾异常处理机制，并初步了解如何为类编写JUnit测试用例。这些知识对于完成后续的编程作业至关重要。
 
@@ -155,6 +154,5 @@ public void testDefaultConstructor() {
 
 下节课我们将深入探讨`ArrayList`数据结构的实现，这是你们下一个编程作业的核心。请确保理解本节课的内容，为后续学习打下基础。
 
-![](img/a6ae58fe820288ff02cd4b2a5c333f8b_2.png)
 
 ![](img/a6ae58fe820288ff02cd4b2a5c333f8b_2.png)

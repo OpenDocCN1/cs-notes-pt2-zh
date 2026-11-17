@@ -1,8 +1,6 @@
 # 003：回溯与动态规划
 
-![](img/2abbbcd824b04c6be0fdf6faf004339c_0.png)
 
-![](img/2abbbcd824b04c6be0fdf6faf004339c_2.png)
 
 ![](img/2abbbcd824b04c6be0fdf6faf004339c_3.png)
 

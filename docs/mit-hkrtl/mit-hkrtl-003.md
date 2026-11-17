@@ -51,9 +51,7 @@ command ls
 unalias ls
 ```
 
-![](img/f197b0cb31d8a8c18a1c37ec741224ca_1.png)
 
-![](img/f197b0cb31d8a8c18a1c37ec741224ca_3.png)
 
 ## Shell配置与启动文件
 
@@ -86,7 +84,6 @@ Zsh支持强大的路径扩展。例如，使用 `**` 可以进行递归匹配�
 ls **/*.txt
 ```
 
-![](img/f197b0cb31d8a8c18a1c37ec741224ca_5.png)
 
 ![](img/f197b0cb31d8a8c18a1c37ec741224ca_6.png)
 
@@ -165,7 +162,6 @@ v config.yaml
 
 ## 总结
 
-![](img/f197b0cb31d8a8c18a1c37ec741224ca_8.png)
 
 ![](img/f197b0cb31d8a8c18a1c37ec741224ca_10.png)
 

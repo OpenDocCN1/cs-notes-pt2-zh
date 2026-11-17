@@ -1010,7 +1010,6 @@ person = malloc(sizeof(string) + length+1);
 
 目前，我们的内存看起来像以下图像。那些盒子中没有任何东西
 
-![指向 11 个空盒子的结构体](img/file0.png)
 
 指向 11 个空盒子的结构体
 
@@ -1020,7 +1019,6 @@ person = malloc(sizeof(string) + length+1);
 person->length = length;
 ```
 
-![指向 11 个盒子，其中 4 个填充了 0006，7 个垃圾数据的结构体](img/file1.png)
 
 指向 11 个盒子，其中 4 个填充了 0006，7 个垃圾
 

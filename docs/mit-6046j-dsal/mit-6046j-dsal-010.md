@@ -1,12 +1,8 @@
 # L7：跳跃表 🎲
 
-![](img/a9d2498b3e3d93a052526820a12f1fd5_0.png)
 
-![](img/a9d2498b3e3d93a052526820a12f1fd5_2.png)
 
-![](img/a9d2498b3e3d93a052526820a12f1fd5_4.png)
 
-![](img/a9d2498b3e3d93a052526820a12f1fd5_6.png)
 
 ![](img/a9d2498b3e3d93a052526820a12f1fd5_7.png)
 

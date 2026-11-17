@@ -1,10 +1,7 @@
 # 020：Dijkstra 与 Bellman-Ford 算法详解 🧭
 
-![](img/adff696eb8d597a68cf19f681c72c3fb_0.png)
 
-![](img/adff696eb8d597a68cf19f681c72c3fb_2.png)
 
-![](img/adff696eb8d597a68cf19f681c72c3fb_4.png)
 
 ![](img/adff696eb8d597a68cf19f681c72c3fb_6.png)
 

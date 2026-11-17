@@ -13,22 +13,16 @@
 
 布雷格曼散度衡量了点 y 相对于点 x 的线性近似之上的高度差。
 
-![](img/08d769afc7e7ddb036446cfb205ca55e_1.png)
 
 ![](img/08d769afc7e7ddb036446cfb205ca55e_3.png)
 
-![](img/08d769afc7e7ddb036446cfb205ca55e_5.png)
 
 基于此，镜像下降算法定义如下。假设当前点为 **x_t**，函数 F 在 **x_t** 处的线性近似为 **F(x_t) + ∇F(x_t)ᵀ(y - x_t)**。算法通过最小化该线性近似加上一个由布雷格曼散度构成的惩罚项，来找到下一个点 **y_{t+1}**：
 **y_{t+1} = argmin_y [ η ∇F(x_t)ᵀ y + D(y, x_t) ]**
 
-![](img/08d769afc7e7ddb036446cfb205ca55e_7.png)
 
-![](img/08d769afc7e7ddb036446cfb205ca55e_9.png)
 
-![](img/08d769afc7e7ddb036446cfb205ca55e_11.png)
 
-![](img/08d769afc7e7ddb036446cfb205ca55e_13.png)
 
 ![](img/08d769afc7e7ddb036446cfb205ca55e_15.png)
 

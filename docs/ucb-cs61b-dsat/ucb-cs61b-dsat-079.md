@@ -1,8 +1,6 @@
 # 79：4 - 排序算法识别教程 🧩
 
-![](img/1256a3bb6ce5f4f3c8720ab4b557d8d7_1.png)
 
-![](img/1256a3bb6ce5f4f3c8720ab4b557d8d7_2.png)
 
 ![](img/1256a3bb6ce5f4f3c8720ab4b557d8d7_3.png)
 

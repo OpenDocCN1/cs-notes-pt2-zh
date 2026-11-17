@@ -1,12 +1,8 @@
 # R10. 分布式算法 🧩
 
-![](img/4185e4e6eb550a9a9902e30c53487f6b_0.png)
 
-![](img/4185e4e6eb550a9a9902e30c53487f6b_2.png)
 
-![](img/4185e4e6eb550a9a9902e30c53487f6b_4.png)
 
-![](img/4185e4e6eb550a9a9902e30c53487f6b_6.png)
 
 ![](img/4185e4e6eb550a9a9902e30c53487f6b_7.png)
 

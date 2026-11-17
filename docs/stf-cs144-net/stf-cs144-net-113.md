@@ -18,9 +18,7 @@
 
 Alice 使用主机 H1 上的 Firefox 浏览器浏览网页。如下图所示，她可以成功访问斯坦福大学的网站。
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_1.png)
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_1.png)
 
 她的计算机 H1 运行 DHCP 客户端，以获取 IP 地址、本地路由器地址和 DNS 服务器地址。如果我们使用 `dig` 命令查询另一个域名（如 Amazon.com），可以看到 DNS 服务器（本例中是 Google 运营的公共 DNS 服务器 `8.8.8.8`）正常响应查询，返回 Amazon 的 IP 地址，并且该网站在 Firefox 中能按预期加载。
 
@@ -28,17 +26,14 @@ Alice 使用主机 H1 上的 Firefox 浏览器浏览网页。如下图所示，�
 
 ## 攻击者发起攻击
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_3.png)
 
 了解了正常流程后，现在让我们看看攻击者 Eve 如何破坏这一流程。
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_5.png)
 
 攻击者 Eve 在 `Evil` 主机上启动了三个进程：一个恶意 DHCP 服务器、一个恶意 DNS 服务器和一个 Web 服务器。Eve 的目标是迫使 Alice 的所有 Web 访问都指向 Eve 自己的 Web 服务器。
 
 DHCP 客户端需要定期续订其 IP 地址租约。在演示中我们可以看到，当 H1 发出 DHCP 发现请求时，位于 `10.0.0.50` 的正常 DHCP 服务器会响应一个包含合法 DNS 服务器地址 `8.8.8.8` 的提供报文。然而，Alice 的机器首先收到了来自恶意 DHCP 服务器的提供报文并接受了它。
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_7.png)
 
 ---
 
@@ -46,15 +41,12 @@ DHCP 客户端需要定期续订其 IP 地址租约。在演示中我们可以�
 
 现在，Alice 陷入了麻烦。她的机器开始使用 Eve 的恶意 DNS 服务器（地址为 `10.0.0.66`）。当 Alice 的浏览器请求 `Google.com` 的 IP 地址时，恶意 DNS 服务器会告诉 Alice 的机器使用 Eve 的 Web 服务器，于是发生了下图所示的情况。
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_9.png)
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_7.png)
 
 当她再次访问 `Amazon.com` 时，由于 Firefox 缓存了之前的 DNS 结果，大部分正确的网站内容仍会出现。但一旦 Firefox 执行新的 DNS 查询（我们可以通过按 Shift+刷新 来强制触发），她就会被导向恶意 Web 服务器的 IP 地址。如果她访问一个新网站（如 `Yahoo.com`），同样会最终访问到恶意网站。
 
 以下是攻击者 Eve 可能实施的一些恶意行为：
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_9.png)
 
 *   **拒绝服务**： 直接拒绝或阻止 Alice 访问特定网站。
 *   **网络钓鱼**： 模仿 Alice 访问的网站（尤其是电子商务网站）的外观，诱骗 Alice 泄露信用卡或其他个人信息。
@@ -79,7 +71,6 @@ DHCP 客户端需要定期续订其 IP 地址租约。在演示中我们可以�
 
 ![](img/f7de6034516ddae09de6d1a4ea1422d3_11.png)
 
-![](img/f7de6034516ddae09de6d1a4ea1422d3_13.png)
 
 ---
 

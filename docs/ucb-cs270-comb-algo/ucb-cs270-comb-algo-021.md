@@ -171,7 +171,6 @@ B - \sum_{(i,j)\in E} (x_i - x_j)^2 = \sum_i \alpha_i (1 - x_i^2) + \sum_v \beta
 *   为了证明 \(\tilde{\mathbb{E}}\) 给出的解接近真实答案，我们将在**真实解的世界里**，使用**低度数的平方和证明**来证明“任何真实解都接近真实答案”。
 *   根据弱对偶性，这个证明意味着伪期望 \(\tilde{\mathbb{E}}\) 也满足同样的性质，从而保证SDP返回的解是高质量的。
 
-![](img/e46a987a7fb34cd32ed9a6611dbe282c_2.png)
 
 ![](img/e46a987a7fb34cd32ed9a6611dbe282c_3.png)
 

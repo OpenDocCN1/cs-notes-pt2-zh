@@ -1,8 +1,6 @@
 # 80：5 - 排序算法概念比较
 
-![](img/b28c34f7ba56ab75b2f9fc6b865231d5_1.png)
 
-![](img/b28c34f7ba56ab75b2f9fc6b865231d5_3.png)
 
 ![](img/b28c34f7ba56ab75b2f9fc6b865231d5_4.png)
 

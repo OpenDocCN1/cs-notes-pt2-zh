@@ -222,9 +222,7 @@ extension Background {
 
 在视图模型中，我们将使用 `@Published` 属性来存储当前状态：
 
-![](img/b311cefdf46e6b0a9631e4d8ec511d35_1.png)
 
-![](img/b311cefdf46e6b0a9631e4d8ec511d35_2.png)
 
 ```swift
 @Published var background: Background = .none
@@ -282,9 +280,7 @@ if viewModel.background.isFetching {
 
 `fetchBackgroundImage` 函数驱动状态机运转：
 
-![](img/b311cefdf46e6b0a9631e4d8ec511d35_4.png)
 
-![](img/b311cefdf46e6b0a9631e4d8ec511d35_6.png)
 
 ```swift
 private func fetchBackgroundImage() async {
@@ -343,11 +339,9 @@ enum FetchError: Error {
     private func fetchBackgroundImage() async { ... }
     ```
 
-![](img/b311cefdf46e6b0a9631e4d8ec511d35_8.png)
 
 这样，当 `fetchBackgroundImage` 函数需要执行时，系统会确保它在主Actor的线程上运行。如果主Actor正忙（例如用户正在交互），函数会挂起等待，直到主线程空闲。这完美地解决了线程安全问题。
 
-![](img/b311cefdf46e6b0a9631e4d8ec511d35_10.png)
 
 ### 更多增强功能
 

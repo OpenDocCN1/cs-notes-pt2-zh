@@ -1,10 +1,7 @@
 # 024：Zyablov界
 
-![](img/1188afc2ee1d19bfa5dc9dcb56ee5dc1_0.png)
 
-![](img/1188afc2ee1d19bfa5dc9dcb56ee5dc1_2.png)
 
-![](img/1188afc2ee1d19bfa5dc9dcb56ee5dc1_0.png)
 
 在本节课中，我们将至少部分地实现我们的目标：构建具有高效算法的、显式的、渐近好的二进制码。同时，我们还将引入一个称为Zyablov界的概念。
 

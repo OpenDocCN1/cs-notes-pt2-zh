@@ -1,12 +1,8 @@
 # L18：复杂性：固定参数算法 🎯
 
-![](img/2b85c09885ffc9950d6d84ca0ea39d5e_0.png)
 
-![](img/2b85c09885ffc9950d6d84ca0ea39d5e_2.png)
 
-![](img/2b85c09885ffc9950d6d84ca0ea39d5e_4.png)
 
-![](img/2b85c09885ffc9950d6d84ca0ea39d5e_6.png)
 
 ![](img/2b85c09885ffc9950d6d84ca0ea39d5e_7.png)
 

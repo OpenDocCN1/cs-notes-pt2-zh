@@ -1,8 +1,6 @@
 # 78：基数排序详解
 
-![](img/0cc805ad1ab98dd8ab1ade735c9617b1_1.png)
 
-![](img/0cc805ad1ab98dd8ab1ade735c9617b1_2.png)
 
 ![](img/0cc805ad1ab98dd8ab1ade735c9617b1_3.png)
 

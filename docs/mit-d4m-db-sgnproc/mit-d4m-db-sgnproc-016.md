@@ -16,15 +16,12 @@
 
 一个正在运行的Accumulo实例的管理页面会显示磁盘使用情况、表数量、历史摄入速率和扫描速率等信息。这些信息对于监控数据库性能非常有用。
 
-![](img/276da8b18fd85de440dbae49607fc066_5.png)
 
 今天的演示代码位于 `examples/scaling/two_parallel_database` 目录中。我们将涵盖大量内容，展示如何利用D4M和Accumulo协同工作。
 
 ***
 
-![](img/276da8b18fd85de440dbae49607fc066_7.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_9.png)
 
 ## 第一步：生成测试数据 📊
 
@@ -35,13 +32,10 @@
 *   **边数**：每个顶点的平均边数乘以最大顶点数 `nmax`。
 *   **生成结果**：返回两个向量，分别代表起始顶点和结束顶点的列表。
 
-![](img/276da8b18fd85de440dbae49607fc066_11.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_12.png)
 
 我们首先生成一个较小的图来观察其结构。
 
-![](img/276da8b18fd85de440dbae49607fc066_14.png)
 
 ```matlab
 scale = 12;
@@ -64,19 +58,14 @@ title('Kronecker Graph Adjacency Matrix');
 
 ## 第二步：创建更大的数据集并保存到文件 💾
 
-![](img/276da8b18fd85de440dbae49607fc066_20.png)
 
 接下来，我们将创建一个更大的数据集。通过多次调用生成器，我们可以获得同一图分布的多个独立样本，从而创建一个边数更多的图。
 
-![](img/276da8b18fd85de440dbae49607fc066_22.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_24.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_26.png)
 
 我们将生成8组数据，并将每组数据的（行、列、值）三元组分别保存到三个独立的文本文件中（`*_row.txt`, `*_col.txt`, `*_val.txt`）。在生成过程中，我们会记录每秒生成的边数，这是评估数据处理流水线性能的重要指标。
 
-![](img/276da8b18fd85de440dbae49607fc066_28.png)
 
 ```matlab
 numFiles = 8;
@@ -93,11 +82,9 @@ end
 
 生成的文件包含由逗号分隔的字符串序列。现在，我们有了8组数据文件。
 
-![](img/276da8b18fd85de440dbae49607fc066_30.png)
 
 ***
 
-![](img/276da8b18fd85de440dbae49607fc066_32.png)
 
 ## 第三步：将文件数据读入并构建关联数组 🔄
 
@@ -156,7 +143,6 @@ loglog(full(totalOutDegree), full(totalInDegree), '.');
 
 ![](img/276da8b18fd85de440dbae49607fc066_40.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_42.png)
 
 这种基于文件的计算方式非常适合需要遍历全部数据的分析任务。如果后续需要反复使用某次查询的结果，将其保存到文件中是更佳选择。
 
@@ -164,11 +150,8 @@ loglog(full(totalOutDegree), full(totalInDegree), '.');
 
 ## 第五步：设置数据库与创建表 🗃️
 
-![](img/276da8b18fd85de440dbae49607fc066_44.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_46.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_48.png)
 
 现在，我们开始真正的数据库操作。首先，需要在Accumulo中设置并创建表。
 
@@ -179,9 +162,7 @@ loglog(full(totalOutDegree), full(totalInDegree), '.');
 2.  **度统计表**：利用Accumulo的聚合器（Combiner）功能，在插入时实时计算并存储每个顶点的入度和出度。这对于快速了解数据规模非常有用。
 3.  **边表（关联矩阵）**：以边为行、顶点为列，保留每条边的原始信息，支持超边（连接多个顶点的边）。
 
-![](img/276da8b18fd85de440dbae49607fc066_50.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_52.png)
 
 在创建表时，我们可以为特定列（如 `'out_degree,'` 和 `'in_degree,'`）启用 `SUM` 聚合器，这样在插入碰撞时值会自动相加。
 
@@ -233,17 +214,13 @@ for i = 1:numFiles
 end
 ```
 
-![](img/276da8b18fd85de440dbae49607fc066_58.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_59.png)
 
 即使是插入15万条记录，Accumulo也能在瞬间完成，这展示了其强大的插入性能。我们可以通过管理界面监控实时的插入速率。
 
 ***
 
-![](img/276da8b18fd85de440dbae49607fc066_61.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_63.png)
 
 ## 第七步：执行数据库查询 🔍
 
@@ -251,9 +228,7 @@ end
 
 这类似于信号处理中的“滤除杂波（clutter）”和“抑制噪声（noise）”步骤，在图分析中非常实用。
 
-![](img/276da8b18fd85de440dbae49607fc066_65.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_67.png)
 
 ```matlab
 % 随机选择100个顶点
@@ -284,15 +259,11 @@ spy(resultRows);
 
 当查询可能返回大量数据（超过内存容量）时，我们需要使用迭代器（Iterator）。迭代器允许我们以可控的块大小（chunk size）逐步获取查询结果。
 
-![](img/276da8b18fd85de440dbae49607fc066_73.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_75.png)
 
 在MATLAB中，我们通过创建迭代器对象来实现。尽管MATLAB本质上是无状态的，但D4M通过底层Java代码实现了有状态的迭代器，语法上依然保持MATLAB风格。
 
-![](img/276da8b18fd85de440dbae49607fc066_77.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_79.png)
 
 ```matlab
 % 创建迭代器，设置每次返回最多1000条条目
@@ -311,9 +282,7 @@ end
 maxInDegree = max(full(inDegreeTally));
 ```
 
-![](img/276da8b18fd85de440dbae49607fc066_81.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_82.png)
 
 迭代器使得处理海量结果成为可能，并且可以在获取一定数量后暂停，等待用户确认，防止意外的大查询拖垮系统。
 
@@ -321,15 +290,11 @@ maxInDegree = max(full(inDegreeTally));
 
 ## 第九步：在数据库上执行连接操作 ⛓️
 
-![](img/276da8b18fd85de440dbae49607fc066_84.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_86.png)
 
 连接（Join）是数据库的核心操作之一。例如，我们想找出同时包含特定两个顶点的所有记录。
 
-![](img/276da8b18fd85de440dbae49607fc066_88.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_90.png)
 
 一种方法是先分别获取包含顶点A和顶点B的所有记录列，在内存中进行逻辑“与”操作，找出同时包含两者的行，然后再根据这些行键去获取完整的记录。
 
@@ -354,7 +319,6 @@ result = Tadj(row(jointRows), :);
 
 ## 第十步：插入并查询边数据（关联矩阵） 📝
 
-![](img/276da8b18fd85de440dbae49607fc066_96.png)
 
 之前我们存储的是邻接矩阵，它合并了重复边。有时我们需要保留每条边的原始信息，这时就需要使用关联矩阵（Incidence Matrix），其中每行代表一条边，每列代表一个顶点。
 
@@ -388,9 +352,7 @@ end
 
 对边表的查询同样可以利用度统计表进行预筛选，避免触及连接数过多的顶点，从而执行复杂的图分析查询。
 
-![](img/276da8b18fd85de440dbae49607fc066_108.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_110.png)
 
 ***
 
@@ -402,7 +364,6 @@ end
 
 ![](img/276da8b18fd85de440dbae49607fc066_114.png)
 
-![](img/276da8b18fd85de440dbae49607fc066_116.png)
 
 在这些多核服务器上，我们可以轻松地将文件读取、关联数组构建等计算任务并行化。D4M与MATLAB并行计算工具箱集成良好，通常只需取消注释代码中的 `parfor` 循环或使用 `pRUN` 命令即可。
 
@@ -419,7 +380,6 @@ parfor i = 1:numFiles
 end
 ```
 
-![](img/276da8b18fd85de440dbae49607fc066_118.png)
 
 在并行插入数据库时，多个进程同时写入可能会使单个数据库实例的插入速率达到每秒数十万甚至更高，充分体现了Accumulo的高吞吐量能力。
 
@@ -427,11 +387,9 @@ end
 
 ***
 
-![](img/276da8b18fd85de440dbae49607fc066_122.png)
 
 ## 第十二步：分析真实数据——Twitter示例 🐦
 
-![](img/276da8b18fd85de440dbae49607fc066_124.png)
 
 最后，我们使用一个真实的Twitter数据集进行演示。该数据集包含了大量推文，经过解析后转换成了（实体，类型，值）形式的三元组。
 
@@ -458,7 +416,6 @@ disp('高频#标签：'); disp(row(highFreqHashtags));
 
 ## 总结 🎯
 
-![](img/276da8b18fd85de440dbae49607fc066_126.png)
 
 本节课中，我们一起学习了D4M与Accumulo数据库协同工作的完整流程：
 
@@ -473,7 +430,6 @@ disp('高频#标签：'); disp(row(highFreqHashtags));
 9.  **并行与大规模处理**：在强大硬件上并行执行数据生成、处理和插入，展示系统的高扩展性。
 10. **真实数据分析**：将所学应用于Twitter数据集，演示了快速的数据概览、质量检查和洞察发现。
 
-![](img/276da8b18fd85de440dbae49607fc066_128.png)
 
 ![](img/276da8b18fd85de440dbae49607fc066_129.png)
 

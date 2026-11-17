@@ -36,14 +36,12 @@ private var zoomGesture: some Gesture {
 
 以下是处理缩放手势的关键步骤：
 
-![](img/6c7fbf660e27175a85d7c5afd2a9c4d7_1.png)
 
 1.  **定义手势状态**：使用 `@GestureState` 声明一个变量来存储手势过程中的缩放比例。
     ```swift
     @GestureState private var gestureZoom: CGFloat = 1.0
     ```
 
-![](img/6c7fbf660e27175a85d7c5afd2a9c4d7_3.png)
 
 2.  **更新手势状态**：使用 `.updating` 修饰符，在手势进行中不断更新 `gestureZoom`。
     ```swift
@@ -126,9 +124,7 @@ private var zoomGesture: some Gesture {
 
 类似地，创建一个 `DragGesture` 来处理平移。
 
-![](img/6c7fbf660e27175a85d7c5afd2a9c4d7_5.png)
 
-![](img/6c7fbf660e27175a85d7c5afd2a9c4d7_7.png)
 
 ```swift
 @GestureState private var gesturePan: CGOffset = .zero

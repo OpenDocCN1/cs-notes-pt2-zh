@@ -1,6 +1,5 @@
 # 004：对象 🧱
 
-![](img/134ba66fa459917ed2fc95b8ad654d00_1.png)
 
 ![](img/134ba66fa459917ed2fc95b8ad654d00_3.png)
 

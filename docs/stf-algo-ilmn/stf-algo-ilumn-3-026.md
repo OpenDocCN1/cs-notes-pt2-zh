@@ -1,6 +1,5 @@
 # 026：路径图中的最大权独立集 - 最优子结构
 
-![](img/7bb6ff860ea4feb2b6b6c36c06887bdd_0.png)
 
 ![](img/7bb6ff860ea4feb2b6b6c36c06887bdd_0.png)
 

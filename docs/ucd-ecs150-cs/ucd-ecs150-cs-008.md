@@ -107,9 +107,7 @@ pixi --version
 
 ![](img/58f223d3df1031a086e97fda00129b8e_26.png)
 
-![](img/58f223d3df1031a086e97fda00129b8e_28.png)
 
-![](img/58f223d3df1031a086e97fda00129b8e_30.png)
 
 ## 使用Pixie创建和管理项目环境
 
@@ -202,7 +200,6 @@ alias df='df -h'
 3.  **实践操作**：我们成功在服务器上安装了Pixie，并学会了如何创建项目、使用 `pixi.toml` 文件、安装/运行/更新软件包。
 4.  **效率技巧**：我们了解了如何配置Shell的 `PATH` 和使用别名来让命令行操作更加流畅高效。
 
-![](img/58f223d3df1031a086e97fda00129b8e_44.png)
 
 ![](img/58f223d3df1031a086e97fda00129b8e_46.png)
 

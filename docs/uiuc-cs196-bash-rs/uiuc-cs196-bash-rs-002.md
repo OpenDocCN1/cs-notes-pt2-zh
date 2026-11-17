@@ -20,7 +20,6 @@
 
 我们将逐一深入探讨这些主题。
 
-![](img/980cd4b18c5b1a14d5de6db97818aefd_9.png)
 
 ## 命令学习
 
@@ -70,7 +69,6 @@ sudo rm protected_file.txt
 
 ![](img/980cd4b18c5b1a14d5de6db97818aefd_29.png)
 
-![](img/980cd4b18c5b1a14d5de6db97818aefd_31.png)
 
 基本用法是输入 `find`，后跟一个路径。它会递归地列出该路径下所有目录中的文件。
 ```bash
@@ -163,7 +161,6 @@ mkdir new_dir && cd new_dir && touch some_file.txt && cd ..
 
 ![](img/980cd4b18c5b1a14d5de6db97818aefd_59.png)
 
-![](img/980cd4b18c5b1a14d5de6db97818aefd_61.png)
 
 `ssh`（安全外壳协议）用于访问和控制远程计算机的终端。
 
@@ -322,7 +319,6 @@ echo "The value is $my_var"
 
 ### 条件语句
 
-![](img/980cd4b18c5b1a14d5de6db97818aefd_138.png)
 
 Bash 中的条件语句使用 `if`、`elif`、`else` 结构，以 `fi` 结束。
 

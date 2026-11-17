@@ -1,6 +1,5 @@
 # 27：类型检查 🧠
 
-![](img/e915f74d50ec78dd64976ec5ddbad205_0.png)
 
 ![](img/e915f74d50ec78dd64976ec5ddbad205_1.png)
 

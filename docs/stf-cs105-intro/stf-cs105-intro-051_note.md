@@ -70,7 +70,6 @@ total = 0  # 学生总数初始化为零
 
 ---
 
-![](img/68173f90a7c2a9d7395eaf01e75be6a6_1.png)
 
 ![](img/68173f90a7c2a9d7395eaf01e75be6a6_3.png)
 

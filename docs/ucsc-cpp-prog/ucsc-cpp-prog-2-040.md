@@ -6,7 +6,6 @@
 
 ## 抽象基类：`LeafNode`
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_1.png)
 
 上一节我们介绍了抽象基类的概念，本节中我们来看看一个具体的抽象基类 `LeafNode`。它继承自另一个抽象基类 `Node`，这展示了抽象类可以从另一个抽象类派生。
 
@@ -22,7 +21,6 @@ public:
 
 具体的叶节点类型（如常量节点、变量节点）需要从 `LeafNode` 派生，并重写这些函数以提供实际的功能。
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_3.png)
 
 ---
 
@@ -34,7 +32,6 @@ public:
 
 常量节点是最简单的情况。它代表一个固定的整数值，例如数字 `6`。该表达式的值就是它本身。
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_5.png)
 
 ```cpp
 class IntNode : public LeafNode {
@@ -68,15 +65,12 @@ public:
 
 ---
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_7.png)
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_9.png)
 
 ## 一元运算符节点 (`UnaryNode`)
 
 现在，我们来看看更复杂的节点类型。一元运算符节点，例如一元负号 `-`，它作用于一个操作数。
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_11.png)
 
 ```cpp
 class UnaryNode : public Node {
@@ -139,11 +133,9 @@ public:
 
 这个设计的关键在于递归和多态。`print()` 和 `eval()` 函数会递归地遍历整个表达式树。`eval()` 会先计算左子树的值，再计算右子树的值，最后根据运算符组合它们。
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_13.png)
 
 ---
 
-![](img/510e46ffbd7308c36a5e3646f746aebe_15.png)
 
 ## 系统的可扩展性
 

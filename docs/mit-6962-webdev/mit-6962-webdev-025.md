@@ -1,16 +1,13 @@
 # 025：高级React（Context与Router）🚀
 
-![](img/636a6d73a301372002f1cf1a24cb856c_1.png)
 
 在本节课中，我们将学习React中两个强大的功能：**Context API** 和 **React Router**。我们将了解如何使用Context来简化组件间的状态传递，以及如何利用Router构建具有多个页面的单页应用。
 
-![](img/636a6d73a301372002f1cf1a24cb856c_3.png)
 
 ---
 
 ## 状态管理回顾
 
-![](img/636a6d73a301372002f1cf1a24cb856c_5.png)
 
 上一节我们介绍了React的基础状态管理。本节中我们来看看当状态需要在组件树中深层传递时可能遇到的问题。
 
@@ -35,17 +32,14 @@ function ParentComponent() {
 
 ---
 
-![](img/636a6d73a301372002f1cf1a24cb856c_7.png)
 
 ![](img/636a6d73a301372002f1cf1a24cb856c_9.png)
 
 ## 引入Context API 🧩
 
-![](img/636a6d73a301372002f1cf1a24cb856c_11.png)
 
 为了解决上述问题，React提供了Context API。它允许父组件向其下**所有**子组件“广播”数据，而无需显式地通过每一层传递props。
 
-![](img/636a6d73a301372002f1cf1a24cb856c_13.png)
 
 你可以将Context想象成一个共享的“信息簿”，任何在“图书馆”（Provider）内的组件都可以查阅它。
 
@@ -55,7 +49,6 @@ function ParentComponent() {
 2.  **提供Context**：在父组件中使用Context的 `Provider` 组件包裹其子组件，并通过 `value` 属性提供数据。
 3.  **消费Context**：在任何子组件中使用 `useContext` Hook来获取Context中的数据。
 
-![](img/636a6d73a301372002f1cf1a24cb856c_15.png)
 
 ### 代码示例对比
 
@@ -78,7 +71,6 @@ function Component1() {
 
 ![](img/636a6d73a301372002f1cf1a24cb856c_21.png)
 
-![](img/636a6d73a301372002f1cf1a24cb856c_23.png)
 
 ```javascript
 // 1. 创建Context (例如在 userContext.js 文件中)
@@ -105,15 +97,12 @@ function Component4() {
 }
 ```
 
-![](img/636a6d73a301372002f1cf1a24cb856c_25.png)
 
-![](img/636a6d73a301372002f1cf1a24cb856c_27.png)
 
 通过使用Context，`Component2`、`Component3` 等中间组件无需关心 `user` 状态，代码变得更加清晰。
 
 ---
 
-![](img/636a6d73a301372002f1cf1a24cb856c_29.png)
 
 ## 深入React Router 🌳
 
@@ -121,7 +110,6 @@ function Component4() {
 
 React Router是一个库，它帮助我们在单页应用（SPA）中模拟多页面的体验，根据URL的变化渲染不同的组件。
 
-![](img/636a6d73a301372002f1cf1a24cb856c_31.png)
 
 ### 路由基础结构
 
@@ -151,7 +139,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 ```
 
-![](img/636a6d73a301372002f1cf1a24cb856c_33.png)
 
 `RouterProvider` 本身就是一个Context Provider，它向整个应用提供路由信息。
 
@@ -161,7 +148,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 ![](img/636a6d73a301372002f1cf1a24cb856c_35.png)
 
-![](img/636a6d73a301372002f1cf1a24cb856c_37.png)
 
 例如，在 `App` 组件中：
 
@@ -183,14 +169,12 @@ function App() {
 
 如果父路由需要向所有子路由传递数据，可以使用 `useOutletContext`。
 
-![](img/636a6d73a301372002f1cf1a24cb856c_39.png)
 
 **在父路由（App）中提供上下文：**
 ```javascript
 <Outlet context={{ myTestProp: “来自App的数据” }} />
 ```
 
-![](img/636a6d73a301372002f1cf1a24cb856c_41.png)
 
 **在子路由组件（如Feed）中获取：**
 ```javascript
@@ -205,9 +189,7 @@ function Feed() {
 
 我们经常需要根据URL中的一部分（如用户ID）来渲染内容。React Router支持动态路由参数。
 
-![](img/636a6d73a301372002f1cf1a24cb856c_43.png)
 
-![](img/636a6d73a301372002f1cf1a24cb856c_45.png)
 
 **定义动态路由：**
 在路径中使用冒号 (`:`) 前缀来定义参数。
@@ -233,7 +215,6 @@ function ProfilePage() {
 
 ## 总结与资源 📚
 
-![](img/636a6d73a301372002f1cf1a24cb856c_47.png)
 
 本节课中我们一起学习了：
 1.  **React Context**：用于跨组件树共享状态的机制，避免了“Prop Drilling”，通过 `createContext`, `Provider` 和 `useContext` 来使用。
@@ -243,7 +224,6 @@ function ProfilePage() {
 - [React Context 官方文档](https://reactjs.org/docs/context.html)
 - [React Router 官方文档](https://reactrouter.com/)
 
-![](img/636a6d73a301372002f1cf1a24cb856c_49.png)
 
 ![](img/636a6d73a301372002f1cf1a24cb856c_51.png)
 

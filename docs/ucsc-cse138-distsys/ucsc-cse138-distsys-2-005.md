@@ -83,9 +83,7 @@
 
 ## 因果关系的应用：Chandy-Lamport快照算法简介 📸
 
-![](img/90dd105b26847ff0cdb6902ad75156ac_1.png)
 
-![](img/90dd105b26847ff0cdb6902ad75156ac_3.png)
 
 ![](img/90dd105b26847ff0cdb6902ad75156ac_5.png)
 

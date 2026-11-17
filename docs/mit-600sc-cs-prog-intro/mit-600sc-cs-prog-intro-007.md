@@ -18,11 +18,9 @@
 
 ### 创建与访问元组
 
-![](img/17e2ea0e3e424cd7c9c153a7ace34725_9.png)
 
 以下是创建和访问元组的基本方法：
 
-![](img/17e2ea0e3e424cd7c9c153a7ace34725_11.png)
 
 ![](img/17e2ea0e3e424cd7c9c153a7ace34725_13.png)
 

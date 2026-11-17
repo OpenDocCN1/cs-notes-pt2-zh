@@ -1,6 +1,5 @@
 # 020：推测并行性与Leiserchess
 
-![](img/cb7da586f5124094ae9b6fe3f3dcf32d_1.png)
 
 ![](img/cb7da586f5124094ae9b6fe3f3dcf32d_2.png)
 

@@ -1,12 +1,8 @@
 # L3：分治：快速傅里叶变换 🌀
 
-![](img/67fafeacf50bbcf3b37a92955291d74a_0.png)
 
-![](img/67fafeacf50bbcf3b37a92955291d74a_2.png)
 
-![](img/67fafeacf50bbcf3b37a92955291d74a_4.png)
 
-![](img/67fafeacf50bbcf3b37a92955291d74a_6.png)
 
 ![](img/67fafeacf50bbcf3b37a92955291d74a_7.png)
 

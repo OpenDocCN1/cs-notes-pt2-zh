@@ -95,10 +95,8 @@ modified = mac[:6] + “FF-FE” + mac[6:]
 
 ---
 
-![](img/dae27f740288059eddf8fe51c8af2729_1.png)
 
 ![](img/dae27f740288059eddf8fe51c8af2729_1.png)
 
-![](img/dae27f740288059eddf8fe51c8af2729_2.png)
 
 ![](img/dae27f740288059eddf8fe51c8af2729_2.png)

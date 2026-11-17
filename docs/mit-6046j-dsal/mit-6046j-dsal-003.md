@@ -1,12 +1,8 @@
 # R1：矩阵乘法与主定理 🧮
 
-![](img/cf954d4872f5fa51923506fe755d7fd3_0.png)
 
-![](img/cf954d4872f5fa51923506fe755d7fd3_2.png)
 
-![](img/cf954d4872f5fa51923506fe755d7fd3_4.png)
 
-![](img/cf954d4872f5fa51923506fe755d7fd3_6.png)
 
 ![](img/cf954d4872f5fa51923506fe755d7fd3_7.png)
 

@@ -1,10 +1,7 @@
 # 020：继承（第2部分）🎓
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_1.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_3.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_5.png)
 
 在本节课中，我们将继续学习Scala语言中的继承特性，并探讨如何利用这些特性来构建更模块化、更易维护的硬件设计。我们将通过一个更复杂的例子来加深理解，并介绍特质（Trait）和类型参数化（Generics）的概念。
 
@@ -12,7 +9,6 @@
 
 上一节我们介绍了简单的类继承、抽象类以及Scala集合。本节中，我们将构建一个更复杂的例子，并探讨如何通过继承和特质来复用代码。
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_7.png)
 
 ## 构建解耦运算符库 🔌
 
@@ -20,9 +16,7 @@
 
 我们的目标是将“运算符”的通用概念封装在一个父基类中，然后让子类去实现具体的功能。
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_9.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_11.png)
 
 ### 定义抽象父类
 
@@ -76,11 +70,8 @@ class AddOperator extends DecoupledOperator {
 }
 ```
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_13.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_14.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_16.png)
 
 以下是减法器子类的实现：
 ```scala
@@ -89,7 +80,6 @@ class SubOperator extends DecoupledOperator {
 }
 ```
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_18.png)
 
 ### 使用工厂模式
 
@@ -118,7 +108,6 @@ Scala只允许单类继承，但允许混入多个特质。特质类似于抽象
 
 ### 示例：为模块添加打印功能
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_20.png)
 
 假设我们有一个计数器模块，并希望为其添加一个标准的打印功能，以便在仿真中进行日志记录。
 
@@ -136,7 +125,6 @@ trait PrintInSim extends Module {
 }
 ```
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_22.png)
 
 然后，在计数器模块中混入这个特质：
 ```scala
@@ -155,7 +143,6 @@ class CounterMod extends Module with PrintInSim {
 }
 ```
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_24.png)
 
 通过混入 `PrintInSim` 特质，`CounterMod` 模块获得了 `printMsg` 方法和 `printEnable` 输入端口。这是一种强大的代码复用机制。
 
@@ -163,7 +150,6 @@ class CounterMod extends Module with PrintInSim {
 
 然而，过度使用特质或深层继承可能导致代码可读性下降，因为功能可能分散在多个文件中。使用IDE的“转到定义”功能可以缓解这个问题。另外，需要注意名称冲突，如果特质和类定义了同名字段，可能需要使用 `override` 关键字。
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_26.png)
 
 ## Scala面向对象机制总结 📚
 
@@ -174,7 +160,6 @@ class CounterMod extends Module with PrintInSim {
 *   **抽象类（Abstract Class）**：用于定义通用模板，不能被直接实例化，需要子类实现其抽象成员。
 *   **特质（Trait）**：用于多重继承和混入功能，可以灵活地为类添加能力。
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_28.png)
 
 一个高级的特质使用例子是Chisel项目“Rocket Chip”中的“Diplomacy”系统，它允许SoC中的不同组件在生成时通过混入的特质来协商参数。
 
@@ -184,23 +169,17 @@ class CounterMod extends Module with PrintInSim {
 
 ### Scala泛型的特点
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_30.png)
 
 Scala的泛型支持类型边界（Type Bounds），可以限制类型参数必须是某个类的子类。但Scala/Java泛型存在“类型擦除”问题，在运行时类型信息可能丢失，进行模式匹配时需要额外处理（如使用 `TypeTag`）。
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_32.png)
 
 ### 在Chisel中使用类型参数化
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_34.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_36.png)
 
 在Chisel中，类型参数化非常常见。我们通常将数据类型作为参数传递给模块。
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_38.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_40.png)
 
 以下是一个通用模块的例子，它接受一个 `Data` 子类型作为参数：
 ```scala
@@ -213,9 +192,7 @@ class MyModule[T <: Data](gen: => T) extends Module {
 }
 ```
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_42.png)
 
-![](img/d72af62b925c599b7d9a93cda658ec4e_44.png)
 
 这里，`[T <: Data]` 是类型参数，`<: Data` 是类型上界，表示 `T` 必须是 `Data` 的子类型（如 `UInt`、`SInt`、`Bundle`）。`gen` 是一个“生成器”，用于创建该类型的实例。
 

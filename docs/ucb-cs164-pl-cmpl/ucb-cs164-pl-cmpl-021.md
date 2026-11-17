@@ -43,7 +43,6 @@ type expr =
 
 ### 添加函数值
 
-![](img/2248c37dab8bef217426d4f5fc0135eb_9.png)
 
 ![](img/2248c37dab8bef217426d4f5fc0135eb_10.png)
 
@@ -51,9 +50,7 @@ type expr =
 
 首先，我们在解释器的值类型中添加一个新的构造器来表示函数值。
 
-![](img/2248c37dab8bef217426d4f5fc0135eb_13.png)
 
-![](img/2248c37dab8bef217426d4f5fc0135eb_15.png)
 
 ```ocaml
 type value =
@@ -98,7 +95,6 @@ let rec interp_expr (defns : defn list) (env : value Symtab.t) (e : expr) : valu
 
 ### 处理变量引用
 
-![](img/2248c37dab8bef217426d4f5fc0135eb_20.png)
 
 当解释器遇到一个变量名时，它首先在环境中查找。如果找不到，现在需要检查它是否是一个顶层函数名。
 

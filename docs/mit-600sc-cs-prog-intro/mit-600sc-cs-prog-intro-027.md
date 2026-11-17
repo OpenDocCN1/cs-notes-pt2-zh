@@ -102,32 +102,26 @@ def choose_best(powerset, max_weight, get_val, get_weight):
 
 ![](img/760bed9cb0afcbe7f3337fbbcc09d810_8.png)
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_10.png)
 
 哪个模型更好？复杂模型虽然训练误差小，但可能因为过度贴合训练数据中的噪声或异常值，而导致**泛化能力差**，对未来数据的预测效果不佳。简单模型（直线）虽然训练时有误差，但可能更能捕捉数据的总体趋势，泛化能力更强。避免过拟合是机器学习的核心挑战之一。
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_10.png)
 
 ### 无监督学习
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_12.png)
 
 与监督学习不同，无监督学习的数据没有标签。我们只有一堆数据点，不知道每个点属于哪一类。
 
 无监督学习的目标是发现数据中隐藏的**规律或结构**。最主流的无监督学习方法是**聚类**。
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_14.png)
 
 聚类是将数据点组织成**组**的过程，使得**同一组内的成员彼此相似**，而**不同组之间的成员差异较大**。这里的关键在于如何定义“相似”。
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_16.png)
 
 例如，如果我们有一组人的身高和体重数据，我们可以根据不同的相似性度量进行聚类：
 *   如果只关心身高，可能会分成“高”和“矮”两组。
 *   如果只关心体重，可能会分成“重”和“轻”两组。
 *   如果同时考虑身高和体重，可能会得到四个聚类。
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_18.png)
 
 ![](img/760bed9cb0afcbe7f3337fbbcc09d810_18.png)
 
@@ -177,7 +171,6 @@ def choose_best(powerset, max_weight, get_val, get_weight):
 
 ![](img/760bed9cb0afcbe7f3337fbbcc09d810_22.png)
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_23.png)
 
 让我们看一个基于美国城市间飞行距离的例子。我们有一个距离矩阵：
 
@@ -185,10 +178,8 @@ def choose_best(powerset, max_weight, get_val, get_weight):
 
 应用层次聚类（单连接）的过程如下：
 
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_25.png)
 
 ![](img/760bed9cb0afcbe7f3337fbbcc09d810_22.png)
-![](img/760bed9cb0afcbe7f3337fbbcc09d810_23.png)
 
 1.  每个城市自成一类。
 2.  合并距离最近的波士顿和纽约。

@@ -145,7 +145,6 @@ withAnimation(.linear(duration: 2)) {
 *   `.offset`：通过偏移量飞入飞出。
 *   `.move(edge:)`：从屏幕边缘移入移出。
 
-![](img/d24111b08240758505b7671af5af9309_1.png)
 
 你也可以使用`.modifier(active:identity:)`自定义过渡。
 
@@ -169,7 +168,6 @@ ZStack {
 // .transition(.opacity) // 整个ZStack淡入淡出（默认）
 ```
 
-![](img/d24111b08240758505b7671af5af9309_3.png)
 
 `.transition`作用于整个视图。如果你将它应用在一个`ZStack`上，你指定的是整个`ZStack`如何淡入或生长，而不是内部的每个子视图。
 
@@ -181,7 +179,6 @@ ZStack {
 .transition(.opacity.animation(.linear(duration: 20)))
 ```
 
-![](img/d24111b08240758505b7671af5af9309_5.png)
 
 ## 7. 匹配几何效果
 
@@ -209,11 +206,9 @@ CardView(card)
 
 由于动画只对已经在屏幕上的视图生效，那么如果一个视图一出现在屏幕上就想启动一个动画该怎么办？这时可以使用`.onAppear`视图修饰符。
 
-![](img/d24111b08240758505b7671af5af9309_7.png)
 
 `.onAppear`接受一个闭包，该闭包会在视图每次出现在屏幕上时执行。既然视图出现在屏幕上，它必然已经在一个CTAAOS里。因此，你可以在`.onAppear`内部使用`withAnimation`来启动动画。
 
-![](img/d24111b08240758505b7671af5af9309_9.png)
 
 ```swift
 SomeView()
@@ -226,7 +221,6 @@ SomeView()
 
 这对于实现诸如“+2”得分提示飞出的效果非常有用。
 
-![](img/d24111b08240758505b7671af5af9309_11.png)
 
 ## 9. 动画引擎：`Animatable` 协议
 
@@ -236,7 +230,6 @@ SomeView()
 
 这个通信是通过实现`Animatable`协议来完成的。该协议只有一个要求：一个名为`animatableData`的计算属性。
 
-![](img/d24111b08240758505b7671af5af9309_13.png)
 
 ```swift
 protocol Animatable {
@@ -249,15 +242,12 @@ protocol Animatable {
 *   **设置** `animatableData`：动画系统通过设置这个值来告诉视图“请绘制对应于这个片段的状态”。
 *   **获取** `animatableData`：动画开始前，系统通过获取这个值来知道动画的起点和终点。
 
-![](img/d24111b08240758505b7671af5af9309_15.png)
 
-![](img/d24111b08240758505b7671af5af9309_16.png)
 
 通常，`animatableData`会是一个`Double`或`Float`。如果你需要同时动画多个值，可以使用`AnimatablePair<First, Second>`，其中`First`和`Second`也需遵循`VectorArithmetic`。通过组合`AnimatablePair`，你可以动画几乎任何数学上可分割的数据。
 
 在实践中，你通常不会直接使用`animatableData`这个变量名。你会有自己的变量（例如`rotation`），然后让`animatableData`的`get`和`set`方法映射到这个变量上。
 
-![](img/d24111b08240758505b7671af5af9309_18.png)
 
 ```swift
 var animatableData: Double {
@@ -266,13 +256,10 @@ var animatableData: Double {
 }
 ```
 
-![](img/d24111b08240758505b7671af5af9309_20.png)
 
 一旦你实现了`Animatable`协议，系统就会将动画控制权交给你，原本会自动动画的视图修饰符（如`.opacity`）将不再自动工作，需要你在代码中根据`animatableData`（即`rotation`）来手动计算和设置它们。
 
-![](img/d24111b08240758505b7671af5af9309_22.png)
 
-![](img/d24111b08240758505b7671af5af9309_24.png)
 
 ## 总结
 

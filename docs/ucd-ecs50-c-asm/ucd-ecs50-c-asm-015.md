@@ -37,9 +37,7 @@
 
 ![](img/a3fd66ef62f6a0ff1398d3186b2b7dea_5.png)
 
-![](img/a3fd66ef62f6a0ff1398d3186b2b7dea_7.png)
 
-![](img/a3fd66ef62f6a0ff1398d3186b2b7dea_8.png)
 
 ## 培养调试直觉
 

@@ -1,6 +1,5 @@
 # 007：Databricks Lakehouse 中的多语句事务
 
-![](img/21b2e7d246ac4ea847c21f7fa269d1f5_0.png)
 
 ![](img/21b2e7d246ac4ea847c21f7fa269d1f5_0.png)
 

@@ -46,15 +46,11 @@ Active Record抽象了SQL查询，允许我们使用Ruby方法进行创建（Cre
 
 上一节我们了解了数据如何存储，本节中我们来看看用户如何通过界面与数据交互。这涉及控制器（Controller）处理请求，视图（View）呈现页面，以及表单（Form）收集用户输入。
 
-![](img/86cb942435ae961db453f2835d86dae0_2.png)
 
-![](img/86cb942435ae961db453f2835d86dae0_4.png)
 
 ### 添加新动作（Action）
 
-![](img/86cb942435ae961db453f2835d86dae0_6.png)
 
-![](img/86cb942435ae961db453f2835d86dae0_8.png)
 
 在Rails应用中添加一个新功能（例如“创建电影”），通常需要以下步骤：
 1.  **配置路由**：在`config/routes.rb`文件中定义访问该功能的URL路径和HTTP动词。
@@ -65,9 +61,7 @@ Active Record抽象了SQL查询，允许我们使用Ruby方法进行创建（Cre
 
 ### 表单处理
 
-![](img/86cb942435ae961db453f2835d86dae0_10.png)
 
-![](img/86cb942435ae961db453f2835d86dae0_12.png)
 
 表单是用户提交数据的主要方式。Rails提供了丰富的表单辅助方法（Form Helpers）来简化表单的创建和数据绑定。
 
@@ -130,13 +124,10 @@ end
 <% end %>
 ```
 
-![](img/86cb942435ae961db453f2835d86dae0_14.png)
 
-![](img/86cb942435ae961db453f2835d86dae0_16.png)
 
 ## 总结
 
-![](img/86cb942435ae961db453f2835d86dae0_18.png)
 
 ![](img/86cb942435ae961db453f2835d86dae0_20.png)
 

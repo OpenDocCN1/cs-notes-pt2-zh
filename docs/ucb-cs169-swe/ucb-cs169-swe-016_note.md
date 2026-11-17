@@ -4,13 +4,10 @@
 
 ![](img/d55169e6fbcf24ff5e0d52f86f45e399_3.png)
 
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_5.png)
 
 在本节课中，我们将要学习如何在团队环境中进行有效的软件协作。我们将探讨团队动态、冲突解决策略，并深入讲解如何使用Git进行版本控制和团队协作，以确保项目顺利进行。
 
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_7.png)
 
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_9.png)
 
 ---
 
@@ -41,9 +38,7 @@
 
 ---
 
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_11.png)
 
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_12.png)
 
 ## Git团队协作工作流 🔀
 
@@ -137,7 +132,6 @@ git push origin feature/your-feature-name
 
 ## 总结 📚
 
-![](img/d55169e6fbcf24ff5e0d52f86f45e399_18.png)
 
 ![](img/d55169e6fbcf24ff5e0d52f86f45e399_20.png)
 

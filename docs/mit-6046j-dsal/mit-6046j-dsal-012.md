@@ -1,14 +1,10 @@
 # R5：动态规划与哈希 🧩
 
-![](img/dc7907ec5e1c566d92bdd6feb1c221e1_0.png)
 
-![](img/dc7907ec5e1c566d92bdd6feb1c221e1_2.png)
 
-![](img/dc7907ec5e1c566d92bdd6feb1c221e1_4.png)
 
 在本节课中，我们将学习动态规划的核心思想，并通过几个经典例子来理解其应用。随后，我们将回顾通用哈希与完美哈希的概念，了解如何设计高效的哈希表来避免最坏情况。
 
-![](img/dc7907ec5e1c566d92bdd6feb1c221e1_6.png)
 
 ![](img/dc7907ec5e1c566d92bdd6feb1c221e1_7.png)
 

@@ -1,10 +1,8 @@
 # 007：JavaScript 进阶概念（作用域与异步）🚀
 
-![](img/2c08eb44f71fd5e70b78fc82e83f390d_1.png)
 
 ![](img/2c08eb44f71fd5e70b78fc82e83f390d_3.png)
 
-![](img/2c08eb44f71fd5e70b78fc82e83f390d_5.png)
 
 ![](img/2c08eb44f71fd5e70b78fc82e83f390d_7.png)
 

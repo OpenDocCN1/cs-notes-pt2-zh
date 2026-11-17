@@ -12,7 +12,6 @@
 
 XML（可扩展标记语言）是一种用于存储和传输数据的标记语言。在之前的作业中，你可能已经接触过XML处理，例如使用expat解析器。Python作为一种现代语言，内置了对XML处理的支持，这使得网络编程和数据解析变得更加简单和优雅。
 
-![](img/bdeca7cf2cf2f4256dc9c941494a2d33_4.png)
 
 ---
 
@@ -93,7 +92,6 @@ parser.parse(data)
 
 ![](img/bdeca7cf2cf2f4256dc9c941494a2d33_12.png)
 
-![](img/bdeca7cf2cf2f4256dc9c941494a2d33_13.png)
 
 ## 总结
 

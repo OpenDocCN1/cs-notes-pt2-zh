@@ -55,7 +55,6 @@ let slice = &arr[1..3]; // 引用 [9, 6]
 
 ## 结构体 🏗️
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_9.png)
 
 现在，让我们转向**结构体**。结构体是一种自定义数据类型，它允许你将多个相关的值组合成一个有意义的组，这与仅仅存储同类型元素的集合（如数组）不同。
 
@@ -148,9 +147,7 @@ student_mut.gpa = 3.3; // 允许修改
 
 我们可以编写一个函数来创建并返回结构体实例。在函数内部，我们可以预设一些字段的值。
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_49.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_51.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_53.png)
 
@@ -171,17 +168,14 @@ fn new_student(name: String, uin: u32) -> UIUCStudent {
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_57.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_58.png)
 
 ### 结构体更新语法
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_60.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_62.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_63.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_65.png)
 
 当你想基于一个已有的结构体实例创建新实例，并只更新部分字段时，可以使用结构体更新语法`..`，这能避免大量重复代码。
 
@@ -208,17 +202,14 @@ let student2 = UIUCStudent {
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_75.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_76.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_78.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_80.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_81.png)
 
 元组结构体类似于元组，但拥有一个具体的类型名。它的字段没有名称，只有类型。当你需要多次使用一种特定类型的元组时，这很有用。
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_82.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_84.png)
 
@@ -244,9 +235,7 @@ let midterm = TestScores(85, 90, 78);
 ```
 即使`TestScores`和`LectureReviews`包含相同类型的字段，它们也是不同的类型，不能互换使用。
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_96.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_97.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_99.png)
 
@@ -286,7 +275,6 @@ let midterm = TestScores(85, 90, 78);
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_113.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_114.png)
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_116.png)
 

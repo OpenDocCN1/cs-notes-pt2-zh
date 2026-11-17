@@ -1,6 +1,5 @@
 # 023：通过采样DFT实现RIP，稀疏傅里叶变换
 
-![](img/fe5fa73c8db50a85540dda0964011e4b_0.png)
 
 ![](img/fe5fa73c8db50a85540dda0964011e4b_0.png)
 
@@ -100,12 +99,10 @@
 
 对于更大的 **k**，算法思想可以推广，但需要更复杂的技术来识别和分离多个频率分量，这超出了本节课的范围。
 
-![](img/fe5fa73c8db50a85540dda0964011e4b_2.png)
 
 谢谢，教授。
 
 ![](img/fe5fa73c8db50a85540dda0964011e4b_2.png)
 
-![](img/fe5fa73c8db50a85540dda0964011e4b_4.png)
 
 ![](img/fe5fa73c8db50a85540dda0964011e4b_4.png)

@@ -46,9 +46,7 @@ def translateWord(word, dictionary):
         return word
 ```
 
-![](img/50855c124958d741c253ce183b96b8bb_5.png)
 
-![](img/50855c124958d741c253ce183b96b8bb_7.png)
 
 这个函数检查单词是否在字典中，如果在则返回翻译，否则返回原单词。
 
@@ -91,9 +89,7 @@ def translate(sentence):
 1.  子问题比原问题更容易解决。
 2.  子问题的解决方案能够**容易地**组合起来，以解决原问题。
 
-![](img/50855c124958d741c253ce183b96b8bb_17.png)
 
-![](img/50855c124958d741c253ce183b96b8bb_19.png)
 
 ![](img/50855c124958d741c253ce183b96b8bb_21.png)
 

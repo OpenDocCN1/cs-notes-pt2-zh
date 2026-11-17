@@ -58,7 +58,6 @@ struct fraction pi;
 
 以下是其内存布局的可视化表示：
 
-![](img/e1fb1ff6e57f79bd2448a1a917b2b450_4.png)
 
 整个结构体的地址（`&pi`）与它的第一个字段 `num` 的地址（`&pi.num`）是相同的。字段 `denom` 紧接着存储在 `num` 之后的高地址处。
 

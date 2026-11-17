@@ -2,13 +2,11 @@
 
 ![](img/60d0a18a478d512aa609dcdbcf65d896_1.png)
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_2.png)
 
 在本节课中，我们将深入学习命令行环境的核心概念，包括程序输入输出的多种方式、环境变量、信号处理，以及如何高效地在远程服务器上工作。我们还将探讨如何定制你的Shell环境，使其更符合你的使用习惯。
 
 上一讲我们介绍了Shell的基本用法和一些常用程序。本节中，我们来看看Shell环境中更深层的概念和约定。
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_4.png)
 
 ## 程序输入与输出
 
@@ -123,9 +121,7 @@ TZ=Asia/Tokyo date
 
 程序执行后会返回一个退出码（Return Code），用于表示执行状态。按照惯例，`0` 表示成功，非零值表示错误。
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_6.png)
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_7.png)
 
 **代码示例：**
 ```bash
@@ -135,9 +131,7 @@ ls non_existent_dir
 echo $?  # 输出非零值（例如 2）
 ```
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_9.png)
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_10.png)
 
 Shell的控制流结构（如 `&&` 和 `||`）会检查退出码：
 ```bash
@@ -271,11 +265,8 @@ PS1="\u@\h \w\$ "  # 设置提示符格式
 
 建议一次只安装一个插件，确认有用后再保留，避免Shell启动过慢。
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_12.png)
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_13.png)
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_15.png)
 
 ### 点文件管理
 
@@ -285,7 +276,6 @@ PS1="\u@\h \w\$ "  # 设置提示符格式
 
 配置文件通常以 `.` 开头（如 `.bashrc`），称为“点文件”。许多人将他们的点文件存储在Git仓库中，并使用符号链接来管理。
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_20.png)
 
 **代码示例：**
 ```bash
@@ -315,9 +305,7 @@ claude "find the most recently modified shell script and change its shebang to u
 
 ## 总结
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_22.png)
 
-![](img/60d0a18a478d512aa609dcdbcf65d896_23.png)
 
 ![](img/60d0a18a478d512aa609dcdbcf65d896_25.png)
 

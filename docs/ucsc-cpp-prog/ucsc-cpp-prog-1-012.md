@@ -6,7 +6,6 @@
 
 非变动算法不修改它们所操作的容器或类。它们的典型操作是搜索特定元素并返回其位置。
 
-![](img/84165c7d6693a67befb96f2aee87628a_1.png)
 
 想象一下，你的桌面上有一堆东西，比如一堆朋友及其电话号码的列表。你想在其中搜索一个特定的电话号码。这就是搜索操作的含义，它通常是一个线性操作。
 
@@ -40,9 +39,7 @@ InputIterator find_if (InputIterator first, InputIterator last, UnaryPredicate p
 
 这意味着我们可以在这里传入一个函数对象（仿函数），它返回布尔值。这极大地增强了算法的能力。实际上，按值查找可以看作是谓词查找的一个特例（谓词为“值等于T”）。STL中经常出现这种签名，它允许我们使用函数而非简单值，这体现了库设计的正交性，让我们能在更多场景下使用库的功能。
 
-![](img/84165c7d6693a67befb96f2aee87628a_3.png)
 
-![](img/84165c7d6693a67befb96f2aee87628a_4.png)
 
 ## `for_each` 算法：对每个元素应用函数
 
@@ -55,7 +52,6 @@ Function for_each (InputIterator first, InputIterator last, Function fn);
 
 这个算法同样使用迭代器范围和一个函数。它会对范围 `[first, last)` 内的每一个元素应用函数 `fn`。
 
-![](img/84165c7d6693a67befb96f2aee87628a_6.png)
 
 例如，我们可以让这个函数执行输出操作，那么 `for_each` 就会输出范围内的每一个元素。`for_each` 是一个非常强大的算法，本质上，它提供了一种控制结构。
 

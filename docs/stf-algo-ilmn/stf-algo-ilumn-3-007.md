@@ -1,6 +1,5 @@
 # 007：-07-HUFFMAN CODES_ Introduction and Motivation
 
-![](img/7d3e6d929610aa0ed34acbb4ef765bb4_0.png)
 
 ![](img/7d3e6d929610aa0ed34acbb4ef765bb4_0.png)
 
@@ -104,7 +103,6 @@
 
 **霍夫曼码**就是解决这个问题的方案。我们将在下一个视频中开始构建它。
 
-![](img/7d3e6d929610aa0ed34acbb4ef765bb4_2.png)
 
 ![](img/7d3e6d929610aa0ed34acbb4ef765bb4_2.png)
 

@@ -6,29 +6,23 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_4.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_6.png)
 
 在本节课中，我们将要学习RISC-V五级流水线设计中的核心概念——冒险。我们将深入探讨结构性冒险和数据冒险，理解它们如何影响流水线性能，并学习一些基础的解决方案。课程内容将围绕单周期CPU与流水线CPU的对比展开，帮助你理解流水线如何提升吞吐量以及随之而来的挑战。
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_8.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_10.png)
 
 ---
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_12.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_14.png)
 
 ## 📊 单周期与流水线数据路径回顾
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_16.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_18.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_20.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_22.png)
 
 上一节我们介绍了RISC-V的基本数据路径。本节中我们来看看其单周期实现与流水线实现的区别。
 
@@ -56,7 +50,6 @@
 **公式：流水线CPU时钟周期**
 `T_cycle_pipeline = max(T_IF, T_ID, T_EX, T_MEM, T_WB) = 200 ps`
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_38.png)
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_40.png)
 
@@ -66,7 +59,6 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_44.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_46.png)
 
 ---
 
@@ -86,7 +78,6 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_50.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_52.png)
 
 ---
 
@@ -94,9 +85,7 @@
 
 ## 🐢 性能对比：延迟与吞吐量
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_56.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_58.png)
 
 理解单周期与流水线设计的优劣，关键在于两个性能指标：**延迟**和**吞吐量**。
 
@@ -113,7 +102,6 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_66.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_68.png)
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_70.png)
 
@@ -128,13 +116,11 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_72.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_74.png)
 
 ---
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_76.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_78.png)
 
 ## ⚠️ 流水线冒险概述
 
@@ -152,11 +138,9 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_86.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_88.png)
 
 幸运的是，在我们讨论的RISC-V五级流水线基础设计中，通过分离指令存储器和数据存储器（哈佛结构）、使用多端口寄存器文件等方法，已经**避免了结构性冒险**。本节课我们重点讨论数据冒险。
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_90.png)
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_92.png)
 
@@ -170,11 +154,8 @@
 
 数据冒险发生在一条指令（`I2`）需要读取一个寄存器，而前一条指令（`I1`）需要写入同一个寄存器时。根据`I2`读取时`I1`写入的状态，冒险的严重性不同。
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_98.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_100.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_102.png)
 
 以下是三种典型的数据冒险场景及初始解决方案：
 
@@ -182,7 +163,6 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_106.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_108.png)
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_110.png)
 
@@ -217,7 +197,6 @@
 
 > **提示**：解决数据冒险更高效的方法是**数据转发**，这将在下一节课中详细讨论。其核心思想是将尚未写回寄存器文件的、但已计算出的结果（例如EX/MEM或MEM/WB寄存器中的值），直接“转发”给需要它的ALU输入，从而避免停顿。
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_122.png)
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_124.png)
 
@@ -225,9 +204,7 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_126.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_128.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_130.png)
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_132.png)
 
@@ -235,7 +212,6 @@
 
 ## 📝 本节课总结
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_136.png)
 
 本节课中我们一起学习了RISC-V流水线设计的核心挑战——冒险。
 *   我们回顾了单周期与流水线数据路径，理解了流水线通过**提高时钟频率**来提升**吞吐量**，但增加了单条指令的**延迟**。

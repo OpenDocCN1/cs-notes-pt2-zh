@@ -1,6 +1,5 @@
 # 013：Rust函数式编程与闭包 🦀
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_1.png)
 
 在本节课中，我们将要学习函数式编程的核心概念，特别是闭包和高阶函数在Rust中的应用。我们将从基本定义开始，逐步深入到具体的代码示例，帮助你理解如何利用这些强大的工具来编写更简洁、更可预测的代码。
 
@@ -14,13 +13,11 @@
 *   **纯函数**：每个输入都精确对应一个输出。例如，数学函数 `f(x) = 2x` 是纯函数，因为输入 `2` 总是得到输出 `4`。
 *   **副作用**：指在被调用函数返回值之外，任何可观察到的应用程序状态变化。例如，修改全局变量或在函数内部进行控制台日志输出。
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_3.png)
 
 函数式代码的优势在于它往往更简洁、更可预测且更容易测试。尽管相关的术语和模式对新手来说可能显得深奥，但其背后的思想实际上非常强大且实用。
 
 ## 一等函数与闭包
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_5.png)
 
 理解了函数式编程的基本理念后，本节中我们来看看实现它的第一个关键特性：一等函数。
 
@@ -34,18 +31,12 @@
 以下是如何在Rust中定义一个闭包：
 
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_7.png)
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_9.png)
-
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_11.png)
 
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_13.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_15.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_17.png)
+
+
 
 ```rust
 // 普通函数
@@ -61,18 +52,14 @@ let add_two_closure = |x| { x + 2 };
 let add_two_closure = |x| x + 2;
 ```
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_19.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_21.png)
 
 以下是定义闭包时的注意事项：
 *   使用一对竖线 `|` 来指定参数。
 *   参数后面可以放置包含闭包主体的花括号 `{}`。
 *   如果闭包主体是单个表达式，花括号是可选的。
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_23.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_25.png)
 
 调用闭包的方式与调用命名函数相同，使用存储它的变量名：
 
@@ -82,9 +69,7 @@ let result = add_two_closure(5); // result 为 7
 
 闭包可以访问其定义作用域中的变量，这是普通函数做不到的：
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_27.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_29.png)
 
 ```rust
 let y = 10;
@@ -107,9 +92,7 @@ let doubled: Vec<_> = numbers.iter().map(|x| x * 2).collect();
 ```
 在上面的代码中，`|x| x * 2` 这个闭包被 `map` 应用到了 `numbers` 列表的每一个元素上。`iter()` 方法创建一个迭代器，`collect()` 方法将结果迭代器收集回一个向量（Vec）。
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_31.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_33.png)
 
 ### Filter 函数
 
@@ -135,7 +118,6 @@ fn shoes_in_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
 
 ![](img/a5f0a8e50c24615ae5ca8b787dbd88be_37.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_39.png)
 
 ```rust
 let numbers = vec![1, 2, 3];
@@ -159,7 +141,6 @@ Map、Filter 和 Fold 可以链式组合在一起，形成非常强大的数据�
 
 ![](img/a5f0a8e50c24615ae5ca8b787dbd88be_43.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_44.png)
 
 ```rust
 struct Player {

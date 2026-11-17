@@ -68,7 +68,6 @@ class List {
 
 以下是构建链表并调用展平方法的代码：
 
-![](img/b7f7f95dfb31e6967bb48ac551b7f059_7.png)
 
 ```cool
     let hello : String <- "Hello",
@@ -98,7 +97,6 @@ class List {
     };
 ```
 
-![](img/b7f7f95dfb31e6967bb48ac551b7f059_13.png)
 
 ## 处理多种数据类型
 

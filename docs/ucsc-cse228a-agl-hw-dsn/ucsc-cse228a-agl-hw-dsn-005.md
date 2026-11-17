@@ -212,9 +212,7 @@ test(new MyModule).withAnnotations(Seq(WriteVcdAnnotation)) { c =>
 
 ---
 
-![](img/eecdec3418725ed4f9d9e6294d4faf70_3.png)
 
-![](img/eecdec3418725ed4f9d9e6294d4faf70_5.png)
 
 ## 数值字面量表示
 

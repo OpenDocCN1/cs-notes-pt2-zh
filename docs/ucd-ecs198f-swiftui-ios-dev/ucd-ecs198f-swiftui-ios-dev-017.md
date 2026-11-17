@@ -1,6 +1,5 @@
 # 017：Actor、MainActor、手势与布局
 
-![](img/dc38de7defdf726ad9690d3edf071a71_1.png)
 
 ## 概述
 在本节课中，我们将学习 Swift 并发编程中的 Actor 模型和 MainActor，并探索 SwiftUI 中的手势识别、GeometryReader 以及 PreferenceKey 的使用。这些是构建现代、响应式 iOS 应用的重要工具。
@@ -18,7 +17,6 @@
 ### Actor 内部调用的同步性
 Actor 内部的所有调用默认都是同步执行的。这意味着在 Actor 内部调用其自身的函数时，无需使用 `await` 关键字。
 
-![](img/dc38de7defdf726ad9690d3edf071a71_7.png)
 
 ![](img/dc38de7defdf726ad9690d3edf071a71_9.png)
 
@@ -443,7 +441,6 @@ SwiftUI 是构建 iOS 应用的现代化框架，但它只是苹果庞大开发�
 
 ![](img/dc38de7defdf726ad9690d3edf071a71_21.png)
 
-![](img/dc38de7defdf726ad9690d3edf071a71_23.png)
 
 ---
 

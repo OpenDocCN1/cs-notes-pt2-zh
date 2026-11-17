@@ -134,7 +134,6 @@
 
 ### 参数传递与作用域
 
-![](img/37a61f283f98cc98342a8b07481cbe37_100.png)
 
 在路由定义 `get '/i_love/:something' do` 中，通配符 `:something` 会被Sinatra放入一个名为 `params` 的哈希中，键为 `:something`。我们可以在路由处理代码中通过 `params[:something]` 访问它，并将其赋值给实例变量 `@something`，以便在视图中使用。
 
@@ -156,9 +155,7 @@ URL中的查询参数（问号后的部分）也会被放入 `params` 哈希。�
 
 ### 可选参数与默认值
 
-![](img/37a61f283f98cc98342a8b07481cbe37_114.png)
 
-![](img/37a61f283f98cc98342a8b07481cbe37_116.png)
 
 ![](img/37a61f283f98cc98342a8b07481cbe37_118.png)
 
@@ -168,13 +165,10 @@ URL中的查询参数（问号后的部分）也会被放入 `params` 哈希。�
 
 ![](img/37a61f283f98cc98342a8b07481cbe37_121.png)
 
-![](img/37a61f283f98cc98342a8b07481cbe37_123.png)
 
 在Sinatra中，没有直接在路由定义中设置参数默认值的标准语法。我们通常的做法是：在路由处理代码中，使用Ruby的 `||` 操作符来为 `params` 哈希中可能为 `nil` 的值设置默认值。
 
-![](img/37a61f283f98cc98342a8b07481cbe37_125.png)
 
-![](img/37a61f283f98cc98342a8b07481cbe37_127.png)
 
 ## 使用Cookie管理会话状态 🍪
 

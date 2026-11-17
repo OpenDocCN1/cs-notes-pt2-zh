@@ -1,8 +1,6 @@
 # 021：更多最大流应用
 
-![](img/753bc7cf3b0263e2f42fda5c8dc77342_0.png)
 
-![](img/753bc7cf3b0263e2f42fda5c8dc77342_2.png)
 
 ![](img/753bc7cf3b0263e2f42fda5c8dc77342_4.png)
 

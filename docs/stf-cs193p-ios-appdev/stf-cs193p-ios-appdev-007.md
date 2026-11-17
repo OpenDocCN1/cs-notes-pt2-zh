@@ -1,42 +1,27 @@
 # 007：视图组件化、形状与视图修饰器
 
-![](img/f36af5341ca7ca8012163fa542bfc823_1.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_3.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_4.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_5.png)
 
 在本节课中，我们将学习如何将视图组件化到独立的文件中，管理代码中的常量，并深入探讨SwiftUI中形状和视图修饰器的工作原理。我们将通过构建一个“卡片化”视图修饰器和一个自定义的饼图形状来实践这些概念。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_7.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_9.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_10.png)
 
 ## 演示环节：分离CardView
 
-![](img/f36af5341ca7ca8012163fa542bfc823_12.png)
 
 上一节我们介绍了如何构建复杂的视图。本节中，我们来看看如何将视图组件化，以提高代码的可维护性。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_14.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_15.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_17.png)
 
 目前，`CardView` 直接定义在 `EmojiMemoryGameView` 中。随着其功能变得复杂，最好将其分离到独立的文件中。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_19.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_21.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_23.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_25.png)
 
 以下是操作步骤：
 1.  在Xcode中，选择 **File > New > File...**。
@@ -48,7 +33,6 @@
 
 现在，我们需要为 `CardView` 创建预览。由于 `CardView` 需要一个 `Card` 参数来初始化，我们不能直接使用默认的预览。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_27.png)
 
 以下是创建预览的方法：
 ```swift
@@ -99,19 +83,14 @@ private struct Constants {
 
 对于像 `.white`、`.black` 或 `.orange` 这样的颜色，如果它们是设计系统的一部分且可能调整，也可以定义为常量。但像 `.white` 这样的基础颜色通常直接使用。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_29.png)
 
 ## 理解与创建形状
 
-![](img/f36af5341ca7ca8012163fa542bfc823_31.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_33.png)
 
 上一节我们整理了代码结构。本节中，我们来看看SwiftUI中形状的工作原理以及如何创建自定义形状。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_35.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_36.png)
 
 `Shape` 是一个继承自 `View` 的协议。这意味着所有形状同时也是视图。你已经见过 `Circle`、`RoundedRectangle` 等内建形状。
 
@@ -130,9 +109,7 @@ private struct Constants {
 2.  计算矩形的中心点和半径（取宽度和高度中较小值的一半）。
 3.  使用 `Path` API 移动画笔到中心点，画一条线到起始点，沿圆弧画到终点，再画一条线回到中心点。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_38.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_39.png)
 
 **注意**：iOS的坐标系原点在左上角，Y轴向下为正。这与常见的笛卡尔坐标系不同。此外，“顺时针”方向也是基于这个坐标系定义的。
 
@@ -171,15 +148,11 @@ struct Pie: Shape {
 
 ## 理解与创建视图修饰器
 
-![](img/f36af5341ca7ca8012163fa542bfc823_41.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_43.png)
 
 视图修饰器是SwiftUI的基石。我们每天都在使用 `.font()`、`.padding()`、`.foregroundColor()` 等。本节中，我们来看看它们背后的机制以及如何创建自己的修饰器。
 
-![](img/f36af5341ca7ca8012163fa542bfc823_45.png)
 
-![](img/f36af5341ca7ca8012163fa542bfc823_46.png)
 
 视图修饰器本质上是一个符合 `ViewModifier` 协议的结构体。该协议要求实现一个方法：
 ```swift

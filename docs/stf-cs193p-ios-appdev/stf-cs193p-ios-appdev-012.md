@@ -43,9 +43,7 @@ let fileURL = documentsURL.appendingPathComponent("fileName.doc")
 
 我们的应用数据通常是结构体或类，而非原始的 `Data`。`Codable` 协议可以将这些自定义类型与JSON数据相互转换。
 
-![](img/cee66300f59cb9b7e3bf1b25d3ac7e85_1.png)
 
-![](img/cee66300f59cb9b7e3bf1b25d3ac7e85_2.png)
 
 ### 使类型可编码
 

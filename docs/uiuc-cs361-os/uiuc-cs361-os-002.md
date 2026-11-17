@@ -8,7 +8,6 @@
 
 那么，像“Hello World”这样的程序是如何与屏幕交互的呢？让我们看一个简单的例子：
 
-![](img/15adc8492aeb8303a55faf1ad2ac6168_1.png)
 
 ```c
 #include <stdio.h>
@@ -22,9 +21,7 @@ int main() {
 
 ## 核心概念定义
 
-![](img/15adc8492aeb8303a55faf1ad2ac6168_3.png)
 
-![](img/15adc8492aeb8303a55faf1ad2ac6168_4.png)
 
 在深入探讨异常控制流之前，我们需要明确几个核心概念。
 

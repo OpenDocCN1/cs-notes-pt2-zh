@@ -1,12 +1,8 @@
 # L22：密码学：加密 🔐
 
-![](img/415d5bfb5f2076c51c8ccf8528b4ea5e_0.png)
 
-![](img/415d5bfb5f2076c51c8ccf8528b4ea5e_2.png)
 
-![](img/415d5bfb5f2076c51c8ccf8528b4ea5e_4.png)
 
-![](img/415d5bfb5f2076c51c8ccf8528b4ea5e_6.png)
 
 ![](img/415d5bfb5f2076c51c8ccf8528b4ea5e_7.png)
 

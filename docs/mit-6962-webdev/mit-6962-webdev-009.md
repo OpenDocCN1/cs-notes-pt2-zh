@@ -50,7 +50,6 @@
 
 现在，我们开始实现第一个组件——导航栏。这与我们在第一个工作坊中创建的导航栏类似，但这次我们将使用React的语法。
 
-![](img/74a0a92e8ed9c269dfb61ecd07d67249_15.png)
 
 导航栏组件的基本结构是一个包含标题的容器。在React中，我们使用 `return` 语句来定义组件渲染的HTML内容。
 
@@ -90,7 +89,6 @@
     ```
 4.  **在CatHappiness中接收并显示Prop**：在 `CatHappiness.jsx` 组件函数中，接收 `props` 参数，并在JSX中使用 `{props.catHappiness}` 来显示传递过来的数值。
 
-![](img/74a0a92e8ed9c269dfb61ecd07d67249_19.png)
 
 完成此步骤后，页面应能显示猫咪快乐值，但点击头像还不会改变它。
 
@@ -98,13 +96,10 @@
 
 最后，我们需要实现点击头像时，`catHappiness` 状态递增的功能。
 
-![](img/74a0a92e8ed9c269dfb61ecd07d67249_21.png)
 
-![](img/74a0a92e8ed9c269dfb61ecd07d67249_22.png)
 
 这需要两个步骤：
 
-![](img/74a0a92e8ed9c269dfb61ecd07d67249_24.png)
 
 1.  **定义更新函数**：在 `Profile` 组件中，定义一个函数（例如 `incrementCatHappiness`），其内部调用 `setCatHappiness` 来更新状态。
     ```javascript

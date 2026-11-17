@@ -14,7 +14,6 @@
 
 ![](img/fae25ea80ddc4aecdb2d8d0159a2e936_3.png)
 
-![](img/fae25ea80ddc4aecdb2d8d0159a2e936_5.png)
 
 将ER图转化为关系模式需要处理不同的情况。以下是一些核心的转换规则：
 
@@ -95,7 +94,6 @@ CREATE TABLE Dependents (
 
 为了系统地消除冗余和异常，我们使用规范化理论。本节重点介绍最常用的Boyce-Codd范式（BCNF）。
 
-![](img/fae25ea80ddc4aecdb2d8d0159a2e936_7.png)
 
 ![](img/fae25ea80ddc4aecdb2d8d0159a2e936_9.png)
 
@@ -123,13 +121,10 @@ CREATE TABLE Dependents (
     *   R2(SID, name, phone)
 3.  检查R1和R2，现在它们都满足BCNF条件。
 
-![](img/fae25ea80ddc4aecdb2d8d0159a2e936_12.png)
 
 ![](img/fae25ea80ddc4aecdb2d8d0159a2e936_13.png)
 
-![](img/fae25ea80ddc4aecdb2d8d0159a2e936_15.png)
 
-![](img/fae25ea80ddc4aecdb2d8d0159a2e936_17.png)
 
 ---
 

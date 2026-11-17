@@ -42,7 +42,6 @@ let result = calculate(5, 3) { $0 + $1 }
 
 ### 捕获环境值
 
-![](img/14994259d116fcbbedc5ca18afa96d6c_11.png)
 
 ![](img/14994259d116fcbbedc5ca18afa96d6c_13.png)
 

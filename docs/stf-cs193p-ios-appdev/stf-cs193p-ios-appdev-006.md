@@ -40,13 +40,9 @@
     ```
 *   **`Divider`**：在垂直方向（对于`HStack`）使用最小空间，但在交叉方向（对于`HStack`是垂直方向）会占用所有空间，并绘制一条分隔线。其外观因平台而异。
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_1.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_2.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_4.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_6.png)
 
 ## 控制布局优先级
 
@@ -60,15 +56,11 @@ HStack {
 }
 ```
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_8.png)
 
 ## 对齐方式
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_10.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_11.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_13.png)
 
 `HStack`和`VStack`可以通过`alignment`参数控制子视图在交叉方向上的对齐方式（例如，`HStack`中控制垂直对齐）。
 
@@ -91,7 +83,6 @@ HStack {
 
 ## ZStack、背景与覆盖
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_15.png)
 
 `ZStack`用于在Z轴方向（垂直于屏幕）叠加视图。
 
@@ -107,17 +98,12 @@ HStack {
 
 ## 作为布局引擎的修饰符
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_17.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_19.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_20.png)
 
 许多视图修饰符本身也参与布局过程：
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_22.png)
 
-![](img/d1dee6d9398c2c98ea6eb3f00d99465e_24.png)
 
 *   **`.padding(_:)`**：接收空间后，先向内收缩指定的间距，然后将剩余空间提供给被修饰的视图。被修饰视图选择尺寸后，`padding`再将自己的尺寸恢复为（子视图尺寸 + 间距）。
 *   **`.aspectRatio(_:contentMode:)`**：

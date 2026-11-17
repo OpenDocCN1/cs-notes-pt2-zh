@@ -2,7 +2,6 @@
 **章节编号：014**
 **章节名称：SEO的现在与未来**
 
-![](img/3ecd634baf70a63b52088e1db0fafffd_0.png)
 
 ![](img/3ecd634baf70a63b52088e1db0fafffd_1.png)
 

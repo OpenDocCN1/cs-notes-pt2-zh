@@ -95,11 +95,9 @@
 
 现在，我们看看在事务正常执行时，这些数据结构是如何更新的。
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_10.png)
 
 ![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_12.png)
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_13.png)
 
 ![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_15.png)
 
@@ -130,15 +128,11 @@
     *   稍后，将当前的**事务表**和**脏页表**的内容写入日志。
     *   写入 `END_CHECKPOINT` 记录。
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_19.png)
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_21.png)
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_23.png)
 
 ---
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_25.png)
 
 ## 5. ARIES恢复算法三阶段 🚀
 
@@ -172,9 +166,7 @@
 
 **注意**：重做阶段会重做**所有**事务（包括后来中止的）的操作，以确保页面状态与崩溃前完全一致。
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_27.png)
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_29.png)
 
 ### 5.3 第三阶段：撤销
 **目标**：回滚所有在崩溃时仍未完成（活跃）的事务，使数据库达到一致状态。

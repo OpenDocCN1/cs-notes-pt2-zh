@@ -1,12 +1,10 @@
 # 005：基于 Apache Arrow 的列式数据连接
 
-![](img/3adb0ac9be729bbc80859e7cfa472c4f_0.png)
 
 ![](img/3adb0ac9be729bbc80859e7cfa472c4f_0.png)
 
 在本节课中，我们将探讨 Apache Arrow 项目中的一个关键部分：ADBC。我们将了解它如何解决传统数据连接协议（如 ODBC 和 JDBC）在现代列式数据系统中的效率瓶颈问题，并展望其未来愿景。
 
-![](img/3adb0ac9be729bbc80859e7cfa472c4f_2.png)
 
 ## 引言与背景
 
@@ -118,7 +116,6 @@ ADBC 及其他 Arrow 查询结果传输技术要解决的根本问题是：**如
 
 ## 现有解决方案与挑战
 
-![](img/3adb0ac9be729bbc80859e7cfa472c4f_6.png)
 
 我并不是第一个指出 ODBC 和 JDBC 需要被取代的人。Dremio 的创始人 Tomer Shiran 在 2019 年写了一篇很好的文章，指出了 ODBC 和 JDBC 在数据传输方面的低效，并提出基于 Apache Arrow 的客户端-服务器协议 **Arrow Flight** 是解决方案。
 
@@ -148,7 +145,6 @@ Dremio 很早就全面拥抱了 Arrow，其整个平台都构建在 Arrow 之上
 
 因此，ADBC 架构中内置了“快速路径”和“慢速路径”，但都隐藏在同一个客户端 API 后面。这使得如果你想迁移到 ADBC，无需等待每个供应商去实现驱动程序或在其服务器端添加 Arrow 协议支持。
 
-![](img/3adb0ac9be729bbc80859e7cfa472c4f_8.png)
 
 ## ADBC 是什么，不是什么
 
@@ -171,7 +167,6 @@ Dremio 很早就全面拥抱了 Arrow，其整个平台都构建在 Arrow 之上
 ![](img/3adb0ac9be729bbc80859e7cfa472c4f_15.png)
 
 ![](img/3adb0ac9be729bbc80859e7cfa472c4f_10.png)
-![](img/3adb0ac9be729bbc80859e7cfa472c4f_11.png)
 
 ## ADBC 的现状
 
@@ -270,6 +265,5 @@ ADBC 的另一个目标是：我们正处在一个查询引擎“寒武纪大爆
 
 **总结一下本节课的内容：** 我们一起回顾了传统行式数据连接协议（ODBC/JDBC）在现代列式数据世界中的效率瓶颈。我们深入了解了 Apache Arrow 项目及其子项目 ADBC 如何通过使用列式传输格式和零拷贝技术来解决这些问题。我们探讨了 ADBC 的架构、现状、使用方法以及未来愿景。ADBC 旨在为分析型工作负载提供一个高效、现代、跨平台、跨语言且供应商中立的数据连接标准，从而释放列式数据系统的全部性能潜力。
 
-![](img/3adb0ac9be729bbc80859e7cfa472c4f_17.png)
 
 ![](img/3adb0ac9be729bbc80859e7cfa472c4f_17.png)

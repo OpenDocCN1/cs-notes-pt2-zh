@@ -18,7 +18,6 @@
 
 ![](img/9a1f99e6050df919b42d16cc2272e8cd_3.png)
 
-![](img/9a1f99e6050df919b42d16cc2272e8cd_5.png)
 
 为了应用SOS SDP，我们首先将问题表述为一个多项式系统。
 

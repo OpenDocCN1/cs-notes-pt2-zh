@@ -147,7 +147,6 @@ for (let element of targets) {
 
 我们可以在 JavaScript 中为输入框添加一个事件监听器，监听 `keyup` 事件（即按键松开时）。
 
-![](img/6479d6852f01fc5d759e842fca9899b9_15.png)
 
 ```javascript
 let inputField = document.querySelector('.input-field');
@@ -162,7 +161,6 @@ inputField.addEventListener('keyup', function() {
 
 ### 内联事件处理器
 
-![](img/6479d6852f01fc5d759e842fca9899b9_17.png)
 
 另一种添加事件处理的方式是使用内联事件处理器，其功能与添加事件监听器类似，但一次只能分配一个事件。
 

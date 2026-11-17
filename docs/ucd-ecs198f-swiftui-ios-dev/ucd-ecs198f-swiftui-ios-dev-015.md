@@ -41,7 +41,6 @@ class ThreadUnsafeCollection<Element> {
 
 这里存在什么问题？它不是线程安全的。例如，可能有多个线程同时尝试读取数据，而另一些线程尝试追加数据，这些操作可能相互交错，导致数据竞争。
 
-![](img/ca7fc551b0a286fa28d318457e7fd04c_4.png)
 
 ![](img/ca7fc551b0a286fa28d318457e7fd04c_6.png)
 

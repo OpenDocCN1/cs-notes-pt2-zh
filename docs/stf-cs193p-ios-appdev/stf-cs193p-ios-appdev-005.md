@@ -6,52 +6,38 @@
 
 上一节我们介绍了视图模型和模型之间的数据流。本节中，我们将首先通过添加动画来引出对协议的需求，然后深入探讨枚举类型，并重点学习一个特殊的枚举——可选类型。最后，我们将运用这些知识来实现完整的游戏逻辑。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_1.png)
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_3.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_4.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_6.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_7.png)
 
 ## 状态对象与可观察对象的区别 🔍
 
 在继续演示之前，我们先明确一下 `@StateObject` 和 `@ObservedObject` 的区别。理解它们的关键在于生命周期和作用域。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_9.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_10.png)
 
 *   **生命周期**：`@StateObject` 的生命周期与声明它的视图紧密绑定。当视图出现在屏幕上时，该变量被创建；当视图从界面中移除时，它也随之销毁。如果将 `@StateObject` 声明在 App 层级，则其生命周期与整个应用相同。`@ObservedObject` 的生命周期则由传递给它的一方决定。
 *   **作用域**：在视图中使用 `@StateObject` 声明的变量，只能在该视图及其子视图体中使用，无法在兄弟视图中共享。而 `@ObservedObject` 是外部传入的，可以被传递给多个兄弟视图。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_12.png)
 
 关于预览，我们通常直接创建实例（例如 `MemoryGameViewModel()`），这是因为预览代码会频繁执行，每次都会生成新的实例，这有助于重置状态。
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_14.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_16.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_18.png)
 
 ## 为卡片添加动画 🎬
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_20.png)
 
 虽然完整的动画教学将在后续课程进行，但今天我们将添加一个简单的动画，这能帮助我们理解协议和泛型约束。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_22.png)
 
 我们的目标是让卡片在洗牌时能够平滑移动，而不是生硬地切换。我们在显示卡片的 `LazyVGrid` 上添加 `.animation` 视图修饰符。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_23.png)
 
 ```swift
 // 在 CardView 的容器上添加动画
@@ -60,33 +46,24 @@
 
 `.animation` 修饰符接受一个 `value` 参数。当这个值发生变化时，视图内部所有可动画化的变化都会以动画形式呈现。这里我们传入 `viewModel.cards`，意味着当卡牌数组发生变化时（如洗牌），会触发动画。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_25.png)
 
 然而，添加这行代码后出现了错误：**“Referencing operator function '==' on 'Array' requires that 'MemoryGame<String>.Card' conforms to 'Equatable'”**。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_27.png)
 
 这是因为 Swift 的动画系统需要比较动画前后的状态。它会在值变化时保存一份快照，变化后再比较新旧值是否相等（`==`），如果不相等则执行动画。数组的 `==` 操作要求其元素类型必须遵循 `Equatable` 协议。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_29.png)
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_31.png)
 
 ## 遵循 Equatable 协议 ⚖️
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_33.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_35.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_37.png)
 
 为了解决上述错误，我们需要让 `Card` 结构体遵循 `Equatable` 协议。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_39.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_40.png)
 
 1.  在模型文件中，为 `Card` 结构体声明遵循 `Equatable`。
     ```swift
@@ -105,23 +82,15 @@
     ```
     这个函数比较两张卡片的三个属性是否全部相等。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_42.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_44.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_46.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_47.png)
 
 但这里又出现了新的错误：**“Referencing operator function '==' on 'Equatable' requires that 'CardContent' conforms to 'Equatable'”**。这是因为我们尝试比较 `lhs.content == rhs.content`，而 `content` 的类型 `CardContent` 是一个泛型占位符，我们不知道它是否能比较相等。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_49.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_51.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_53.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_55.png)
 
 我们需要为泛型 `CardContent` 添加约束，要求它也必须遵循 `Equatable`。
 
@@ -135,29 +104,20 @@ struct Card<CardContent: Equatable> {
 }
 ```
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_57.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_58.png)
 
 这样我们就告诉编译器：`Card` 可以接受任何类型作为 `CardContent`，但该类型必须能够判断相等。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_60.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_62.png)
 
 **Swift 的便利功能**：当你的 `==` 实现仅仅是逐一比较所有存储属性时（就像我们上面做的那样），Swift 可以自动合成（synthesize）这个实现。因此，我们可以直接删除整个 `==` 函数，Swift 会自动为我们生成正确的实现。现在错误消失了。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_64.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_66.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_68.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_69.png)
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_71.png)
 
 ## 修复动画与 Identifiable 协议 🆔
 
@@ -213,33 +173,22 @@ extension Card: CustomDebugStringConvertible {
 ```
 实现 `debugDescription` 计算属性，返回我们想要的格式字符串。之后在控制台打印 `Card` 对象时，就会使用这个简洁的格式。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_73.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_75.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_76.png)
 
 ---
 
 ## 实现卡片点击与游戏逻辑 🎮
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_78.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_80.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_81.png)
 
 现在让我们实现卡片的点击翻转和完整的游戏匹配逻辑。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_82.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_84.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_85.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_86.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_87.png)
 
 ### 1. 添加点击手势
 在 `CardView` 上添加 `.onTapGesture` 修饰符，调用视图模型的 `choose` 方法（这是一个“意图”）。
@@ -249,12 +198,10 @@ extension Card: CustomDebugStringConvertible {
 }
 ```
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_89.png)
 
 ### 2. 处理点击意图
 在模型的 `choose` 方法中，我们首先需要找到被点击卡片在数组中的索引。这里我们遇到了 **值类型** 的一个重要特性：**传递即拷贝**。我们不能直接修改传入的 `card` 参数，因为它只是原始卡片的一个副本。我们必须修改模型内部 `cards` 数组中的原始卡片。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_91.png)
 
 我们创建一个工具函数来根据卡片的 `id` 查找索引：
 ```swift
@@ -269,9 +216,7 @@ private func index(of card: Card) -> Int? {
 ```
 注意，这个函数返回 `Int?`（可选整数），因为可能找不到对应的卡片。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_93.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_95.png)
 
 ### 3. 使用可选类型处理未找到的情况
 在 `choose` 方法中，我们使用 `if let` 安全地解包这个可选索引：
@@ -283,11 +228,8 @@ if let chosenIndex = index(of: card) {
 ```
 **可选类型（Optional）** 是 Swift 中用于表示值可能缺失的核心类型。它是一个枚举：`.none` 表示没有值（`nil`），`.some(Wrapped)` 表示包含某个类型的值。`Int?` 是 `Optional<Int>` 的语法糖。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_97.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_98.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_100.png)
 
 ### 4. 优化查找方法
 我们可以利用数组的高阶函数 `firstIndex(where:)` 来更简洁地实现查找：
@@ -298,7 +240,6 @@ private func index(of card: Card) -> Int? {
 ```
 `firstIndex(where:)` 接受一个返回布尔值的闭包，返回第一个使闭包为真的元素的索引（可选类型）。这同样体现了函数式编程的思想。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_102.png)
 
 ### 5. 实现完整游戏逻辑
 游戏的核心规则是：
@@ -306,11 +247,8 @@ private func index(of card: Card) -> Int? {
 *   如果翻开一张，等待下一张。
 *   如果翻开两张，检查是否匹配。若匹配，则标记为已匹配；若不匹配，则在下一张卡片被点击时将它们翻回。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_104.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_106.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_107.png)
 
 我们使用一个计算属性 `indexOfTheOneAndOnlyFaceUpCard` 来跟踪当前唯一面朝上的卡片索引（如果没有或有两张，则为 `nil`）。这个属性既是获取器也是设置器：
 *   **获取器（get）**：遍历 `cards`，找出所有面朝上的卡片索引。如果恰好只有一个，则返回它；否则返回 `nil`。
@@ -340,14 +278,11 @@ if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
 }
 ```
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_109.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_110.png)
 
 ### 6. 优化代码与函数式编程
 我们可以利用函数式编程进一步简化计算属性的实现：
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_112.png)
 
 **获取器** 可以使用 `filter` 和自定义的数组扩展方法 `only`：
 ```swift
@@ -373,47 +308,29 @@ extension Array {
 ```
 **设置器** 使用 `forEach` 遍历所有索引，简洁地设置每张卡片的朝向。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_114.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_115.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_117.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_119.png)
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_121.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_122.png)
 
 ## 枚举（Enum）深度解析 📚
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_124.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_126.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_128.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_130.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_132.png)
 
 枚举用于定义一组相关的离散值。与结构体和类不同，枚举没有存储属性。Swift 枚举的强大之处在于其**关联值**——可以为每个枚举案例附加额外的数据。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_133.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_135.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_137.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_139.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_140.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_142.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_144.png)
 
 ```swift
 enum FastFoodMenuItem {
@@ -437,33 +354,21 @@ enum FastFoodMenuItem {
 *   **方法和计算属性**：枚举也可以有方法和计算属性（但不能有存储属性）。
 *   **遍历所有案例**：让枚举遵循 `CaseIterable` 协议，即可通过 `allCases` 进行遍历。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_146.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_148.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_150.png)
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_152.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_153.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_155.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_157.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_158.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_159.png)
 
 ## 可选类型（Optional）详解 🎁
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_161.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_163.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_165.png)
 
 可选类型本质上就是一个枚举：
 ```swift
@@ -474,17 +379,11 @@ enum Optional<T> {
 ```
 它用于表示“可能有值，也可能是 `nil`（无值）”的场景。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_166.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_168.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_170.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_172.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_173.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_175.png)
 
 **语法糖**：
 *   **声明**：`var hello: String?` 等价于 `var hello: Optional<String>`
@@ -493,57 +392,35 @@ enum Optional<T> {
 *   **安全解包**：`if let safeHello = hello { ... }` – 这是安全处理可选值的标准方式。
 *   **空合运算符**：`let y = x ?? "foo"` – 如果 `x` 为 `nil`，则使用默认值 `"foo"`。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_177.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_179.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_180.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_182.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_183.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_184.png)
 
 在我们的游戏代码中，`index(of:)` 函数返回 `Int?`，以及在 `choose` 方法中使用 `if let` 来安全处理可能找不到卡片的情况，都是可选类型的典型应用。
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_186.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_188.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_190.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_192.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_193.png)
 
 ---
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_195.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_197.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_199.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_200.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_202.png)
 
 ## 课程总结
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_204.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_205.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_207.png)
 
 本节课我们完成了以下内容：
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_209.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_210.png)
 
-![](img/0d8de5d38475531ffb42f5d3d8445d0b_211.png)
 
 1.  **明确了 `@StateObject` 与 `@ObservedObject`** 在生命周期和作用域上的关键区别。
 2.  **添加了动画**，并由此引出类型需要遵循 `Equatable` 协议才能被动画系统比较。

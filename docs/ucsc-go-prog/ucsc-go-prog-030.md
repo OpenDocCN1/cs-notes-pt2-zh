@@ -1,6 +1,5 @@
 # 030：归并排序
 
-![](img/2d41b9db2ff020d06f104baa2651c05a_0.png)
 
 ![](img/2d41b9db2ff020d06f104baa2651c05a_0.png)
 
@@ -89,6 +88,5 @@ for index1 < len(sortedSlice1) && index2 < len(sortedSlice2) {
 
 ![](img/2d41b9db2ff020d06f104baa2651c05a_3.png)
 
-![](img/2d41b9db2ff020d06f104baa2651c05a_4.png)
 
 ![](img/2d41b9db2ff020d06f104baa2651c05a_4.png)

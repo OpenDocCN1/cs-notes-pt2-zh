@@ -1,8 +1,6 @@
 # 004：DFA乘积构造与状态最小化
 
-![](img/8b8c17a35bc2d65e80471b5ce3ca83ad_0.png)
 
-![](img/8b8c17a35bc2d65e80471b5ce3ca83ad_2.png)
 
 ![](img/8b8c17a35bc2d65e80471b5ce3ca83ad_4.png)
 

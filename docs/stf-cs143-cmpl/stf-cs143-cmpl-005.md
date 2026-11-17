@@ -28,7 +28,6 @@ class Main {
 
 ## 基础输入与输出
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_5.png)
 
 在编写阶乘函数之前，我们需要掌握如何与用户交互，即输入和输出。
 
@@ -56,7 +55,6 @@ class Main {
 
 IO对象有一个`in_string`方法，用于读取字符串。我们将读取的字符串与换行符连接，以确保输出格式整洁。
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_9.png)
 
 ```cool
 class Main {
@@ -72,11 +70,9 @@ class Main {
 
 ---
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_13.png)
 
 ## 字符串与整数的转换
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_15.png)
 
 ![](img/fe6b97fb827ac57c0b910dbce7886ef9_17.png)
 
@@ -106,7 +102,6 @@ class Main inherits A2I {
 coolc fact.cl A2I.cl
 ```
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_21.png)
 
 运行程序，输入“3”将输出“4”，输入“1”将输出“2”。
 
@@ -118,7 +113,6 @@ coolc fact.cl A2I.cl
 
 现在，我们可以开始实现阶乘函数了。首先，我们定义一个`fact`方法，它接受一个整数参数并返回一个整数。
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_25.png)
 
 ![](img/fe6b97fb827ac57c0b910dbce7886ef9_27.png)
 
@@ -214,11 +208,9 @@ class Main inherits A2I {
 
 注意，在Cool中，赋值使用`<-`操作符。`let`表达式的主体是一个代码块，其最后一个表达式的值（此处为`fact`）成为整个`let`表达式的结果。
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_35.png)
 
 编译并运行，迭代版本同样能正确计算阶乘。
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_37.png)
 
 ---
 

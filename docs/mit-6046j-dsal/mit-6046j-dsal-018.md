@@ -1,12 +1,8 @@
 # L13：最大流量，最小切割 💧
 
-![](img/7e38b468b73dd062d71ae7af6c84abf3_0.png)
 
-![](img/7e38b468b73dd062d71ae7af6c84abf3_2.png)
 
-![](img/7e38b468b73dd062d71ae7af6c84abf3_4.png)
 
-![](img/7e38b468b73dd062d71ae7af6c84abf3_6.png)
 
 ![](img/7e38b468b73dd062d71ae7af6c84abf3_7.png)
 

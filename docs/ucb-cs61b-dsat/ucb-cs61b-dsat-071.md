@@ -1,6 +1,5 @@
 # 71：排序算法应用与比较
 
-![](img/e59cfdb478426b1be21bd367f0815de7_1.png)
 
 ![](img/e59cfdb478426b1be21bd367f0815de7_3.png)
 

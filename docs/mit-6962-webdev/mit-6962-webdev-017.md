@@ -6,13 +6,11 @@
 
 在本节课中，我们将一起解决Catbook应用的第一部分调试挑战。我们将逐步分析代码中的错误，理解错误信息，并学习如何定位和修复这些常见的Web开发问题。
 
-![](img/1a232db6f1b106c0e9eb52878eaa12b3_4.png)
 
 ---
 
 ## 准备工作
 
-![](img/1a232db6f1b106c0e9eb52878eaa12b3_6.png)
 
 在开始调试之前，我们需要确保开发环境处于一个干净的状态。首先，我们重置本地仓库，然后检出`debug-challenge`分支。
 
@@ -30,7 +28,6 @@ npm run dev
 
 确保服务器正常运行后，我们打开浏览器查看应用。
 
-![](img/1a232db6f1b106c0e9eb52878eaa12b3_8.png)
 
 ![](img/1a232db6f1b106c0e9eb52878eaa12b3_10.png)
 
@@ -44,7 +41,6 @@ npm run dev
 
 > “let cannot be used as the identifier in strict mode.”
 
-![](img/1a232db6f1b106c0e9eb52878eaa12b3_14.png)
 
 ![](img/1a232db6f1b106c0e9eb52878eaa12b3_16.png)
 
@@ -166,7 +162,6 @@ const fullPath = endpoint + '?' + paramsString;
 
 问题可能出在父组件`Card`向子组件`SingleStory`传递`props`的时候。我们回到`card.jsx`文件。
 
-![](img/1a232db6f1b106c0e9eb52878eaa12b3_34.png)
 
 在`Card`组件中，渲染`SingleStory`组件时，传递了一个名为`creator`的属性：`<SingleStory creator={props.creator_name} ... />`。
 

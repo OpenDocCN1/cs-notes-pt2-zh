@@ -1,6 +1,5 @@
 # 010：使用XTDB重构历史
 
-![](img/d56e61f0150a2ac87018f99c72abda20_0.png)
 
 ![](img/d56e61f0150a2ac87018f99c72abda20_0.png)
 
@@ -122,7 +121,6 @@ XTDB不仅提供了类似PostgreSQL的即时体验，还确保了完整的历史
 
 ---
 
-![](img/d56e61f0150a2ac87018f99c72abda20_2.png)
 
 **问答环节摘要**：
 *   **索引结构**：使用LSM树，在文件内使用哈希数组映射进行实体ID查找，结合Arrow列式格式实现快速扫描。
@@ -133,10 +131,7 @@ XTDB不仅提供了类似PostgreSQL的即时体验，还确保了完整的历史
 
 ---
 
-![](img/d56e61f0150a2ac87018f99c72abda20_4.png)
 
-![](img/d56e61f0150a2ac87018f99c72abda20_4.png)
 
-![](img/d56e61f0150a2ac87018f99c72abda20_6.png)
 
 ![](img/d56e61f0150a2ac87018f99c72abda20_6.png)

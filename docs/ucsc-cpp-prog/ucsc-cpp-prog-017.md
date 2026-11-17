@@ -30,7 +30,6 @@ enum Color { RED, WHITE = 3, GREEN };
 
 ---
 
-![](img/5852141efbc910dd6bda3d538460348b_1.png)
 
 ## 为何使用枚举？
 
@@ -42,7 +41,6 @@ enum Color { RED, WHITE = 3, GREEN };
 
 ## 枚举的优势
 
-![](img/5852141efbc910dd6bda3d538460348b_3.png)
 
 确实，你可以只使用常量声明。例如，如果我们想要`true`和`false`作为两个相关常量，我们可以说`const int TRUE = 1;`和`const int FALSE = 0;`。在旧的C语言中也可以这样做，但这存在安全问题。
 

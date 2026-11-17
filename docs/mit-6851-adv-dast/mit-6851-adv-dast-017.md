@@ -1,6 +1,5 @@
 # 017：简洁数据结构 I
 
-![](img/a5301df0dbdb71cac9519e3fc56fa9a4_1.png)
 
 ![](img/a5301df0dbdb71cac9519e3fc56fa9a4_2.png)
 

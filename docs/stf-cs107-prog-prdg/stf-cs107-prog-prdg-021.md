@@ -60,11 +60,9 @@ Scheme开发环境通常包含一个交互式解释器（REPL）。你可以直�
 1.  **加倍**：将一个列表 `(1 2 3 4)` 中的每个元素乘以2，得到 `(2 4 6 8)`。
 2.  **递增**：将一个列表 `(1 2 3 4)` 中的每个元素加1，得到 `(2 3 4 5)`。
 
-![](img/daee36b1baf0bb8526c35bed8f1bdbff_8.png)
 
 ![](img/daee36b1baf0bb8526c35bed8f1bdbff_10.png)
 
-![](img/daee36b1baf0bb8526c35bed8f1bdbff_12.png)
 
 这两个操作在算法上高度相似：
 *   它们都遍历列表中的每一个元素。
@@ -81,7 +79,6 @@ Scheme开发环境通常包含一个交互式解释器（REPL）。你可以直�
 *   `(map (lambda (x) (* 2 x)) ‘(1 2 3 4))` 实现加倍操作。
 *   `(map (lambda (x) (+ 1 x)) ‘(1 2 3 4))` 实现递增操作。
 
-![](img/daee36b1baf0bb8526c35bed8f1bdbff_17.png)
 
 ![](img/daee36b1baf0bb8526c35bed8f1bdbff_19.png)
 

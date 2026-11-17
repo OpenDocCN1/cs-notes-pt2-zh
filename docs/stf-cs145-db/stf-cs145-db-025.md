@@ -1,6 +1,5 @@
 # 25：SQL 递归查询实战演示 🧠
 
-![](img/21534375bc2b413d811307b8b694e624_1.png)
 
 在本课程中，我们将通过实际演示，深入学习 SQL 中的递归查询。我们将回顾递归查询的基本结构，并通过三个具体示例（家族树、公司层级、航班路径）来展示其应用。最后，我们还将探讨当数据中存在循环时，递归查询可能遇到的问题及其解决方案。
 
@@ -32,7 +31,6 @@ SELECT ... FROM R, ... WHERE ...;
 
 ---
 
-![](img/21534375bc2b413d811307b8b694e624_3.png)
 
 ## 示例一：计算家族祖先 👨‍👩‍👧‍👦
 
@@ -60,7 +58,6 @@ WITH RECURSIVE ancestor (ancestor, descendant) AS (
 SELECT ancestor FROM ancestor WHERE descendant = ‘Mary’;
 ```
 
-![](img/21534375bc2b413d811307b8b694e624_5.png)
 
 **查询执行与验证**
 
@@ -70,7 +67,6 @@ SELECT ancestor FROM ancestor WHERE descendant = ‘Mary’;
 
 ## 示例二：计算项目总薪资成本 💼
 
-![](img/21534375bc2b413d811307b8b694e624_7.png)
 
 上一节我们计算了家族关系。本节中，我们来看看如何将递归应用于公司管理结构，以计算一个项目的总人力成本。
 
@@ -81,9 +77,7 @@ SELECT ancestor FROM ancestor WHERE descendant = ‘Mary’;
 
 项目 `‘X’` 的总成本是其经理及其所有下属（递归向下）的薪资总和。
 
-![](img/21534375bc2b413d811307b8b694e624_9.png)
 
-![](img/21534375bc2b413d811307b8b694e624_11.png)
 
 **方法一：先计算完整管理闭包**
 
@@ -172,7 +166,6 @@ SELECT * FROM routes WHERE origin = ‘A’ AND destination = ‘B’;
 
 **查询最低费用**
 
-![](img/21534375bc2b413d811307b8b694e624_13.png)
 
 要找到最便宜的路线，只需修改最终查询，使用聚合函数 `MIN`。
 
@@ -184,7 +177,6 @@ SELECT MIN(total_cost) AS cheapest_price FROM routes WHERE origin = ‘A’ AND 
 
 **处理循环与无限递归问题**
 
-![](img/21534375bc2b413d811307b8b694e624_15.png)
 
 当航班网络中存在循环（例如城市间可互相往返）时，上述简单递归将产生无限多的路径，导致查询无法终止或报错。
 
@@ -192,7 +184,6 @@ SELECT MIN(total_cost) AS cheapest_price FROM routes WHERE origin = ‘A’ AND 
 
 SQL 标准并未直接提供在递归中避免循环的机制。一种实用的解决方案是为递归添加一个深度限制。例如，我们假设不会有人为了省钱乘坐超过 10 次航班。
 
-![](img/21534375bc2b413d811307b8b694e624_17.png)
 
 ```sql
 WITH RECURSIVE routes(origin, destination, total_cost, depth) AS (

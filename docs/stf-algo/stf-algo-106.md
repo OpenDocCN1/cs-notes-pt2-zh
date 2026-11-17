@@ -1,6 +1,5 @@
 # 106：路径压缩-Tarjan分析一-进阶选学
 
-![](img/ec90e4ab647cbf714ec867bc2d5626d1_0.png)
 
 ![](img/ec90e4ab647cbf714ec867bc2d5626d1_0.png)
 

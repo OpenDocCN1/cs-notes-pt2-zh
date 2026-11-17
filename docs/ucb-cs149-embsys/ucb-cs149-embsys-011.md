@@ -2,7 +2,6 @@
 
 ![](img/ad3e6b37832c82bdab085232cfe5866b_1.png)
 
-![](img/ad3e6b37832c82bdab085232cfe5866b_2.png)
 
 ![](img/ad3e6b37832c82bdab085232cfe5866b_3.png)
 
@@ -62,7 +61,6 @@ STL的语法允许我们定义原子谓词（如 `x(t) > 0.5`），以及带有�
 
 ## 一个完整的STL评分示例 🤖
 
-![](img/ad3e6b37832c82bdab085232cfe5866b_13.png)
 
 ![](img/ad3e6b37832c82bdab085232cfe5866b_15.png)
 

@@ -169,7 +169,6 @@ def close(self):
     self.child.close()
 ```
 
-![](img/61dd289783a605e30da0eca1ed23e63b_3.png)
 
 ### 分组迭代器 (Group By)
 

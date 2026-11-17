@@ -35,11 +35,9 @@ Vim 的所有功能都可以通过键盘完成，无需使用鼠标。例如，�
 
 你还可以使用 `:help [command]` 来获取任何命令的帮助信息。
 
-![](img/ddd580325caf3a55db2aa1961bd00860_1.png)
 
 ## Vim 的界面模型：缓冲区、窗口与标签页
 
-![](img/ddd580325caf3a55db2aa1961bd00860_3.png)
 
 在深入更多编辑技巧之前，有必要理解 Vim 管理多文件的独特模型，这与许多图形化编辑器不同。
 
@@ -47,17 +45,12 @@ Vim 维护一组打开的 **缓冲区**，每个缓冲区对应一个打开的�
 
 要关闭当前窗口，使用 `:q` 命令。当所有窗口都关闭后，Vim 才会退出。如果你想一次性关闭所有窗口，可以使用 `:qa` 命令。
 
-![](img/ddd580325caf3a55db2aa1961bd00860_5.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_6.png)
 
 ## 普通模式：将编辑变为编程语言
 
-![](img/ddd580325caf3a55db2aa1961bd00860_8.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_10.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_11.png)
 
 现在，我们来探讨 Vim 最强大、最根本的理念：**Vim 的普通模式界面本身就是一个编程语言**。
 
@@ -136,11 +129,8 @@ for i in range(limit):
 
 Vim 高度可定制和可扩展，这使其能适应任何工作流。
 
-![](img/ddd580325caf3a55db2aa1961bd00860_13.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_15.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_17.png)
 
 Vim 的配置通过一个名为 `~/.vimrc` 的纯文本文件完成。你可以在此设置偏好，例如：
 ```vim
@@ -153,23 +143,17 @@ set relativenumber
 ```
 修改 `.vimrc` 后，重启 Vim 或执行 `:source ~/.vimrc` 使配置生效。
 
-![](img/ddd580325caf3a55db2aa1961bd00860_19.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_21.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_22.png)
 
 此外，Vim 拥有强大的插件生态系统。插件可以添加诸如模糊文件查找、文件树导航、语法检查、集成终端等功能。通常使用插件管理器（如 Vim-plug）来安装和管理插件。
 
 ## Vim 模式无处不在
 
-![](img/ddd580325caf3a55db2aa1961bd00860_24.png)
 
-![](img/ddd580325caf3a55db2aa1961bd00860_25.png)
 
 Vim 的编辑理念如此受欢迎，以至于许多其他工具都实现了 **Vim 模拟模式**。这意味着你可以在这些工具中使用熟悉的 Vim 键位进行编辑和导航。
 
-![](img/ddd580325caf3a55db2aa1961bd00860_27.png)
 
 以下是一些支持 Vim 模式或类似绑定的常见工具：
 *   **代码编辑器**：VS Code (Vim 扩展)、Sublime Text (Vintage 模式)、IntelliJ IDEA (IdeaVim)。
@@ -180,7 +164,6 @@ Vim 的编辑理念如此受欢迎，以至于许多其他工具都实现了 **V
 
 ## 总结
 
-![](img/ddd580325caf3a55db2aa1961bd00860_29.png)
 
 ![](img/ddd580325caf3a55db2aa1961bd00860_31.png)
 

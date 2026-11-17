@@ -143,7 +143,6 @@ hypotheses = findMultipleHypothesisTracks(E, 'person/Michael Chang');
 3.  **轨迹图生成**：将序列数据转换为地点转移图，发现宏观模式。
 4.  **高级分析模式**：如多假设跟踪，处理数据中的歧义以探索更精确的关联。
 
-![](img/530d4528c5620a803fded9a38987d5f1_9.png)
 
 ![](img/530d4528c5620a803fded9a38987d5f1_11.png)
 

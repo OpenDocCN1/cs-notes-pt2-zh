@@ -1,12 +1,8 @@
 # L23：Cache-Oblivious 算法：中值和矩阵 🧠
 
-![](img/8d96937f8ea55b06058508641b905da5_0.png)
 
-![](img/8d96937f8ea55b06058508641b905da5_2.png)
 
-![](img/8d96937f8ea55b06058508641b905da5_4.png)
 
-![](img/8d96937f8ea55b06058508641b905da5_6.png)
 
 ![](img/8d96937f8ea55b06058508641b905da5_7.png)
 

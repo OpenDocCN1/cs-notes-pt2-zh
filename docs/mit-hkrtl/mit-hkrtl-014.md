@@ -166,13 +166,11 @@ firefox
 ```
 程序窗口将会显示在您的本地桌面上。
 
-![](img/1cbcdbb28cdbbe337a403d1cf8b44f71_17.png)
 
 另一个强大的工具是 **`Mosh`** (Mobile Shell)。它针对移动和网络不稳定的环境做了优化，在连接断开或IP地址变更时，能更好地保持会话，体验比传统SSH更流畅。
 
 ---
 
-![](img/1cbcdbb28cdbbe337a403d1cf8b44f71_19.png)
 
 ## SSH配置文件 📄
 
@@ -197,7 +195,6 @@ sshfs user@hostname:/remote/path /local/mountpoint
 
 ---
 
-![](img/1cbcdbb28cdbbe337a403d1cf8b44f71_21.png)
 
 ![](img/1cbcdbb28cdbbe337a403d1cf8b44f71_22.png)
 

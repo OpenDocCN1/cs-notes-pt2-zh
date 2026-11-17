@@ -1,32 +1,21 @@
 # 008：模板与链式内存 🧩
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_1.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_3.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_5.png)
 
 在本节课中，我们将要学习C++中的两个核心概念：**方法分派与继承**的深入规则，以及**模板**的初步介绍。我们将从理解虚函数和纯虚函数如何影响程序行为开始，然后探讨如何利用模板编写通用的、类型无关的代码。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_7.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_9.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_11.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_13.png)
 
 ## 方法分派与继承规则回顾 🔍
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_15.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_17.png)
 
 上一节我们介绍了方法分派的基本规则。本节中，我们来看看这些规则在涉及虚函数和纯虚函数时的具体应用。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_19.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_21.png)
 
 当系统需要确定运行哪段代码时，会遵循以下规则：
 1.  查看方法被调用对象的**类型**。
@@ -36,31 +25,20 @@
 5.  使用实际运行时类型中的方法。
 6.  如果未找到方法，则到其基类中查找。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_23.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_24.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_26.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_28.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_30.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_32.png)
 
 以下是一个代码示例及其输出结果的总结：
 
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_34.png)
-
-![](img/f88f79e49a671bd7e40512bec0dad7c5_36.png)
 
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_38.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_40.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_42.png)
+
 
 ```cpp
 // 假设有基类 Cube 和派生类 RubiksCube
@@ -81,33 +59,22 @@ c_ref.print3(); // 输出: RubiksCube (虚函数)
 c_ref.print4(); // 输出: RubiksCube (虚函数)
 ```
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_44.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_45.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_47.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_49.png)
 
 **核心区别**：`virtual` 关键字使得方法调用基于对象的**实际类型**（运行时多态），而非其声明的类型。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_51.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_53.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_55.png)
 
 ## 纯虚函数与抽象基类 🚫
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_57.png)
 
 理解了虚函数后，我们来看看一种特殊的虚函数：纯虚函数。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_59.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_61.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_63.png)
 
 **纯虚函数**的语法是在声明后加上 `= 0`：
 ```cpp
@@ -115,7 +82,6 @@ virtual void print5() = 0;
 ```
 这表示该函数**必须**在派生类中被实现，而在基类中没有定义。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_65.png)
 
 **抽象基类**（或纯虚类）是包含至少一个纯虚函数的类。其核心规则是：
 *   **抽象基类不能实例化**。尝试创建其对象会导致编译错误。
@@ -123,16 +89,11 @@ virtual void print5() = 0;
 
 它的作用类似于Java中的接口，但更强大，因为抽象基类可以包含数据成员和已实现的方法。
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_67.png)
-
-![](img/f88f79e49a671bd7e40512bec0dad7c5_69.png)
-
-![](img/f88f79e49a671bd7e40512bec0dad7c5_71.png)
 
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_73.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_75.png)
+
+
 
 ```cpp
 class AbstractCube {
@@ -149,7 +110,6 @@ public:
 ConcreteCube cc; // 正确
 ```
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_77.png)
 
 ## 模板简介：编写通用代码的秘诀 🧪
 
@@ -207,7 +167,6 @@ private:
 
 **list.hpp (模板实现)**
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_79.png)
 
 ```cpp
 // 注意：模板实现通常放在 .hpp 或直接在 .h 文件中
@@ -245,9 +204,7 @@ int main() {
 
 ## 总结 🎯
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_81.png)
 
-![](img/f88f79e49a671bd7e40512bec0dad7c5_83.png)
 
 本节课中我们一起学习了：
 1.  **方法分派**：深入理解了 `virtual` 关键字如何实现运行时多态，以及纯虚函数（`=0`）如何定义抽象基类，强制派生类实现特定接口。

@@ -2,7 +2,6 @@
 
 在本节课中，我们将要学习如何将代码打包并分发给他人使用。这不仅仅是复制文件那么简单，因为代码的运行依赖于编程语言运行时、操作系统特性以及其他库。我们将探讨如何管理这些依赖、创建可复制的环境、构建可分发的软件包，以及使用容器技术来封装整个应用。
 
-![](img/655a3addc98115c52d9834b2f48a62d4_1.png)
 
 ![](img/655a3addc98115c52d9834b2f48a62d4_3.png)
 
@@ -44,7 +43,6 @@ myenv\Scripts\activate     # 在 Windows 上
 ```
 激活后，`pip` 安装的包将只存在于这个独立环境中，不会影响系统全局或其他项目。这是一种避免“依赖地狱”的好实践。
 
-![](img/655a3addc98115c52d9834b2f48a62d4_7.png)
 
 除了 `pip`，还有更现代、更快的工具如 `uv`。`uv` 不仅能更快地安装包和解析依赖，还能方便地创建和管理虚拟环境：
 ```bash
@@ -53,18 +51,15 @@ source myenv/bin/activate
 uv pip install requests
 ```
 
-![](img/655a3addc98115c52d9834b2f48a62d4_9.png)
 
 另一个常见需求是隔离**编程语言本身的版本**。例如，你的项目可能需要 Python 3.12，而系统默认是 3.11。使用 `uv` 可以轻松指定版本：
 ```bash
 uv venv --python 3.12 myenv-3.12
 ```
 
-![](img/655a3addc98115c52d9834b2f48a62d4_11.png)
 
 ## 打包自己的代码
 
-![](img/655a3addc98115c52d9834b2f48a62d4_13.png)
 
 ![](img/655a3addc98115c52d9834b2f48a62d4_14.png)
 
@@ -72,9 +67,7 @@ uv venv --python 3.12 myenv-3.12
 
 ![](img/655a3addc98115c52d9834b2f48a62d4_16.png)
 
-![](img/655a3addc98115c52d9834b2f48a62d4_18.png)
 
-![](img/655a3addc98115c52d9834b2f48a62d4_20.png)
 
 假设你有一个简单的 Python 文件 `greeting.py`：
 ```python
@@ -126,7 +119,6 @@ greet = "greeting:app"
 
 直接从源代码安装要求用户拥有完整的构建工具链。更常见的分发方式是提供预构建的**制品**，例如二进制文件或打包好的归档。
 
-![](img/655a3addc98115c52d9834b2f48a62d4_32.png)
 
 ![](img/655a3addc98115c52d9834b2f48a62d4_34.png)
 
@@ -206,13 +198,9 @@ services:
 
 为了让容器化应用随系统启动，你可以将其配置为系统服务（例如，在 Linux 上使用 `systemd`）。
 
-![](img/655a3addc98115c52d9834b2f48a62d4_36.png)
 
-![](img/655a3addc98115c52d9834b2f48a62d4_37.png)
 
-![](img/655a3addc98115c52d9834b2f48a62d4_39.png)
 
-![](img/655a3addc98115c52d9834b2f48a62d4_40.png)
 
 ## 发布你的制品
 
@@ -226,9 +214,7 @@ services:
     ```
     之后，任何人都可以通过 `docker pull yourusername/greeting` 来获取并运行你的应用。
 
-![](img/655a3addc98115c52d9834b2f48a62d4_42.png)
 
-![](img/655a3addc98115c52d9834b2f48a62d4_44.png)
 
 ---
 

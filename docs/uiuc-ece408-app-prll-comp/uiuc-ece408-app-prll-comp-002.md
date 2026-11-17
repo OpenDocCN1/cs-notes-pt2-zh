@@ -102,7 +102,6 @@ void vecAddHost(float* A_h, float* B_h, float* C_h, int n) {
 2.  **在 GPU 上执行内核（进行计算）**
 3.  **将结果拷贝回主机并释放设备内存**
 
-![](img/d2b1e5afcb85688e4c0b22a7156a3c79_8.png)
 
 ![](img/d2b1e5afcb85688e4c0b22a7156a3c79_9.png)
 

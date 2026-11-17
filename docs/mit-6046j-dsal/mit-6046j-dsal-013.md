@@ -1,12 +1,8 @@
 # L9：范围树 🌳
 
-![](img/6c25d18fcfb2608923b93eebad5c390a_0.png)
 
-![](img/6c25d18fcfb2608923b93eebad5c390a_2.png)
 
-![](img/6c25d18fcfb2608923b93eebad5c390a_4.png)
 
-![](img/6c25d18fcfb2608923b93eebad5c390a_6.png)
 
 ![](img/6c25d18fcfb2608923b93eebad5c390a_7.png)
 

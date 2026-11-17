@@ -1,12 +1,9 @@
 # 51：自类型 (Self Type) 🧬
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_0.png)
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_2.png)
 
 在本节课中，我们将学习一个名为“自类型”的静态类型系统特性。我们将了解它要解决的问题、它的基本概念以及它如何增强类型系统的表达能力。
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_3.png)
 
 ---
 
@@ -14,7 +11,6 @@
 
 ## 一个简单的问题场景 🔍
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_5.png)
 
 首先，让我们通过一个简单的类定义来了解自类型要解决的问题。这里有一个 `Count` 类，它实现了一个计数器功能。
 
@@ -34,7 +30,6 @@ class Count:
 现在，考虑定义一个 `Count` 的子类 `Stock`，用于跟踪库存物品。
 
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_7.png)
 
 ```python
 class Stock(Count):
@@ -50,13 +45,11 @@ s = s.increment()  # 这里会出现类型错误！
 
 ## 自类型的引入 💡
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_9.png)
 
 为了解决这个问题，我们需要扩展类型系统。关键在于，`increment` 方法返回的是 `self` 对象，其类型应该与调用该方法的对象类型相同（可能是 `Count`，也可能是其任何子类型，如 `Stock`）。
 
 为此，我们引入一个新的类型关键字：**自类型 (Self Type)**。我们将 `increment` 方法的返回类型改为 `Self`。
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_11.png)
 
 ```python
 class Count:
@@ -67,7 +60,6 @@ class Count:
         return self
 ```
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_13.png)
 
 `Self` 类型表示方法的返回值具有与 `self` 参数相同的类型。当我们进行这个更改后，类型系统就能进行更精确的推理：
 *   当在 `Count` 对象上调用 `increment` 时，`self` 类型为 `Count`，因此返回类型也是 `Count`。
@@ -81,11 +73,9 @@ class Count:
 1.  **自类型是静态类型**：`Self` 是静态类型系统的一部分，用于在编译时进行更精确的类型推理，而不是一个运行时概念。
 2.  **自类型不是类名**：与 `int`、`Count` 等类型不同，`Self` 是一个特殊的类型占位符，其具体含义取决于使用的上下文（即哪个类的 `self`）。
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_15.png)
 
 通过引入自类型，类型系统能够接受更多在逻辑上正确、但之前因类型信息不足而被拒绝的程序，从而增强了表达能力和实用性。
 
-![](img/40e9a0d6692ba4cf6ccdb8d95f2b268f_17.png)
 
 ---
 

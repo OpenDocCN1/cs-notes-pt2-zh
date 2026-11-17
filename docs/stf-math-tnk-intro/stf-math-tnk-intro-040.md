@@ -1,6 +1,5 @@
 # 040：习题集2评讲
 
-![](img/65c610bffea54d0775c690461ac1b6bf_0.png)
 
 ![](img/65c610bffea54d0775c690461ac1b6bf_1.png)
 

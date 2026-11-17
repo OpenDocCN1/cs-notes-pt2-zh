@@ -1,12 +1,8 @@
 # R11：密码学：更多原语 🔐
 
-![](img/5283a1a7305b519dd6873e7b662e14ef_0.png)
 
-![](img/5283a1a7305b519dd6873e7b662e14ef_2.png)
 
-![](img/5283a1a7305b519dd6873e7b662e14ef_4.png)
 
-![](img/5283a1a7305b519dd6873e7b662e14ef_6.png)
 
 ![](img/5283a1a7305b519dd6873e7b662e14ef_7.png)
 

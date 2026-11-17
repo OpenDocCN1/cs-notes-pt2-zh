@@ -4,9 +4,7 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_2.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_4.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_6.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_8.png)
 
@@ -16,23 +14,17 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_12.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_14.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_16.png)
 
 ---
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_18.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_20.png)
 
 ## 概述
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_22.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_24.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_26.png)
 
 上一节我们介绍了RISC-V单周期处理器的数据路径。本节中，我们来看看控制单元，它就像提线木偶的操纵者，负责指挥数据路径中的各个部件协同工作。
 
@@ -44,7 +36,6 @@
 
 控制单元根据当前正在执行的指令，生成一系列控制信号。这些信号决定了数据在处理器中的流向、ALU执行何种操作、是否访问内存以及是否写入寄存器等关键行为。
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_34.png)
 
 ---
 
@@ -61,33 +52,24 @@
 4.  **内存访问 (MEM)**
 5.  **写回 (WB)**
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_40.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_42.png)
 
 这五个阶段在单周期处理器中依次发生，控制单元为每个阶段指定了具体的工作内容。
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_44.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_46.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_48.png)
 
 ---
 
 ## 控制信号详解
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_50.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_52.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_54.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_56.png)
 
 控制单元输出的信号位于数据路径的底部。以下是控制信号如何影响处理器操作的例子。
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_58.png)
 
 ### 存储字指令 (`sw`) 示例
 
@@ -97,13 +79,11 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_64.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_66.png)
 
 对于存储字指令 `sw`，其目标是将寄存器中的数据写入内存。
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_68.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_70.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_72.png)
 
@@ -117,7 +97,6 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_74.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_76.png)
 
 当时钟上升沿到来时，计算出的地址被用于内存写入，同时程序计数器更新为 `PC + 4`。
 
@@ -125,25 +104,18 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_80.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_82.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_84.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_86.png)
 
 ### 分支相等指令 (`beq`) 示例
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_88.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_90.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_92.png)
 
 对于分支相等指令 `beq`，其目标是根据比较结果可能改变程序计数器。
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_94.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_96.png)
 
 以下是控制信号如何设置：
 *   **写寄存器使能 (`RegWrite`)**: 设置为 `0`。`beq` 指令不写入寄存器。
@@ -160,13 +132,10 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_100.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_102.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_104.png)
 
 ## 指令执行时序分析 ⏱️
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_106.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_108.png)
 
@@ -174,7 +143,6 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_110.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_112.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_114.png)
 
@@ -189,11 +157,8 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_118.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_120.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_122.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_124.png)
 
 对于加载字指令 (`lw`)，它需要经历所有五个阶段。因此，其关键路径延迟是这些阶段延迟的总和：**200 + 100 + 200 + 200 + 100 = 800 ps**。
 
@@ -203,27 +168,22 @@
 
 这意味着时钟周期至少需要 **800 ps**，对应的最大时钟频率约为 **1.25 GHz**。如果试图以更快的频率运行，`lw` 指令可能无法在时钟上升沿前完成写回阶段，导致寄存器文件中的数据不稳定，这是时序违规。
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_130.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_132.png)
 
 ---
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_134.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_136.png)
 
 ## 控制逻辑的实现
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_138.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_140.png)
 
 我们如何根据指令位来生成这些控制信号呢？答案是通过一个大的组合逻辑块，可以将其视为一个只读存储器 (ROM) 或一个经过特殊设计的逻辑电路。
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_142.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_144.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_146.png)
 
@@ -269,7 +229,6 @@
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_169.png)
 
-![](img/d6daca577d9bcbb77229c0d1be50d29d_171.png)
 
 ![](img/d6daca577d9bcbb77229c0d1be50d29d_173.png)
 

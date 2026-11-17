@@ -115,7 +115,6 @@ stats-rs = "0.12.0"
 
 依赖安装好后，需要在代码中引入才能使用其功能。
 
-![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_34.png)
 
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_36.png)
@@ -148,7 +147,6 @@ fn main() {
 
 你可以随时查阅库的在线文档，复制示例代码到你的项目中进行测试和修改。同时，确保你选择的库有良好的社区支持（即Issues能被及时响应和关闭），这对长期项目至关重要。
 
-![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_47.png)
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_49.png)
 
@@ -162,9 +160,7 @@ fn main() {
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_57.png)
 
-![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_59.png)
 
-![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_60.png)
 
 ![](img/cdb3dd3eed1ed2ed7b9d7e8dbb02296e_62.png)
 

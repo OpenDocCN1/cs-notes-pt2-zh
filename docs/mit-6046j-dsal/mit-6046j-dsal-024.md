@@ -1,12 +1,8 @@
 # L17：复杂性：近似算法 🧩
 
-![](img/5b8c7e34ac83efb96747d956e768011b_0.png)
 
-![](img/5b8c7e34ac83efb96747d956e768011b_2.png)
 
-![](img/5b8c7e34ac83efb96747d956e768011b_4.png)
 
-![](img/5b8c7e34ac83efb96747d956e768011b_6.png)
 
 ![](img/5b8c7e34ac83efb96747d956e768011b_7.png)
 

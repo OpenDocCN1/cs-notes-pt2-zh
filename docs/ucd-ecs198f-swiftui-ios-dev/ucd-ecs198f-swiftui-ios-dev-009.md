@@ -119,7 +119,6 @@ struct DeepChildView: View {
 
 ![](img/716a3010acf34bf375c2658ed1bbdf58_9.png)
 
-![](img/716a3010acf34bf375c2658ed1bbdf58_11.png)
 
 ## 视图身份
 
@@ -172,7 +171,6 @@ VStack {
 
 ## 总结
 
-![](img/716a3010acf34bf375c2658ed1bbdf58_19.png)
 
 ![](img/716a3010acf34bf375c2658ed1bbdf58_21.png)
 

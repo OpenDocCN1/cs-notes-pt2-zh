@@ -22,29 +22,17 @@ Shell是计算机的文本接口，它允许你直接输入命令，并获取命
     *   **Windows**：按 `Win+R`，输入 `cmd` 或 `powershell`。
     *   **macOS**：按 `Cmd+Space` 打开聚焦搜索，搜索“terminal”。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_1.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_2.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_4.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_5.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_6.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_8.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_9.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_10.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_11.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_13.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_14.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_15.png)
 
 *   **常见的Shell**：
     *   **Bash (Bourne Again SHell)**：Linux系统上最常见的Shell，macOS过去也使用它。
@@ -64,44 +52,30 @@ Shell是计算机的文本接口，它允许你直接输入命令，并获取命
 
 **运行命令**：最简单的命令就是输入一个程序名。例如，输入 `date` 会打印当前日期。命令后可以跟**参数（Arguments）**，参数之间用空格分隔。例如，`echo hello world` 会打印“hello world”。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_17.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_19.png)
 
 **参数解析**：Shell会将你输入的文本在空格处分割成多个部分，第一部分作为要执行的程序名，其余部分作为参数传递给该程序。如果参数本身包含空格，需要使用引号（单引号 `'` 或双引号 `"`）将其括起来，或者使用反斜杠 `\` 进行转义。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_21.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_22.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_24.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_25.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_27.png)
 
 **获取帮助**：
 *   `man <command>`：查看命令的详细手册页。例如 `man echo`。
 *   `<command> --help` 或 `-h`：通常可以获取命令的简要帮助信息。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_29.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_31.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_32.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_33.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_35.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_36.png)
 
 ## 在文件系统中导航
 *   `pwd`：打印当前工作目录。
 *   `cd <path>`：更改当前工作目录到指定路径。
 *   `ls <path>`：列出指定目录的内容。如果不指定路径，则列出当前目录。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_38.png)
 
 **路径类型**：
 *   **绝对路径**：从根目录 `/` 开始，如 `/home/user/docs`。
@@ -115,11 +89,8 @@ Shell是计算机的文本接口，它允许你直接输入命令，并获取命
 *   **Tab键自动补全**：输入路径或命令的前几个字母，按 `Tab` 键可以自动补全。如果存在多个可能选项，按两次 `Tab` 会显示所有选项。
 *   **工具**：可以使用像 `zoxide` 这样的工具来快速跳转到常用目录。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_40.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_42.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_44.png)
 
 ## 程序与PATH
 当你输入一个命令（如 `date`）时，Shell如何知道该执行哪个程序？它通过一个叫做 **`PATH`** 的环境变量来查找。
@@ -127,40 +98,25 @@ Shell是计算机的文本接口，它允许你直接输入命令，并获取命
 *   `echo $PATH`：查看 `PATH` 变量的内容，它是一系列用冒号 `:` 分隔的目录路径。
 *   `which <command>`：显示Shell将执行哪个路径下的命令。例如 `which date`。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_46.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_47.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_48.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_50.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_52.png)
 
 Shell会按照 `PATH` 中列出的目录顺序，查找与命令名同名的可执行文件，并执行找到的第一个。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_54.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_56.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_58.png)
 
 ## 常用命令示例
 以下是一些在Shell中非常有用的命令：
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_60.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_61.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_63.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_65.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_66.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_67.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_69.png)
 
 *   `cat <file>`：连接文件并打印其内容到标准输出。
 *   `sort <file>`：对文件的行进行排序。
@@ -177,14 +133,11 @@ Shell会按照 `PATH` 中列出的目录顺序，查找与命令名同名的可�
     *   默认按空白字符（空格、制表符）分割行。例如 `awk '{print $2}' file.txt` 会打印每行的第二个字段。
     *   可以指定字段分隔符，例如 `awk -F',' '{print $1}' data.csv` 处理CSV文件。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_71.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_72.png)
 
 ## 组合命令与重定向
 Shell的强大之处在于能够将简单的命令组合起来。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_74.png)
 
 *   **管道（Pipe） `|`**：将一个命令的输出作为另一个命令的输入。
     *   例如：`history | grep git | tail -n 5` 先获取命令历史，然后过滤出包含“git”的行，最后显示最后5行。
@@ -194,28 +147,18 @@ Shell的强大之处在于能够将简单的命令组合起来。
 *   **输入重定向 `<`**：从文件读取数据作为命令的输入，而不是从键盘。
     *   例如：`sort < data.txt`。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_76.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_78.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_79.png)
 
 ## Shell脚本编程
 当命令变得复杂时，可以将它们写入一个文件，形成一个**Shell脚本**。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_80.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_82.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_84.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_85.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_86.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_88.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_90.png)
 
 **创建脚本**：
 1.  创建一个新文件，例如 `myscript.sh`。
@@ -223,9 +166,7 @@ Shell的强大之处在于能够将简单的命令组合起来。
 3.  在下面编写你的Shell命令。
 4.  保存文件。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_92.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_94.png)
 
 **使脚本可执行**：
 ```bash
@@ -237,18 +178,13 @@ chmod +x myscript.sh
 ```
 注意：运行当前目录下的脚本需要使用 `./` 前缀，否则Shell会在 `PATH` 中查找，而通常当前目录不在 `PATH` 中（这是出于安全考虑）。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_96.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_98.png)
 
 **脚本中的控制结构**：
 Shell脚本支持 `if`、`while`、`for` 等控制结构。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_100.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_102.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_103.png)
 
 *   **条件判断**：通常使用 `test` 命令或其别名 `[`。
     *   例如：`if [ "$name" = "Alice" ]; then echo "Hi Alice!"; fi`
@@ -258,22 +194,15 @@ Shell脚本支持 `if`、`while`、`for` 等控制结构。
     *   可以使用命令生成序列：`for i in $(seq 1 5); do echo $i; done`
     *   `while` 循环：`while true; do echo "Looping..."; sleep 1; done`
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_105.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_107.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_109.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_111.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_113.png)
 
 ## 总结
 本节课我们一起学习了Shell的基础知识。我们了解了什么是Shell以及为什么它如此重要。我们学习了如何在文件系统中导航、如何运行程序、如何使用 `PATH` 变量。我们介绍了一系列强大的命令行工具，如 `grep`、`find`、`sed` 和 `awk`，并学习了如何通过管道和重定向将它们组合起来。最后，我们了解了如何将一系列命令保存为Shell脚本，并使其可执行，从而实现任务的自动化。
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_115.png)
 
-![](img/14b6ec9561a61d0e95daa708f4cbeae2_116.png)
 
 ![](img/14b6ec9561a61d0e95daa708f4cbeae2_118.png)
 

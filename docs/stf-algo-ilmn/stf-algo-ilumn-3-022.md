@@ -1,6 +1,5 @@
 # 022：惰性合并
 
-![](img/396b8f6e12fa1eee8e92c0aa18c3af69_0.png)
 
 ![](img/396b8f6e12fa1eee8e92c0aa18c3af69_0.png)
 

@@ -34,7 +34,6 @@ Reed-Solomon 码背后的核心思想，正如我们之前所见，是低次多�
 
 ### 达到 Singleton 界与 MDS 码 🏆
 
-![](img/a3d75bed9eddad105c42668b8f82be74_1.png)
 
 上一节我们证明了 Reed-Solomon 码的距离公式，本节我们将其与之前学过的界联系起来。
 
@@ -49,29 +48,23 @@ Singleton 界指出，对于任何参数为 `(n, K, d)_Q` 的码，都有 `d ≤
 
 ### 在界图中的位置与字母表大小 📊
 
-![](img/a3d75bed9eddad105c42668b8f82be74_3.png)
 
 现在，让我们将 MDS 码放到我们之前学过的码率-距离权衡界图中进行观察。
 
 我们之前学过 Singleton 界和 Plotkin 界，它们都是不可能性结果，指出在界线上方的参数组合是无法实现的。Plotkin 界比 Singleton 界更强，它表明对于**固定的字母表大小 `Q`**，Singleton 界实际上是无法达到的。
 
-![](img/a3d75bed9eddad105c42668b8f82be74_5.png)
 
 然而，我们刚刚说 Reed-Solomon 码是达到 Singleton 界的 MDS 码。这似乎产生了矛盾。
 
 秘密在于：Plotkin 界适用于**固定**的 `Q`。而对于 Reed-Solomon 码，其字母表大小 `Q` 并不是固定的，它必须**随着块长 `n` 的增长而增长**（因为我们需要在域中找到 `n` 个互不相同的点）。这是 Reed-Solomon 码的一个缺点。在后续课程中，我们将看到一些试图减小字母表大小的方法。
 
-![](img/a3d75bed9eddad105c42668b8f82be74_7.png)
 
-![](img/a3d75bed9eddad105c42668b8f82be74_9.png)
 
 作为一个旁注，Plotkin 界意味着，任何 MDS 码族都必须具有随块长增长的字母表大小。那么它需要以多快的速度增长呢？这实际上是一个开放问题，有一个称为 **MDS 猜想** 的假设，认为 Reed-Solomon 码基本上具有最优的字母表大小，但该猜想尚未被证明。
 
-![](img/a3d75bed9eddad105c42668b8f82be74_11.png)
 
 ### 总结 📝
 
-![](img/a3d75bed9eddad105c42668b8f82be74_13.png)
 
 ![](img/a3d75bed9eddad105c42668b8f82be74_14.png)
 

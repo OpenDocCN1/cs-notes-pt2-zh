@@ -6,11 +6,9 @@
 
 ## 问题概述与示例
 
-![](img/9c8046b67eebe3bf09cd5dbd98feabb6_2.png)
 
 问题要求我们在一个Trie类中实现 `longestPrefixOf` 方法。该方法将返回给定字符串在该Trie中的最长前缀。
 
-![](img/9c8046b67eebe3bf09cd5dbd98feabb6_4.png)
 
 例如，考虑右侧所示的Trie树，它包含字符串 “cry”、“crystal” 和 “trie”。如果我们尝试获取字符串 “crystal” 的最长前缀，方法应返回 “crys”。如果我们尝试获取字符串 “chris” 的最长前缀，由于Trie中只有 “cry” 与之匹配，方法应返回 “cry”。
 
@@ -20,11 +18,9 @@
 
 ## 算法思路解析
 
-![](img/9c8046b67eebe3bf09cd5dbd98feabb6_6.png)
 
 现在是一个好时机，建议您先暂停视频，查看问题描述和骨架代码，并尝试自己思考如何解决这个问题。我将给您一些时间。
 
-![](img/9c8046b67eebe3bf09cd5dbd98feabb6_8.png)
 
 好的，希望您已经暂停视频并尝试构思了算法。接下来，我们将一起探讨解决方案。
 

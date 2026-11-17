@@ -6,11 +6,9 @@
 
 ## 组件拆分原则回顾
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_3.png)
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_5.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_6.png)
 
 上一节我们介绍了组件的基础概念，本节中我们来看看如何合理地拆分组件。将大型组件拆分为更小的组件主要有三个原因：
 
@@ -21,19 +19,15 @@
 2.  **功能分离**：当UI的不同部分承担不同的功能职责时（例如，导航栏和帖子内容），应将它们拆分为独立的组件。
 3.  **单一职责**：如果一个组件处理了过多不同的任务，为了代码清晰，应将其拆分为多个各司其职的组件。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_10.png)
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_12.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_14.png)
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_15.png)
 
 最终，如何设计组件树取决于开发者自身，这需要通过实践和参考优秀代码来积累经验。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_17.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_19.png)
 
 ## State与Props的核心概念
 
@@ -73,15 +67,12 @@ State和Props是React中数据流动的基石。
 
 当多个子组件需要共享或同步状态时，一个常见的设计模式是“状态提升”。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_43.png)
 
 考虑一个包含标签页（Tabs）和内容面板（Tweet Panel）的Feed组件。如果每个组件内部都有自己的状态（如`selectedTab`和`contentType`），那么切换标签页时，内容面板无法自动感知。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_45.png)
 
 **解决方案**：将相关的状态（`selectedTab`）提升到它们共同的父组件（Feed）中。然后，父组件通过Props将状态值和更新状态的函数传递给子组件。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_47.png)
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_49.png)
 
@@ -97,9 +88,7 @@ State和Props是React中数据流动的基石。
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_56.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_58.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_60.png)
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_62.png)
 
@@ -109,11 +98,9 @@ State和Props是React中数据流动的基石。
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_64.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_66.png)
 
 一个React组件的生命周期包含三个阶段：挂载（Mounting）、更新（Updating）和卸载（Unmounting）。每个阶段都伴随着“触发（Trigger） -> 渲染（Render） -> 提交（Commit）”的流程。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_68.png)
 
 ![](img/51598ece4900c0b029304f4fb6dc1a61_70.png)
 
@@ -122,11 +109,8 @@ State和Props是React中数据流动的基石。
     *   **渲染**：执行组件函数内的所有JavaScript逻辑（`useState`, `useEffect`等），并计算返回的JSX。
     *   **提交**：React将计算出的JSX更新到浏览器的真实DOM中，用户此时可以看到UI。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_72.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_74.png)
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_76.png)
 
 2.  **更新（Updating）**：组件因状态或Props改变而重新渲染。
     *   **触发**：组件的State改变，或其接收的Props改变，或其祖先组件重新渲染。
@@ -134,14 +118,12 @@ State和Props是React中数据流动的基石。
 
 3.  **卸载（Unmounting）**：组件从DOM中被移除。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_78.png)
 
 **常见触发条件**：
 *   组件**自身State**改变。
 *   组件接收的**Props**改变。
 *   组件的**祖先组件**重新渲染（会导致所有后代组件重新渲染，后续会学习优化方法）。
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_80.png)
 
 ## 深入useEffect Hook
 
@@ -178,7 +160,6 @@ useEffect(() => {
     );
     ```
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_82.png)
 
 *   **列表渲染（List Rendering）**：使用`map`函数将数据数组渲染为JSX元素数组。为每个元素提供一个稳定的`key`属性有助于React优化渲染性能。
     ```javascript
@@ -191,7 +172,6 @@ useEffect(() => {
     );
     ```
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_84.png)
 
 ## 实战：创建一个计时器
 

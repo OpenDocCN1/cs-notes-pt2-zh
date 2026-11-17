@@ -1,10 +1,7 @@
 # 2：凸优化与梯度下降法
 
-![](img/bdf811107d5ae55e5281bcd04a800b3b_0.png)
 
-![](img/bdf811107d5ae55e5281bcd04a800b3b_2.png)
 
-![](img/bdf811107d5ae55e5281bcd04a800b3b_4.png)
 
 ![](img/bdf811107d5ae55e5281bcd04a800b3b_6.png)
 
@@ -60,7 +57,6 @@ x_{t+1} = x_t - \eta \nabla f(x_t)
 
 ## 梯度下降法的变体与评论
 
-![](img/bdf811107d5ae55e5281bcd04a800b3b_8.png)
 
 上一节我们分析了基础梯度下降法。本节中，我们来看看它的几个重要变体和相关性质。
 

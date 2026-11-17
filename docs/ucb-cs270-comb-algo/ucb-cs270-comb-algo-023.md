@@ -94,9 +94,7 @@
 
 ## 总结 📝
 
-![](img/906bc9b33a92dd2c6b3815b1e6053e65_6.png)
 
-![](img/906bc9b33a92dd2c6b3815b1e6053e65_7.png)
 
 ![](img/906bc9b33a92dd2c6b3815b1e6053e65_9.png)
 

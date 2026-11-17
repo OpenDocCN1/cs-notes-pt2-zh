@@ -125,7 +125,6 @@ let spaces = spaces.len(); // 遮蔽：将字符串转换为它的长度（整�
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_53.png)
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_55.png)
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_57.png)
 
@@ -242,11 +241,9 @@ Rust的数据类型主要分为两类：标量类型和复合类型。
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_108.png)
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_109.png)
 
 控制流允许你根据条件决定执行哪部分代码，或者重复执行某段代码。
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_111.png)
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_113.png)
 
@@ -262,7 +259,6 @@ Rust的数据类型主要分为两类：标量类型和复合类型。
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_121.png)
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_122.png)
 
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_124.png)
@@ -300,9 +296,7 @@ Rust提供了几种循环方式：`loop`、`while` 和 `for`。
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_140.png)
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_142.png)
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_143.png)
 
 1.  **`loop`**：无限循环，直到遇到 `break` 关键字。`loop` 也可以返回值。
     ```rust
@@ -386,13 +380,11 @@ let lucky_number = 7; // 这也是一个注释
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_174.png)
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_176.png)
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_178.png)
 
 ---
 
-![](img/6e5d51dd66a2cde6b882038389bd2645_180.png)
 
 ![](img/6e5d51dd66a2cde6b882038389bd2645_182.png)
 

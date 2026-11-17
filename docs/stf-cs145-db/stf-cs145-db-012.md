@@ -1,6 +1,5 @@
 # 12：SQL 数据修改语句 🛠️
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_1.png)
 
 在本课程中，我们将学习 SQL 中用于修改数据库数据的核心语句，包括插入（INSERT）、删除（DELETE）和更新（UPDATE）数据。这些操作是管理和维护数据库内容的基础。
 
@@ -12,7 +11,6 @@
 
 ---
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_3.png)
 
 ## 1. 插入数据（INSERT）
 
@@ -20,7 +18,6 @@
 
 ### 1.1 插入指定值
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_5.png)
 
 第一种方法是直接指定要插入的元组（行）的各个字段值。其基本语法如下：
 
@@ -32,13 +29,11 @@ INSERT INTO 表名 VALUES (值1, 值2, 值3, ...);
 
 **示例**：向 `college` 表中添加一所新大学“卡内基梅隆大学”。
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_7.png)
 
 ```sql
 INSERT INTO college VALUES (‘Carnegie Mellon‘, ‘PA‘, 11500);
 ```
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_9.png)
 
 执行后，查询 `college` 表，可以看到新大学已被成功添加。
 
@@ -48,7 +43,6 @@ INSERT INTO college VALUES (‘Carnegie Mellon‘, ‘PA‘, 11500);
 
 **示例**：让尚未申请任何学校的学生申请卡内基梅隆大学的计算机科学专业。
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_11.png)
 
 首先，找出未申请任何学校的学生：
 ```sql
@@ -98,7 +92,6 @@ WHERE sID IN (
 
 需要注意的是，某些数据库系统可能对 `DELETE` 语句中的子查询有限制。如果遇到限制，可以先将子查询结果存入临时表，再进行删除。
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_13.png)
 
 **另一个示例**：删除没有任何学生申请计算机科学专业的学院。
 ```sql
@@ -114,9 +107,7 @@ WHERE cName NOT IN (
 
 更新操作用于修改表中现有行的数据。它可以同时更新一个或多个列。其基本语法如下：
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_15.png)
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_17.png)
 
 ```sql
 UPDATE 表名
@@ -159,7 +150,6 @@ SET GPA = (SELECT MAX(GPA) FROM student),
 UPDATE apply SET decision = ‘Y‘;
 ```
 
-![](img/ab0f0335a6c4ca1215b811cb8be15663_19.png)
 
 ---
 

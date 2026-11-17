@@ -1,6 +1,5 @@
 代数编码理论导论：1：列表恢复（List Recovery）介绍
 
-![](img/da910e028abaf57b87a7cf939c87091b_0.png)
 
 在本节课中，我们将学习列表解码（List Decoding）的一个推广概念——列表恢复（List Recovery）。
 
@@ -27,25 +26,17 @@
 
 这些结论的证明思路与列表解码中的相应证明类似。作为一个有趣的练习，你可以尝试通过模仿列表解码容量定理的证明，来推导列表恢复的容量定理。
 
-![](img/da910e028abaf57b87a7cf939c87091b_2.png)
 
-![](img/da910e028abaf57b87a7cf939c87091b_3.png)
 
-![](img/da910e028abaf57b87a7cf939c87091b_4.png)
 
-![](img/da910e028abaf57b87a7cf939c87091b_6.png)
 
 另一个我们为列表解码（特别是里德-所罗门码）看到的重要结果是**古鲁斯瓦米-苏丹算法**（Guruswami-Sudan algorithm）。你可能会问，这个算法能否扩展到列表恢复？
 
-![](img/da910e028abaf57b87a7cf939c87091b_8.png)
 
-![](img/da910e028abaf57b87a7cf939c87091b_9.png)
 
-![](img/da910e028abaf57b87a7cf939c87091b_10.png)
 
 答案同样是肯定的。我们将在下一个视频中详细探讨这一点。
 
-![](img/da910e028abaf57b87a7cf939c87091b_12.png)
 
 ![](img/da910e028abaf57b87a7cf939c87091b_14.png)
 

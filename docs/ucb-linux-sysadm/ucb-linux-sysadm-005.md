@@ -92,7 +92,6 @@ DNS是将人类可读的域名（如 `google.com`）转换为机器可读的IP�
 ping -c 5 google.com  # 向google.com发送5个测试包
 ```
 
-![](img/8eff1c83de5a60a6e7156d09e761c873_11.png)
 
 **traceroute**
 用于显示数据包到达目标主机所经过的路由路径。
@@ -120,14 +119,11 @@ dig google.com
 ip addr show  # 显示所有网络接口的IP地址信息
 ```
 
-![](img/8eff1c83de5a60a6e7156d09e761c873_15.png)
 
 ## 总结
 
 本节课我们一起学习了计算机网络的基础。我们从TCP/IP四层模型入手，了解了链路层的MAC地址与ARP协议，网络层的IP地址与路由概念，以及传输层的TCP和UDP协议的区别。最后，我们介绍了几种实用的网络诊断工具，如 `ping`、`traceroute`、`arp`、`dig` 和 `ip`，这些工具将帮助你在实际管理中排查网络问题。
 
-![](img/8eff1c83de5a60a6e7156d09e761c873_17.png)
 
-![](img/8eff1c83de5a60a6e7156d09e761c873_19.png)
 
 ![](img/8eff1c83de5a60a6e7156d09e761c873_19.png)

@@ -166,7 +166,6 @@
 
 ![](img/c7b5edb17795ede010f1905f6efad9c2_59.png)
 
-![](img/c7b5edb17795ede010f1905f6efad9c2_61.png)
 
 ![](img/c7b5edb17795ede010f1905f6efad9c2_63.png)
 

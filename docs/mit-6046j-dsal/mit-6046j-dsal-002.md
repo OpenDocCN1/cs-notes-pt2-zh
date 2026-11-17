@@ -1,12 +1,8 @@
 # L2：分治：中位数查找 🧠
 
-![](img/f4cbcda0213c9abc7c081d08214db869_0.png)
 
-![](img/f4cbcda0213c9abc7c081d08214db869_2.png)
 
-![](img/f4cbcda0213c9abc7c081d08214db869_4.png)
 
-![](img/f4cbcda0213c9abc7c081d08214db869_6.png)
 
 ![](img/f4cbcda0213c9abc7c081d08214db869_7.png)
 

@@ -240,7 +240,6 @@ class SettingsViewModel: ObservableObject {
 2.  **SQLite**：轻量级的关系型数据库，可以直接使用C接口或第三方封装库。
 3.  **Realm**：一个流行的第三方移动数据库，以其易用性和高性能著称。
 
-![](img/3f3b5fae20bb6841d68a3ab8ad7af833_7.png)
 
 ![](img/3f3b5fae20bb6841d68a3ab8ad7af833_9.png)
 

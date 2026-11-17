@@ -47,11 +47,9 @@
 
 ![](img/acc62f60bf0a7e4e5468fb3dc84c3a60_1.png)
 
-![](img/acc62f60bf0a7e4e5468fb3dc84c3a60_4.png)
 
 ![](img/acc62f60bf0a7e4e5468fb3dc84c3a60_2.png)
 
-![](img/acc62f60bf0a7e4e5468fb3dc84c3a60_3.png)
 
 ![](img/acc62f60bf0a7e4e5468fb3dc84c3a60_5.png)
 

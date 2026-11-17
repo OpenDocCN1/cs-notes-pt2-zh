@@ -2,13 +2,11 @@
 
 在本节课中，我们将继续学习 Active Record 关联，并探讨如何设计应用程序中的数据关系。我们将学习如何利用 Rails 提供的工具来优雅地表达模型间的关联，并理解在项目初期做出明智设计决策的重要性。
 
-![](img/0b01a30501fea891eb38872f66d2ae79_1.png)
 
 ---
 
 ## 课程概述
 
-![](img/0b01a30501fea891eb38872f66d2ae79_3.png)
 
 本节课将深入探讨 Active Record 关联的具体用法，并介绍一些关于如何设计数据关联关系的理论。我们将学习如何利用 `has_many` 和 `belongs_to` 等方法，在代码中轻松地操作数据库关系，从而避免编写复杂的原始 SQL 查询。此外，我们还将了解一些用于理解和可视化数据关系的工具，例如 UML 图和 CRC 卡片。
 
@@ -43,11 +41,9 @@ end
 
 当我们声明 `Movie has_many :reviews` 后，就可以使用 `movie.reviews` 方法。Rails 会自动执行一个查询，查找所有 `movie_id` 等于该电影 ID 的影评，并返回一个由 `Review` 模型对象组成的集合。
 
-![](img/0b01a30501fea891eb38872f66d2ae79_5.png)
 
 同样，声明 `Review belongs_to :movie` 后，我们可以使用 `review.movie` 方法来获取该影评所属的电影对象。
 
-![](img/0b01a30501fea891eb38872f66d2ae79_7.png)
 
 **关键点：**
 *   `has_many` 返回的是一个集合（通常是复数形式的方法，如 `.reviews`），你可以对其进行遍历。
@@ -73,9 +69,7 @@ class CreateReviews < ActiveRecord::Migration[6.0]
 end
 ```
 
-![](img/0b01a30501fea891eb38872f66d2ae79_9.png)
 
-![](img/0b01a30501fea891eb38872f66d2ae79_11.png)
 
 外键约束确保了数据的**引用完整性**。例如，它保证了 `reviews` 表中的每一个 `movie_id` 都对应 `movies` 表中一个真实存在的记录。
 
@@ -111,11 +105,9 @@ end
 
 有时我们需要通过一个中间模型来获取关联数据。例如，通过 `Review` 模型，我们可以找到给某部电影写影评的所有用户。
 
-![](img/0b01a30501fea891eb38872f66d2ae79_13.png)
 
 我们可以这样定义：
 
-![](img/0b01a30501fea891eb38872f66d2ae79_15.png)
 
 ```ruby
 class Movie < ApplicationRecord

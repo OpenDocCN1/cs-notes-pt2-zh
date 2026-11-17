@@ -1,8 +1,6 @@
 # 024：多项式时间归约
 
-![](img/5185d70d8db0b63317db9ccaf3573080_0.png)
 
-![](img/5185d70d8db0b63317db9ccaf3573080_2.png)
 
 ![](img/5185d70d8db0b63317db9ccaf3573080_4.png)
 

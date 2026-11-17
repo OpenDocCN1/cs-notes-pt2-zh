@@ -1,13 +1,10 @@
 # 9：命名表达式（Let）📚
 
 
-![](img/4fdd76d268a053f26ae06d3d64a359af_3.png)
 
 
-![](img/4fdd76d268a053f26ae06d3d64a359af_6.png)
 
 
-![](img/4fdd76d268a053f26ae06d3d64a359af_13.png)
 
 
 在本节课中，我们将要学习如何为我们的语言添加命名表达式（`let` 绑定）。我们将探讨如何在解释器和编译器中实现它，理解惰性求值与急切求值的区别，并学习如何使用符号表来管理变量名到其存储位置的映射。
@@ -67,9 +64,7 @@ type env = (string, value) Symtab.t
 
 ![](img/4fdd76d268a053f26ae06d3d64a359af_33.png)
 
-![](img/4fdd76d268a053f26ae06d3d64a359af_35.png)
 
-![](img/4fdd76d268a053f26ae06d3d64a359af_37.png)
 
 ### 解释 `let` 表达式
 

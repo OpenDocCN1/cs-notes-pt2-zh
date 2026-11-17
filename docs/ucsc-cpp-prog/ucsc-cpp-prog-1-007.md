@@ -1,6 +1,5 @@
 # 007：双向迭代器
 
-![](img/07693ffeb6122ea2c9135e46ebdcf3a7_1.png)
 
 在本节课中，我们将要学习一种更复杂、功能更强的迭代器类型——双向迭代器。我们将了解它的特性、一个需要用到它的标准库算法，以及如何利用它高效地解决问题。
 
@@ -14,11 +13,9 @@
 
 ## 需要双向迭代器的算法
 
-![](img/07693ffeb6122ea2c9135e46ebdcf3a7_3.png)
 
 接下来，我们研究一个标准库中的典型算法，它要求使用双向迭代器类型。在阅读库文档时，你会看到参数类型标注为 `bidirectional_iterator`，这表明它确实需要这种类型的迭代器。
 
-![](img/07693ffeb6122ea2c9135e46ebdcf3a7_5.png)
 
 这个算法就是 `std::reverse`。它接受一个迭代器范围 `[first, last)`（通常是 `begin()` 和 `end()`，也可以是范围的子部分）。`reverse` 是一个修改算法，它会反转指定范围内的元素顺序。
 
@@ -72,7 +69,6 @@ bool is_palindrome(BidirectionalIterator first, BidirectionalIterator last) {
 2.  如果发现任何一对对称值不相同，则立即返回 `false`。
 3.  如果迭代器在中间相遇，说明所有对称值都相同，则返回 `true`。
 
-![](img/07693ffeb6122ea2c9135e46ebdcf3a7_7.png)
 
 ## 为何选择双向迭代器？
 

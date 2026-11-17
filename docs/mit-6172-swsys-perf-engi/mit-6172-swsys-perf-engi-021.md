@@ -1,6 +1,5 @@
 # 021：调优TSP算法 🚀
 
-![](img/952d6b9db298ef52e39ee30be8e2cb74_1.png)
 
 ![](img/952d6b9db298ef52e39ee30be8e2cb74_2.png)
 

@@ -1,6 +1,5 @@
 # 004：几何结构 II 🧮
 
-![](img/7ca239bd4383d09fd34a562059dbe63d_1.png)
 
 ![](img/7ca239bd4383d09fd34a562059dbe63d_2.png)
 

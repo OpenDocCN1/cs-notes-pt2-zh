@@ -144,7 +144,6 @@ MOOCs在2011年左右爆发式增长，当时被认为将：
 
 ## 总结
 
-![](img/07c9031cfcc53a9c035d1ef6d799fbf0_55.png)
 
 ![](img/07c9031cfcc53a9c035d1ef6d799fbf0_57.png)
 

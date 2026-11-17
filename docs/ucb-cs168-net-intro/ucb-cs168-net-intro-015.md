@@ -1,50 +1,37 @@
 # 15：传输控制协议 (TCP) 🚀
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_1.png)
 
 在本节课中，我们将要学习传输层的作用，并深入探讨传输控制协议（TCP）的具体设计。我们将从传输层的通用功能开始，然后聚焦于TCP如何实现这些功能，包括其可靠字节流抽象、连接管理、流量控制等核心机制。
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_2.png)
 
 ---
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_4.png)
 
 ## 传输层概述
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_6.png)
 
 上一节我们介绍了网络层，本节中我们来看看位于网络层和应用层之间的传输层。传输层在端主机（通常在操作系统中）实现，其核心作用是弥合应用层期望的通信抽象与网络层提供的基础服务之间的差距。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_1.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_2.png)
 
 与网络层不同，传输层可以同时运行多种协议（如TCP、UDP），不同的应用可以同时使用不同的传输协议，但它们都共享底层的IP层。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_4.png)
 
 将传输层构建在操作系统中，使其能为所有应用提供公共服务。如果没有像TCP这样的传输层，每个应用都需要自行处理网络层带来的所有复杂性和不确定性。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_8.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_6.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_10.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_12.png)
 
 ## 传输层的核心功能
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_14.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_16.png)
 
 以下是传输层需要解决的几个核心问题：
 
@@ -56,17 +43,13 @@
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_18.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_8.png)
 
 接下来，我们将逐一探讨这些功能，并了解TCP如何实现它们。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_20.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_10.png)
 
 ### 多路分解与端口
 
@@ -74,21 +57,17 @@
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_12.png)
 
 解决方案是使用**端口**。端口是一个16位的逻辑标识符，用于标识应用进程与操作系统通信的端点。端口号携带在传输层（如TCP或UDP）的头部中。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_14.png)
 
 当数据包到达时，操作系统根据IP头中的协议字段（如值为6代表TCP）将其交给相应的传输层协议处理。传输层协议再根据头部中的目的端口号，将数据传递给监听该端口的应用进程。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_22.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_16.png)
 
 ### 可靠性
 
@@ -96,13 +75,11 @@
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_18.png)
 
 ### 应用层抽象
 
 应用开发者不希望处理数据包丢失、重复、乱序或损坏等底层网络问题。因此，传输层需要提供一个更高级的抽象。
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_24.png)
 
 最常用且直观的抽象是**可靠的、有序的字节流**。发送方将字节按顺序放入一个“管道”，接收方从管道另一端按相同顺序取出所有字节。TCP就提供了这样的抽象。
 
@@ -110,9 +87,7 @@
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_20.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_26.png)
 
 ### 流量控制：避免接收方过载
 
@@ -120,21 +95,17 @@
 
 本节我们先看第二个目标：**流量控制**。
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_28.png)
 
 为什么接收方可能过载？因为TCP提供有序交付。如果数据包乱序到达，接收方必须将后续到达的数据包缓存在缓冲区中，直到缺失的包到达后才能按序提交给应用。接收方缓冲区是有限的。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_22.png)
 
 解决方案是：接收方动态地告知发送方自己还有多少可用的缓冲区空间。在TCP中，这个值称为**通告窗口**，它被放在每个确认包的头部中发送给发送方。发送方则确保自己已发送但未确认的数据量不超过接收方通告的窗口大小。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_24.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_30.png)
 
 ### 拥塞控制：避免网络过载
 
@@ -142,31 +113,24 @@
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_26.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_32.png)
 
 现实中，网络由许多流共享。因此，每个流应该只占用其“公平份额”，而不是全部容量。确定这个公平份额是一个复杂的问题，这就是**拥塞控制**算法的任务。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_28.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_34.png)
 
 我们可以将拥塞控制算法视为一个“黑盒”，它运行在发送方，根据网络状况动态计算出一个值，称为**拥塞窗口**。发送方最终的可用窗口大小，是接收方**通告窗口**和自身**拥塞窗口**中的较小值。
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_36.png)
 
 > **公式**：`发送窗口 = min(通告窗口， 拥塞窗口)`
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_38.png)
 
 拥塞控制将是后续多节课的重点。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_30.png)
 
 ### 窗口大小决策总结
 
@@ -179,37 +143,28 @@
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_32.png)
 
 > **公式**：`实际发送窗口 = min(通告窗口， 拥塞窗口)`
 
 ---
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_40.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_34.png)
 
 ## 传输层协议：UDP简介
 
 在深入TCP之前，简单了解下UDP。用户数据报协议（UDP）是一个非常轻量级的传输层协议。它只提供最基本的多路分解（通过端口）和可选的校验和，不提供可靠性、顺序性、流量控制或拥塞控制。
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_42.png)
 
 UDP适用于那些需要低开销、能容忍丢包或自身实现了简单重传机制的应用。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_44.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_36.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_46.png)
 
 ---
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_38.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_48.png)
 
 ## 深入TCP 🧩
 
@@ -217,7 +172,6 @@ TCP由Vinton Cerf和Bob Kahn等人设计，是互联网的基石。它之所以�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_40.png)
 
 ### TCP抽象：可靠的、有序的字节流
 
@@ -227,20 +181,16 @@ TCP向应用层提供“可靠的、有序的字节流”抽象。这意味着�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_42.png)
 
 TCP段被封装在IP数据包中。TCP段的最大长度受限于链路的最大传输单元（MTU），计算公式为：
 > **公式**：`最大段大小（MSS） = MTU - IP头长度 - TCP头长度`
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_50.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_44.png)
 
 ### 序列号与确认号
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_52.png)
 
 TCP的关键在于使用字节偏移量进行标识，而不是数据包编号。
 *   **序列号**：标识该TCP段中第一个数据字节在整个字节流中的偏移量。
@@ -248,21 +198,16 @@ TCP的关键在于使用字节偏移量进行标识，而不是数据包编号�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_46.png)
 
 **初始序列号**：每个TCP连接开始时，会随机选择一个初始序列号（ISN）。连接的第一个数据字节的序列号是 `ISN + 1`。使用随机ISN主要是出于安全考虑，防止旧连接的残留数据包被误认为是新连接的数据，或防止序列号预测攻击。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_48.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_54.png)
 
 ### TCP是面向连接的
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_55.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_57.png)
 
 为了实现可靠字节流，TCP需要在通信两端维护连接状态（如序列号、缓冲区、定时器等）。因此，TCP是**面向连接**的协议，需要在数据传输前显式地建立连接，在传输后拆除连接。
 
@@ -270,19 +215,13 @@ TCP的关键在于使用字节偏移量进行标识，而不是数据包编号�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_59.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_61.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_50.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_62.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_64.png)
 
 ---
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_52.png)
 
 ## TCP头部格式与功能实现
 
@@ -290,21 +229,17 @@ TCP的关键在于使用字节偏移量进行标识，而不是数据包编号�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_54.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_66.png)
 
 ### TCP头部结构
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_55.png)
 
 一个TCP头部包含以下关键字段（对应下图）：
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_57.png)
 
 1.  **源端口 & 目的端口**：各16位，用于多路分解。
 2.  **序列号**：32位，该段数据的第一个字节的序列号。
@@ -318,27 +253,20 @@ TCP的关键在于使用字节偏移量进行标识，而不是数据包编号�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_59.png)
 
 ### 多路分解
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_68.png)
 
 IP层根据协议字段（值6）将数据包交给TCP模块。TCP模块再根据目的端口号，将数据传递给相应的应用套接字。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_70.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_61.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_72.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_74.png)
 
 ### 可靠性实现
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_76.png)
 
 TCP使用我们讨论过的所有可靠性组件，但有其特定设计：
 *   **序列号与确认**：基于字节偏移量，使用**累积确认**。
@@ -349,21 +277,16 @@ TCP使用我们讨论过的所有可靠性组件，但有其特定设计：
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_62.png)
 
 ### 流量控制实现
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_78.png)
 
 接收方通过头部中的**窗口大小**字段，向发送方通告其当前可用的缓冲区空间（即通告窗口）。发送方据此调整其发送窗口的右边界，确保不会淹没接收方。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_80.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_82.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_64.png)
 
 ### 连接管理：三次握手与四次挥手
 
@@ -373,11 +296,8 @@ TCP使用三次握手来建立连接，同步初始序列号，并交换其他�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_84.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_66.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_86.png)
 
 1.  **SYN**：客户端发送一个SYN包（SYN=1）到服务器，并选择一个初始序列号 `seq = ISN_c`。
 2.  **SYN-ACK**：服务器收到后，回复一个SYN-ACK包（SYN=1， ACK=1）。该包包含：
@@ -389,7 +309,6 @@ TCP使用三次握手来建立连接，同步初始序列号，并交换其他�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_68.png)
 
 #### 连接终止：四次挥手 👋
 
@@ -397,13 +316,9 @@ TCP使用四次挥手来优雅地关闭一个全双工连接。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_88.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_70.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_90.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_92.png)
 
 1.  **FIN**：当一方（如客户端）完成数据发送后，发送一个FIN包（FIN=1）。
 2.  **ACK**：另一方（服务器）收到FIN后，发送一个ACK包进行确认。此时，从客户端到服务器的连接方向关闭，但服务器到客户端的连接仍然可用。
@@ -414,7 +329,6 @@ TCP使用四次挥手来优雅地关闭一个全双工连接。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_72.png)
 
 #### 连接重置：RST
 
@@ -422,7 +336,6 @@ TCP使用四次挥手来优雅地关闭一个全双工连接。
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_74.png)
 
 ### TCP状态机
 
@@ -430,11 +343,8 @@ TCP连接在其生命周期中会经历一系列状态。下图展示了一个�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_94.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_76.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_96.png)
 
 1.  **CLOSED** -> **SYN_SENT**：应用发起连接，发送SYN。
 2.  **SYN_SENT** -> **ESTABLISHED**：收到SYN-ACK，发送ACK。
@@ -446,13 +356,10 @@ TCP连接在其生命周期中会经历一系列状态。下图展示了一个�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_98.png)
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_78.png)
 
 ---
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_80.png)
 
 ## 总结
 
@@ -469,6 +376,5 @@ TCP是一个经过精心设计、经受住时间考验的协议。尽管面临�
 
 
 
-![](img/9dd914a828c6ba8b6ebecfaa076116ae_100.png)
 
 ![](img/9dd914a828c6ba8b6ebecfaa076116ae_82.png)

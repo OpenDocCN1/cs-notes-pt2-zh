@@ -137,11 +137,8 @@ PS1='\u@\h:\w\$ '
 export EDITOR=vim
 ```
 
-![](img/6e0b38f94a72748a5dd9bd7e891f4dd1_1.png)
 
-![](img/6e0b38f94a72748a5dd9bd7e891f4dd1_3.png)
 
-![](img/6e0b38f94a72748a5dd9bd7e891f4dd1_5.png)
 
 ### 管理点文件
 

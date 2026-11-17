@@ -1,12 +1,8 @@
 # L15：线性规划：LP、约简、单纯形 🧮
 
-![](img/39d28babca485e6e691ff2f29c68a520_0.png)
 
-![](img/39d28babca485e6e691ff2f29c68a520_2.png)
 
-![](img/39d28babca485e6e691ff2f29c68a520_4.png)
 
-![](img/39d28babca485e6e691ff2f29c68a520_6.png)
 
 ![](img/39d28babca485e6e691ff2f29c68a520_7.png)
 

@@ -12,7 +12,6 @@ Go语言中的许多内置函数和方法都会返回一个`error`类型的值�
 
 `error`接口的定义非常简单，它只要求实现一个名为`Error`的方法，该方法返回一个描述错误的字符串。
 
-![](img/d089fb3dc29c72620217742626cbd51f_1.png)
 
 ```go
 type error interface {

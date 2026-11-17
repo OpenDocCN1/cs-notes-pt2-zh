@@ -93,7 +93,6 @@ NavigationView {
 
 接下来，我们需要让视图能够跳转。这需要使用`NavigationLink`。它接受两个主要参数：`destination`（目标视图）和`label`（链接的标签外观）。
 
-![](img/d7339b331cfd9a6c1c41130ffa35381a_7.png)
 
 ![](img/d7339b331cfd9a6c1c41130ffa35381a_9.png)
 
@@ -105,7 +104,6 @@ NavigationLink(destination: Text("详情视图")) {
 
 ![](img/d7339b331cfd9a6c1c41130ffa35381a_11.png)
 
-![](img/d7339b331cfd9a6c1c41130ffa35381a_12.png)
 
 在上面的例子中，当用户点击`GroupCardView`时，应用会导航到一个显示“详情视图”的文本视图。我们同样可以在目标视图中使用`.navigationTitle`来设置其导航栏标题。
 
@@ -159,13 +157,11 @@ Rectangle()
 
 ### 显式动画
 
-![](img/d7339b331cfd9a6c1c41130ffa35381a_14.png)
 
 ![](img/d7339b331cfd9a6c1c41130ffa35381a_16.png)
 
 ![](img/d7339b331cfd9a6c1c41130ffa35381a_18.png)
 
-![](img/d7339b331cfd9a6c1c41130ffa35381a_19.png)
 
 显式动画通过`withAnimation`函数调用来实现。它将你想要执行动画的代码包裹在一个闭包中。这种方式让你可以更精确地控制何时触发动画，并可以添加条件逻辑。
 

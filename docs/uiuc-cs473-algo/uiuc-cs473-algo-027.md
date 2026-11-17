@@ -1,6 +1,5 @@
 # 027：P27 Splay Trees
 
-![](img/01b9a7997b2dc8c9e3c701bae54efd86_0.png)
 
 ![](img/01b9a7997b2dc8c9e3c701bae54efd86_2.png)
 

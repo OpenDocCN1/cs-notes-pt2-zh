@@ -1,8 +1,6 @@
 # 76：排序算法进阶
 
-![](img/ef4fa646be212e8def2cebdfe6813f05_1.png)
 
-![](img/ef4fa646be212e8def2cebdfe6813f05_3.png)
 
 ![](img/ef4fa646be212e8def2cebdfe6813f05_4.png)
 

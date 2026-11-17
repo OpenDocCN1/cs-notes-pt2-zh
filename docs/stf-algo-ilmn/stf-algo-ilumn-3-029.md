@@ -1,6 +1,5 @@
 # 029：动态规划原理
 
-![](img/f1445cf0dc0fbaea2d4d3c1259b278e7_0.png)
 
 ![](img/f1445cf0dc0fbaea2d4d3c1259b278e7_0.png)
 

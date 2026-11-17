@@ -1,10 +1,7 @@
 # 026：NP困难性进阶，从顶点覆盖到哈密顿环的规约
 
-![](img/05282ec1447bf319e6641e55ad3a6db8_1.png)
 
-![](img/05282ec1447bf319e6641e55ad3a6db8_3.png)
 
-![](img/05282ec1447bf319e6641e55ad3a6db8_5.png)
 
 ![](img/05282ec1447bf319e6641e55ad3a6db8_7.png)
 

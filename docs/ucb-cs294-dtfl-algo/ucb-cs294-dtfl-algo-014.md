@@ -1,6 +1,5 @@
 # 014：Krahmer-Ward 证明收尾与近似矩阵乘法
 
-![](img/21349bf6154bf1852ff7c73541898ba9_0.png)
 
 ![](img/21349bf6154bf1852ff7c73541898ba9_0.png)
 

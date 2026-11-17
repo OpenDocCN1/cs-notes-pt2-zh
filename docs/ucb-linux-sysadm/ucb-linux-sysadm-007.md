@@ -2,9 +2,7 @@
 
 ![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_0.png)
 
-![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_2.png)
 
-![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_4.png)
 
 ![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_6.png)
 
@@ -97,7 +95,6 @@ plaintext = decrypt(ciphertext, key)
 
 哈希函数可以将任意长度的数据转换为一个固定长度的、唯一的字符串（称为哈希值或摘要）。即使输入数据发生微小变化，输出的哈希值也会截然不同。加密哈希函数还需要避免**哈希碰撞**（即两个不同的输入产生相同的输出）。
 
-![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_10.png)
 
 哈希函数是**单向函数**：从输入计算哈希值很容易，但从哈希值反推原始输入在计算上极其困难。
 
@@ -108,11 +105,9 @@ plaintext = decrypt(ciphertext, key)
 sha256sum /path/to/your/file.iso
 ```
 
-![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_12.png)
 
 ## 实现身份验证：数字签名
 
-![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_14.png)
 
 身份验证用于证明数据的来源。我们可以使用非对称加密技术来**签名**文件。
 
@@ -122,7 +117,6 @@ sha256sum /path/to/your/file.iso
 
 ## 确保可用性
 
-![](img/f26a3ec7a759f058aaf2ae9eb216f1e7_16.png)
 
 在安全背景下讨论可用性，通常涉及防止服务因攻击（如DDoS）而不可用。
 

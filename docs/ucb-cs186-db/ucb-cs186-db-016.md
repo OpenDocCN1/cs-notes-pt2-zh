@@ -58,9 +58,7 @@
 
 ## 引入恢复机制
 
-![](img/29600da32d3999ef340320b507cbdadb_3.png)
 
-![](img/29600da32d3999ef340320b507cbdadb_5.png)
 
 上一节我们讨论了如何通过锁来保证事务的隔离性。本节中我们来看看恢复管理器如何确保事务的原子性和持久性。
 
@@ -86,15 +84,12 @@
 
 ![](img/29600da32d3999ef340320b507cbdadb_17.png)
 
-![](img/29600da32d3999ef340320b507cbdadb_19.png)
 
-![](img/29600da32d3999ef340320b507cbdadb_20.png)
 
 ![](img/29600da32d3999ef340320b507cbdadb_22.png)
 
 ![](img/29600da32d3999ef340320b507cbdadb_24.png)
 
-![](img/29600da32d3999ef340320b507cbdadb_26.png)
 
 ### 事务中止的原因
 
@@ -119,7 +114,6 @@ SQL中通过 `BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK` 以及 `SAVEPOINT` 来控
 
 ### 缓冲区管理器回顾
 
-![](img/29600da32d3999ef340320b507cbdadb_28.png)
 
 恢复操作的基本单位是**磁盘页**。缓冲区管理器管理着内存中的缓冲池，池中包含多个帧，每个帧可容纳一个磁盘页。
 

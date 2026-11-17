@@ -1,6 +1,5 @@
 # 018：函数与切片 04_01_01
 
-![](img/4c5debf1e7dde635f43553eea6c5d165_0.png)
 
 ![](img/4c5debf1e7dde635f43553eea6c5d165_0.png)
 

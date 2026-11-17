@@ -1,12 +1,8 @@
 # L12：贪心算法：最小生成树 🌳
 
-![](img/2bd334965b72245f5ad1322c7c1cb5ba_0.png)
 
-![](img/2bd334965b72245f5ad1322c7c1cb5ba_2.png)
 
-![](img/2bd334965b72245f5ad1322c7c1cb5ba_4.png)
 
-![](img/2bd334965b72245f5ad1322c7c1cb5ba_6.png)
 
 ![](img/2bd334965b72245f5ad1322c7c1cb5ba_7.png)
 

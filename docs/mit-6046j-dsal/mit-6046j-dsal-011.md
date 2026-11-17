@@ -1,12 +1,8 @@
 # L8：通用和完美哈希 🗂️
 
-![](img/ded117681922d20bbd03f72419bcc0e7_0.png)
 
-![](img/ded117681922d20bbd03f72419bcc0e7_2.png)
 
-![](img/ded117681922d20bbd03f72419bcc0e7_4.png)
 
-![](img/ded117681922d20bbd03f72419bcc0e7_6.png)
 
 ![](img/ded117681922d20bbd03f72419bcc0e7_7.png)
 

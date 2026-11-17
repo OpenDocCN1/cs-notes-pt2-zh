@@ -42,7 +42,6 @@
 
 ![](img/e074eeb1eaa5a34cb95cc19e5e9d3ba4_3.png)
 
-![](img/e074eeb1eaa5a34cb95cc19e5e9d3ba4_4.png)
 
 在其他语言（如Lisp）中，这些操作通常被称为 `cons`、`car` 和 `cdr`。对是构建链表的基础，例如 `(pair 1 (pair 2 false))` 可以表示列表 `[1, 2]`。
 

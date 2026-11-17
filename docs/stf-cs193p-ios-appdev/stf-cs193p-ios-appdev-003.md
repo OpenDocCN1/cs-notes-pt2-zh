@@ -119,11 +119,9 @@ struct Car: Movable {
 *   `(Double) -> Void`：一个接受 `Double` 且不返回值的函数。
 *   `() -> [String]`：一个无参数但返回字符串数组的函数。
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_1.png)
 
 您可以声明函数类型的变量、参数或返回值：
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_3.png)
 
 ```swift
 var operation: (Double) -> Double // 变量 operation 是一个函数类型
@@ -132,9 +130,7 @@ operation = square // 将 square 函数赋值给 operation
 let result = operation(4) // 调用 operation，相当于调用 square(4)
 ```
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_5.png)
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_7.png)
 
 **闭包**本质上就是内联的匿名函数，它们可以捕获定义环境中的变量。我们在构建UI时已经大量使用了闭包（例如 `ZStack` 的 `content` 参数、按钮的 `action`）。
 
@@ -148,11 +144,8 @@ let result = operation(4) // 调用 operation，相当于调用 square(4)
 
 ## 总结 ✨
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_9.png)
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_10.png)
 
-![](img/33bed8579d8b25aa750cc2d4267687cd_12.png)
 
 本节课我们一起学习了构建SwiftUI应用的两大基石。
 

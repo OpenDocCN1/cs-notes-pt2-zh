@@ -1,6 +1,5 @@
 # 008：无妥协的实时 Apache Iceberg
 
-![](img/27e5fb4fb5c29542a36cb78990afdee9_0.png)
 
 ![](img/27e5fb4fb5c29542a36cb78990afdee9_0.png)
 

@@ -1,8 +1,6 @@
 # 005：Fooling集合与非确定性有限自动机（NFA）入门
 
-![](img/4a10fbdb72271bd08e63295ee5db50f6_0.png)
 
-![](img/4a10fbdb72271bd08e63295ee5db50f6_2.png)
 
 ![](img/4a10fbdb72271bd08e63295ee5db50f6_3.png)
 

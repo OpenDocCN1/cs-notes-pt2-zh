@@ -32,7 +32,6 @@ MyContainer::MyContainer(int* B, int size) : MyContainer() // 委托给默认构
 }
 ```
 
-![](img/a3805b9c8679b22d8baf3b1895f49490_1.png)
 
 ## 拷贝构造函数
 
@@ -54,11 +53,9 @@ MyContainer::MyContainer(const MyContainer& other)
 
 ## 构造函数类型总结
 
-![](img/a3805b9c8679b22d8baf3b1895f49490_3.png)
 
 一个类典型的构造函数有哪些？同样，我已经给出了答案。
 
-![](img/a3805b9c8679b22d8baf3b1895f49490_5.png)
 
 如果你一直在认真听讲，现在只需要告诉我我们刚刚讨论了什么。
 

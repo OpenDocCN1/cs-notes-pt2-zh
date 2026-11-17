@@ -1,6 +1,5 @@
 # 019：最大流应用
 
-![](img/af2f8f17394d92e1db52fcaf4302c194_0.png)
 
 ![](img/af2f8f17394d92e1db52fcaf4302c194_2.png)
 

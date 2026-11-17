@@ -1,12 +1,8 @@
 # L21：密码学：哈希函数 🔐
 
-![](img/56b2d4cbc01c392cf5a5c2526f12735e_0.png)
 
-![](img/56b2d4cbc01c392cf5a5c2526f12735e_2.png)
 
-![](img/56b2d4cbc01c392cf5a5c2526f12735e_4.png)
 
-![](img/56b2d4cbc01c392cf5a5c2526f12735e_6.png)
 
 ![](img/56b2d4cbc01c392cf5a5c2526f12735e_7.png)
 

@@ -1,6 +1,5 @@
 # 005：方法、结构体与扑克概率计算
 
-![](img/1e80358cfbb9d6ce4d4421022edc7fdd_0.png)
 
 ![](img/1e80358cfbb9d6ce4d4421022edc7fdd_0.png)
 
@@ -186,10 +185,8 @@ fmt.Printf("在 %d 局中，发现 %d 次同花顺。概率约为 %.4f\n", total
 
 一个很好的扩展练习是：修改代码，编写一个`IsStraight`函数来判断一手牌中是否包含顺子（连续点数的五张牌），并计算其在七张牌扑克中出现的概率。根据扑克规则，顺子应该比同花顺更常见，因此其模拟概率应该更高。
 
-![](img/1e80358cfbb9d6ce4d4421022edc7fdd_2.png)
 
 ![](img/1e80358cfbb9d6ce4d4421022edc7fdd_2.png)
 
-![](img/1e80358cfbb9d6ce4d4421022edc7fdd_4.png)
 
 ![](img/1e80358cfbb9d6ce4d4421022edc7fdd_4.png)

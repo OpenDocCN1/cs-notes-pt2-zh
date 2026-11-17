@@ -58,7 +58,6 @@ Spark 的操作分为 **转换（Transformations，惰性执行）** 和 **行�
 
 ## 3. 数据仓库与星型/雪花模式
 
-![](img/79dfc9378d0ff879f687500a77e4f1cf_3.png)
 
 数据仓库有其专门的数据模型。以下是其核心组件：
 
@@ -85,9 +84,7 @@ GROUP BY p.category, s.country;
 
 ***
 
-![](img/79dfc9378d0ff879f687500a77e4f1cf_5.png)
 
-![](img/79dfc9378d0ff879f687500a77e4f1cf_7.png)
 
 ## 4. 数据立方体（Data Cube）
 

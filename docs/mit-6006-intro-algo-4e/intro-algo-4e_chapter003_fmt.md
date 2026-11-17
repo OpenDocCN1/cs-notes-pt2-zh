@@ -356,11 +356,9 @@ O(g(n, m)) = { f(n, m) : 存在正常数 c, n0 和 m0 使得对于所有 n ≥ n
 
 对于所有实数 $x$，我们有
 
-![art](img/Art_P40.jpg)
 
 我们还有
 
-![art](img/Art_P41.jpg)
 
 或者等价地，
 

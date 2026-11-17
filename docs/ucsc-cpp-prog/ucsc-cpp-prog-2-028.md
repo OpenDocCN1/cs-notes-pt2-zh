@@ -4,7 +4,6 @@
 
 ## 概述
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_1.png)
 
 我们将分析一个包含`Student`（学生）基类和`GraduateStudent`（研究生）派生类的简单层次结构。通过对比这两个类，我们将理解为何需要创建特殊的派生类别，以及如何通过继承实现代码复用和扩展功能。
 
@@ -16,7 +15,6 @@
 
 学生和研究生在许多方面是相似的对象或实例，但它们也存在差异。这种差异类似于老鼠和人类都是哺乳动物，但我们仍会创建“老鼠”和“人类”这两个特殊类别。原因在于，这些派生类别足够丰富和重要，需要添加额外的信息，以便我们能明确地称某物为“老鼠”，而不仅仅是“一个碰巧是老鼠的哺乳动物”。
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_3.png)
 
 因此，让我们更详细地查看学生和研究生之间的代码架构。
 
@@ -33,7 +31,6 @@ Student::Student(const string& name, int id, float gpa, Year year)
 }
 ```
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_5.png)
 
 我们有一个`Student`类，它包含学生姓名、整型ID、平均绩点（GPA）以及一个表示年级的`Year`枚举类（例如，学生是大一新生）。这里再次使用了初始化列表语法来初始化这些成员变量。这构成了`Student`类的基本构造函数。
 
@@ -81,7 +78,6 @@ Student* ps = &gs; // 基类指针指向派生类对象
 
 基类的`print`方法只打印姓名、学ID、平均绩点等信息。派生类的`print`方法通过作用域解析运算符（`::`）调用基类的`print`方法，然后添加额外的信息。
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_7.png)
 
 ```cpp
 void GraduateStudent::print() const {
@@ -111,7 +107,6 @@ void GraduateStudent::print() const {
 现在让我们看看如何使用这个简单的层次结构。
 
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_9.png)
 
 ```cpp
 Student mayPole("May Pole", 100, 3.8, Year::FRESHMAN);
@@ -134,7 +129,6 @@ pgs->print(); // 调用 GraduateStudent::print()
 
 这里的关键在于，我们**尚未使用`virtual`关键字**。在C++中，与Java等语言不同，非虚函数的重写遵循**静态绑定**（或早期绑定）规则。函数调用在编译时根据指针的类型（而非指向对象的实际类型）决定。
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_11.png)
 
 ---
 
@@ -149,7 +143,6 @@ pgs->print(); // 调用 GraduateStudent::print()
 
 `ps->print()`调用的是基类`Student`的`print`函数。`pgs->print()`调用的是派生类`GraduateStudent`的`print`函数。理解这种机制对于掌握C++的多态性至关重要。
 
-![](img/42a1ee08b5234b9a1f1eedcb6601b3bd_13.png)
 
 最后，在设计类层次结构时，需要仔细考虑`public`、`protected`和`private`访问权限的边界。通常，为了正确性，尽可能将成员设为`private`是一个好规则，但这有时可能会牺牲一些效率。因此，你需要更多地思考哪些成员应该公开，哪些应该被保护。`friend`（友元）是另一种突破这些访问类别限制的方式。
 

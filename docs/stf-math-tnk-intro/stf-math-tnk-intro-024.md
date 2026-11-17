@@ -1,48 +1,30 @@
 # 024：习题集5指导教程 🧠
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_1.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_3.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_4.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_6.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_8.png)
 
 在本节课中，我们将一起学习如何分析习题集中的问题，重点是理解证明的结构、逻辑量词的含义以及如何评估一个论证的有效性。我们将通过具体的例子，学习如何从定义出发构建严谨的证明，并识别常见的逻辑错误。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_10.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_12.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_14.png)
 
 ---
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_16.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_18.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_20.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_22.png)
 
 ## 问题1：判断证明的有效性 🔍
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_23.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_25.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_27.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_29.png)
 
 习题集5的第一个问题要求我们判断一个证明是否有效。这个证明试图论证：**如果整数 `m` 和 `n` 都是奇数，那么它们的乘积 `m * n` 也是奇数**。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_31.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_33.png)
 
 上一节我们介绍了证明的基本概念，本节中我们来看看如何具体分析一个证明。
 
@@ -57,22 +39,17 @@
 2.  计算乘积：`m * n = (2p + 1)(2q + 1) = 4pq + 2p + 2q + 1 = 2(2pq + p + q) + 1`。
 3.  令 `r = 2pq + p + q`，则 `m * n = 2r + 1`，这符合奇数的定义。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_35.png)
 
 到目前为止，代数运算都是正确的。然而，这个证明并不完整。它只证明了 **“如果 m 和 n 是奇数，那么 m*n 是奇数”**。这是一个从右到左的蕴含关系（if部分）。
 
 要完成“当且仅当”的证明，我们还需要证明其逆命题，即 **“如果 m*n 是奇数，那么 m 和 n 都是奇数”**（only if部分，从左到右的蕴含）。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_37.png)
 
 以下是完成证明所需的补充部分：
 我们需要证明：如果 `m*n` 不是奇数（即为偶数），那么 `m` 和 `n` 不全是奇数（即至少有一个是偶数）。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_39.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_40.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_42.png)
 
 证明如下：
 1.  假设 `m*n` 是偶数。
@@ -89,31 +66,23 @@
 
 现在，我们来看一个关于逻辑量词的问题。这个问题探讨如何用形式逻辑表达“你可以一时欺骗所有人，也可以永远欺骗某些人，但你不可能永远欺骗所有人”这句格言。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_44.png)
 
 上一节我们分析了证明的结构，本节中我们来看看逻辑量词在表达复杂语句时的应用。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_46.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_48.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_50.png)
 
 题目要求找出与“并非（你可以欺骗所有人所有时间）”等价的逻辑表达式。用符号表示，设 `F(x, t)` 表示“你可以在时间 `t` 欺骗人 `x`”。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_52.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_54.png)
 
 ![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_55.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_57.png)
 
 原语句为：`¬(∀x ∀t F(x, t))`。
 
 以下是选项分析：
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_59.png)
 
 1.  **∃x ∃t ¬F(x, t)**：存在某个人和某个时间，你无法欺骗他。这直接意味着“你不能在所有时间欺骗所有人”，因此是等价的。
 2.  **∀x ∃t ¬F(x, t)**：对于每一个人，都存在某个时间你无法欺骗他。这可以理解为“你无法在任何时候欺骗任何人”，这与原句含义不同。
@@ -121,87 +90,62 @@
 
 因此，正确答案是 **A**。这个练习强调了存在量词（∃）和全称量词（∀）在精确表达“一些”、“所有”等概念时的用法，以及如何对复合语句进行否定。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_61.png)
 
 ---
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_63.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_64.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_65.png)
 
 ## 问题6：无限多有理平方根 🔢
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_67.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_68.png)
 
 问题6陈述：**存在无限多个整数 `n`，使得 `√n` 是有理数。** 判断真假并证明。
 
 上一节我们讨论了量词，本节中我们来看一个看似复杂但解法非常简洁的证明题。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_70.png)
 
 这个命题是 **真** 的。证明极其简单：
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_72.png)
 
 *   考虑所有完全平方数，即形如 `n = k²` 的整数（`k` 是任意整数）。
 *   因为整数有无限多个，所以完全平方数也有无限多个。
 *   对于任何一个完全平方数 `n = k²`，其平方根 `√n = k` 是一个整数，因此当然是有理数。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_74.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_76.png)
 
 **证明完成**。这个例子说明，有时证明的关键在于找到一个正确的观察角度（这里是“完全平方数”），而不是进行复杂的计算。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_77.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_78.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_79.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_81.png)
 
 ---
 
 ## 问题7：评估一个有缺陷的“证明” ⚠️
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_83.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_84.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_85.png)
 
 ![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_86.png)
 
 ![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_87.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_88.png)
 
 问题7展示了一个“证明” `1 = 2` 的经典谬误。我们的任务不是找出错误，而是根据课程提供的评分标准来评估这个“证明”。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_90.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_91.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_92.png)
 
 上一节我们看到了一个简洁的证明，本节中我们来看看如何从结构和沟通的角度评估一个论证，即使它是错误的。
 
 评分标准包括：清晰度、开头、结论陈述、理由提供、逻辑正确性和整体评价。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_94.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_96.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_98.png)
 
 以下是评估过程：
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_99.png)
 
 *   **清晰度**：论证步骤写得非常清楚。 **(4/4分)**
 *   **开头**：从一个正确的等式 `1 - 3 = 4 - 6` 开始。 **(4/4分)**
@@ -210,39 +154,28 @@
 *   **逻辑正确性**：这里存在致命错误。在开方步骤 `(1 - 3/2)² = (2 - 3/2)²` 后，正确的做法是考虑正负根，应得 `±(1 - 3/2) = ±(2 - 3/2)`。选择 `-(1 - 3/2) = +(2 - 3/2)` 会得到 `1/2 = 1/2`。忽略正负号是严重的数学错误。 **(0/4分)**
 *   **整体**：尽管论证清晰、结构良好，但由于核心数学错误导致结论荒谬，整体上这是一个无效的证明。 **(0/4分)**
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_101.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_102.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_103.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_104.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_105.png)
 
 **总分：16/24分**。
 
 **核心要点**：这个练习凸显了本课程的重点——**数学思维与沟通**。一个论证可以在形式、清晰度和结构上近乎完美，但如果逻辑基石存在错误，整个证明就会崩塌。在专业数学中，书写良好的错误论证有时也可能被忽略，这更说明了逻辑严密性的至关重要。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_107.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_109.png)
 
 ---
 
 ## 课后思考题：浴缸谜题 🛁
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_111.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_112.png)
 
 最后，我们以一个经典的“浴缸问题”结束，它鼓励我们进行“跳出盒子”的思考：
 
 > 如果冷水龙头单独注满浴缸需要30分钟，热水龙头单独注满需要60分钟。那么两个龙头一起开，需要多长时间注满浴缸？
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_114.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_115.png)
 
 标准的解法是计算速率：冷水速率 = 1/30 缸/分钟，热水速率 = 1/60 缸/分钟，合并速率 = 1/30 + 1/60 = 1/20 缸/分钟，所以需要 **20分钟**。
 
@@ -252,9 +185,7 @@
 *   把它们一起开 **60分钟**。在这段时间里，冷水龙头可以装满 **2缸**，热水龙头可以装满 **1缸**，加起来是 **3缸**。
 *   那么，装满 **1缸** 需要的时间就是 **60分钟 / 3 = 20分钟**。
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_117.png)
 
-![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_118.png)
 
 ![](img/b5dbdeb1e259bceb40c9eb2103a9e78a_119.png)
 

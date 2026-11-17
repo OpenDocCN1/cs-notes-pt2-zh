@@ -1,6 +1,5 @@
 # 001：课程介绍与背景知识
 
-![](img/b211a090b36f6dabc8185646f3d6d2ac_0.png)
 
 ![](img/b211a090b36f6dabc8185646f3d6d2ac_0.png)
 
@@ -128,10 +127,8 @@
 
 下一节课，我们将深入探讨查询优化器的早期经典实现——IBM System R优化器，开启我们的具体技术学习之旅。
 
-![](img/b211a090b36f6dabc8185646f3d6d2ac_2.png)
 
 ![](img/b211a090b36f6dabc8185646f3d6d2ac_2.png)
 
-![](img/b211a090b36f6dabc8185646f3d6d2ac_3.png)
 
 ![](img/b211a090b36f6dabc8185646f3d6d2ac_3.png)

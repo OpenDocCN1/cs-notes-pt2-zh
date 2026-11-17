@@ -79,11 +79,8 @@ init(configuration: ReadConfiguration) throws {
 }
 ```
 
-![](img/39cf309056382b11c93a4e49325ac696_1.png)
 
-![](img/39cf309056382b11c93a4e49325ac696_2.png)
 
-![](img/39cf309056382b11c93a4e49325ac696_4.png)
 
 **3. 实现`snapshot`方法（在后台线程执行）**
 ```swift
@@ -105,9 +102,7 @@ func fileWrapper(snapshot: Data, configuration: WriteConfiguration) throws -> Fi
 
 撤销功能通过 `UndoManager` 实现。我们可以在视图中通过 `@Environment(\.undoManager)` 获取 `UndoManager`，然后将其传递给视图模型的意图函数。
 
-![](img/39cf309056382b11c93a4e49325ac696_6.png)
 
-![](img/39cf309056382b11c93a4e49325ac696_8.png)
 
 在视图模型中，我们创建一个通用的方法来包装任何修改模型的操作，使其可撤销：
 
@@ -150,9 +145,7 @@ func setBackground(_ url: URL, undoWith undoManager: UndoManager?) {
 }
 ```
 
-![](img/39cf309056382b11c93a4e49325ac696_10.png)
 
-![](img/39cf309056382b11c93a4e49325ac696_12.png)
 
 如果是在视图模型等非视图环境中，则需要手动添加和移除观察者：
 

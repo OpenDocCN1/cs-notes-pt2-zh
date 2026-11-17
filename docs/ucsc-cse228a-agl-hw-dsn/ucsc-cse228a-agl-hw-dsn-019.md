@@ -1,12 +1,10 @@
 # 019：继承（第一部分）
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_1.png)
 
 在本节课中，我们将要学习Scala和Chisel中的继承概念。继承是面向对象编程的核心特性之一，它允许我们复用代码并构建模块化的设计。我们将从Scala的基础继承开始，然后探讨如何在Chisel硬件设计中应用这些概念。
 
 上一节我们通过一个案例研究探讨了渐进式开发。本节中，我们来看看如何通过继承更有效地实现代码复用。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_3.png)
 
 ## 为什么使用继承？
 
@@ -16,13 +14,11 @@
 
 Scala提供了多种面向对象的继承机制。虽然看起来有些繁多，但我们可以逐一理解。以下是几种主要的继承方式。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_5.png)
 
 ### 常规类继承
 
 这是最基本的继承形式，我们可能已经在不知不觉中使用过它。一个类（子类）可以通过 `extends` 关键字继承另一个类（父类）。子类将拥有父类的所有特性，除非它明确地覆盖了某些部分。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_7.png)
 
 以下是常规类继承的一个简单示例：
 
@@ -51,10 +47,8 @@ class Child(name: String) extends Parent(name) {
 
 以下是抽象类继承的一个示例：
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_9.png)
 
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_11.png)
 
 ```scala
 abstract class AbstractParent(val name: String) {
@@ -77,9 +71,7 @@ class SpanishChild(name: String) extends AbstractParent(name) {
 
 ## Scala集合库中的继承实例
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_13.png)
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_15.png)
 
 为了理解继承如何用于构建复杂的层次结构，我们可以看看Scala标准库中的集合类层次图。该图展示了一个清晰的单继承树，其中蓝色框代表抽象类。
 
@@ -100,15 +92,11 @@ class SpanishChild(name: String) extends AbstractParent(name) {
 
 ### 一个Chisel继承示例：一元操作符生成器
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_17.png)
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_19.png)
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_20.png)
 
 假设我们想创建一系列执行一元操作（一个输入，一个输出）的模块。我们可以先定义一个抽象类来捕获这个通用模式。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_22.png)
 
 首先，我们定义一个抽象类 `UnaryOp`，它规定了输入输出的宽度和IO接口，但将具体的操作 `op` 留为抽象：
 
@@ -127,7 +115,6 @@ abstract class UnaryOp(width: Int) extends Module {
 
 接下来，我们可以轻松地通过继承这个抽象类来创建具体的模块：
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_24.png)
 
 1.  **直通模块**：输出等于输入。
 
@@ -137,7 +124,6 @@ abstract class UnaryOp(width: Int) extends Module {
     }
     ```
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_26.png)
 
 2.  **取反模块**：输出等于输入的按位取反。
 
@@ -149,33 +135,25 @@ abstract class UnaryOp(width: Int) extends Module {
 
 通过这种方式，我们复用了 `UnaryOp` 中定义IO和连接逻辑的代码，只需在不同的子类中实现核心的 `op` 方法即可。这使得创建新的、行为不同的一元操作模块变得非常简单。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_28.png)
 
 ### 关于覆盖Chisel IO的注意事项
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_30.png)
 
 在尝试通过继承修改IO接口时可能会遇到问题。直接覆盖父模块中的 `io` 字段可能不会按预期工作，并可能导致运行时错误。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_32.png)
 
 Chisel提供了其他模块类型来更好地支持这种场景，例如：
 *   `RawModule`：不自动包含时钟和复位信号，提供更底层的控制。
 *   `MultiIOModule`：允许以更灵活的方式定义和组合多个IO块。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_34.png)
 
 当你的设计需要通过继承来改变IO结构时，可以考虑使用这些模块作为基类。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_36.png)
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_38.png)
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_40.png)
 
 ## 总结
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_42.png)
 
 本节课中我们一起学习了Scala和Chisel中的继承。
 *   我们了解了常规类继承和抽象类继承的基本概念与语法。
@@ -183,7 +161,6 @@ Chisel提供了其他模块类型来更好地支持这种场景，例如：
 *   我们探讨了如何在Chisel中利用继承来创建可定制的硬件模块家族，通过抽象类捕获通用模式，再通过具体子类实现特定行为。
 *   我们还注意到了在Chisel中覆盖IO接口的特殊性，并了解了`RawModule`等替代方案。
 
-![](img/a49c2b14ce693bb7c3676471fc4e43b8_44.png)
 
 ![](img/a49c2b14ce693bb7c3676471fc4e43b8_46.png)
 

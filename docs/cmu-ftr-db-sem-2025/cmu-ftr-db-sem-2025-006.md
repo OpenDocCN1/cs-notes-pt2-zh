@@ -12,7 +12,6 @@
 
 ![](img/d1d3a427af30b31b1a2d3ecbca2102bc_0.png)
 
-![](img/d1d3a427af30b31b1a2d3ecbca2102bc_9.png)
 
 在本节课中，我们将学习 SingleStore 如何为现代云数据库设计存储元数据系统。我们将从基础架构概述开始，探讨其局限性，并深入了解一个名为“Bottle Service”的核心服务如何解决这些问题，从而解锁数据库分支等高级功能。
 
@@ -67,7 +66,6 @@
 
 为了解决引用跟踪和垃圾回收问题，SingleStore 引入了 **Bottle Service**。
 
-![](img/d1d3a427af30b31b1a2d3ecbca2102bc_7.png)
 
 Bottle Service 是一个集中式的元数据服务，其核心工作是**引用计数**。以下是它的工作原理：
 
@@ -81,7 +79,6 @@ Bottle Service 是一个集中式的元数据服务，其核心工作是**引用
 
 ![](img/d1d3a427af30b31b1a2d3ecbca2102bc_23.png)
 
-![](img/d1d3a427af30b31b1a2d3ecbca2102bc_25.png)
 
 那么，用什么系统来实现这个 Bottle Service 呢？它需要处理事务性操作、运行实时轻量分析查询（如连接查询），并要求高可用性和高持久性。
 
@@ -118,7 +115,6 @@ Bottle Service 本身就是一个 SingleStore 数据库集群，配备了一系�
 
 创建分支的过程变得清晰可靠：
 
-![](img/d1d3a427af30b31b1a2d3ecbca2102bc_31.png)
 
 1.  选择分支点的 LSN。
 2.  为新分支创建一个新的计算会话和对应的存储目录。

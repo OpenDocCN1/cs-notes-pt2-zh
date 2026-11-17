@@ -30,7 +30,6 @@
 
 ![](img/7c327a4e1df9b91adc1eb6bb87843859_22.png)
 
-![](img/7c327a4e1df9b91adc1eb6bb87843859_24.png)
 
 ## 什么是 MVC？
 

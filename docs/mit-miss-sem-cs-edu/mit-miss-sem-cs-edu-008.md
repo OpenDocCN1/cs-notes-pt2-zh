@@ -20,7 +20,6 @@
 
 ![](img/7d0968740d56bc45d228becba11f1261_5.png)
 
-![](img/7d0968740d56bc45d228becba11f1261_7.png)
 
 以下是一个简单的 `Makefile` 示例，用于构建一个包含图表的 LaTeX 论文：
 

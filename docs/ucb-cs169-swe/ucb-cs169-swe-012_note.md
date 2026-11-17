@@ -194,9 +194,7 @@ end
 
 **解决方案**：使用RSpec的 `expect(...).to receive(...)` 来模拟方法调用。
 
-![](img/ce53b82a2a385784dac80cbbd0fdcbe5_3.png)
 
-![](img/ce53b82a2a385784dac80cbbd0fdcbe5_5.png)
 
 ### 示例：模拟外部API调用
 

@@ -1,6 +1,5 @@
 # 006：通过通信复杂度证明下界
 
-![](img/9bb2c7274eabb1ad9fd7085567c3b272_0.png)
 
 ![](img/9bb2c7274eabb1ad9fd7085567c3b272_0.png)
 

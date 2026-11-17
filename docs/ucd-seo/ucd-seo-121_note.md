@@ -62,10 +62,8 @@
 
 在本课中，我们介绍了影响力者及其价值。下一课，我将开始向你展示与他们建立关系的一些初步步骤。
 
-![](img/660dd8980cec0a8c28abb74f56fba255_1.png)
 
 ![](img/660dd8980cec0a8c28abb74f56fba255_1.png)
 
-![](img/660dd8980cec0a8c28abb74f56fba255_2.png)
 
 ![](img/660dd8980cec0a8c28abb74f56fba255_2.png)

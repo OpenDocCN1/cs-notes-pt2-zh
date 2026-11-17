@@ -1,6 +1,5 @@
 # 037：重载和函数选择
 
-![](img/3cad7aa76f99d7ada90e80cf938f00b1_0.png)
 
 ![](img/3cad7aa76f99d7ada90e80cf938f00b1_0.png)
 
@@ -178,6 +177,5 @@ Point operator+(const Point& lhs, const Point& rhs) {
 
 我们还探讨了与之相关的**转换构造函数**、**类型转换运算符**以及编译器进行**重载函数选择**的复杂规则。记住，这些强大的工具应当用于让代码更清晰、更符合领域逻辑，而不是制造晦涩的“黑魔法”。
 
-![](img/3cad7aa76f99d7ada90e80cf938f00b1_2.png)
 
 ![](img/3cad7aa76f99d7ada90e80cf938f00b1_2.png)

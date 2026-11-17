@@ -1,8 +1,6 @@
 # 008：上下文无关文法
 
-![](img/87897f3e87fb15dffac1e435762db4ab_0.png)
 
-![](img/87897f3e87fb15dffac1e435762db4ab_2.png)
 
 ![](img/87897f3e87fb15dffac1e435762db4ab_4.png)
 

@@ -26,7 +26,6 @@ const [state, setState] = useState(initialState);
 
 首先，我们需要从 `react` 库中导入 `useState` Hook。
 
-![](img/7a9e564249570305ada245e8f13151fd_0.png)
 
 ```javascript
 import React, { useState } from 'react';
@@ -45,7 +44,6 @@ function Counter() {
 
 现在，变量 `count` 存储着当前计数值（初始为0），而 `setCount` 函数用于更新 `count` 的值。
 
-![](img/7a9e564249570305ada245e8f13151fd_1.png)
 
 ### 步骤三：在 JSX 中显示状态
 
@@ -63,7 +61,6 @@ return (
 
 为了改变状态，我们需要调用状态更新函数 `setCount`。重要的是，**我们永远不应该直接修改 `count` 变量**（例如 `count = count + 1`），而必须使用 `setCount` 函数。
 
-![](img/7a9e564249570305ada245e8f13151fd_2.png)
 
 以下是定义增加和减少计数功能的代码：
 
@@ -81,7 +78,6 @@ const decrement = () => {
 
 最后，我们将这两个函数绑定到按钮的 `onClick` 事件上。
 
-![](img/7a9e564249570305ada245e8f13151fd_3.png)
 
 ```javascript
 return (

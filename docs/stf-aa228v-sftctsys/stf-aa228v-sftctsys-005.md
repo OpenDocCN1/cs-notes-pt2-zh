@@ -1,6 +1,5 @@
 # 005：通过优化进行证伪
 
-![](img/3a5a0299d87ee6fdbbf9866c73c4e147_0.png)
 
 ![](img/3a5a0299d87ee6fdbbf9866c73c4e147_0.png)
 
@@ -88,7 +87,6 @@ function direct_falsification(depth, M, spec)
 end
 ```
 
-![](img/3a5a0299d87ee6fdbbf9866c73c4e147_2.png)
 
 ## 总结
 

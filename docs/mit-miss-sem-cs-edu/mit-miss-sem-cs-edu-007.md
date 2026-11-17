@@ -87,15 +87,12 @@ strace ls -l 2>&1 | head -20
 
 ---
 
-![](img/e5b463ca95897ffea3c311d81cc0116e_1.png)
 
 ## 静态分析工具
 
-![](img/e5b463ca95897ffea3c311d81cc0116e_3.png)
 
 静态分析工具可以在不运行代码的情况下检查源代码，发现潜在的错误、代码风格问题或类型不一致。
 
-![](img/e5b463ca95897ffea3c311d81cc0116e_5.png)
 
 ![](img/e5b463ca95897ffea3c311d81cc0116e_6.png)
 
@@ -156,7 +153,6 @@ python -m cProfile -s time your_script.py
 
 ### 行分析器和内存分析器
 
-![](img/e5b463ca95897ffea3c311d81cc0116e_10.png)
 
 对于更细粒度的分析，可以使用行分析器（如Python的 `line_profiler`），它显示每行代码的执行时间。
 

@@ -1,6 +1,5 @@
 # 27：OLAP 演示教程 🧮
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_1.png)
 
 在本课程中，我们将通过一个具体的星型架构销售数据示例，演示联机分析处理（OLAP）的核心操作。我们将学习如何创建星型架构，执行不同类型的OLAP查询，并了解SQL中为OLAP新增的特定语法。
 
@@ -8,19 +7,16 @@
 
 ## 概述
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_3.png)
 
 我们将创建一个包含事实表和多个维度表的星型架构，用于分析销售数据。演示将涵盖星型连接、钻取、汇总、切片、切块等操作，并介绍SQL标准中的 `CUBE` 和 `ROLLUP` 操作。所有演示将使用MySQL数据库进行。
 
 ---
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_5.png)
 
 ## 创建星型架构
 
 首先，我们创建一个星型架构，它包含一个销售事实表和三个维度表：顾客表、商品表和商店表。
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_7.png)
 
 以下是创建这些表的SQL代码：
 
@@ -131,7 +127,6 @@ GROUP BY s.store_id, s.customer_id, s.item_id;
 
 运行此查询后，结果会变得更加详细，显示了按商店、顾客和商品细分的总销售额。
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_9.png)
 
 ---
 
@@ -157,7 +152,6 @@ GROUP BY s.store_id, s.customer_id, s.item_id;
 
 切块通过约束多个维度来分析数据立方体的一个块。以下查询限制分析华盛顿州购买的红色商品：
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_11.png)
 
 ```sql
 SELECT s.store_id, s.customer_id, s.item_id, SUM(s.price) AS total_sales
@@ -173,7 +167,6 @@ GROUP BY s.store_id, s.customer_id, s.item_id;
 
 ---
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_13.png)
 
 ## 汇总操作
 
@@ -226,11 +219,9 @@ SQL标准为OLAP查询引入了 `CUBE` 和 `ROLLUP` 操作，用于生成数据�
 
 ### CUBE操作
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_15.png)
 
 `CUBE` 操作会生成数据立方体的所有可能组合。以下查询尝试使用 `CUBE`：
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_17.png)
 
 ```sql
 SELECT store_id, item_id, customer_id, SUM(price) AS total_sales
@@ -240,7 +231,6 @@ GROUP BY CUBE(store_id, item_id, customer_id);
 
 然而，MySQL目前不支持 `CUBE` 操作。我们可以通过其他方式模拟其行为。
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_19.png)
 
 ### 创建数据立方体表
 
@@ -255,7 +245,6 @@ GROUP BY store_id, item_id, customer_id WITH ROLLUP;
 
 此表包含了数据立方体的预聚合数据，包括面、边和角的总和。
 
-![](img/ea1a92387a8b601c91c5e9409fe50977_21.png)
 
 ### 查询数据立方体
 

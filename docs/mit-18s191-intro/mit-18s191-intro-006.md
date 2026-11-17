@@ -6,7 +6,6 @@
 
 动态规划是一种解决优化问题的强大算法思想，其核心在于避免重复计算子问题。本节课我们将通过一个棋盘路径最小和的例子来理解动态规划，然后将其应用于接缝裁剪算法，学习如何智能地压缩图像。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_1.png)
 
 ## 动态规划简介
 
@@ -26,21 +25,15 @@
 
 ### 重叠子问题与高效解法
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_3.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_5.png)
 
 上一节我们介绍了问题的定义和朴素解法。本节中我们来看看为什么动态规划更高效。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_7.png)
 
 关键在于**重叠子问题**。假设我们想计算经过某个特定格子 `(i, j)` 的最小路径和。从该格子出发到底部的所有路径，会与从它下方三个相邻格子出发的路径大量重复。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_9.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_11.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_13.png)
 
 **动态规划思路：**
 我们不再从顶部开始向前寻找所有路径，而是从**底部开始反向计算**。
@@ -48,21 +41,14 @@
 2.  对于上一行的每个格子，其最小路径和等于**该格子的值**加上**其下方三个相邻格子中已计算出的最小路径和的最小值**。
 3.  依此类推，直到顶部。最终，顶部每个格子的值就代表了从该格子出发的最小路径和。全局最小值就是顶部这些值中的最小值。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_15.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_17.png)
 
 这种方法将计算复杂度从指数级（检查所有路径）降低到了与网格像素数量成线性关系。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_19.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_21.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_23.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_25.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_27.png)
 
 **代码描述（伪代码）：**
 ```julia
@@ -89,17 +75,13 @@ min_total_energy = minimum(dp[1, :])
 
 ## 接缝裁剪算法应用 🖼️
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_29.png)
 
 理解了动态规划后，我们来看一个精彩的应用——接缝裁剪。这是一种内容感知的图像缩放技术，目标是在改变图像宽高比时，尽可能保留重要的视觉内容。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_31.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_33.png)
 
 ### 算法核心思想
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_35.png)
 
 ![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_37.png)
 
@@ -110,36 +92,28 @@ min_total_energy = minimum(dp[1, :])
 1.  使用 Sobel 滤波器等算子计算图像在 x 和 y 方向上的梯度（近似偏导数）。
 2.  每个像素的能量 `E(i, j)` 为其梯度幅值：`E(i, j) = sqrt(Gx² + Gy²)`。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_39.png)
 
 **寻找接缝：**
 一条“接缝”是从图像顶部到底部的一条连通路径，每行有且仅有一个像素，且相邻行的像素在列索引上相差不超过 1（即同样只能向下、左下或右下移动）。
 我们的目标是找到一条**能量总和最小**的接缝。这正好转化成了我们之前解决的动态规划问题，其中网格是图像，每个格子的“值”就是其能量 `E(i, j)`。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_41.png)
 
 **移除接缝：**
 找到能量最小的接缝后，将其从图像中移除（将所有右侧的像素向左移动一列），图像宽度便减少了一像素。重复此过程，即可将图像缩放到任意宽度，同时尽量避开重要的边缘区域。
 
 ![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_43.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_45.png)
 
 ![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_47.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_49.png)
 
 ![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_51.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_53.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_55.png)
 
 ### 算法效果与局限性
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_57.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_59.png)
 
 ![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_61.png)
 
@@ -157,23 +131,17 @@ min_total_energy = minimum(dp[1, :])
 
 然而，对于充满复杂纹理的图像（如文森特·梵高的《星夜》），由于处处都是“边缘”，算法可能无法找到明显的低能量路径，导致裁剪效果不理想。这时，可能需要设计更复杂的能量函数。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_73.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_75.png)
 
 ## 总结
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_77.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_79.png)
 
 本节课我们一起学习了动态规划的基本原理及其在接缝裁剪算法中的应用。
 1.  **动态规划**通过解决重叠子问题来高效求解最优路径问题，避免了穷举法带来的指数级复杂度。
 2.  **接缝裁剪**利用动态规划寻找图像中能量最低的连通路径（接缝）并移除它，从而实现智能的图像缩放。其关键在于使用**梯度幅值**来定义像素的能量，以保护重要的边缘信息。
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_81.png)
 
-![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_83.png)
 
 ![](img/bfcb8a0e19ea0a63ac18c8ad92cde792_85.png)
 

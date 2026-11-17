@@ -2,35 +2,25 @@
 
 在本节课中，我们将学习如何构建更复杂的用户界面，包括使用模态视图（如Sheet和Popover）来编辑数据，利用导航栈（NavigationStack）和导航链接（NavigationLink）实现界面间的层级跳转，以及创建适用于iPad的多窗格（NavigationSplitView）布局。这些是构建功能丰富、结构清晰的iOS应用的核心技能。
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_1.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_2.png)
 
 上一节我们介绍了数据绑定和视图模型，本节中我们来看看如何通过模态视图和导航来组织和管理复杂的用户界面。
 
 ## 模态视图：Sheet与Popover
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_4.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_5.png)
 
 模态视图是一种临时覆盖在现有内容之上的界面，要求用户立即处理某项任务。SwiftUI提供了两种主要的模态视图：`.sheet`和`.popover`。
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_7.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_8.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_10.png)
 
 ### 使用`.sheet`展示全屏编辑器
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_12.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_14.png)
 
 ![](img/a889660acbcc6bfb2f8c97c2d79590a3_15.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_17.png)
 
 `.sheet`修饰符用于展示一个覆盖大部分屏幕的视图。它需要一个绑定到布尔值的`isPresented`参数来控制显示与隐藏。
 
@@ -47,21 +37,15 @@ Button("编辑") {
 }
 ```
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_19.png)
 
 ![](img/a889660acbcc6bfb2f8c97c2d79590a3_20.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_22.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_24.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_26.png)
 
 当我们将`showPaletteEditor`设置为`true`时，`PaletteEditor`视图会以模态形式弹出。当用户关闭这个视图时，系统会自动将绑定值设回`false`。
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_28.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_30.png)
 
 ### 使用`.popover`展示上下文相关视图
 
@@ -105,11 +89,9 @@ struct PaletteEditor: View {
 
 ### 导航三要素
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_32.png)
 
 实现导航需要三个步骤：
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_34.png)
 
 1.  **导航容器**： 使用`NavigationStack`包裹所有需要参与导航的视图。
 2.  **导航链接**： 使用`NavigationLink`标记可点击以触发导航的视图。
@@ -134,9 +116,7 @@ NavigationStack {
 
 ### 导航标题
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_36.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_38.png)
 
 可以通过`.navigationTitle`修饰符为当前显示的视图设置标题。标题会自动显示在导航栏，并且返回按钮的文字也会随之变化。
 
@@ -147,9 +127,7 @@ EditablePaletteList(store: store)
 
 ## 创建可编辑列表
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_40.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_42.png)
 
 列表（`List`）结合`ForEach`可以轻松实现滑动删除和移动排序功能。
 
@@ -182,9 +160,7 @@ List {
 
 ## 为iPad设计：多窗格界面（NavigationSplitView）
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_44.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_46.png)
 
 在iPad或Mac等大屏设备上，可以使用`NavigationSplitView`同时展示多个层级的视图，提供更高效的导航体验。
 
@@ -210,9 +186,7 @@ NavigationSplitView {
 }
 ```
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_48.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_50.png)
 
 **关键点**：
 *   `selection`参数配合`@State`变量和`.tag()`修饰符，可以管理列表中的选中项。
@@ -221,22 +195,15 @@ NavigationSplitView {
 
 ## 处理键盘焦点
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_52.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_54.png)
 
 为了让视图出现时自动聚焦到某个输入框并弹出键盘，可以使用`@FocusState`。
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_56.png)
-
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_58.png)
 
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_60.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_62.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_64.png)
+
 
 ```swift
 enum Field { case name, addEmojis }
@@ -259,9 +226,7 @@ struct PaletteEditor: View {
 }
 ```
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_66.png)
 
-![](img/a889660acbcc6bfb2f8c97c2d79590a3_68.png)
 
 ![](img/a889660acbcc6bfb2f8c97c2d79590a3_70.png)
 

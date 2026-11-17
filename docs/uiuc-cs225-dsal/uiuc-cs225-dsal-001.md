@@ -20,7 +20,6 @@
 
 ## 课程沟通与资源
 
-![](img/8e2af5f548acf08c41f95410472f2b0d_5.png)
 
 ![](img/8e2af5f548acf08c41f95410472f2b0d_6.png)
 

@@ -1,6 +1,5 @@
 # 72：4 - 荷兰国旗问题排序算法
 
-![](img/fd6ab132e59d53bf06ccb97077bc42b6_1.png)
 
 ![](img/fd6ab132e59d53bf06ccb97077bc42b6_2.png)
 

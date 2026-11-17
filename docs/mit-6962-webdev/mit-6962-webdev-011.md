@@ -1,16 +1,13 @@
 # 011：工作坊2（动态信息流与路由）🚀
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_1.png)
 
 在本节课中，我们将基于工作坊1构建的页面，创建一个类似Facebook的动态信息流页面，包含帖子和评论功能。我们将学习如何使用React状态管理动态内容，并实现页面间的路由导航。
 
 ---
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_3.png)
 
 ## 概述 📋
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_5.png)
 
 今天的工作坊将分为几个主要部分：
 1.  渲染单个帖子组件。
@@ -21,11 +18,9 @@
 
 我们将从基础开始，逐步构建一个功能完整的动态信息流页面。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_7.png)
 
 ---
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_9.png)
 
 ## 步骤0：导入Feed页面 🏁
 
@@ -44,14 +39,12 @@ import Feed from './pages/Feed';
 
 然后，在渲染部分，将 `<Profile />` 组件替换为 `<Feed />` 组件。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_14.png)
 
 ```jsx
 // 在 App.jsx 的渲染部分
 <Feed />
 ```
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_16.png)
 
 完成此步骤后，访问应用将看到“This is the feed”的占位文本，表明我们已成功切换到信息流页面。
 
@@ -63,13 +56,9 @@ import Feed from './pages/Feed';
 
 我们的目标是创建一个 `SingleStory` 组件，用于显示帖子的发布者名称和内容。这个组件将接收 `creatorName` 和 `content` 作为属性（props）。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_18.png)
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_19.png)
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_21.png)
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_23.png)
 
 以下是创建 `SingleStory` 组件的步骤：
 
@@ -98,7 +87,6 @@ export default SingleStory;
 
 现在，在 `Feed.jsx` 中导入并使用 `<SingleStory />` 组件，并传入一些测试数据，你就能在页面上看到一个格式化的帖子了。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_25.png)
 
 ---
 
@@ -185,7 +173,6 @@ function Feed() {
 
 注意：我们为每个 `SingleStory` 组件添加了一个唯一的 `key` 属性（使用 `story.id`），这有助于React高效地更新列表。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_27.png)
 
 现在，页面上应该会显示我们硬编码的两个帖子了。
 
@@ -226,7 +213,6 @@ function Feed() {
 接着，我们创建 `NewStory` 组件（在 `modules/NewPostInput/NewStory.jsx` 中）。这个组件会渲染 `NewPostInput`，并将 `addNewStory` 函数作为回调传递给它。
 
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_33.png)
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_35.png)
 
@@ -291,7 +277,6 @@ function Feed() {
 具体代码如下：
 
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_38.png)
 
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_40.png)
@@ -333,9 +318,7 @@ root.render(
 
 然后，我们需要修改 `App.jsx`，使其能根据当前路由渲染不同的子页面。我们使用 `<Outlet />` 组件。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_44.png)
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_46.png)
 
 ```jsx
 // App.jsx
@@ -398,9 +381,7 @@ storiesList = stories.map((story) => (
 然后，在 `Card.jsx` 组件中，我们接收这些属性，并首先渲染 `SingleStory` 组件。
 
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_48.png)
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_50.png)
 
 ```jsx
 // Card.jsx
@@ -535,7 +516,6 @@ import NewComment from ‘./modules/NewPostInput/NewComment‘;
 5.  **客户端路由**：使用 `react-router-dom` 库实现基于URL的页面导航，主要涉及 `<RouterProvider>`、`createBrowserRouter` 和 `<Link>`。
 6.  **组件层次结构与数据流**：理解了数据如何通过props从父组件流向子组件，以及回调函数如何将子组件的数据传回父组件。
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_56.png)
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_58.png)
 

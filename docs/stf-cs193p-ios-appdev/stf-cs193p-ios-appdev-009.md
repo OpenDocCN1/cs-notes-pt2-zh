@@ -2,13 +2,10 @@
 
 在本节课中，我们将继续完善记忆卡片游戏，重点学习如何实现动画效果和视图过渡。我们将为游戏添加分数飞行动画、卡片计时器动画以及发牌动画，并深入理解`matchedGeometryEffect`等高级动画技术。
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_1.png)
 
 上一节我们为游戏添加了基本的卡片匹配逻辑和分数计算。本节中，我们来看看如何通过动画让这些交互变得更加生动和直观。
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_2.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_3.png)
 
 ## 实现分数飞行动画
 
@@ -18,7 +15,6 @@
 
 为了知道哪个卡片导致了最近的分数变化以及变化了多少，我们使用一个**元组**来存储这两条信息。元组是Swift中一种将多个值组合成一个复合值的数据结构。
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_5.png)
 
 ```swift
 // 使用元组存储最后一次分数变化的信息
@@ -34,11 +30,8 @@ let scoreChange = viewModel.score - scoreBeforeChoosing
 lastScoreChange = (scoreChange, card.id)
 ```
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_7.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_8.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_9.png)
 
 ### 创建飞行动画视图
 
@@ -91,11 +84,9 @@ struct FlyingNumber: View {
 
 ### 使用TimelineView实现平滑动画
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_11.png)
 
 `TimelineView`是一个强大的视图，它会以系统认为合适的频率（例如动画帧率）反复调用其内容闭包，非常适合驱动基于时间的动画。
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_13.png)
 
 ```swift
 TimelineView(.animation) { timeline in
@@ -130,17 +121,12 @@ func isDealt(_ card: Card) -> Bool {
 }
 ```
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_15.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_16.png)
 
 在游戏主视图中，我们只显示已发的卡片：
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_18.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_20.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_21.png)
 
 ```swift
 AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
@@ -157,11 +143,8 @@ AspectVGrid(items: viewModel.cards, aspectRatio: 2/3) { card in
 牌堆由所有未发出的卡片堆叠而成。
 
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_23.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_24.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_26.png)
 
 ```swift
 @Namespace private var dealingNamespace
@@ -179,16 +162,13 @@ ZStack {
 }
 ```
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_28.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_29.png)
 
 ### 实现发牌动画
 
 发牌函数遍历所有卡片，将它们加入`dealt`集合，并为每张卡片添加递增的动画延迟，模拟依次发出的效果。
 
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_31.png)
 
 ```swift
 private func deal() {
@@ -216,22 +196,16 @@ private let dealInterval: TimeInterval = 0.15
 
 ---
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_33.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_34.png)
 
 本节课中我们一起学习了SwiftUI中几种核心的动画技术：
 1.  **使用`withAnimation`和状态驱动视图属性变化**，实现了分数的飞入飞出。
 2.  **利用`TimelineView`创建基于时间的连续动画**，让计时器饼图得以平滑转动。
 3.  **综合运用状态管理、延迟动画和`matchedGeometryEffect`**，构建了复杂的发牌序列动画，并理解了命名空间和过渡修饰符在其中的关键作用。
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_36.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_37.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_39.png)
 
-![](img/711a6f9e75d5251933b0dd4981118cf8_41.png)
 
 ![](img/711a6f9e75d5251933b0dd4981118cf8_43.png)
 

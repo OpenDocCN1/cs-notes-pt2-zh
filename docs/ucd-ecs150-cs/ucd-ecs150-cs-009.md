@@ -14,7 +14,6 @@
 
 ![](img/5993a9a352f015b58d6149d8acf24f23_7.png)
 
-![](img/5993a9a352f015b58d6149d8acf24f23_9.png)
 
 ## 创建可执行脚本
 
@@ -117,7 +116,6 @@ python script.py input.txt output.txt
 
 ## 使用Tmux管理持久会话
 
-![](img/5993a9a352f015b58d6149d8acf24f23_25.png)
 
 ![](img/5993a9a352f015b58d6149d8acf24f23_27.png)
 
@@ -223,9 +221,7 @@ python script.py input.txt output.txt
 
 ### 查看进程：`ps` 命令
 
-![](img/5993a9a352f015b58d6149d8acf24f23_73.png)
 
-![](img/5993a9a352f015b58d6149d8acf24f23_75.png)
 
 `ps` 命令用于显示当前进程的快照。
 
@@ -388,7 +384,6 @@ sys     0m0.032s
 
 ![](img/5993a9a352f015b58d6149d8acf24f23_124.png)
 
-![](img/5993a9a352f015b58d6149d8acf24f23_126.png)
 
 ![](img/5993a9a352f015b58d6149d8acf24f23_128.png)
 
@@ -444,7 +439,6 @@ time ./nested.sh 1000 > output.txt 2>&1
 
 ![](img/5993a9a352f015b58d6149d8acf24f23_140.png)
 
-![](img/5993a9a352f015b58d6149d8acf24f23_142.png)
 
 ![](img/5993a9a352f015b58d6149d8acf24f23_144.png)
 

@@ -159,14 +159,10 @@ release() {
 
 考虑一个有界缓冲区，使用锁保护：
 
-![](img/22a440ab5259f377d19dc5be83e46a76_3.png)
 
 
-![](img/22a440ab5259f377d19dc5be83e46a76_5.png)
 
-![](img/22a440ab5259f377d19dc5be83e46a76_6.png)
 
-![](img/22a440ab5259f377d19dc5be83e46a76_7.png)
 
 ```c
 // 生产者伪代码
@@ -219,9 +215,7 @@ consumer() {
 
 以下是使用两个信号量的解决方案核心思路：
 
-![](img/22a440ab5259f377d19dc5be83e46a76_9.png)
 
-![](img/22a440ab5259f377d19dc5be83e46a76_11.png)
 
 ```c
 semaphore empty_slots = BUFFER_SIZE; // 初始为空槽数量
@@ -251,7 +245,6 @@ consumer() {
 }
 ```
 
-![](img/22a440ab5259f377d19dc5be83e46a76_13.png)
 
 **优势**：生产者会在缓冲区满时自动阻塞（`P(empty_slots)`），消费者会在缓冲区空时自动阻塞（`P(filled_slots)`），无需忙等，且不会死锁。
 

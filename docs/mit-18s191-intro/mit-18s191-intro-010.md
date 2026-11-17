@@ -1,32 +1,22 @@
 # L10：随机模拟建模 🎲
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_1.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_3.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_5.png)
 
 在本节课中，我们将学习如何使用概率来模拟随时间变化的系统。我们将建立一个简单的模型，用于模拟机械部件或灯泡的失效过程。通过这个过程，我们将探索如何定义新类型、扩展函数以及进行随机模拟。
 
 ---
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_7.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_9.png)
 
 ## 概述 📋
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_11.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_13.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_15.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_17.png)
 
 我们将建立一个“灯泡失效”模型。在这个模型中，一组灯泡最初是完好的（绿色），在每个时间步，每个灯泡都有一定的概率失效（变为红色），并在下一个时间步永久失效（变为紫色）。我们将通过这个简单的随机过程，学习如何连接微观的个体行为与宏观的系统行为。
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_19.png)
 
 上一节我们介绍了随机模拟的基本概念，本节中我们来看看如何具体实现一个简单的随机过程模型。
 
@@ -34,15 +24,10 @@
 
 ## 模型描述与模拟 🔧
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_21.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_23.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_25.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_27.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_29.png)
 
 我们有一个灯泡阵列，每个灯泡的状态随时间变化。模型的核心规则如下：
 *   初始时，所有灯泡都是完好的（状态为0）。
@@ -50,11 +35,9 @@
 *   如果一个灯泡在时间 `t` 失效，我们将其状态标记为 `t`（表示失效时间）。
 *   失效后的灯泡在后续时间步状态保持不变（永久失效）。
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_31.png)
 
 以下是模拟这个过程的Julia代码核心逻辑：
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_33.png)
 
 ```julia
 function simulate_failure(N, p, max_time)
@@ -72,66 +55,40 @@ function simulate_failure(N, p, max_time)
 end
 ```
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_35.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_37.png)
 
 ---
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_39.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_41.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_43.png)
 
 ## 可视化绘图 🎨
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_45.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_47.png)
 
 为了直观展示模拟结果，我们需要绘制灯泡阵列。这涉及到在特定坐标上绘制形状（如圆形和方形）。
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_49.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_51.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_53.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_55.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_57.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_59.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_61.png)
 
 以下是绘制矩形和圆形的辅助函数：
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_63.png)
-
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_65.png)
-
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_67.png)
 
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_69.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_71.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_73.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_75.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_77.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_79.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_81.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_83.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_85.png)
+
+
 
 ```julia
 function rectangle(x, y, w, h)
@@ -147,39 +104,25 @@ function circle(x, y, r, n=30)
 end
 ```
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_87.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_89.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_91.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_93.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_95.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_97.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_99.png)
 
 在绘图时，我们可以使用 `fill=true` 参数来填充形状，并使用 `annotate!` 函数添加文本标签。字符串插值（`$`）可以方便地将变量值嵌入标签字符串中。
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_101.png)
 
 ---
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_103.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_105.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_107.png)
 
 ## 数据分析与宏观视角 📊
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_109.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_111.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_113.png)
 
 运行模拟后，我们可以统计每个时间步处于不同状态（绿色/红色/紫色）的灯泡数量。
 
@@ -204,17 +147,12 @@ struct Bernoulli
 end
 ```
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_115.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_117.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_119.png)
 
 接着，我们可以为这个新类型扩展已有的通用函数。例如，定义如何从 `Bernoulli` 对象中随机采样：
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_121.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_123.png)
 
 ```julia
 import Base: rand
@@ -223,19 +161,13 @@ function rand(b::Bernoulli)
 end
 ```
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_125.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_127.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_129.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_131.png)
 
 我们还可以为定义在 `Statistics` 包中的 `mean` 函数添加方法，来计算伯努利随机变量的理论均值：
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_133.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_135.png)
 
 ```julia
 using Statistics
@@ -244,49 +176,30 @@ function mean(b::Bernoulli)
 end
 ```
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_137.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_139.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_141.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_143.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_145.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_147.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_149.png)
 
 这样，我们就创建了一个计算实体，它既包含了数据（参数 `p`），也包含了对其进行的操作（采样、计算均值）。
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_151.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_153.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_155.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_157.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_159.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_161.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_163.png)
 
 ---
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_165.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_167.png)
 
 ## 从微观到宏观：确定性方程 🔬
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_169.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_171.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_173.png)
 
 通过对大量独立灯泡的微观行为进行平均，我们可以推导出描述系统宏观行为的确定性方程。
 
@@ -313,9 +226,7 @@ end
 3.  **定义抽象类型**：我们将伯努利随机变量定义为一种新的Julia类型，并为其扩展了 `rand` 和 `mean` 函数，体现了将数据与操作封装在一起的思想。
 4.  **连接微观与宏观**：我们通过分析推导出，大量独立个体随机行为的平均效应，可以用一个描述总数量的确定性指数衰减方程来刻画。这是理解复杂系统的一种强大方法。
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_175.png)
 
-![](img/b8e1d125d9ff89215ae2d0f3136f14a4_177.png)
 
 ![](img/b8e1d125d9ff89215ae2d0f3136f14a4_179.png)
 

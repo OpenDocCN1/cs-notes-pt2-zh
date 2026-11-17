@@ -33,7 +33,6 @@
     auto i = 42; // 推断为 int
     ```
 
-![](img/6c9a4fabd1760e4fe132f260ba081222_1.png)
 
 2.  **替代 `double d`**:
     ```cpp
@@ -55,7 +54,6 @@
 
 为了让你检验理解，这里有一个非常简单的`auto`使用示例。你需要告诉我变量`c`被推断为什么类型。
 
-![](img/6c9a4fabd1760e4fe132f260ba081222_3.png)
 
 ```cpp
 auto c = 'A';
@@ -63,13 +61,10 @@ auto c = 'A';
 
 **答案**：在上面的例子中，`c`当然被推断为 `char` 类型。
 
-![](img/6c9a4fabd1760e4fe132f260ba081222_5.png)
 
-![](img/6c9a4fabd1760e4fe132f260ba081222_6.png)
 
 ---
 
-![](img/6c9a4fabd1760e4fe132f260ba081222_8.png)
 
 ![](img/6c9a4fabd1760e4fe132f260ba081222_9.png)
 

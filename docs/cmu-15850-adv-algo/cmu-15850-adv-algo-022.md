@@ -28,17 +28,11 @@
 
 给定分离预言机和参数 R, r，椭球算法步骤如下：
 
-![](img/95a36c2e74ccd2a19994fb6894962b8b_1.png)
 
-![](img/95a36c2e74ccd2a19994fb6894962b8b_3.png)
 
-![](img/95a36c2e74ccd2a19994fb6894962b8b_4.png)
 
-![](img/95a36c2e74ccd2a19994fb6894962b8b_5.png)
 
-![](img/95a36c2e74ccd2a19994fb6894962b8b_6.png)
 
-![](img/95a36c2e74ccd2a19994fb6894962b8b_7.png)
 
 ![](img/95a36c2e74ccd2a19994fb6894962b8b_9.png)
 

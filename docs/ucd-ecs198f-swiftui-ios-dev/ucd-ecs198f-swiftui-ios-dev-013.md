@@ -54,7 +54,6 @@ do {
 
 ### 处理响应
 
-![](img/f88ed26aeb88857c244733fac57c99ce_4.png)
 
 ![](img/f88ed26aeb88857c244733fac57c99ce_5.png)
 
@@ -120,7 +119,6 @@ do {
 
 ![](img/f88ed26aeb88857c244733fac57c99ce_11.png)
 
-![](img/f88ed26aeb88857c244733fac57c99ce_13.png)
 
 要让解码工作，我们的结构体必须遵循`Codable`协议。幸运的是，如果结构体中的所有属性类型本身已经遵循`Codable`（例如`String`、`Int`、`Bool`以及包含`Codable`属性的自定义类型），Swift编译器会自动为我们合成所需的代码。我们只需要声明遵循协议即可。
 

@@ -2,7 +2,6 @@
 
 在本节课中，我们将要学习JavaScript的基础语法和核心概念。JavaScript是Web开发的“肌肉”，它能让静态的网页变得动态和可交互。我们将从基本数据类型开始，逐步介绍变量、运算符、控制流、数组、对象和函数。
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_1.png)
 
 ## 概述
 
@@ -34,9 +33,7 @@ const PI = 3.14159; // 常量
 
 ## 运算符与比较
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_7.png)
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_9.png)
 
 了解了如何存储数据后，我们来看看如何操作和比较它们。
 
@@ -44,7 +41,6 @@ const PI = 3.14159; // 常量
 
 然而，比较运算符需要特别注意。在JavaScript中，我们使用**三重等号** `===` 来严格比较两个值是否相等（包括类型和值）。使用**双重等号** `==` 进行比较时，JavaScript会进行类型转换，这可能导致意想不到的结果，因此通常避免使用。
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_11.png)
 
 ![](img/5bddf958ef7be8f24b217b4a8fd082f9_13.png)
 
@@ -55,7 +51,6 @@ console.log(2 === "2"); // false (类型不同)
 
 不等于的比较使用 `!==`。
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_15.png)
 
 ## 控制流：条件与循环
 
@@ -93,7 +88,6 @@ for (const animal of pets) {
 
 数组类似于Python中的列表，可以存储一系列值。它们是零索引的。
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_17.png)
 
 ```javascript
 let pets = ["cat", "dog", "guinea pig", "bird"];
@@ -141,9 +135,7 @@ console.log(roomTemp); // 输出 78.8
 
 函数可以作为参数传递给另一个函数，这种函数被称为**回调函数**。
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_19.png)
 
-![](img/5bddf958ef7be8f24b217b4a8fd082f9_21.png)
 
 ```javascript
 // 定义一个简单的函数

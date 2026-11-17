@@ -117,9 +117,7 @@ class RegFileImplicit extends Module {
 
 这段代码非常简洁。使用 `Mem` 生成的 Verilog 比直接使用 `Reg(Vec(...))` 更清晰，因为它会使用 Verilog 的数组语法。
 
-![](img/22a47ae58a1041db9eea07f279ce00c5_1.png)
 
-![](img/22a47ae58a1041db9eea07f279ce00c5_3.png)
 
 你也可以使用更显式的读写方法：
 

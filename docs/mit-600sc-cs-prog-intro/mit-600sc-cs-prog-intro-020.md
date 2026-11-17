@@ -28,11 +28,9 @@
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_15.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_17.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_19.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_20.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_22.png)
 
@@ -47,11 +45,9 @@ for year in range(years + 1):
     principal += principal * rate
 ```
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_24.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_26.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_27.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_29.png)
 
@@ -76,19 +72,15 @@ pylab.show()
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_39.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_40.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_42.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_44.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_46.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_47.png)
 
 规范的图表应始终包含标题和带说明的坐标轴。在绘图工具中，通常有图标可以缩放或保存图表。其中一个保存图标是软盘的形状，这是一种早期的数据存储设备。
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_49.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_51.png)
 
@@ -106,11 +98,9 @@ pylab.show()
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_62.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_64.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_66.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_68.png)
 
 现在，让我们转向本节课的核心主题：随机性。要理解随机性，我们必须先理解概率。
 
@@ -154,7 +144,6 @@ pylab.show()
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_86.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_87.png)
 
 一个著名的历史问题是“德梅雷问题”：投掷一对公平骰子24次，**至少出现一次双六**的概率是否有利可图？帕斯卡和费马曾通过书信讨论此问题。
 
@@ -167,7 +156,6 @@ pylab.show()
 我们可以通过编写程序来模拟这个实验，验证帕斯卡的计算：
 
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_93.png)
 
 ```python
 import random
@@ -212,7 +200,6 @@ def simulate_dice_game(num_trials):
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_108.png)
 
-![](img/265277dcc873b1117107f3ea1f0c2c5b_110.png)
 
 ![](img/265277dcc873b1117107f3ea1f0c2c5b_111.png)
 

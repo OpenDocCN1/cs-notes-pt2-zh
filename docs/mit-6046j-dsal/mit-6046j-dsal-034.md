@@ -1,12 +1,8 @@
 # L24：Cache-Oblivious 算法：搜索和排序 🧠
 
-![](img/1418601061eac6a036a3d971a78f319a_0.png)
 
-![](img/1418601061eac6a036a3d971a78f319a_2.png)
 
-![](img/1418601061eac6a036a3d971a78f319a_4.png)
 
-![](img/1418601061eac6a036a3d971a78f319a_6.png)
 
 ![](img/1418601061eac6a036a3d971a78f319a_7.png)
 

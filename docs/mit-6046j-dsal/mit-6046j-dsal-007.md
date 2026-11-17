@@ -1,12 +1,8 @@
 # L5：平摊分析 🧮
 
-![](img/77ec7a1196e8df600aee0a0bef8b6abb_0.png)
 
-![](img/77ec7a1196e8df600aee0a0bef8b6abb_2.png)
 
-![](img/77ec7a1196e8df600aee0a0bef8b6abb_4.png)
 
-![](img/77ec7a1196e8df600aee0a0bef8b6abb_6.png)
 
 ![](img/77ec7a1196e8df600aee0a0bef8b6abb_7.png)
 

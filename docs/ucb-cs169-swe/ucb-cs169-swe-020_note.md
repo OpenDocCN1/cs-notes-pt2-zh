@@ -1,6 +1,5 @@
 # 020：设计模式回顾与DevOps简介 🚀
 
-![](img/9bf6a2f8b85275755a12ff461a1701df_0.png)
 
 ![](img/9bf6a2f8b85275755a12ff461a1701df_2.png)
 

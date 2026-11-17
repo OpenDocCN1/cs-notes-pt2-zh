@@ -4,7 +4,6 @@
 
 ![](img/72ed7edbcb2a8518c041f0069b3a8b51_2.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_4.png)
 
 ![](img/72ed7edbcb2a8518c041f0069b3a8b51_6.png)
 
@@ -24,9 +23,7 @@
 
 `LazyVGrid`会先水平排列项目，当空间不足时自动换行，形成垂直网格。`LazyHGrid`则相反。之所以称为“Lazy”（惰性），是因为它只会创建当前屏幕上可见的视图单元格。当用户滚动时，离开屏幕的视图会被回收并用于显示新的数据，这大大提升了应用性能和响应速度。
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_12.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_14.png)
 
 以下是创建一个两列网格布局的步骤：
 
@@ -34,14 +31,12 @@
 2.  `LazyVGrid`需要两个参数：一个定义列布局的`columns`数组，以及视图内容。
 3.  `columns`数组由`GridItem`组成。每个`GridItem`定义一列的属性。
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_16.png)
 
 ![](img/72ed7edbcb2a8518c041f0069b3a8b51_18.png)
 
 ![](img/72ed7edbcb2a8518c041f0069b3a8b51_20.png)
 
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_22.png)
 
 ```swift
 // 定义一个包含两个GridItem的数组，创建两列布局
@@ -112,9 +107,7 @@ struct ActionButton: View {
 
 我们可以将常用的动画曲线定义为扩展，以便复用并使代码更清晰。
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_24.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_26.png)
 
 ```swift
 // 在独立的Swift文件中定义扩展
@@ -167,9 +160,7 @@ struct ActionButtonFlyoutPanel: View {
 
 现在，将弹出面板条件性地添加到主视图中，并为其添加进入和退出的过渡效果。
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_28.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_30.png)
 
 ```swift
 struct ActionButton: View {
@@ -196,15 +187,11 @@ struct ActionButton: View {
 }
 ```
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_32.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_34.png)
 
 ### 自定义视图过渡
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_36.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_38.png)
 
 默认的视图过渡是淡入淡出（opacity）。我们可以创建更丰富的自定义过渡。
 
@@ -228,9 +215,7 @@ extension AnyTransition {
 
 如果需要视图出现和消失时使用不同的动画，可以使用`.asymmetric`过渡：
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_40.png)
 
-![](img/72ed7edbcb2a8518c041f0069b3a8b51_42.png)
 
 ```swift
 static var customTransition: AnyTransition {

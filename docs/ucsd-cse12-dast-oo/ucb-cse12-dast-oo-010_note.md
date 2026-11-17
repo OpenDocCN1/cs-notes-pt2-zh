@@ -1,46 +1,29 @@
 # 010：迭代器实现与运行时分析入门 🧠
 
-![](img/dd1fae74fa1e27523767608fbd10f479_0.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_1.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_2.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_3.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_4.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_5.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_6.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_7.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_8.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_10.png)
 
 在本节课中，我们将学习如何为一个自定义链表实现迭代器，并初步了解程序运行时分析的重要性。我们将通过一个具体的“FriendList”示例，逐步构建节点类、迭代器类和链表类，并理解它们如何协同工作。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_12.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_14.png)
 
 ---
 
 ## 节点类的实现 🔗
 
-![](img/dd1fae74fa1e27523767608fbd10f479_16.png)
 
 上一节我们讨论了迭代器的概念，本节我们首先来实现链表的基本构建块——节点（Node）。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_18.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_20.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_22.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_23.png)
 
 节点类包含数据和指向下一个节点的引用。在我们的示例中，它是一个内部类，这意味着它可以访问外部链表类的私有成员，反之亦然。
 
@@ -80,11 +63,8 @@ public class Node {
 *   第二行 `next = before.next;` 让新节点指向 `before` 节点原本指向的下一个节点。
 *   第三行 `before.next = this;` 将 `before` 节点的 `next` 引用更新为指向这个新创建的节点，从而完成插入。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_25.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_27.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_29.png)
 
 ---
 
@@ -92,35 +72,23 @@ public class Node {
 
 现在，我们来看看如何为链表实现一个迭代器。迭代器的目的是让用户能够方便地遍历链表，而无需了解其内部结构。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_31.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_33.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_35.png)
 
 我们的 `FriendIterator` 是一个内部类，它维护着几个关键状态：`left`、`right`、`index` 和 `canRemove`。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_37.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_38.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_40.png)
 
 ### 构造方法与初始化
 
-![](img/dd1fae74fa1e27523767608fbd10f479_42.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_44.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_46.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_48.png)
 
 首先，我们需要完成迭代器的构造方法，正确初始化其状态。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_50.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_52.png)
 
 ```java
 public class FriendIterator implements Iterator<String> {
@@ -140,32 +108,23 @@ public class FriendIterator implements Iterator<String> {
 }
 ```
 
-![](img/dd1fae74fa1e27523767608fbd10f479_54.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_56.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_58.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_60.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_62.png)
 
 **状态说明**：
 *   `left` 和 `right` 定义了迭代器“光标”的位置，`left` 是刚访问过的节点，`right` 是将要访问的下一个节点。
 *   `index` 记录当前迭代器在链表中的逻辑位置。
 *   `canRemove` 是一个安全标志，只有调用 `next()` 或 `previous()` 之后，它才变为 `true`，此时才能调用 `remove()` 方法。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_64.png)
 
 ### 核心遍历方法：hasNext 与 next
 
-![](img/dd1fae74fa1e27523767608fbd10f479_66.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_68.png)
 
 接下来，我们实现判断是否有下一个元素的 `hasNext()` 方法和获取下一个元素的 `next()` 方法。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_70.png)
 
 ```java
     // 判断是否还有下一个元素
@@ -204,27 +163,18 @@ public class FriendIterator implements Iterator<String> {
 *   这个示例中的 `next()` 方法被定制为只处理以‘A’开头的字符串，展示了迭代器行为的可定制性。
 *   移动迭代器需要同步更新 `left`、`right`、`index` 和 `canRemove` 四个状态。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_72.png)
 
 ---
 
-![](img/dd1fae74fa1e27523767608fbd10f479_74.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_76.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_78.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_80.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_82.png)
 
 ## 链表主类的实现 📝
 
-![](img/dd1fae74fa1e27523767608fbd10f479_84.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_85.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_87.png)
 
 最后，我们整合节点和迭代器，完成链表主类 `FriendList` 的框架。
 
@@ -232,7 +182,6 @@ public class FriendIterator implements Iterator<String> {
 
 链表包含头节点、尾节点和大小信息。初始化时需要建立头尾哑元节点之间的连接。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_89.png)
 
 ```java
 public class FriendList {
@@ -252,29 +201,19 @@ public class FriendList {
 }
 ```
 
-![](img/dd1fae74fa1e27523767608fbd10f479_91.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_93.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_95.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_96.png)
 
 ### 插入元素与获取迭代器
 
-![](img/dd1fae74fa1e27523767608fbd10f479_98.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_99.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_101.png)
 
 插入元素的方法与我们之前实现的 `add` 方法类似。此外，链表需要提供一个方法来获取迭代器实例。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_103.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_105.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_107.png)
 
 ```java
     // 在链表末尾插入元素
@@ -296,27 +235,18 @@ public class FriendList {
     }
 ```
 
-![](img/dd1fae74fa1e27523767608fbd10f479_109.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_111.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_113.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_115.png)
 
 ### 调试技巧：打印链表信息
 
-![](img/dd1fae74fa1e27523767608fbd10f479_117.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_119.png)
 
 在实现数据结构时，一个能打印节点数据和引用地址的 `print` 方法对于调试至关重要。
 
-![](img/dd1fae74fa1e27523767608fbd10f479_121.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_123.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_125.png)
 
 ```java
     public void print() {
@@ -329,7 +259,6 @@ public class FriendList {
     }
 ```
 
-![](img/dd1fae74fa1e27523767608fbd10f479_127.png)
 
 **调试提示**：打印出的引用地址（如 `@4e50df2e`）可以帮助你验证节点之间的连接是否正确。前一个节点的 `next` 输出地址应该等于下一个节点自身的地址。
 
@@ -337,13 +266,10 @@ public class FriendList {
 
 ## 使用迭代器遍历链表 🔄
 
-![](img/dd1fae74fa1e27523767608fbd10f479_129.png)
 
 链表和迭代器都实现后，我们可以这样使用它们：
 
-![](img/dd1fae74fa1e27523767608fbd10f479_131.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_133.png)
 
 ```java
     public static void main(String[] args) {
@@ -364,15 +290,12 @@ public class FriendList {
     }
 ```
 
-![](img/dd1fae74fa1e27523767608fbd10f479_135.png)
 
-![](img/dd1fae74fa1e27523767608fbd10f479_137.png)
 
 ---
 
 ## 运行时分析简介 ⏱️
 
-![](img/dd1fae74fa1e27523767608fbd10f479_139.png)
 
 ![](img/dd1fae74fa1e27523767608fbd10f479_140.png)
 

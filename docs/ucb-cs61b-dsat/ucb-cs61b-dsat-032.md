@@ -1,8 +1,6 @@
 # 32：4 - 递归与渐进分析
 
-![](img/78122b2a8aa882f0bd7c474e57d83ee8_1.png)
 
-![](img/78122b2a8aa882f0bd7c474e57d83ee8_2.png)
 
 ![](img/78122b2a8aa882f0bd7c474e57d83ee8_3.png)
 

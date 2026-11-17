@@ -26,7 +26,6 @@
 
 我们将学习三大核心组成部分：
 
-![](img/5c1cf173c2bef06d75a44eeb7eaf2f70_1.png)
 
 1.  **前端（Front-end）**：用户直接看到和交互的部分。就像房子的装修和门窗。
     *   使用 **HTML** 搭建页面结构。
@@ -37,7 +36,6 @@
     *   使用 **Node.js** 或 **Python (Flask/Django)** 等语言和框架编写服务器端程序。
     *   核心任务是处理HTTP请求（`GET`, `POST`）并返回响应。
 
-![](img/5c1cf173c2bef06d75a44eeb7eaf2f70_2.png)
 
 3.  **数据库（Database）**：持久化存储所有数据的地方。就像房子的仓库。
     *   使用如 **SQLite**, **PostgreSQL** 或 **MongoDB** 等系统。

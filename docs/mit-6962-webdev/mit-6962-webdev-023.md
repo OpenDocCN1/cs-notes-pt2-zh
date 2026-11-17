@@ -2,26 +2,21 @@
 
 在本节课中，我们将要学习JavaScript中处理异步操作的两个核心概念：Promise（承诺）和async/await（异步/等待）。我们将通过一个简单的比喻来理解它们的工作原理，并学习如何在代码中有效地使用它们，以提高程序的效率和响应速度。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_1.png)
 
 ## 同步与异步：基本概念 🔄
 
 在深入Promise之前，我们需要理解两个基础术语：同步（Synchronous）和异步（Asynchronous）。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_3.png)
 
 上一节我们介绍了课程概述，本节中我们来看看同步与异步的核心区别。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_5.png)
 
 *   **同步**：指一个按顺序发生的过程，即一件事必须在前一件事完成后才能开始。这就像大学选课，你必须先修完6.100A（前提课程），才能选修6.101。
 *   **异步**：指多个过程可以同时运行。这就像你可以同时选修6.100A和6.101（如果它们没有冲突的前提要求）。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_7.png)
 
 ## Promise：一个生动的比喻 📦
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_9.png)
 
 为了理解Promise，我们引入一个比喻：假设有一位爱猫人士Abby，她想从网上购买猫咪。
 
@@ -32,11 +27,9 @@
 
 这个比喻完美地对应了Promise的三种状态。创建一个Promise就像下一个订单，之后它可能进入“履行”、“待定”或“拒绝”状态。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_11.png)
 
 ## 使用 `.then` 和 `.catch` 处理Promise
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_13.png)
 
 现在，我们将比喻转化为代码。`.then` 方法用于处理成功的Promise，而 `.catch` 方法用于处理失败的Promise。
 
@@ -55,25 +48,20 @@ placeOrderForCats()
 ```
 在上面的代码中，`deliveredCats` 参数代表从成功Promise中获取的数据（比如猫咪），而 `error` 参数则包含了失败的原因。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_15.png)
 
 ## 同步 vs 异步：效率对比 ⏱️
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_17.png)
 
 让我们从效率角度比较同步和异步。
 
 在**同步**过程中，Abby下单后必须干等着，直到包裹送达，期间不能做饭、讲课或健身。这非常浪费时间。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_19.png)
 
 在**异步**过程中，Abby下单后，包裹会在后台派送。与此同时，她可以自由地去做饭、讲课或健身。这大大提高了效率。
 
 Promise的作用正是如此：它允许我们在等待一个耗时操作（如网络请求）完成的同时，继续执行其他代码，从而避免程序“阻塞”。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_21.png)
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_22.png)
 
 ## 异步代码的执行顺序
 
@@ -99,7 +87,6 @@ useEffect(() => {
 
 ## 处理多个Promise
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_26.png)
 
 当我们需要处理多个Promise时，有几种有用的方法。
 
@@ -120,7 +107,6 @@ slowNumber(9).then((aVal) => {
 *   **`Promise.race([promise1, promise2, ...])`**：等待**第一个**解决或拒绝的Promise，并采用其结果。
 *   **`Promise.any([promise1, promise2, ...])`**：等待**第一个**解决的Promise。只有当所有Promise都被拒绝时，它才返回拒绝。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_28.png)
 
 ## 使用 async/await 简化代码 ✨
 
@@ -158,9 +144,7 @@ promiseA.then((a) => {
 
 在React中，`useEffect` 的回调函数不能直接是 `async` 函数。我们需要在内部定义一个 `async` 函数并调用它。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_30.png)
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_32.png)
 
 以下是正确的做法：
 ```javascript
@@ -176,9 +160,7 @@ useEffect(() => {
 }, []);
 ```
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_34.png)
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_36.png)
 
 ## 何时使用异步函数？
 
@@ -187,13 +169,10 @@ useEffect(() => {
 *   **文件操作**：如上传或下载大文件。
 *   **定时任务**：如 `setTimeout`。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_38.png)
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_40.png)
 
 异步编程对于保持Web应用的**交互性**至关重要。例如，在YouTube页面加载时，视频、评论等数据在后台异步获取，用户无需等待所有内容加载完毕就可以滚动页面或进行其他操作。如果全部采用同步方式，用户就必须等待所有数据加载完成后才能与页面交互，体验会非常糟糕。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_42.png)
 
 ## 总结 📝
 
@@ -206,7 +185,6 @@ useEffect(() => {
 6.  我们了解了在React的 `useEffect` 钩子中正确使用 `async/await` 的方法。
 7.  最后，我们明确了异步编程对于构建高效、响应式用户体验的重要性。
 
-![](img/cedf0c2a806f413d658e9ca7045eaa06_44.png)
 
 ![](img/cedf0c2a806f413d658e9ca7045eaa06_46.png)
 

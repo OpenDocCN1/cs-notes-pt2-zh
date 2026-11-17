@@ -90,15 +90,12 @@
 
 一条更新日志记录格式为：`<T, X, V>`，表示事务T将数据项X的值改为了V（这里是**旧值**）。
 
-![](img/cdf7441b4bd316e116edba77d09c12e9_3.png)
 
 **恢复规则：**
 1.  **Undo规则**：如果事务T修改了X，那么日志记录 `<T, X, old_value>` 必须在 `flush(X)` **之前**写入磁盘。
 2.  **Force规则**：如果事务T提交，那么所有 `flush(X)` 操作必须在 `commit` 日志记录写入磁盘**之前**完成。
 
-![](img/cdf7441b4bd316e116edba77d09c12e9_5.png)
 
-![](img/cdf7441b4bd316e116edba77d09c12e9_7.png)
 
 ![](img/cdf7441b4bd316e116edba77d09c12e9_8.png)
 
@@ -125,7 +122,6 @@
 
 ![](img/cdf7441b4bd316e116edba77d09c12e9_19.png)
 
-![](img/cdf7441b4bd316e116edba77d09c12e9_21.png)
 
 ---
 
@@ -161,7 +157,6 @@ Undo日志和Redo日志各有局限。理想的**Undo/Redo日志**结合了两�
 
 ![](img/cdf7441b4bd316e116edba77d09c12e9_24.png)
 
-![](img/cdf7441b4bd316e116edba77d09c12e9_25.png)
 
 然而，无论是Undo、Redo还是Undo/Redo日志，恢复时都可能需要扫描大量日志。**检查点** 是一种优化技术，用于限制需要扫描的日志范围。
 

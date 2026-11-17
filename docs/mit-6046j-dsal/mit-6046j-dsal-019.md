@@ -1,12 +1,8 @@
 # L14：增量改进：匹配 🧩
 
-![](img/579af9e23ae78db650d454df0e50f091_0.png)
 
-![](img/579af9e23ae78db650d454df0e50f091_2.png)
 
-![](img/579af9e23ae78db650d454df0e50f091_4.png)
 
-![](img/579af9e23ae78db650d454df0e50f091_6.png)
 
 ![](img/579af9e23ae78db650d454df0e50f091_7.png)
 

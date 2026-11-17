@@ -14,7 +14,6 @@
 ![](img/92fece0b55ccda6c93be7a700d6849e4_2.png)
 
 
-![](img/92fece0b55ccda6c93be7a700d6849e4_4.png)
 
 ```swift
 // 1. 扩展 String 使其遵循 Error 协议
@@ -51,11 +50,9 @@ do {
 }
 ```
 
-![](img/92fece0b55ccda6c93be7a700d6849e4_6.png)
 
 如果将 `execute` 函数的 `rethrows` 改为 `throws`，那么即使传入不会抛出错误的函数，调用时也必须使用 `do-try-catch` 块，这会使代码变得冗余。`rethrows` 关键字让 Swift 编译器能够根据传入的函数参数智能地推断是否需要错误处理。
 
-![](img/92fece0b55ccda6c93be7a700d6849e4_8.png)
 
 ## 作业点评与视图身份标识
 
@@ -113,7 +110,6 @@ struct ContentView: View {
 }
 ```
 
-![](img/92fece0b55ccda6c93be7a700d6849e4_10.png)
 
 ![](img/92fece0b55ccda6c93be7a700d6849e4_12.png)
 
@@ -123,7 +119,6 @@ struct ContentView: View {
 
 ![](img/92fece0b55ccda6c93be7a700d6849e4_14.png)
 
-![](img/92fece0b55ccda6c93be7a700d6849e4_16.png)
 
 `Form` 是用于分组设置项或数据输入项的容器，`Section` 则用于在 `Form` 内对内容进行视觉上的分组。
 
@@ -203,7 +198,6 @@ let descendingNumbersOperator = numbers.sorted(by: >)
 
 你也可以实现更复杂的排序逻辑，例如让偶数排在奇数前面：
 
-![](img/92fece0b55ccda6c93be7a700d6849e4_18.png)
 
 ![](img/92fece0b55ccda6c93be7a700d6849e4_20.png)
 

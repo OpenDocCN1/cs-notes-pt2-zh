@@ -1,6 +1,5 @@
 # 009：解耦、Hanson-Wright证明、ℓp范数估计、Nisan的PRG
 
-![](img/a5cfecf4ae2613500e2b8655c138f240_0.png)
 
 ![](img/a5cfecf4ae2613500e2b8655c138f240_0.png)
 

@@ -1,8 +1,6 @@
 # 012：分治算法进阶 🧩
 
-![](img/51f3e953ad2fbc109d0ba00e9c2f8701_0.png)
 
-![](img/51f3e953ad2fbc109d0ba00e9c2f8701_2.png)
 
 ![](img/51f3e953ad2fbc109d0ba00e9c2f8701_4.png)
 

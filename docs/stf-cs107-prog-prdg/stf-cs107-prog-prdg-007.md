@@ -1,6 +1,5 @@
 # 007：通用栈与C字符串操作
 
-![](img/dc6ec28aeea775463756a145514ea0cc_1.png)
 
 本课程由斯坦福大学专业发展中心提供。
 
@@ -14,13 +13,11 @@
 
 假设这是你的`main`函数。我们不关心`argc`和`argv`，但需要声明一个栈。
 
-![](img/dc6ec28aeea775463756a145514ea0cc_3.png)
 
 我将强调这是一个字符串栈。
 
 ![](img/dc6ec28aeea775463756a145514ea0cc_3.png)
 
-![](img/dc6ec28aeea775463756a145514ea0cc_5.png)
 
 ![](img/dc6ec28aeea775463756a145514ea0cc_5.png)
 
@@ -32,11 +29,8 @@ const char* friends[] = {"Al", "Bob", "Carl"};
 
 接下来，声明一个栈。根据之前的类型定义，此时栈的图示并不复杂。
 
-![](img/dc6ec28aeea775463756a145514ea0cc_7.png)
 
-![](img/dc6ec28aeea775463756a145514ea0cc_9.png)
 
-![](img/dc6ec28aeea775463756a145514ea0cc_7.png)
 
 它只是一个16字节的空（或无意义）内存块。然后，我们调用`StackNew`。
 
@@ -98,7 +92,6 @@ StackDispose(&stringStack);
 
 现在，问题来了。
 
-![](img/dc6ec28aeea775463756a145514ea0cc_11.png)
 
 假设我注释掉所有代码，或者把循环条件改为`i < 2`之类的。在某个时刻，我...
 

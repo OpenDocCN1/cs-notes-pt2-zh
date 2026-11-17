@@ -74,9 +74,7 @@
 3.  处理完流后，取列表中第 `t` 小的值作为 `α_t`。
 4.  输出估计值 `t / α_t`。
 
-![](img/9cde4bcb39dd10bdfba7c0f63e271414_5.png)
 
-![](img/9cde4bcb39dd10bdfba7c0f63e271414_6.png)
 
 ---
 

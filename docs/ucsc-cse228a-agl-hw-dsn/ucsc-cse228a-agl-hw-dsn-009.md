@@ -37,7 +37,6 @@ def multiLineExample(a: Int, b: Int): Int = {
 
 函数不仅可以封装逻辑，还可以通过递归来实现迭代。这对于构建某些硬件结构（如移位寄存器）非常有用。
 
-![](img/4f3a8a4902b64641feace121425aec2a_1.png)
 
 **递归求和函数：**
 对于递归函数，必须显式指定返回类型。
@@ -81,7 +80,6 @@ def shiftRegisterRecursive(in: UInt, n: Int): UInt = {
 
 与使用可变变量（`var`）的循环实现相比，递归实现没有可变状态，完全依靠函数调用栈来管理中间值。两种方式功能相同，但递归风格更符合函数式编程的不可变思想，有时能让复杂问题的代码更清晰。
 
-![](img/4f3a8a4902b64641feace121425aec2a_3.png)
 
 ---
 
@@ -115,7 +113,6 @@ object MyPair {
 
 ---
 
-![](img/4f3a8a4902b64641feace121425aec2a_5.png)
 
 ## 在 Chisel 中应用工厂模式
 
@@ -139,7 +136,6 @@ class MyCounter(val max: Int) extends Module {
 ```
 实例化时需要 `new MyCounter(10)`。
 
-![](img/4f3a8a4902b64641feace121425aec2a_7.png)
 
 **使用伴生对象的计数器：**
 ```scala
@@ -156,9 +152,7 @@ object MyCounter {
 **Chisel 标准库中的计数器：**
 Chisel 已经提供了强大的 `Counter` 对象，它包含多个工厂方法。
 
-![](img/4f3a8a4902b64641feace121425aec2a_9.png)
 
-![](img/4f3a8a4902b64641feace121425aec2a_11.png)
 
 ```scala
 import chisel3.util.Counter
@@ -169,7 +163,6 @@ val (countValue2, wrap2) = Counter(0 until 10 by 2)
 ```
 `Counter` 返回一个元组 `(count, wrap)`，其中 `wrap` 在计数器达到上限时变为高电平。使用标准库组件可以减少错误，提高开发效率。
 
-![](img/4f3a8a4902b64641feace121425aec2a_13.png)
 
 **模块 vs 函数：**
 `Counter` 是一个返回硬件的函数，而不是一个 `Module`。有时，将功能实现为函数而非模块更有优势：
@@ -189,9 +182,7 @@ class Mag extends Bundle {
 }
 ```
 
-![](img/4f3a8a4902b64641feace121425aec2a_15.png)
 
-![](img/4f3a8a4902b64641feace121425aec2a_17.png)
 
 **在模块中使用 Bundle：**
 ```scala
@@ -206,9 +197,7 @@ class MyModule extends Module {
 **继承与嵌套 Bundle：**
 Bundle 可以继承和嵌套，以构建更复杂的数据结构。
 
-![](img/4f3a8a4902b64641feace121425aec2a_19.png)
 
-![](img/4f3a8a4902b64641feace121425aec2a_21.png)
 
 ```scala
 // 继承：添加符号位
@@ -241,7 +230,6 @@ class Handshake extends Bundle {
 
 ---
 
-![](img/4f3a8a4902b64641feace121425aec2a_23.png)
 
 ## 可选端口与 Option 类型
 
@@ -250,7 +238,6 @@ class Handshake extends Bundle {
 **Scala 的 Option 类型：**
 `Option[T]` 表示一个可能存在的 `T` 类型值。它有两个子类：`Some(value)` 表示存在值，`None` 表示不存在。
 
-![](img/4f3a8a4902b64641feace121425aec2a_25.png)
 
 ```scala
 val maybeNum: Option[Int] = Some(4)
@@ -281,7 +268,6 @@ class MyModule(hasY: Boolean) extends Module {
 
 ---
 
-![](img/4f3a8a4902b64641feace121425aec2a_27.png)
 
 ## 匿名函数与集合构造
 
@@ -298,7 +284,6 @@ val seq2 = Seq.tabulate(4)(_ * 2) // Seq(0, 2, 4, 6)
 ```
 占位符 `_` 代表匿名函数的第一个参数。这种语法在函数体简单时非常方便。
 
-![](img/4f3a8a4902b64641feace121425aec2a_29.png)
 
 ---
 
@@ -306,13 +291,11 @@ val seq2 = Seq.tabulate(4)(_ * 2) // Seq(0, 2, 4, 6)
 
 本节课中我们一起学习了硬件设计中的封装技术。
 
-![](img/4f3a8a4902b64641feace121425aec2a_31.png)
 
 我们首先学习了 **Scala 函数**，包括如何定义、使用默认参数和编写递归函数。递归是构建参数化生成器的强大工具。
 
 接着，我们探讨了 **单例对象和工厂模式**，通过伴生对象提供灵活的构造接口，并学习了如何在 Chisel 中应用此模式，包括使用标准库的 `Counter`。
 
-![](img/4f3a8a4902b64641feace121425aec2a_33.png)
 
 然后，我们深入研究了 **Chisel Bundle**，它是组织复杂接口的关键，支持继承、嵌套和方便的批量连接操作。
 

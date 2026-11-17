@@ -6,11 +6,8 @@
 
 我们将模拟一个冰激凌店的日常运营。在这个模型中，顾客进店购买一定数量的冰激凌甜筒。每个甜筒由一个专门的店员制作，制作完成后需要经理检查质量。只有合格的甜筒才能交给顾客，然后顾客去收银台结账。整个过程涉及多个线程（顾客、店员、经理、收银员）的并发执行与协调。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_1.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_3.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_5.png)
 
 ## 核心概念与结构
 
@@ -18,11 +15,9 @@
 
 ### 1. 二进制锁（互斥锁）
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_7.png)
 
 上一节我们介绍了模拟场景，本节中我们来看看如何保证资源独占访问。二进制锁本质上是一个互斥锁（Mutex），它确保在同一时刻只有一个线程可以进入临界区或访问某个共享资源。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_8.png)
 
 **公式/代码描述：**
 ```cpp
@@ -32,13 +27,10 @@ mtx.lock();
 mtx.unlock();
 ```
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_10.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_12.png)
 
 ### 2. 广义计数器（信号量）
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_14.png)
 
 接下来，我们看看如何管理有限数量的资源。广义计数器通常通过信号量（Semaphore）实现。信号量维护一个计数器，可以原子性地进行增减操作，用于协调多个线程对有限资源的访问。
 
@@ -50,15 +42,12 @@ sem_wait(&sem); // P操作，申请资源
 sem_post(&sem); // V操作，释放资源
 ```
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_16.png)
 
 ### 3. 二进制会合
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_18.png)
 
 当两个线程需要精确协调彼此的执行顺序时，我们会用到二进制会合。这通常使用初始值为0的信号量来实现，一个线程等待（wait），另一个线程在完成特定任务后发出信号（post）。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_20.png)
 
 **公式/代码描述：**
 ```cpp
@@ -71,13 +60,11 @@ sem_wait(&rendezvous_sem); // 等待线程B的信号
 sem_post(&rendezvous_sem); // 通知线程A
 ```
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_22.png)
 
 ### 4. 广义会合
 
 广义会合用于一个线程需要等待多个其他线程都完成某项任务后才能继续执行的场景。这结合了二进制会合和计数器的思想。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_24.png)
 
 **公式/代码描述：**
 ```cpp
@@ -97,25 +84,18 @@ for (int i = 0; i < N; ++i) {
 
 ## 程序结构解析
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_26.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_28.png)
 
 现在，让我们逐一分析模拟程序中的各个组成部分。
 
 ### 全局数据结构
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_30.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_32.png)
 
 程序定义了几个全局结构体来共享状态和进行线程间通信。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_34.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_36.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_38.png)
 
 **检查结构体 (`inspection`)**
 这个结构体用于店员和经理之间的交互。
@@ -128,7 +108,6 @@ struct inspection {
 } inspection;
 ```
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_40.png)
 
 **结账结构体 (`checkout`)**
 这个结构体用于顾客和收银员之间的交互。
@@ -155,19 +134,15 @@ struct checkout {
 7.  **等待结账完成**：在属于自己的信号量 `customer_finished[position]` 上等待，直到收银员处理完毕。
 8.  **离开**：结账完成后，顾客线程结束。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_42.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_44.png)
 
 `browse` 函数非常简单，只是让线程休眠一段随机时间。
 
 ### 店员线程 (`clerk`)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_46.png)
 
 店员线程负责制作单个甜筒，并确保其通过经理检查。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_48.png)
 
 以下是店员线程的主要循环逻辑：
 ```cpp
@@ -189,7 +164,6 @@ while (!success) {
 
 ### 经理线程 (`manager`)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_50.png)
 
 经理线程负责检查店员提交的甜筒是否合格。
 
@@ -207,15 +181,11 @@ for (int approved = 0; approved < total_cones_needed; ) {
 ```
 `inspect_cone` 函数模拟检查过程，并随机决定甜筒是否合格。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_52.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_54.png)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_56.png)
 
 ### 收银员线程 (`cashier`)
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_58.png)
 
 收银员线程负责按顾客排队的顺序为他们结账。
 
@@ -230,7 +200,6 @@ for (unsigned int next_to_serve = 0; next_to_serve < num_customers; next_to_serv
 ```
 关键点在于，收银员严格按 `next_to_serve` 的顺序（0, 1, 2...）服务顾客，这保证了先排队的顾客先被服务。顾客通过原子计数器 `next_enqueue_position` 确定自己的排队位置，从而与收银员的顺序匹配。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_60.png)
 
 ### 主函数 (`main`)
 
@@ -245,13 +214,11 @@ for (unsigned int next_to_serve = 0; next_to_serve < num_customers; next_to_serv
 6.  等待收银员和经理线程结束 (`join`)。
 7.  程序退出。
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_62.png)
 
 经理和收银员线程在创建后立即开始运行，但会很快在各自的信号量上等待，直到被顾客或店员的活动唤醒。这种模式类似于“线程池”，线程预先创建好，等待任务分配，减少了动态创建线程的开销。
 
 ## 总结
 
-![](img/fbd4f11fd1845e9f40df784abcfff8b8_64.png)
 
 ![](img/fbd4f11fd1845e9f40df784abcfff8b8_66.png)
 

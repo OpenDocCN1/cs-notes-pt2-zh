@@ -1,12 +1,10 @@
 # 015：工作坊3（后端）🚀
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_1.png)
 
 在本节课中，我们将学习如何为我们的CatBook应用实现后端功能。目前，我们的帖子和评论都存储在React状态中，一旦刷新页面就会消失。我们的目标是让这些数据持久化，即刷新后帖子与评论依然存在。我们将通过将数据存储在后端服务器，并让前端通过发送HTTP请求来获取和提交数据来实现这一点。
 
 ![](img/8cf5410479b52f1f6ecd25c125d030b8_3.png)
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_4.png)
 
 ---
 
@@ -96,7 +94,6 @@ app.get('/api/stories', (req, res) => {
 
 ![](img/8cf5410479b52f1f6ecd25c125d030b8_20.png)
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_22.png)
 
 ## 发送POST请求提交新故事 📨
 
@@ -205,7 +202,6 @@ useEffect(() => {
 
 在后端，我们需要创建 `/api/comments` 端点来处理这个带查询参数的GET请求。
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_49.png)
 
 在Express中，可以通过 `req.query` 对象访问查询参数。
 
@@ -239,7 +235,6 @@ app.get('/api/comments', (req, res) => {
 
 最后，我们需要实现发布新评论的功能。
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_59.png)
 
 在 `card.jsx` 的 `addNewComment` 函数中，我们将发送一个POST请求到 `/api/comment`。请求体（body）中包含新的评论对象。
 
@@ -278,7 +273,6 @@ app.post('/api/comment', (req, res) => {
 });
 ```
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_65.png)
 
 ---
 

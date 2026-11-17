@@ -1,6 +1,5 @@
 # 008：容斥原理的证明
 
-![](img/c19ef56ad3450e4652e3334ee8bdb70b_1.png)
 
 ![](img/c19ef56ad3450e4652e3334ee8bdb70b_3.png)
 

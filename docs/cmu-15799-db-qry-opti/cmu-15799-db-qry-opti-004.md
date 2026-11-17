@@ -1,6 +1,5 @@
 # 004：查询优化-CMU-15-799--(2025-年春季)-p04-P04-#04---EXODUS-+-Volcano-Query-Optimizer-Generators-(CMU-Optimize!)
 
-![](img/534d5029f3b3866e2e9efe8fe49db811_0.png)
 
 ![](img/534d5029f3b3866e2e9efe8fe49db811_0.png)
 

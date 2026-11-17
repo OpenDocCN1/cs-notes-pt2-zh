@@ -1,6 +1,5 @@
 # 015：Rust并发、线程与通道 🧵
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_1.png)
 
 在本节课中，我们将学习Rust语言中关于并发编程的核心概念。我们将探讨什么是并发、为什么它很重要但同时又充满挑战，并学习如何在Rust中使用线程和通道来实现并发。
 
@@ -89,27 +88,20 @@ fn main() {
 
 此外，注意派生线程可能无法打印到9，因为一旦主线程结束，程序就会终止，派生线程也可能被强制结束。
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_5.png)
 
 ### 使用 Join 句柄等待线程
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_7.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_9.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_11.png)
 
 为了解决派生线程可能无法完成的问题，我们可以保存 `spawn` 的返回值。
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_13.png)
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_15.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_17.png)
 
 `spawn` 返回一个 `JoinHandle`。当我们调用其 `join` 方法时，它会**阻塞**当前线程（这里是主线程），直到对应的派生线程执行完毕。
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_19.png)
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_21.png)
 
@@ -207,11 +199,9 @@ fn main() {
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_27.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_29.png)
 
 通过克隆发送者，可以实现多个生产者向同一个消费者发送消息。
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_31.png)
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_32.png)
 
@@ -258,7 +248,6 @@ fn main() {
 }
 ```
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_36.png)
 
 两个派生线程分别使用原始的 `tx` 和克隆的 `tx1` 向同一个接收者 `rx` 发送消息。主线程通过迭代 `rx` 来接收所有消息。由于线程执行顺序不确定，输出消息的顺序也可能是交错的。
 
@@ -268,9 +257,7 @@ fn main() {
 
 本节课中我们一起学习了Rust并发编程的基础知识。
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_40.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_42.png)
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_44.png)
 

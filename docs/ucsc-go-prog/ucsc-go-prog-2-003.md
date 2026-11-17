@@ -1,6 +1,5 @@
 # 003：结构体
 
-![](img/b3083ff01a3d8bf6da6a473097faabc9_0.png)
 
 ![](img/b3083ff01a3d8bf6da6a473097faabc9_0.png)
 

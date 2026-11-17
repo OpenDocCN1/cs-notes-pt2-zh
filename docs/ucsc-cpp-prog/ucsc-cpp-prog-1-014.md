@@ -14,7 +14,6 @@
 
 以下是两个基本的数值算法示例：`accumulate`（求和）和 `inner_product`（内积）。它们通常作用于容器（如数组或向量）的元素上。
 
-![](img/be88c3a3add3813ab8071ffe9a8b79d5_1.png)
 
 ```cpp
 // 示例：使用 accumulate 求和
@@ -55,7 +54,6 @@ STL数值算法的一个强大特性是其灵活性和正交性。通过允许�
 
 以下是 `accumulate` 函数的原型，它展示了如何接受一个自定义的二元操作符：
 
-![](img/be88c3a3add3813ab8071ffe9a8b79d5_3.png)
 
 ```cpp
 template <class InputIt, class T, class BinaryOperation>
@@ -67,11 +65,9 @@ T accumulate(InputIt first, InputIt last, T init, BinaryOperation op);
 *   `init`：累积操作的初始值，通常为 `0`。
 *   `op`：一个二元操作符（函数对象、函数指针或Lambda表达式），用于替代默认的加法操作。
 
-![](img/be88c3a3add3813ab8071ffe9a8b79d5_5.png)
 
 通过提供一个自定义的 `op`，累积操作将不再执行 `A + B + C ...`，而是执行 `op(op(init, A), B)...`。这种设计使得算法不再局限于简单的加法，可以执行任何符合逻辑的二元累积操作，例如乘法、字符串连接或更复杂的自定义操作。
 
-![](img/be88c3a3add3813ab8071ffe9a8b79d5_7.png)
 
 这种正交性设计极大地扩展了STL库的效用。例如，我们可以先对一个向量 `V1` 使用 `accumulate`，然后将结果作为初始值，再对另一个向量 `V2` 进行累积，从而实现跨多个范围的复杂计算。
 

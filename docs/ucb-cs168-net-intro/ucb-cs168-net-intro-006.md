@@ -1,8 +1,6 @@
 # 6：路由（二）🚦
 
-![](img/1d559548efbf596c687c1f389d701ffc_1.png)
 
-![](img/1d559548efbf596c687c1f389d701ffc_3.png)
 
 在本节课中，我们将继续学习路由协议。我们将了解域内与域间路由的区别，深入探讨距离向量路由协议的工作原理，并学习如何处理网络中的链路故障和变化。
 
@@ -119,7 +117,6 @@ if current_table[dest] is None or new_distance < current_table[dest].distance:
 
 ![](img/1d559548efbf596c687c1f389d701ffc_5.png)
 
-![](img/1d559548efbf596c687c1f389d701ffc_6.png)
 
 ![](img/1d559548efbf596c687c1f389d701ffc_7.png)
 
