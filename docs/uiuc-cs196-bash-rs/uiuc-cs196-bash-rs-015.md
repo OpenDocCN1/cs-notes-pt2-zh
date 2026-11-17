@@ -97,7 +97,6 @@ fn main() {
 为了解决派生线程可能无法完成的问题，我们可以保存 `spawn` 的返回值。
 
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_15.png)
 
 
 `spawn` 返回一个 `JoinHandle`。当我们调用其 `join` 方法时，它会**阻塞**当前线程（这里是主线程），直到对应的派生线程执行完毕。
@@ -197,7 +196,6 @@ fn main() {
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_25.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_27.png)
 
 
 通过克隆发送者，可以实现多个生产者向同一个消费者发送消息。
@@ -205,7 +203,6 @@ fn main() {
 
 ![](img/bde9f7a827357c58d82bfca22f8ba89c_32.png)
 
-![](img/bde9f7a827357c58d82bfca22f8ba89c_34.png)
 
 ```rust
 use std::sync::mpsc;

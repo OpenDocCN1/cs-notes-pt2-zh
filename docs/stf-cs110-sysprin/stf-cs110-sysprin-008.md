@@ -77,7 +77,6 @@ int main() {
 
 
 
-![](img/186d56cf3cf36e03a3d35caf5aa63c69_42.png)
 
 
 ## 简单Shell中的问题：未回收的后台进程
@@ -138,7 +137,6 @@ void sigchld_handler(int sig) {
 
 ![](img/186d56cf3cf36e03a3d35caf5aa63c69_66.png)
 
-![](img/186d56cf3cf36e03a3d35caf5aa63c69_68.png)
 
 然而，仅仅添加信号处理器会引入**竞争条件**。考虑以下逻辑，我们想跟踪前台进程的PID（`fg_pid`）：
 
@@ -151,7 +149,6 @@ void sigchld_handler(int sig) {
 6.  父进程随后将`fg_pid`设置为子进程PID，然后进入等待循环。
 7.  此时，`fg_pid`不为零，但子进程已结束，信号处理器不会再被触发，导致父进程永远等待下去。
 
-![](img/186d56cf3cf36e03a3d35caf5aa63c69_72.png)
 
 
 
@@ -164,7 +161,6 @@ void sigchld_handler(int sig) {
 
 ## 使用信号屏蔽消除竞争条件
 
-![](img/186d56cf3cf36e03a3d35caf5aa63c69_84.png)
 
 为了避免上述竞争，我们需要**阻塞（屏蔽）** `SIGCHLD`信号，直到父进程准备好处理它。我们使用`sigprocmask`系统调用。
 

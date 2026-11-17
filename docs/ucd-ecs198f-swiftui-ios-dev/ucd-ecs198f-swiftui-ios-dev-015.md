@@ -10,7 +10,6 @@
 
 ![](img/ca7fc551b0a286fa28d318457e7fd04c_1.png)
 
-![](img/ca7fc551b0a286fa28d318457e7fd04c_2.png)
 
 ```swift
 let queue = DispatchQueue.global(qos: .userInitiated)

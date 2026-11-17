@@ -61,11 +61,9 @@
 
 ![](img/e5b0af1fbde738bee5694c53ec1e75d7_74.png)
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_76.png)
 
 
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_81.png)
 
 
 
@@ -84,7 +82,6 @@
 
 ![](img/e5b0af1fbde738bee5694c53ec1e75d7_89.png)
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_91.png)
 
 
 3.  **能否仅使用 NAND 或 NOR 门构造其他逻辑门？**
@@ -94,7 +91,6 @@
 ---
 
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_99.png)
 
 
 ![](img/e5b0af1fbde738bee5694c53ec1e75d7_103.png)
@@ -109,7 +105,6 @@
 在编程中，我们熟悉累加器模式，例如求和：`S = S + X[i]`。在硬件中实现此功能，需要能够“记住”当前和 `S` 的值，这就是**状态**。
 
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_117.png)
 
 
 ![](img/e5b0af1fbde738bee5694c53ec1e75d7_121.png)
@@ -145,7 +140,6 @@
 
 ![](img/e5b0af1fbde738bee5694c53ec1e75d7_153.png)
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_155.png)
 
 
 
@@ -254,7 +248,6 @@
 
 有限状态机是描述和设计时序逻辑系统的强大工具。
 
-![](img/e5b0af1fbde738bee5694c53ec1e75d7_229.png)
 
 
 ![](img/e5b0af1fbde738bee5694c53ec1e75d7_232.png)

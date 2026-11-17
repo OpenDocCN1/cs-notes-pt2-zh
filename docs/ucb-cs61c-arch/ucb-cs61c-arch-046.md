@@ -12,11 +12,9 @@
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_15.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_17.png)
 
 
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_22.png)
 
 
 
@@ -26,7 +24,6 @@
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_32.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_34.png)
 
 
 
@@ -88,7 +85,6 @@
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_107.png)
 
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_111.png)
 
 
 
@@ -112,7 +108,6 @@
 
 虚拟内存是位于主存之下的一个内存层级。在我们之前的计算中，一切停止在主存级别。现在，虚拟内存通过分页将DRAM扩展到了磁盘中。
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_136.png)
 
 
 
@@ -120,7 +115,6 @@
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_146.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_148.png)
 
 
 
@@ -142,7 +136,6 @@
 
 
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_176.png)
 
 
 
@@ -159,7 +152,6 @@
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_189.png)
 
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_192.png)
 
 
 
@@ -212,7 +204,6 @@
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_236.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_238.png)
 
 
 
@@ -287,13 +278,11 @@
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_321.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_323.png)
 
 
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_329.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_331.png)
 
 现代系统通常采用第二种方式。在内存映射I/O中，地址空间的一部分（通常是低地址区域）被保留用于I/O。这些地址不对应于实际的DRAM，而是映射到各个I/O设备的命令、状态和数据寄存器。程序可以使用正常的加载和存储指令来访问这些地址（如果被允许），或者通过系统调用来访问。RISC-V就是这样做的。
 
@@ -328,7 +317,6 @@
 *   **音频设备**：每秒几百KiB到几MB。
 *   **WiFi/以太网/硬盘**：速度更高，但通常仍比处理器内存带宽低一个数量级，除非是Thunderbolt等高速接口。
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_365.png)
 
 
 
@@ -386,7 +374,6 @@ poll_input:
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_427.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_428.png)
 
 
 
@@ -410,7 +397,6 @@ poll_input:
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_452.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_454.png)
 
 
 
@@ -549,12 +535,10 @@ DMA引擎在内存层次结构中的位置有两种主要选择：
 ## 总结 📚
 
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_625.png)
 
 
 ![](img/73a90e7ef82d7219c316c6f5dcf91a2a_629.png)
 
-![](img/73a90e7ef82d7219c316c6f5dcf91a2a_631.png)
 
 
 

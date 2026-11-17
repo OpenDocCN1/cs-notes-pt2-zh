@@ -83,7 +83,6 @@ const arrayCelsiusToFahrenheit = (arrayCelsius) => {
 
 我们将创建一个通用的 `modifyArray` 函数。它接收一个数组和一个“转换函数”作为参数，然后对数组的每个元素应用这个转换函数，并返回新数组。
 
-![](img/d617d8b05e01c33139f31fe8a96ffd40_15.png)
 
 **概念**：`modifyArray(原始数组, 转换函数) => 新数组`
 

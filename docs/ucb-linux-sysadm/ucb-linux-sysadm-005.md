@@ -111,7 +111,6 @@ arp -a
 dig google.com
 ```
 
-![](img/8eff1c83de5a60a6e7156d09e761c873_13.png)
 
 **ip**
 一个强大的工具，用于显示或配置网络接口、路由等信息。

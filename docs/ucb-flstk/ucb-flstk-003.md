@@ -112,7 +112,6 @@ CSS是一种样式表语言，用于描述HTML文档的呈现方式。它控制�
 
 ![](img/03d3b4df569bb49325d9fa75ee8a2ef2_47.png)
 
-![](img/03d3b4df569bb49325d9fa75ee8a2ef2_49.png)
 
 **index.html 文件：**
 ```html
