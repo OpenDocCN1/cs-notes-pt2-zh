@@ -1,6 +1,5 @@
 # 010：React组件生命周期与Hooks 🧬
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_1.png)
 
 在本节课中，我们将要学习React组件的生命周期，以及如何使用`useEffect`这个重要的Hook。理解这些概念对于构建动态、响应式的Web应用至关重要。
 
@@ -102,7 +101,6 @@ State和Props是React中数据流动的基石。
 一个React组件的生命周期包含三个阶段：挂载（Mounting）、更新（Updating）和卸载（Unmounting）。每个阶段都伴随着“触发（Trigger） -> 渲染（Render） -> 提交（Commit）”的流程。
 
 
-![](img/51598ece4900c0b029304f4fb6dc1a61_70.png)
 
 1.  **挂载（Mounting）**：组件首次被创建并插入DOM中。
     *   **触发**：组件首次渲染。

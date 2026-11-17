@@ -139,7 +139,6 @@ Map、Filter 和 Fold 可以链式组合在一起，形成非常强大的数据�
 
 ![](img/a5f0a8e50c24615ae5ca8b787dbd88be_41.png)
 
-![](img/a5f0a8e50c24615ae5ca8b787dbd88be_43.png)
 
 
 ```rust

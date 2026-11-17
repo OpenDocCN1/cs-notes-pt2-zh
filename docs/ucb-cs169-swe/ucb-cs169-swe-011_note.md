@@ -168,7 +168,6 @@ Capybara 与浏览器中的页面进行交互。页面就是一个HTML文档，�
 
 ![](img/ce3ffcd033543aed7b196740c40d342f_37.png)
 
-![](img/ce3ffcd033543aed7b196740c40d342f_39.png)
 
 ### Web服务器 vs. 应用服务器
 

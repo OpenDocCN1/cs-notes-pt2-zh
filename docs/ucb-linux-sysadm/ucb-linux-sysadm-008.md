@@ -171,7 +171,6 @@ git push origin feature_branch
 
 ![](img/936786b73c3e45fcfdddc2c6c51fef1b_14.png)
 
-![](img/936786b73c3e45fcfdddc2c6c51fef1b_16.png)
 
 ### 备份工具
 

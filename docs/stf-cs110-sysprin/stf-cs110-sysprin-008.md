@@ -135,7 +135,6 @@ void sigchld_handler(int sig) {
 
 ## 竞争条件的出现
 
-![](img/186d56cf3cf36e03a3d35caf5aa63c69_66.png)
 
 
 然而，仅仅添加信号处理器会引入**竞争条件**。考虑以下逻辑，我们想跟踪前台进程的PID（`fg_pid`）：

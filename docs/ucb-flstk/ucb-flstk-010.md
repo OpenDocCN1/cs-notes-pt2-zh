@@ -225,7 +225,6 @@ app.get('/', (req, res) => {
 
 ![](img/7d6c21f07be064be8e2b53d1455dcb32_86.png)
 
-![](img/7d6c21f07be064be8e2b53d1455dcb32_88.png)
 
 我们客户端使用的 `fetch()` 函数是现代浏览器提供的用于发起网络请求的 API。它返回一个 Promise 对象，这使得我们可以用 `async/await` 语法优雅地处理异步操作（即需要等待服务器响应的操作）。
 

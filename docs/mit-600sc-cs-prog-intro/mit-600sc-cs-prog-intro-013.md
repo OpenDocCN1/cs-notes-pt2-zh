@@ -66,7 +66,6 @@ Python 采用了一种更巧妙的方法，称为**间接寻址**。其核心思
 
 ![](img/d0c5bc9931de956546c3eae815d5e9de_9.png)
 
-![](img/d0c5bc9931de956546c3eae815d5e9de_11.png)
 
 算法步骤如下：
 

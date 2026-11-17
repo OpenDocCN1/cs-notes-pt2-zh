@@ -77,7 +77,6 @@ Bottle Service 是一个集中式的元数据服务，其核心工作是**引用
 
 ## 🏗️ Bottle Service 的设计与实现
 
-![](img/d1d3a427af30b31b1a2d3ecbca2102bc_23.png)
 
 
 那么，用什么系统来实现这个 Bottle Service 呢？它需要处理事务性操作、运行实时轻量分析查询（如连接查询），并要求高可用性和高持久性。

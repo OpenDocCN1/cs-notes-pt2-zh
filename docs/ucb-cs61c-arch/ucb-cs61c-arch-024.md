@@ -55,7 +55,6 @@
 
 ### 算术逻辑单元 (ALU)
 
-![](img/3c5dbac18c72a5b3cb44e1e02a09fdef_26.png)
 
 ALU可以执行多种算术和逻辑操作，具体操作由一个选择信号决定。
 
@@ -142,12 +141,10 @@ PC是一个存储当前指令地址的寄存器。
 
 ![](img/3c5dbac18c72a5b3cb44e1e02a09fdef_60.png)
 
-![](img/3c5dbac18c72a5b3cb44e1e02a09fdef_62.png)
 
 
 ---
 
-![](img/3c5dbac18c72a5b3cb44e1e02a09fdef_66.png)
 
 ## 构建第一个简单数据通路 🧱
 

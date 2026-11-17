@@ -69,7 +69,6 @@ function Component1() {
 
 **使用Context:**
 
-![](img/636a6d73a301372002f1cf1a24cb856c_21.png)
 
 
 ```javascript

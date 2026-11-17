@@ -8,7 +8,6 @@
 
 ![](img/dc38de7defdf726ad9690d3edf071a71_3.png)
 
-![](img/dc38de7defdf726ad9690d3edf071a71_5.png)
 
 ## Actor 模型与 MainActor
 

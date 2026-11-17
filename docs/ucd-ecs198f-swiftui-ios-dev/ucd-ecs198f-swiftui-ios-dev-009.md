@@ -117,7 +117,6 @@ struct DeepChildView: View {
 }
 ```
 
-![](img/716a3010acf34bf375c2658ed1bbdf58_9.png)
 
 
 ## 视图身份

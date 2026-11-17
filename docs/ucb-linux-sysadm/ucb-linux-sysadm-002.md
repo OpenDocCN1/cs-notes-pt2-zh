@@ -34,7 +34,6 @@ chmod +x /path/to/your_script.sh
 
 ---
 
-![](img/90c65581321e0efa29e6fee4e58972bc_7.png)
 
 ## Shebang与注释 📝
 

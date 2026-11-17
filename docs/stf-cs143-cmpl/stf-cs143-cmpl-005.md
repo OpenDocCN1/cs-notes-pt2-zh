@@ -105,7 +105,6 @@ coolc fact.cl A2I.cl
 
 运行程序，输入“3”将输出“4”，输入“1”将输出“2”。
 
-![](img/fe6b97fb827ac57c0b910dbce7886ef9_23.png)
 
 ---
 

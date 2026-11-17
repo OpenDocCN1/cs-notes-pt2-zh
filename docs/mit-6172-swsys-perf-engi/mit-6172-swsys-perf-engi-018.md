@@ -120,7 +120,6 @@ GraphIt是我和Julian合作的一个产品。所以如果今天之后你对Grap
 
 ![](img/e2f28441c92062c0e7ff555f623aad61_6.png)
 
-![](img/e2f28441c92062c0e7ff555f623aad61_8.png)
 
 
 ![](img/e2f28441c92062c0e7ff555f623aad61_10.png)

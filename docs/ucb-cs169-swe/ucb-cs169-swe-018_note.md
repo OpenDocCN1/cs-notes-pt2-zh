@@ -194,7 +194,6 @@ report.output_report
 
 
 
-![](img/3be1d71e56856fc469366fb9d362137b_10.png)
 
 
 

@@ -19,7 +19,6 @@ Scheme开发环境通常包含一个交互式解释器（REPL）。你可以直�
 
 ![](img/daee36b1baf0bb8526c35bed8f1bdbff_4.png)
 
-![](img/daee36b1baf0bb8526c35bed8f1bdbff_6.png)
 
 ## 代码示例：通用排序函数
 现在，让我们回顾并深入理解上节课结束时提到的通用排序函数 `sorted?`。

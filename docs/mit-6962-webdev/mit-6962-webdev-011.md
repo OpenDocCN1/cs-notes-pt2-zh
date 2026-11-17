@@ -408,7 +408,6 @@ function Card(props) {
 
 ![](img/374f9e896f9309ae77e8daaaad756d9c_52.png)
 
-![](img/374f9e896f9309ae77e8daaaad756d9c_54.png)
 
 现在，我们让每个帖子卡片能够显示其关联的评论。思路与渲染帖子列表类似：在 `Card` 组件中管理评论状态，并映射渲染。
 

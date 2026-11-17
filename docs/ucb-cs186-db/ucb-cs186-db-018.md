@@ -91,7 +91,6 @@
 
 ![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_6.png)
 
-![](img/22ca6ca36a6a8b7349b9ccabcf4bad76_8.png)
 
 现在，我们看看在事务正常执行时，这些数据结构是如何更新的。
 

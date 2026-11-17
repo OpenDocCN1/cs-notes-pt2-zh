@@ -3,7 +3,6 @@
 
 在本节课中，我们将学习Rust如何通过其独特的所有权和借用系统，在编译时防止常见的内存安全问题，例如悬垂指针、双重释放和数据竞争。
 
-![](img/55415c18ea47cea0c8626c989dab8e0a_3.png)
 
 ---
 
@@ -79,7 +78,6 @@ int* new_array = malloc(new_size * sizeof(int));
 
 让我们通过代码示例来理解所有权的转移（移动）：
 
-![](img/55415c18ea47cea0c8626c989dab8e0a_11.png)
 
 ```rust
 fn main() {

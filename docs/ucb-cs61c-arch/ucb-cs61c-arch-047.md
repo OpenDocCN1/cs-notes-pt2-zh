@@ -6,7 +6,6 @@
 
 ![](img/4d74245e78099c0169d1d6ad549d1205_6.png)
 
-![](img/4d74245e78099c0169d1d6ad549d1205_8.png)
 
 
 
@@ -18,7 +17,6 @@
 
 ![](img/4d74245e78099c0169d1d6ad549d1205_26.png)
 
-![](img/4d74245e78099c0169d1d6ad549d1205_28.png)
 
 
 
@@ -30,7 +28,6 @@
 
 
 
-![](img/4d74245e78099c0169d1d6ad549d1205_46.png)
 
 
 
@@ -42,14 +39,12 @@
 ## 阿姆达尔定律 💔
 
 
-![](img/4d74245e78099c0169d1d6ad549d1205_64.png)
 
 
 
 
 
 
-![](img/4d74245e78099c0169d1d6ad549d1205_76.png)
 
 
 
@@ -168,7 +163,6 @@ MapReduce框架（如Hadoop）会自动处理数据分布、任务调度、节�
 
 
 
-![](img/4d74245e78099c0169d1d6ad549d1205_188.png)
 
 
 ## Spark：更快的MapReduce实现 ⚡
@@ -185,7 +179,6 @@ MapReduce框架（如Hadoop）会自动处理数据分布、任务调度、节�
 
 虽然MapReduce功能强大，但其基于磁盘的读写模式可能成为性能瓶颈。Spark是MapReduce模型的一个更现代、更高效的实现。
 
-![](img/4d74245e78099c0169d1d6ad549d1205_212.png)
 
 
 
@@ -236,17 +229,14 @@ result = word_counts.collect() # 触发计算并收集结果
 
 ![](img/4d74245e78099c0169d1d6ad549d1205_270.png)
 
-![](img/4d74245e78099c0169d1d6ad549d1205_272.png)
 
 
 甚至可以使用链式调用写成更紧凑的一行代码：
 `text_file.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b).collect()`
 
 
-![](img/4d74245e78099c0169d1d6ad549d1205_278.png)
 
 
-![](img/4d74245e78099c0169d1d6ad549d1205_282.png)
 
 
 
@@ -261,7 +251,6 @@ result = word_counts.collect() # 触发计算并收集结果
 
 ![](img/4d74245e78099c0169d1d6ad549d1205_300.png)
 
-![](img/4d74245e78099c0169d1d6ad549d1205_302.png)
 
 
 

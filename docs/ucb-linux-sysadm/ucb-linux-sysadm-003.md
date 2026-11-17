@@ -44,7 +44,6 @@
 
 
 
-![](img/855087c7e971c208f371b413846c4eaf_15.png)
 
 ## Debian与APT包管理器
 
@@ -64,7 +63,6 @@ Debian的包管理系统称为APT。实际上，它包含两个主要部分：`a
 *   `apt remove <package_name>`：移除软件包（但可能保留不再需要的依赖）。
 *   `apt autoremove`：自动移除不再需要的依赖包。
 
-![](img/855087c7e971c208f371b413846c4eaf_25.png)
 
 ## 软件包仓库与源列表
 

@@ -100,7 +100,6 @@
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_64.png)
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_66.png)
 
 
 ![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_70.png)
@@ -150,7 +149,6 @@
 
 ## 🔄 数据冒险与解决方案
 
-![](img/fa4fcf60c72d4fc40e1f0efbfb6e3287_96.png)
 
 数据冒险发生在一条指令（`I2`）需要读取一个寄存器，而前一条指令（`I1`）需要写入同一个寄存器时。根据`I2`读取时`I1`写入的状态，冒险的严重性不同。
 

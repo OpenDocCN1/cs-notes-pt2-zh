@@ -122,7 +122,6 @@ CREATE TABLE Dependents (
 3.  检查R1和R2，现在它们都满足BCNF条件。
 
 
-![](img/fae25ea80ddc4aecdb2d8d0159a2e936_13.png)
 
 
 

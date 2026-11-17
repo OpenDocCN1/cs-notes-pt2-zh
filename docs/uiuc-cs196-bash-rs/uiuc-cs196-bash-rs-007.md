@@ -166,7 +166,6 @@ fn new_student(name: String, uin: u32) -> UIUCStudent {
 
 ![](img/88cd40dc273c9b3c120243d4187bdf7c_55.png)
 
-![](img/88cd40dc273c9b3c120243d4187bdf7c_57.png)
 
 
 ### 结构体更新语法

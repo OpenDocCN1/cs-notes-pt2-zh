@@ -92,7 +92,6 @@ app.get('/api/stories', (req, res) => {
 
 ![](img/8cf5410479b52f1f6ecd25c125d030b8_19.png)
 
-![](img/8cf5410479b52f1f6ecd25c125d030b8_20.png)
 
 
 ## 发送POST请求提交新故事 📨
